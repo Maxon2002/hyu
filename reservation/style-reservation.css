@@ -338,6 +338,10 @@ body {
     /* font-size: 15px; */
 }
 
+.contact-info-block div {
+    color: #FFFCED;
+}
+
 .contact-info-block img {
     width: 15px;
 }
@@ -448,6 +452,7 @@ body {
     }
 
 }
+
 
 
 
