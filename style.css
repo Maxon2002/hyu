@@ -841,6 +841,10 @@ body {
     /* font-size: 15px; */
 }
 
+.contact-info-block a {
+    color: #FFFCED;
+}
+
 .contact-info-block img {
     width: 15px;
 }
@@ -1259,6 +1263,7 @@ body {
     }
 
 }
+
 
 
 
