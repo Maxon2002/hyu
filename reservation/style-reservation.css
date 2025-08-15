@@ -338,8 +338,9 @@ body {
     /* font-size: 15px; */
 }
 
-.contact-info-block div {
+.contact-info-block a {
     color: #FFFCED;
+    text-decoration: none;
 }
 
 .contact-info-block img {
@@ -452,6 +453,7 @@ body {
     }
 
 }
+
 
 
 
