@@ -20,7 +20,7 @@ body {
 .header-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .header-button-menu,
@@ -50,7 +50,7 @@ body {
 }
 
 .header-logo {
-    width: 40px;
+    width: 54px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -874,11 +874,11 @@ body {
 @media (min-width: 768px) {
 
     .header-wrapper {
-        padding: 30px 50px;
+        padding: 40px 50px;
     }
 
     .header-logo {
-        width: 50px;
+        width: 60px;
     }
 
     .header-buttons {
@@ -1074,9 +1074,9 @@ body {
         padding: 40px 70px;
     }
 
-    .header-logo {
+/*     .header-logo {
         width: 60px;
-    }
+    } */
 
     .header-button-menu,
     .header-button-book {
@@ -1263,6 +1263,7 @@ body {
     }
 
 }
+
 
 
 
