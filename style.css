@@ -843,6 +843,7 @@ body {
 
 .contact-info-block a {
     color: #FFFCED;
+    text-decoration: none;
 }
 
 .contact-info-block img {
@@ -1187,6 +1188,18 @@ body {
         padding: 50px
     }
 
+    .reviews-container {
+        gap: 25px;
+    }
+
+    .slider-buttons-container {
+        gap: 45px;
+    }
+
+    .slider-buttons-container img {
+        width: 45px;
+    }
+
     .reviews-link-container {
         gap: 50px;
     }
@@ -1263,6 +1276,7 @@ body {
     }
 
 }
+
 
 
 
