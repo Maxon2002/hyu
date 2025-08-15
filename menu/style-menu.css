@@ -1,0 +1,275 @@
+body {
+    width: 100%;
+    margin: 0;
+    font-family: 'Gill Sans MT', sans-serif;
+
+    background-color: #FFFCED;
+}
+
+
+
+
+/* header */
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px;
+    position: relative;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-button-menu,
+.header-button-book {
+    font-size: 15px;
+    padding: 7px 10px;
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.header-button-menu {
+    border: 1px solid #552B1B;
+    color: #552B1B;
+    background-color: transparent;
+    align-self: flex-start;
+}
+
+.header-button-book {
+    /* color: #FFFCED; */
+    background-color: #552B1B;
+}
+
+.header-button-book a{
+    text-decoration: none;
+    color: #FFFCED;
+    background-color: #552B1B;
+}
+
+.header-logo {
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-logo img {
+    width: 40px;
+}
+
+.header-language {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    cursor: pointer;
+    color: #552B1B;
+}
+
+.header-language-selected {
+    font-size: 15px;
+}
+
+.header-language-icon {
+    height: 16px;
+}
+
+
+.separator {
+    width: 90%;
+    margin: 0 auto;
+    height: 1px;
+    background-color: #552B1B;
+    border-radius: 10px;
+}
+
+
+
+
+/* панель навигации меню */
+
+.navigation-container {
+
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 252, 237, 0.9);
+    z-index: 70;
+    padding: 10px 20px;
+}
+
+
+.nav-categories {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    /* margin: 5px auto; */
+}
+
+
+.category-btn {
+    font-size: 15px;
+    padding: 7px 10px;
+    border: 1px solid #552B1B;
+    background-color: #FFFCED;
+    color: #552B1B;
+
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+
+.category-btn.active {
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+
+
+
+/* карточки */
+
+.category-section {
+    padding: 20px 35px 40px 35px;
+}
+
+.main-category-title {
+    font-family: "Playfair Display", serif;
+    color: #552B1B;
+    font-weight: 600;
+    margin: 0 0 25px 0;
+    font-size: 34px;
+    text-align: center;
+}
+
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+
+}
+
+
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    max-width: 450px;
+}
+
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2)
+}
+
+
+.card-content {
+    color: #552B1B;
+}
+
+.card-content-title {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.card-content-description {
+    font-size: 15px;
+}
+
+.card-content-price {
+    font-size: 16px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 25px;
+
+    text-align: center;
+    line-height: 20px;
+}
+
+.card-content-price span {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+
+    .header-wrapper {
+        padding: 30px 50px;
+    }
+
+    .header-logo img {
+        width: 50px;
+    }
+
+    .header-button-book {
+        font-size: 16px;
+    }
+
+    .header-language-selected {
+        font-size: 16px;
+    }
+
+
+}
+
+
+
+@media (min-width: 1024px) {
+
+    .header-wrapper {
+        padding: 40px 70px;
+    }
+
+    .header-logo img {
+        width: 60px;
+    }
+
+    .header-button-book {
+        font-size: 19px;
+    }
+
+    .header-language-selected {
+        font-size: 17px;
+    }
+
+
+
+
+
+
+    .card-content-title {
+        font-size: 22px;
+    }
+
+    .card-content-description {
+        font-size: 16px;
+    }
+
+    .card-content-price {
+        font-size: 17px;
+    }
+}
