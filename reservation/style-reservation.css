@@ -51,7 +51,7 @@ body {
 }
 
 .header-logo img {
-    width: 40px;
+    width: 54px;
 }
 
 .header-language {
@@ -367,11 +367,11 @@ body {
 
 
     .header-wrapper {
-        padding: 30px 50px;
+        padding: 40px 50px;
     }
 
     .header-logo img {
-        width: 50px;
+        width: 60px;
     }
 
     .header-button-book {
@@ -410,9 +410,9 @@ body {
         padding: 40px 70px;
     }
 
-    .header-logo img {
+/*     .header-logo img {
         width: 60px;
-    }
+    } */
 
     .header-button-book {
         font-size: 19px;
@@ -452,6 +452,7 @@ body {
     }
 
 }
+
 
 
 
