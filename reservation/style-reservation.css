@@ -302,6 +302,7 @@ body {
 /* footer */
 
 .footer {
+    background-color: #552B1B;
     padding: 35px 35px;
 
     display: flex;
@@ -332,7 +333,7 @@ body {
     align-items: center;
     gap: 5px;
 
-    color: #552B1B;
+    color: #FFFCED;
     /* font-size: 15px; */
 }
 
@@ -349,7 +350,7 @@ body {
 
 .terms-block a {
     text-decoration: none;
-    color: #552B1B;
+    color: #FFFCED;
     /* font-size: 15px; */
 }
 
@@ -446,4 +447,5 @@ body {
     }
 
 }
+
 
