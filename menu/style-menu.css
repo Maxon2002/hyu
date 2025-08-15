@@ -200,12 +200,12 @@ body {
     gap: 10px 25px;
 
     text-align: center;
-    line-height: 20px;
+    line-height: 24px;
 }
 
 .card-content-price span {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 6px;
 }
 
 
@@ -274,3 +274,4 @@ body {
     }
 
 }
+
