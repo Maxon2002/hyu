@@ -21,20 +21,21 @@ body {
     gap: 10px;
 }
 
-.header-button-menu,
-.header-button-book {
+.header-button-menu {
     font-size: 15px;
     padding: 7px 10px;
     border-radius: 20px;
 
     cursor: pointer;
-}
-
-.header-button-menu {
     border: 1px solid #552B1B;
-    color: #552B1B;
+    
     background-color: transparent;
     align-self: flex-start;
+}
+
+.header-button-menu a{
+    text-decoration: none;
+    color: #552B1B;
 }
 
 .header-button-book {
@@ -447,5 +448,6 @@ body {
     }
 
 }
+
 
 
