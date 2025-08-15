@@ -410,11 +410,11 @@ body {
 .slider-buttons-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 .slider-buttons-container img {
-    width: 30px;
+    width: 40px;
     cursor: pointer;
 }
 
@@ -990,13 +990,13 @@ body {
     }
 
 
-    .slider-buttons-container {
+/*     .slider-buttons-container {
         gap: 25px;
     }
 
     .slider-buttons-container img {
         width: 35px;
-    }
+    } */
 
 
 
@@ -1276,6 +1276,7 @@ body {
     }
 
 }
+
 
 
 
