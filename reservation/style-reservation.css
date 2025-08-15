@@ -1,7 +1,7 @@
 body {
     width: 100%;
     margin: 0;
-    font-family: 'Gill Sans MT', sans-serif;
+    font-family: 'Nunito', sans-serif;
 
     background-color: #FFFCED;
 }
@@ -444,4 +444,5 @@ body {
     .contact-info-block img {
         width: 18px;
     }
+
 }
