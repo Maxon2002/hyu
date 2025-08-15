@@ -126,7 +126,7 @@ body {
     display: flex;
     align-items: center;
     /* gap: 20px; */
-    /* width: 930px; */
+    min-width: 584px;
 }
 
 .marquee img {
@@ -905,6 +905,7 @@ body {
 
     .marquee #marquee {
         font-size: 65px;
+        min-width: 746px;
     }
 
     .marquee img {
@@ -1099,6 +1100,7 @@ body {
         font-size: 80px;
 
         padding: 14px 10px 15px 10px;
+        min-width: 914px;
     }
 
     .marquee img {
@@ -1256,3 +1258,4 @@ body {
     }
 
 }
+
