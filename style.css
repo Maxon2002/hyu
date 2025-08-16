@@ -260,6 +260,21 @@ body {
     margin: 0;
 }
 
+.text-block-subtitle span {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+#occasion-text-block {
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+
+#occasion-text-block .text-block-subtitle {
+    text-align: left;
+}
 
 
 
@@ -939,6 +954,10 @@ body {
         max-width: 65ch;
     }
 
+    .text-block-subtitle span {
+        font-size: 18px;
+    }
+
 
 
 
@@ -1135,6 +1154,9 @@ body {
         max-width: 65ch;
     }
 
+    .text-block-subtitle span {
+        font-size: 19px;
+    }
 
 
 
@@ -1187,6 +1209,25 @@ body {
         max-width: 350px;
     }
 
+
+    #occasion-text-block {
+        flex-direction: row;
+        gap: 70px;
+
+        padding: 50px;
+    }
+
+    #occasion-text-block .text-block-title {
+        width: 100%;
+        max-width: 350px;
+        
+        padding: 0;
+    }
+
+    #occasion-text-block .text-block-subtitle {
+        width: 100%;
+        max-width: 350px;
+    }
 
 
     .grid-wrapper {
@@ -1286,6 +1327,7 @@ body {
     }
 
 }
+
 
 
 
