@@ -850,6 +850,16 @@ body {
     width: 15px;
 }
 
+.social-media-block {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-media-block img {
+    width: 30px;
+}
+
 .terms-block {
     /* margin-top: 20px; */
     display: flex;
@@ -1276,6 +1286,7 @@ body {
     }
 
 }
+
 
 
 
