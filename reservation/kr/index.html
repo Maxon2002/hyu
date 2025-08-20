@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두바이 HYU 한식당 – 테이블 예약하기 (온라인 예약)</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../style-reservation.css">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="header-buttons">
+                <div class="header-button-menu"><a href="../../menu/kr/index.html">메뉴 보기</a></div>
+                <!-- <div class="header-button-book">Book Your Table</div> -->
+            </div>
+            <a href="../../kr/index.html" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+            <div class="header-language">
+                <div class="header-language-selected">한국어</div>
+                <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+            </div>
+        </div>
+
+        <nav class="site-nav">
+            <ul>
+                <li class="nav-list" id="en"><a href="../index.html">English</a></li>
+                <!-- <li class="nav-list" id="ru">Русский</li> -->
+                <li class="nav-list active" id="kr">한국어</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="site-nav-back hidden"></div>
+
+    <!-- <div class="separator"></div> -->
+
+    <div class="reservation-section">
+        <h2 class="text-block-title">지금 예약하기</h2>
+        <div class="reservation-form-container">
+            <div class="reservation-form-wrapper">
+                <form class="reservation-form">
+                    <div class="part-form active">
+
+                        <!-- Дата -->
+                        <label for="date">날짜</label>
+                        <input type="text" id="date" name="date" placeholder="날짜 선택" required>
+                        <!-- <input type="date" id="date" name="date" placeholder="Date" required> -->
+
+                        <!-- Время -->
+                        <label for="time">시간</label>
+                        <select id="time" name="time" disabled required>
+                            <option value="" disabled selected>시간 선택</option>
+
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                        </select>
+
+                        <!-- Количество человек -->
+                        <label for="guests">인원 수</label>
+                        <input type="number" id="guests" name="guests" placeholder="몇 명이 오시나요?" required>
+                        <!-- <button type="button" class="next-form">Continue</button> -->
+                        <div class="next-form">다음</div>
+                    </div>
+                    <div class="part-form">
+                        <!-- Имя -->
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="성함" required>
+
+                        <!-- Телефон -->
+                        <label for="phone">전화번호</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+..." required>
+
+                        <!-- Email -->
+                        <label for="email">이메일 (선택 사항)</label>
+                        <input type="email" id="email" name="email" placeholder="example@mail.com">
+
+                        <!-- Комментарий -->
+                        <label for="message">추가 요청 사항 (선택 사항)</label>
+                        <textarea id="message" name="message" rows="4"
+                            placeholder="알레르기, 좌석 선호, 기념일 등"></textarea>
+
+                        <!-- Кнопка -->
+                        <div class="btn-form-wrapper">
+                            <!-- <button type="button" class="prev-form">Previous</button> -->
+                            <div class="prev-form">이전</div>
+                            <!-- <button type="button" class="submit-btn">Book Now</button> -->
+                            <div class="submit-btn">예약하기</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="confirm-form-container">
+                <div class="confirm-form">
+                    <img src="../images/close-button.svg" alt="close-button" class="close-confirm-form">
+                    <!-- <span class="close-confirm-form">&times;</span> -->
+
+                    <p>
+                        감사합니다, <span class="confirm-name"></span>님!<br>
+                        <span class="confirm-date"></span> <span class="confirm-time"></span>에 예약이 접수되었습니다.<br><br>
+                        HYU에서 곧 만나 뵙기를 기대합니다!
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="separator"></div> -->
+
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="info-block">
+                <img src="../../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                <div class="contact-info">
+                    <div class="contact-info-block">
+                        <img src="../../images/email-icon-light.svg" alt="email">
+                        <div>hyurestaurant@gmail.com</div>
+                    </div>
+                    <div class="contact-info-block">
+                        <img src="../../images/phone-icon-light.svg" alt="phone">
+                        <div>+971 502 273 004</div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-block">
+                <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/facebook.svg" alt="facebook">
+                </a>
+                <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/instagram.svg" alt="instagram">
+                </a>
+            </div>
+
+            <div class="timing-block">
+                <div>매일 기다리고 있습니다</div>
+                <div>영업 시간: 11:00 ~ 23:30</div>
+            </div>
+            <div class="terms-block">
+                <a href="../../privacy-policy/kr/index.html">개인정보 처리방침</a>
+                <a href="../../terms-and-conditions/kr/index.html">이용 약관</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+    <script src="../script-reservation.js"></script>
+</body>
+
+</html>

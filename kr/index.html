@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두바이 HYU 한식당 – 정통 한국 요리와 다이닝 경험</title>
+
+    <link rel="icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style-kr.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="header-buttons">
+                <div class="header-button-menu"><a href="../menu/kr/index.html">메뉴 보기</a></div>
+                <div class="header-button-book">예약하기</div>
+            </div>
+            <img src="../images/Hyu Logo.svg" alt="logo" class="header-logo">
+            <div class="header-language">
+                <div class="header-language-selected">한국어</div>
+                <img src="../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+            </div>
+        </div>
+
+        <nav class="site-nav">
+            <ul>
+                <li class="nav-list" id="en"><a href="../index.html">English</a></li>
+                <!-- <li class="nav-list" id="ru">Русский</li> -->
+                <li class="nav-list active" id="kr">한국어</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="site-nav-back hidden"></div>
+
+
+    <div class="hero-block">
+        <div class="hero-block-text">
+            <h2 class="hero-block-text-title">한국의 맛</h2>
+            <p class="hero-block-text-subtitle">신선한 재료, 깊은 풍미, 그리고 집밥 같은 따뜻함을 담았습니다. 잊지 못할 식사 경험을 HYU에서 만나보세요</p>
+        </div>
+    </div>
+
+    <div class="marquee">
+        <div class="marquee-1" id="marquee">
+            <div>정통의 맛 </div>
+            <img src="../images/Hyu Logo.svg" alt="logo">
+        </div>
+        <div class="marquee-2" id="marquee">
+            <div>정통의 맛 </div>
+            <img src="../images/Hyu Logo.svg" alt="logo">
+        </div>
+
+        <div class="marquee-3" id="marquee">
+            <div>정통의 맛 </div>
+            <img src="../images/Hyu Logo.svg" alt="logo">
+        </div>
+
+        <div class="marquee-4" id="marquee">
+            <div>정통의 맛 </div>
+            <img src="../images/Hyu Logo.svg" alt="logo">
+        </div>
+    </div>
+
+    <!-- <img src="../images/atmosphere.jpg" alt="ambience" class="ambience-image"> -->
+    <img src="../images/atmosphere.webp" srcset="
+        ../images/small/atmosphere-small.webp 430w,
+        ../images/small/atmosphere-medium.webp 1024w,
+        ../images/atmosphere.webp 1920w" sizes="100vw" alt="ambience" class="ambience-image">
+
+    <div class="introducing-container">
+        <div class="text-block" id="intro-text-block">
+            <h2 class="text-block-title">따뜻함과 전통이 만나는 곳</h2>
+            <!-- <p class="text-block-subtitle">Since 2010, HYU Korean Restaurant has been a
+                welcoming space in the heart of Dubai, where
+                every guest is treated like family.
+                <br><br>
+                Rooted in Korean hospitality, we create moments
+                filled with comfort, connection, and care.
+            </p> -->
+
+            <p class="text-block-subtitle">2010년부터 HYU 한식당은 단순한 식사 공간을 넘어, 두바이 중심에서 집처럼 편안한 안식처가 되어왔습니다
+                <br><br>
+                한국의 환대 정신을 바탕으로, 모든 손님을 가족처럼 맞이하며 편안함과 교감, 따뜻한 배려의 순간을 만들어 갑니다
+                <br><br>
+                HYU에 들어서는 순간, 정통 한식 문화와 따뜻한 분위기를 찾는 분들이 왜 우리를 신뢰하는지 직접 느껴보세요
+            </p>
+        </div>
+        <div class="cooking-image-wrapper">
+            <!-- <img src="../images/cooking-bbq.jpg" alt="" class="cooking-image"> -->
+
+            <img src="../images/cooking-bbq.webp"
+                srcset="../images/small/cooking-bbq-small.webp 350w, ../images/cooking-bbq.webp 600w"
+                sizes="(max-width: 1024px) calc(70vw - 70px), 350px" alt="BBQ" class="cooking-image" loading="lazy">
+        </div>
+    </div>
+
+
+    <!-- <div class="separator"></div> -->
+
+    <div class="text-block" id="occasion-text-block">
+        <h2 class="text-block-title">식사를 넘어, 특별한 경험으로</h2>
+
+        <p class="text-block-subtitle">
+            <span>잊지 못할 경험</span>
+            <br>
+            HYU에서의 식사는 단순한 음식이 아닙니다. 웃음과 교감, 함께 요리하고 나누는 즐거움이 있습니다. 모임, 가족, 친구들과 함께하기에 완벽한 장소입니다
+            <br><br>
+            <span>전통의 맛</span>
+            <br>
+            비빔밥부터 반찬까지, HYU의 메뉴는 한국의 전통을 담은 여정입니다. 매 방문마다 정통의 맛과 오래된 전통을 경험할 수 있는 초대가 열립니다
+            <br><br>
+            <span>HYU와 함께하는 특별한 순간</span>
+            <br>
+            소중한 순간을 HYU와 함께 특별한 추억으로 만드세요. 생일, 기념일, 단체 모임까지 어떤 자리든 따뜻한 분위기 속에서 더욱 특별하게 만들어 드립니다
+        </p>
+    </div>
+
+
+    <!-- <div class="separator"></div> -->
+
+
+    <div class="text-block" id="food-text-block">
+        <h2 class="text-block-title">사랑을 담아, 당신을 위해</h2>
+        <div class="text-block-wrapper">
+            <!-- <p class="text-block-subtitle">From sizzling barbecue to comforting stews
+                and traditional side dishes.
+                <br><br>
+                Whether you’re here for a quick lunch or a
+                lingering dinner with friends, we invite you
+                to relax, feel at home, and enjoy the true
+                taste of Korea.
+            </p> -->
+            <p class="text-block-subtitle">HYU 한식당의 모든 요리는 신선한 재료와 오랜 전통 레시피로 정성껏 준비됩니다
+                <br><br>
+                지글지글한 한식 바비큐부터 든든한 찌개, 다채로운 반찬까지, 우리의 메뉴는 우리가 자라며 익힌 한국의 맛을 그대로 담고 있습니다
+                <br><br>
+                지글지글한 한식 바비큐부터 든든한 찌개, 다채로운 반찬까지, 우리의 메뉴는 우리가 자라며 익힌 한국의 맛을 그대로 담고 있습니다
+            </p>
+            <div class="text-block-buttons">
+                <div class="header-button-menu"><a href="../menu/kr/index.html">메뉴 보기</a></div>
+                <div class="header-button-book">예약하기</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-wrapper">
+        <div class="grid-container">
+            <div class="grid-item-1">
+                <!-- <img src="images/grid-picture.webp" alt="" loading="lazy"> -->
+                <img src="../images/grid-picture.webp"
+                    srcset="../images/small/grid-picture-small.webp 360w, ../images/grid-picture.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-2">
+                <!-- <img src="images/Bibim-gooksu.webp" alt="" loading="lazy"> -->
+                <img src="../images/Bibim-gooksu.webp"
+                    srcset="../images/small/Bibim-gooksu-small.webp 360w, ../images/Bibim-gooksu.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-3">
+                <!-- <img src="images/Yookgaejang.webp" alt="" loading="lazy"> -->
+                <img src="../images/Yookgaejang.webp"
+                    srcset="../images/small/Yookgaejang-small.webp 360w, ../images/Yookgaejang.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-4">
+                <!-- <img src="images/Rabokki.webp" alt="" loading="lazy"> -->
+                <img src="../images/Rabokki.webp"
+                    srcset="../images/small/Rabokki-small.webp 360w, ../images/Rabokki.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-5">
+                <!-- <img src="images/Ttukbokki.webp" alt="" loading="lazy"> -->
+                <img src="../images/Ttukbokki.webp"
+                    srcset="../images/small/Ttukbokki-small.webp 360w, ../images/Ttukbokki.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="separator"></div>
+
+    <div class="reviews-section">
+        <h2 class="text-block-title">손님들의 평가</h2>
+        <div class="reviews-container">
+            <div class="reviews-wrapper">
+                <div class="reviews-slider">
+                    <div class="review-block active">
+                        <p class="review-text">두바이에서 오랫동안 즐겨 찾는 한식당 중 하나입니다. 특히 우리가 좋아하는 양념갈비와 서비스는 항상 만족스러워요. 몇 번 방문했는지
+                            셀 수 없지만, 언제나 훌륭한 경험을 제공합니다.</p>
+                        <div class="review-name">— Jenny Noynay</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">가족 모두가 음식에 만족했습니다. 한식 바비큐 소고기는 정말 맛있었고, 원하는 대로 직접 구워 먹을 수 있어서 좋았어요. 우리
+                            아들도 음식과 서비스 모두 마음에 들어 했습니다. 강력 추천합니다.</p>
+                        <div class="review-name">— Sajith Pkulangara</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">모든 것이 만족스러웠고, 친절하고 빠른 서비스 덕분에 즐거운 시간을 보냈습니다. 모든 요리가 잘 준비되어 기대를 완전히
+                            충족시켰습니다.</p>
+                        <div class="review-name">— Rene Schulz</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">정말 숨은 보석 같은 곳이에요! 좋은 리뷰를 보고 방문했는데 기대 이상이었습니다. 단순하지만 정통 한식의 매력을 느낄 수 있는
+                            최고의 한식당 중 하나입니다.</p>
+                        <div class="review-name">— Mau Carranza</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">서비스 10/10. 친구와 저는 영업 종료 40분 전에 방문했는데, 서비스는 여전히 최고였습니다. 김치찌개와 치킨 비빔밥을
+                            먹었는데, 둘 다 정말 맛있었어요. 꼭 다시 올 예정입니다.</p>
+                        <div class="review-name">— Hajara Noushad</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-buttons-container">
+                <img src="../images/prev-button.svg" alt="" class="slider-button-prev">
+                <img src="../images/next-button.svg" alt="" class="slider-button-next">
+            </div>
+
+        </div>
+
+
+
+        <div class="more-reviews-container">
+            <h2 class="text-block-title">더 많은 리뷰 보기</h2>
+            <div class="reviews-link-container">
+                <a href="" class="reviews-link-wrapper" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/google.svg" alt="google-reviews">
+                    <div>리뷰 680개 이상</div>
+                </a>
+                <a href="https://www.zomato.com/dubai/hyu-korean-restaurant-jumeirah-lake-towers/reviews"
+                    class="reviews-link-wrapper" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/zomato.svg" alt="google-reviews">
+                    <div>리뷰 450개 이상</div>
+                </a>
+                <a href="https://www.tripadvisor.com/Restaurant_Review-g295424-d3919393-Reviews-Hyu_Korean_Restaurant-Dubai_Emirate_of_Dubai.html"
+                    class="reviews-link-wrapper" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/tripadvisor.svg" alt="google-reviews">
+                    <div>리뷰 80개 이상</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="separator"></div> -->
+
+    <div class="map-section">
+        <div class="text-block">
+            <h2 class="text-block-title">두바이 중심에서 만나는 HYU</h2>
+            <p class="text-block-subtitle">저희는 시크 자이드 로드를 따라 위치한 주메이라 레이크 타워 클러스터 O에 있으며, 쉽게 찾아오실 수 있고 언제나 따뜻하게 맞이합니다.
+            </p>
+        </div>
+        <div class="adress-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.8270793358347!2d55.1439252!3d25.0738494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d2b2ee4a891%3A0xa15a9ea5f6b34b83!2sHyu%20Korean%20Restaurant!5e0!3m2!1sru!2sae!4v1754997439200!5m2!1sru!2sae"
+                width="" height="" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <!-- <div class="separator"></div> -->
+
+
+    <div class="reservation-section">
+        <h2 class="text-block-title">지금 예약하기</h2>
+        <div class="reservation-form-container">
+            <div class="reservation-form-wrapper">
+                <form class="reservation-form">
+                    <div class="part-form active">
+
+                        <!-- Дата -->
+                        <label for="date">날짜</label>
+                        <input type="text" id="date" name="date" placeholder="날짜 선택" required>
+                        <!-- <input type="date" id="date" name="date" placeholder="Date" required> -->
+
+                        <!-- Время -->
+                        <label for="time">시간</label>
+                        <select id="time" name="time" disabled required>
+                            <option value="" disabled selected>시간 선택</option>
+
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                        </select>
+
+                        <!-- Количество человек -->
+                        <label for="guests">인원 수</label>
+                        <input type="number" id="guests" name="guests" placeholder="몇 명이 오시나요?" required>
+                        <!-- <button type="button" class="next-form">Continue</button> -->
+                        <div class="next-form">다음</div>
+                    </div>
+                    <div class="part-form">
+                        <!-- Имя -->
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="성함" required>
+
+                        <!-- Телефон -->
+                        <label for="phone">전화번호</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+..." required>
+
+                        <!-- Email -->
+                        <label for="email">이메일 (선택 사항)</label>
+                        <input type="email" id="email" name="email" placeholder="example@mail.com">
+
+                        <!-- Комментарий -->
+                        <label for="message">추가 요청 사항 (선택 사항)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="알레르기, 좌석 선호, 기념일 등"></textarea>
+
+                        <!-- Кнопка -->
+                        <div class="btn-form-wrapper">
+                            <!-- <button type="button" class="prev-form">Previous</button> -->
+                            <div class="prev-form">이전</div>
+                            <!-- <button type="button" class="submit-btn">Book Now</button> -->
+                            <div class="submit-btn">예약하기</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="confirm-form-container">
+                <div class="confirm-form">
+                    <img src="../images/close-button.svg" alt="close-button" class="close-confirm-form">
+                    <!-- <span class="close-confirm-form">&times;</span> -->
+
+                    <p>
+                        감사합니다, <span class="confirm-name"></span>님!<br>
+                        <span class="confirm-date"></span> <span class="confirm-time"></span>에 예약이 접수되었습니다.<br><br>
+                        HYU에서 곧 만나 뵙기를 기대합니다!
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="marquee-dishes">
+        <div class="marquee-dish-1">
+            <!-- <img src="images/Ojinguh.webp" alt="Ojinguh" loading="lazy"> -->
+
+            <img src="../images/Ojinguh.webp" srcset="../images/small/Ojinguh-small-1.webp 250w,
+        ../images/small/Ojinguh-small-2.webp 350w,
+        ../images/small/Ojinguh-small-3.webp 480w,
+        ../images/small/Ojinguh-small-4.webp 550w,
+        ../images/Ojinguh.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Ojinguh" loading="lazy">
+
+        </div>
+        <div class="marquee-dish-2">
+            <!-- <img src="images/Boolgogi.webp" alt="bbq-bulgogi" loading="lazy"> -->
+
+            <img src="../images/Boolgogi.webp" srcset="../images/small/Boolgogi-small-1.webp 250w,
+        ../images/small/Boolgogi-small-2.webp 350w,
+        ../images/small/Boolgogi-small-3.webp 480w,
+        ../images/small/Boolgogi-small-4.webp 550w,
+        ../images/Boolgogi.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Boolgogi" loading="lazy">
+
+        </div>
+        <div class="marquee-dish-3">
+            <!-- <img src="images/Jjamppong.webp" alt="noodle-jjamppo" loading="lazy"> -->
+
+
+            <img src="../images/Jjamppong.webp" srcset="../images/small/Jjamppong-small-1.webp 250w,
+        ../images/small/Jjamppong-small-2.webp 350w,
+        ../images/small/Jjamppong-small-3.webp 480w,
+        ../images/small/Jjamppong-small-4.webp 550w,
+        ../images/Jjamppong.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Jjamppong" loading="lazy">
+
+        </div>
+        <div class="marquee-dish-4">
+            <!-- <img src="images/Moolnaengmyun.webp" alt="noodle-moolnae" loading="lazy"> -->
+
+            <img src="../images/Moolnaengmyun.webp" srcset="../images/small/Moolnaengmyun-small-1.webp 250w,
+        ../images/small/Moolnaengmyun-small-2.webp 350w,
+        ../images/small/Moolnaengmyun-small-3.webp 480w,
+        ../images/small/Moolnaengmyun-small-4.webp 550w,
+        ../images/Moolnaengmyun.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Moolnaengmyun" loading="lazy">
+        </div>
+    </div>
+
+    <div class="menu-button-block">
+        <div class="header-button-menu"><a href="../menu/kr/index.html">메뉴 보기</a></div>
+    </div>
+
+    <div class="separator"></div>
+
+
+    <div class="text-block">
+        <h2 class="text-block-title">HYU의 맛을 집에서 즐기세요</h2>
+        <div class="text-block-wrapper">
+            <p class="text-block-subtitle">집에서도 HYU의 따뜻함을 느끼고 싶으신가요? 언제든 좋아하는 메뉴를 주문하고, 어디서든 저희의 정성을 경험하실 수 있습니다.
+            </p>
+            <div class="delivery-buttons-container">
+
+                <a href="https://www.talabat.com/uae/hyu-korean-restaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/talabat.svg" alt="" class="talabat-svg">
+                </a>
+
+                <a href="https://deliveroo.ae/menu/dubai/jlt/hyu-korean-restaurant" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="../images/deliveroo-logo.svg" alt="" class="deliveroo-svg">
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="separator"></div> -->
+
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="info-block">
+                <img src="../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                <div class="contact-info">
+                    <div class="contact-info-block">
+                        <img src="../images/email-icon-light.svg" alt="email">
+                        <div>hyurestaurant@gmail.com</div>
+                    </div>
+                    <div class="contact-info-block">
+                        <img src="../images/phone-icon-light.svg" alt="phone">
+                        <div>+971 502 273 004</div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-block">
+                <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/facebook.svg" alt="facebook">
+                </a>
+                <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/instagram.svg" alt="instagram">
+                </a>
+            </div>
+
+            <div class="timing-block">
+                <div>매일 기다리고 있습니다</div>
+                <div>영업 시간: 11:00 ~ 23:30</div>
+            </div>
+
+            <div class="terms-block">
+                <a href="../privacy-policy/kr/index.html">개인정보 처리방침</a>
+                <a href="../terms-and-conditions/kr/index.html">이용 약관</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
