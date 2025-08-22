@@ -983,11 +983,12 @@ body {
 .delivery-buttons-container {
     margin-top: 10px;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
-.talabat-svg,
-.deliveroo-svg {
+.delivery-svg {
     width: 90px;
     height: auto;
 }
@@ -1281,8 +1282,7 @@ body {
         gap: 40px;
     }
 
-    .talabat-svg,
-    .deliveroo-svg {
+    .delivery-svg {
         width: 110px;
     }
 
@@ -1531,8 +1531,7 @@ body {
         gap: 50px;
     }
 
-    .talabat-svg,
-    .deliveroo-svg {
+    .delivery-svg {
         width: 130px;
     }
 
