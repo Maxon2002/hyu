@@ -1,0 +1,136 @@
+.hero-block-text-subtitle {
+    text-align: right;
+}
+
+.text-block-subtitle {
+    text-align: right;
+}
+
+#occasion-text-block .text-block-subtitle {
+    text-align: right;
+}
+
+
+
+
+
+
+.marquee #marquee {
+    min-width: 265px;
+}
+
+
+.marquee img {
+    margin-right: 20px;
+    margin-left: 0px;
+}
+
+
+
+@keyframes marquee1 {
+    0% {
+        transform: translateX(-300%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes marquee2 {
+    0% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes marquee3 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(300%);
+    }
+}
+
+@keyframes marquee4 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(400%);
+    }
+}
+
+
+
+
+.confirm-form p {
+    text-align: right;
+}
+
+
+
+@keyframes marqueeDish1 {
+    0% {
+        transform: translateX(-300%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes marqueeDish2 {
+    0% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes marqueeDish3 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(300%);
+    }
+}
+
+@keyframes marqueeDish4 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(400%);
+    }
+}
+
+
+
+
+@media (min-width: 768px) {
+    .marquee #marquee {
+        min-width: 332px;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .marquee #marquee {
+        
+        font-size: 90px;
+        min-width: 445px;
+    }
+
+}
