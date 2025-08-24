@@ -381,7 +381,14 @@ body {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    text-align: center;
+    /* text-align: center; */
+}
+
+.authentic-block-1 {
+    text-align: right;
+}
+.authentic-block-2 {
+    text-align: left;
 }
 
 
