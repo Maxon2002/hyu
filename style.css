@@ -282,7 +282,7 @@ body {
 /* moving text */
 
 
-.marquee {
+/* .marquee {
     display: flex;
     overflow-x: hidden;
 }
@@ -295,10 +295,8 @@ body {
     color: #552B1B;
     padding: 9px 10px 10px 10px;
     white-space: nowrap;
-    /* display: inline-block; */
     display: flex;
     align-items: center;
-    /* gap: 20px; */
     width: 584px;
 }
 
@@ -368,7 +366,30 @@ body {
     100% {
         transform: translateX(-400%);
     }
+} */
+
+
+
+.authentic-block {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #552B1B;
+    padding: 10px 5px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
 }
+
+
+.authentic-block img {
+    width: 40px;
+    /* margin-left: 20px; */
+}
+
 
 
 /* фото перебивка */
@@ -1140,7 +1161,7 @@ body {
 
 
 
-    .marquee #marquee {
+    /* .marquee #marquee {
         font-size: 65px;
 
         width: 746px;
@@ -1148,7 +1169,20 @@ body {
 
     .marquee img {
         width: 45px;
+    } */
+
+
+
+    .authentic-block {
+        font-size: 28px;
+        gap: 20px;
+        padding: 14px 5px;
     }
+
+    .authentic-block img {
+        width: 45px;
+    }
+
 
 
 
@@ -1353,7 +1387,7 @@ body {
 
 
 
-    .marquee #marquee {
+    /* .marquee #marquee {
         font-size: 80px;
 
         padding: 14px 10px 15px 10px;
@@ -1363,6 +1397,18 @@ body {
 
     .marquee img {
         width: 55px;
+    } */
+
+
+
+    .authentic-block {
+        font-size: 40px;
+        gap: 30px;
+        padding: 20px 5px;
+    }
+
+    .authentic-block img {
+        width: 50px;
     }
 
 
