@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>두바이 HYU 한식당 – 테이블 예약하기 (온라인 예약)</title>
+    <title>احجز طاولة في مطعم هيو الكوري دبي – الحجز عبر الإنترنت</title>
 
     <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
@@ -25,12 +25,12 @@
     <header class="header">
         <div class="header-wrapper">
             <div class="header-buttons">
-                <div class="header-button-menu"><a href="../../menu/kr/index.html">메뉴 보기</a></div>
-                <!-- <div class="header-button-book">Book Your Table</div> -->
+                <div class="header-button-menu"><a href="../../menu/ar/index.html">عرض القائمة</a></div>
+                <!-- <div class="header-button-book"><a href="../../reservation/ar/index.html">احجز طاولتك</a></div> -->
             </div>
-            <a href="../../kr/index.html" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+            <a href="../../ar/index.html" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
             <div class="header-language">
-                <div class="header-language-selected">한국어</div>
+                <div class="header-language-selected">العربية</div>
                 <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
             </div>
         </div>
@@ -39,8 +39,8 @@
             <ul>
                 <li class="nav-list" id="en"><a href="../index.html">English</a></li>
                 <!-- <li class="nav-list" id="ru">Русский</li> -->
-                <li class="nav-list active" id="ko">한국어</li>
-                <li class="nav-list" id="ar"><a href="../ar/index.html">العربية</a></li>
+                <li class="nav-list" id="ko"><a href="../kr/index.html">한국어</a></li>
+                <li class="nav-list active" id="ar">العربية</li>
             </ul>
         </nav>
     </header>
@@ -50,21 +50,21 @@
     <!-- <div class="separator"></div> -->
 
     <div class="reservation-section">
-        <h2 class="text-block-title">지금 예약하기</h2>
+        <h2 class="text-block-title">احجز طاولتك الآن</h2>
         <div class="reservation-form-container">
             <div class="reservation-form-wrapper">
                 <form class="reservation-form">
                     <div class="part-form active">
 
                         <!-- Дата -->
-                        <label for="date">날짜</label>
-                        <input type="text" id="date" name="date" placeholder="날짜 선택" required>
+                        <label for="date">التاريخ</label>
+                        <input type="text" id="date" name="date" placeholder="اختر تاريخك" required>
                         <!-- <input type="date" id="date" name="date" placeholder="Date" required> -->
 
                         <!-- Время -->
-                        <label for="time">시간</label>
+                        <label for="time">الوقت</label>
                         <select id="time" name="time" disabled required>
-                            <option value="" disabled selected>시간 선택</option>
+                            <option value="" disabled selected>اختر وقتًا</option>
 
                             <option value="11:00">11:00</option>
                             <option value="11:30">11:30</option>
@@ -94,35 +94,35 @@
                         </select>
 
                         <!-- Количество человек -->
-                        <label for="guests">인원 수</label>
-                        <input type="number" id="guests" name="guests" placeholder="몇 명이 오시나요?" required>
+                        <label for="guests">عدد الضيوف</label>
+                        <input type="number" id="guests" name="guests" placeholder="كم عدد الحضور" required>
                         <!-- <button type="button" class="next-form">Continue</button> -->
-                        <div class="next-form">다음</div>
+                        <div class="next-form">متابعة</div>
                     </div>
                     <div class="part-form">
                         <!-- Имя -->
-                        <label for="name">이름</label>
-                        <input type="text" id="name" name="name" placeholder="성함" required>
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" placeholder="الاسم الكامل" required>
 
                         <!-- Телефон -->
-                        <label for="phone">전화번호</label>
+                        <label for="phone">رقم الهاتف</label>
                         <input type="tel" id="phone" name="phone" placeholder="+..." required>
 
                         <!-- Email -->
-                        <label for="email">이메일 (선택 사항)</label>
+                        <label for="email">البريد الإلكتروني (اختياري)</label>
                         <input type="email" id="email" name="email" placeholder="example@mail.com">
 
                         <!-- Комментарий -->
-                        <label for="message">추가 요청 사항 (선택 사항)</label>
+                        <label for="message">ملاحظات إضافية (اختياري)</label>
                         <textarea id="message" name="message" rows="4"
-                            placeholder="알레르기, 좌석 선호, 기념일 등"></textarea>
+                            placeholder="الحساسية، تفضيلات الجلوس، المناسبة، إلخ."></textarea>
 
                         <!-- Кнопка -->
                         <div class="btn-form-wrapper">
                             <!-- <button type="button" class="prev-form">Previous</button> -->
-                            <div class="prev-form">이전</div>
+                            <div class="prev-form">السابق</div>
                             <!-- <button type="button" class="submit-btn">Book Now</button> -->
-                            <div class="submit-btn">예약하기</div>
+                            <div class="submit-btn">احجز الآن</div>
                         </div>
                     </div>
                 </form>
@@ -132,11 +132,11 @@
                     <img src="../../images/close-button.svg" alt="close-button" class="close-confirm-form">
                     <!-- <span class="close-confirm-form">&times;</span> -->
 
-                    <p>
-                        감사합니다, <span class="confirm-name"></span>님!<br>
-                        <span class="confirm-date"></span> <span class="confirm-time"></span>에 예약이 접수되었습니다.<br><br>
-                        HYU에서 곧 만나 뵙기를 기대합니다!
-                    </p>
+
+                    <p>شكرًا لك، <span class="confirm-name"></span>! تم استلام حجزك بتاريخ <span
+                            class="confirm-date"></span> في الساعة <span class="confirm-time"></span>.<br><br> نتطلع
+                        للترحيب بك!</p>
+
 
                 </div>
             </div>
@@ -170,12 +170,11 @@
             </div>
 
             <div class="timing-block">
-                <div>매일 기다리고 있습니다</div>
-                <div>영업 시간: 11:00 ~ 23:30</div>
+                <div>نحن في انتظاركم كل يوم من الساعة 11:00 صباحًا حتى 11:30 مساءً</div>
             </div>
             <div class="terms-block">
-                <a href="../../privacy-policy/kr/index.html">개인정보 처리방침</a>
-                <a href="../../terms-and-conditions/kr/index.html">이용 약관</a>
+                <a href="../../privacy-policy/ar/index.html">سياسة الخصوصية</a>
+                <a href="../../terms-and-conditions/ar/index.html">الشروط والأحكام</a>
             </div>
         </div>
     </footer>
@@ -185,7 +184,7 @@
 
     <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
 
     <script src="../script-reservation.js"></script>
 </body>

@@ -149,7 +149,7 @@ function getLocale(lang) {
             return flatpickr.l10ns.ru;
         case 'en':
             return flatpickr.l10ns.default;
-        case 'kr':
+        case 'ko':
             return flatpickr.l10ns.ko;
         case 'ar':
             return flatpickr.l10ns.ar;

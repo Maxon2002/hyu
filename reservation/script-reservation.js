@@ -72,13 +72,15 @@ let currentLang = document.querySelector('.site-nav .active').id;
 
 
 function getLocale(lang) {
-    switch(lang) {
+    switch (lang) {
         case 'ru':
             return flatpickr.l10ns.ru;
         case 'en':
             return flatpickr.l10ns.default;
-        case 'kr':
-            return flatpickr.l10ns.ko; 
+        case 'ko':
+            return flatpickr.l10ns.ko;
+        case 'ar':
+            return flatpickr.l10ns.ar;
         default:
             return flatpickr.l10ns.default;
     }
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
         minDate: "today",
         locale: {
             ...getLocale(currentLang),
-            firstDayOfWeek: 1 
+            firstDayOfWeek: 1
         },
         onChange: function () {
             selectedDate = calendar.selectedDates[0]
@@ -126,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (isToday && timeValue <= now) {
 
-                if(option.value === timeSelect.value) {
+                if (option.value === timeSelect.value) {
                     timeSelect.selectedIndex = 0
                 }
 
@@ -163,7 +165,11 @@ function updateFormPosition() {
         }
     })
 
-    bookingForm.style.transform = `translateX(${offset}px)`;
+    if (currentLang !== "ar") {
+        bookingForm.style.transform = `translateX(${offset}px)`;
+    } else {
+        bookingForm.style.transform = `translateX(${-offset}px)`;
+    }
 }
 
 
