@@ -16,7 +16,7 @@
 
 
 .marquee #marquee {
-    min-width: 265px;
+    width: 265px;
 }
 
 
@@ -121,7 +121,7 @@
 
 @media (min-width: 768px) {
     .marquee #marquee {
-        min-width: 332px;
+        width: 332px;
     }
 }
 
@@ -130,7 +130,7 @@
     .marquee #marquee {
         
         font-size: 90px;
-        min-width: 445px;
+        width: 445px;
     }
 
 }
