@@ -16,7 +16,7 @@
 
 
 .marquee #marquee {
-    width: 265px;
+    min-width: 395px;
 }
 
 
