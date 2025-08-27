@@ -1,0 +1,16 @@
+.main-title {
+    font-size: 25px;
+}
+
+
+@media (min-width: 768px) {
+    .main-title {
+        font-size: 38px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-title {
+        font-size: 45px;
+    }
+}
