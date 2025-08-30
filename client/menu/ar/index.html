@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم هيو الكوري دبي – اكتشف قائمتنا</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style-menu.css">
+    <!-- <link rel="stylesheet" href="style-menu-kr.css"> -->
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="header-buttons">
+                <!-- <div class="header-button-menu">View Menu</div> -->
+                <div class="header-button-book"><a href="../../reservation/ar/index.html">احجز طاولتك</a></div>
+            </div>
+            <a href="../../ar/index.html" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+            <div class="header-language">
+                <div class="header-language-selected">العربية</div>
+                <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+            </div>
+        </div>
+
+        <nav class="site-nav">
+            <ul>
+                <li class="nav-list" id="en"><a href="../index.html">English</a></li>
+                <li class="nav-list" id="ko"><a href="../ko/index.html">한국어</a></li>
+                <li class="nav-list" id="ru"><a href="../ru/index.html">Русский</a></li>
+                <li class="nav-list active" id="ar">العربية</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="site-nav-back hidden"></div>
+
+    <!-- <div class="separator"></div> -->
+
+    <div class="navigation-container">
+        <!-- Категории -->
+        <div class="nav-categories">
+            <button class="category-btn active" data-target="appetizer">المقبلات</button>
+            <button class="category-btn" data-target="meat-seafood">اللحوم والمأكولات البحرية</button>
+            <button class="category-btn" data-target="rice">الأرز</button>
+            <button class="category-btn" data-target="noodle">المعكرونة</button>
+            <button class="category-btn" data-target="soup">الحساء</button>
+            <button class="category-btn" data-target="desserts">المشروبات والحلويات</button>
+        </div>
+    </div>
+
+
+    <div class="category-section" id="appetizer">
+        <h2 class="main-category-title">المقبلات</h2>
+        <div class="cards-wrapper">
+            <div class="card-container">
+                <!-- <img src="../../images/food/Kimbab.jpg" alt="Kimbab" class="card-image"> -->
+
+                <img src="../../images/food/Kimbab.webp"
+                    srcset="../../images/food/Kimbab-small-1.webp 350w, ../../images/food/Kimbab-small-2.webp 500w, ../../images/food/Kimbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Kimbab"
+                    class="card-image">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">كيمباب (Kimbab)</h4>
+                    <p class="card-content-description">رول الأعشاب البحرية على الطريقة الكورية، محشو بالأرز الطري، الخيار المقرمش، الفجل المخلل الحلو، والجزر، مع كعكة السمك المالحة، أعواد السلطعون الطرية، ولمسة من البيض لخلق نكهة متوازنة ولطيفة.</p>
+                    <div class="card-content-price">
+                        <div><span>45 AED</span> <br> خضار</div>
+                        <div><span>50 AED</span> <br> كيمتشي</div>
+                        <div><span>50 AED</span> <br> جبنة</div>
+                        <div><span>55 AED</span> <br> تونة</div>
+                        <div><span>55 AED</span> <br> لحم بقر</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Goonmandoo.jpg" alt="Goonmandu" class="card-image"> -->
+
+                <img src="../../images/food/Goonmandoo.webp"
+                    srcset="../../images/food/Goonmandoo-small-1.webp 350w, ../../images/food/Goonmandoo-small-2.webp 500w, ../../images/food/Goonmandoo.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Goonmandoo"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جونماندو (Goonmandoo)</h4>
+                    <p class="card-content-description">زلابية مقلية ذهبية بغطاء مقرمش ورقيق، محشوة باللحم المتبل أو الخضار، لتجربة طعم دافئة ولذيذة.</p>
+                    <div class="card-content-price">
+                        <div><span>45 AED</span> <br> خضار</div>
+                        <div><span>45 AED</span> <br> لحم بقر</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Gaelanmari.jpg" alt="Gaelanmari" class="card-image"> -->
+
+                <img src="../../images/food/Gaelanmari.webp"
+                    srcset="../../images/food/Gaelanmari-small-1.webp 350w, ../../images/food/Gaelanmari-small-2.webp 500w, ../../images/food/Gaelanmari.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Gaelanmari"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">غالانماري (Gaelanmari)</h4>
+                    <p class="card-content-description">رول بيض كوري هش، مُرصّف ومقطع برفق، بملمس ناعم وطعم متوازن ولذيذ.</p>
+                    <div class="card-content-price">
+                        <div><span>50 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Kimchi-jeon.jpg" alt="Kimchi jeon" class="card-image"> -->
+
+                <img src="../../images/food/Kimchi-jeon.webp"
+                    srcset="../../images/food/Kimchi-jeon-small-1.webp 350w, ../../images/food/Kimchi-jeon-small-2.webp 500w, ../../images/food/Kimchi-jeon.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Kimchi jeon"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">كيمتشي جون (Kimchi jeon)</h4>
+                    <p class="card-content-description">فطيرة كيمتشي مقلية في المقلاة، حيث تلتقي الحواف المقرمشة بالمركز الطري، غنيّة بالنكهة الحارة والحامضة للكيمتشي.</p>
+                    <div class="card-content-price">
+                        <div><span>55 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Haemool-pajeon.jpg" alt="Haemool pajeon" class="card-image"> -->
+
+                <img src="../../images/food/Haemool-pajeon.webp"
+                    srcset="../../images/food/Haemool-pajeon-small-1.webp 350w, ../../images/food/Haemool-pajeon-small-2.webp 500w, ../../images/food/Haemool-pajeon.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Haemool pajeon"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">هيمول باجون (Haemool pajeon)</h4>
+                    <p class="card-content-description">فطيرة مأكولات بحرية مقلية في المقلاة، تحتوي على حبار طري، روبيان، وبصل أخضر، مقرمشة من الخارج وناعمة من الداخل.</p>
+                    <div class="card-content-price">
+                        <div><span>60 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Dakgangjeong.jpg" alt="Dakgangjeong" class="card-image"> -->
+
+                <img src="../../images/food/Dakgangjeong.webp"
+                    srcset="../../images/food/Dakgangjeong-small-1.webp 350w, ../../images/food/Dakgangjeong-small-2.webp 500w, ../../images/food/Dakgangjeong.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Dakgangjeong"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">داككانغجونغ (Dakgangjeong)</h4>
+                    <p class="card-content-description">قطع دجاج ورك خالية من العظم مقرمشة، مغطاة بصلصة حلوة وحارة لامعة تمنح نكهة جريئة وممتعة.</p>
+                    <div class="card-content-price">
+                        <div><span>65 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Dooboo-jeon.jpg" alt="Dooboo jeon" class="card-image"> -->
+
+                <img src="../../images/food/Dooboo-jeon.webp"
+                    srcset="../../images/food/Dooboo-jeon-small-1.webp 350w, ../../images/food/Dooboo-jeon-small-2.webp 500w, ../../images/food/Dooboo-jeon.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Dooboo jeon"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">دوبو جون (Dooboo jeon)</h4>
+                    <p class="card-content-description">توفو مقلي خفيف، مقرمش من الخارج وطري من الداخل، يقدم مع لمسة من صلصة الصويا ليكمل النكهة بشكل مثالي.</p>
+                    <div class="card-content-price">
+                        <div><span>55 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Dooboo-kimchi.jpg" alt="Dooboo kimchi" class="card-image"> -->
+
+                <img src="../../images/food/Dooboo-kimchi.webp"
+                    srcset="../../images/food/Dooboo-kimchi-small-1.webp 350w, ../../images/food/Dooboo-kimchi-small-2.webp 500w, ../../images/food/Dooboo-kimchi.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Dooboo kimchi"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">دوبو كيمتشي (Dooboo kimchi)</h4>
+                    <p class="card-content-description">توفو مطهو على البخار ناعم، يقدم مع كيمتشي مقلي حار وحامض، ليجمع بين القوام الطري والرقيق والنكهة الجريئة والحارة.</p>
+                    <div class="card-content-price">
+                        <div><span>60 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Rabokki.jpg" alt="Rabokki" class="card-image"> -->
+
+                <img src="../../images/food/Rabokki.webp"
+                    srcset="../../images/food/Rabokki-small-1.webp 350w, ../../images/food/Rabokki-small-2.webp 500w, ../../images/food/Rabokki.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Rabokki"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">رابوكي (Rabokki)</h4>
+                    <p class="card-content-description">نودلز راميون وكعكات الأرز الطرية مقليّة مع الكرنب والبصل، مغطاة بصلصة غنية وحارة تجمع بين الطعم الحار والمالح والدفء المريح.</p>
+                    <div class="card-content-price">
+                        <div><span>65 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Ttukbokki.jpg" alt="Ttukbokki" class="card-image"> -->
+
+                <img src="../../images/food/Ttukbokki.webp"
+                    srcset="../../images/food/Ttukbokki-small-1.webp 350w, ../../images/food/Ttukbokki-small-2.webp 500w, ../../images/food/Ttukbokki.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Ttukbokki"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">توكبوكي (Ttukbokki)</h4>
+                    <p class="card-content-description">طبق كوري كلاسيكي من كعكات الأرز وكعكة السمك، مقلي مع الكرنب والبصل، مغطى بصلصة حلوة وحارة تنفجر بالنكهة في كل لقمة.</p>
+                    <div class="card-content-price">
+                        <div><span>65 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="category-section" id="meat-seafood">
+        <h2 class="main-category-title">اللحوم والمأكولات البحرية</h2>
+        <div class="cards-wrapper">
+
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Dakgalbi.jpg" alt="Dakgalbi with Rice" class="card-image"> -->
+
+                <img src="../../images/food/Dakgalbi.webp"
+                    srcset="../../images/food/Dakgalbi-small-1.webp 350w, ../../images/food/Dakgalbi-small-2.webp 500w, ../../images/food/Dakgalbi.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Dakgalbi with Rice"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">داكجالبّي (Dakgalbi)</h4>
+                    <p class="card-content-description">أفخاذ دجاج عصيرية وكعكات أرز طرية مقليّة مع الكرنب والجزر والبصل، مغطاة بصلصة غنية وحارة تمتزج بشكل مثالي مع الخضار.</p>
+                    <div class="card-content-price">
+                        <div><span>77 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Boolgogi.jpeg" alt="Boolgogi with Rice" class="card-image"> -->
+
+                <img src="../../images/food/Boolgogi.webp"
+                    srcset="../../images/food/Boolgogi-small-1.webp 350w, ../../images/food/Boolgogi-small-2.webp 500w, ../../images/food/Boolgogi.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Boolgogi with Rice"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">بولغوغي (Boolgogi)</h4>
+                    <p class="card-content-description">مكعبات لحم بقر عصيرية ملفوفة ومقلية مع نودلز زجاجية، فطر، جزر، وبصل، مغطاة بتتبيلة غنية تنقل النكهة إلى كل لقمة.</p>
+                    <div class="card-content-price">
+                        <div><span>83 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Maewoon.jpg" alt="Maewoon Galbijjim with Rice" class="card-image"> -->
+
+                <img src="../../images/food/Maewoon.webp"
+                    srcset="../../images/food/Maewoon-small-1.webp 350w, ../../images/food/Maewoon-small-2.webp 500w, ../../images/food/Maewoon.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Maewoon Galbijjim with Rice"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">مايون جالبيجيم (Maewoon Galbijjim)</h4>
+                    <p class="card-content-description">ضلوع لحم بقر قصيرة طرية وكعكات أرز مطاطية تُطهى مع نودلز زجاجية والفجل في صلصة عطرية تغمر كل المكونات بالنكهة أثناء الطهي معًا.</p>
+                    <div class="card-content-price">
+                        <div><span>90 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Yangnyumgalbi.jpg" alt="Yangnyumgalbi" class="card-image"> -->
+
+                <img src="../../images/food/Yangnyumgalbi.webp"
+                    srcset="../../images/food/Yangnyumgalbi-small-1.webp 350w, ../../images/food/Yangnyumgalbi-small-2.webp 500w, ../../images/food/Yangnyumgalbi.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Yangnyumgalbi"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">يانغنيوم جالبي (Yangnyum Galbi)</h4>
+                    <p class="card-content-description">ضلوع لحم بقر قصيرة متبلة ومشوية حتى الكمال، تقدم مع خس مقرمش، ثوم طازج، فلفل حار، ومعجون الصويا لتغليفها والاستمتاع بها معًا.</p>
+                    <div class="card-content-price">
+                        <div><span>139 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Ojinguh-bokkum.jpeg" alt="Ojinguh bokkum with Rice" class="card-image"> -->
+
+                <img src="../../images/food/Ojinguh-bokkum.webp"
+                    srcset="../../images/food/Ojinguh-bokkum-small-1.webp 350w, ../../images/food/Ojinguh-bokkum-small-2.webp 500w, ../../images/food/Ojinguh-bokkum.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Ojinguh bokkum with Rice"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">أوجينغو بوكوم (Ojinguh bokkum)</h4>
+                    <p class="card-content-description">حبار مقلي حار مع كرنب مقرمش، جزر حلو وبصل، ليخلق مزيجًا حيًّا من القوام والحرارة في كل لقمة.</p>
+                    <div class="card-content-price">
+                        <div><span>75 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Godunguh-gooi.jpg" alt="Godunguh gooi with Rice" class="card-image"> -->
+
+                <img src="../../images/food/Godunguh-gooi.webp"
+                    srcset="../../images/food/Godunguh-gooi-small-1.webp 350w, ../../images/food/Godunguh-gooi-small-2.webp 500w, ../../images/food/Godunguh-gooi.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Godunguh gooi with Rice"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">غودونغو غوي (Godunguh gooi)</h4>
+                    <p class="card-content-description">ماكريل طري، مقلي في المقلاة حتى تصبح القشرة مقرمشة قليلاً، مع طبقات داخلية عصيرية وغنية بالنكهة.</p>
+                    <div class="card-content-price">
+                        <div><span>60 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Godunguh-jorim.jpg" alt="Godunguh jorim with Rice" class="card-image"> -->
+
+                <img src="../../images/food/Godunguh-jorim.webp"
+                    srcset="../../images/food/Godunguh-jorim-small-1.webp 350w, ../../images/food/Godunguh-jorim-small-2.webp 500w, ../../images/food/Godunguh-jorim.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Godunguh jorim with Rice"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">غودونغو جوريم (Godunguh jorim)</h4>
+                    <p class="card-content-description">ماكريل مطهو ببطء مع الفجل في صلصة حارة، السمك طري ومشبع بالنكهة الحارة والمالحة للتوابل.</p>
+                    <div class="card-content-price">
+                        <div><span>75 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="category-section" id="rice">
+        <h2 class="main-category-title">الأرز</h2>
+        <div class="cards-wrapper">
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Bibimbab.jpg" alt="Bibimbab" class="card-image"> -->
+
+                <img src="../../images/food/Bibimbab.webp"
+                    srcset="../../images/food/Bibimbab-small-1.webp 350w, ../../images/food/Bibimbab-small-2.webp 500w, ../../images/food/Bibimbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Bibimbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">بيبمباب (Bibimbab)</h4>
+                    <p class="card-content-description">مزيج ملون من الخس، الخيار، الجزر، براعم الفاصوليا، والكوسا على أرز مطهو على البخار، يُضاف إليه بيض مقلي وصلصة الفلفل الكورية، لتندمج المكونات بتناغم.</p>
+                    <div class="card-content-price">
+                        <div><span>60 AED</span> <br> خضار</div>
+                        <div><span>65 AED</span> <br> كيمتشي</div>
+                        <div><span>65 AED</span> <br> دجاج</div>
+                        <div><span>69 AED</span> <br> لحم بقر</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Yulmoo-bibimbab.jpg" alt="Yulmoo Bibimbab" class="card-image"> -->
+
+                <img src="../../images/food/Yulmoo-bibimbab.webp"
+                    srcset="../../images/food/Yulmoo-bibimbab-small-1.webp 350w, ../../images/food/Yulmoo-bibimbab-small-2.webp 500w, ../../images/food/Yulmoo-bibimbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Yulmoo-bibimbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">يوبمو بيبمباب (Yulmoo Bibimbab)</h4>
+                    <p class="card-content-description">طبق من الأرز المطهو على البخار، مغطى بكيمتشي يوبمو الغني بالنكهة، يقدم مع حساء معجون الصويا الدافئ، ليخلق مزيجًا متناغمًا من الطزاجة والنكهة العميقة.</p>
+                    <div class="card-content-price">
+                        <div><span>75 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Bokkumbab.jpg" alt="Bokkumbab" class="card-image"> -->
+
+                <img src="../../images/food/Bokkumbab.webp"
+                    srcset="../../images/food/Bokkumbab-small-1.webp 350w, ../../images/food/Bokkumbab-small-2.webp 500w, ../../images/food/Bokkumbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Bokkumbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">بوكومباب (Bokkumbab)</h4>
+                    <p class="card-content-description">مزيج ملون من الأرز والمكونات — من الخضار الطازجة إلى الدجاج، الروبيان، أو لحم البقر الطري — مقلي معًا لدمج القوام والنكهات المالحة بتناغم.</p>
+                    <div class="card-content-price">
+                        <div><span>57 AED</span> <br> خضار</div>
+                        <div><span>63 AED</span> <br> كيمتشي</div>
+                        <div><span>63 AED</span> <br> دجاج</div>
+                        <div><span>65 AED</span> <br> روبيان</div>
+                        <div><span>69 AED</span> <br> لحم بقر</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Ojinguh-deobbab.jpg" alt="Ojinguh Deobbab" class="card-image"> -->
+
+                <img src="../../images/food/Ojinguh-deobbab.webp"
+                    srcset="../../images/food/Ojinguh-deobbab-small-1.webp 350w, ../../images/food/Ojinguh-deobbab-small-2.webp 500w, ../../images/food/Ojinguh-deobbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Ojinguh Deobbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">أوجينغو دوبّاب (Ojinguh Deobbab)</h4>
+                    <p class="card-content-description">حبار مقلي حار يُقدّم فوق أرز مطهو على البخار، حيث يمتزج المأكول البحري الطري مع الصلصة بشكل طبيعي مع حبات الأرز الناعمة والهشة.</p>
+                    <div class="card-content-price">
+                        <div><span>69 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Dakgalbi-deobbab.jpg" alt="Dakgalbi Deobbab" class="card-image"> -->
+
+                <img src="../../images/food/Dakgalbi-deobbab.webp"
+                    srcset="../../images/food/Dakgalbi-deobbab-small-1.webp 350w, ../../images/food/Dakgalbi-deobbab-small-2.webp 500w, ../../images/food/Dakgalbi-deobbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Dakgalbi Deobbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">داكجالبّي دوبّاب (Dakgalbi Deobbab)</h4>
+                    <p class="card-content-description">أرز مطهو على البخار مغطى بالدجاج المقلي الحار، حيث تمتزج الصلصة وقطع الدجاج الطرية بتناغم مع الأرز.</p>
+                    <div class="card-content-price">
+                        <div><span>69 AED</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <!-- <img src="../../images/food/Boolgogi-deobbab.jpg" alt="Boolgogi Deobbab" class="card-image"> -->
+
+                <img src="../../images/food/Boolgogi-deobbab.webp"
+                    srcset="../../images/food/Boolgogi-deobbab-small-1.webp 350w, ../../images/food/Boolgogi-deobbab-small-2.webp 500w, ../../images/food/Boolgogi-deobbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Boolgogi Deobbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">بولغوغي دوبّاب (Boolgogi Deobbab)</h4>
+                    <p class="card-content-description">لحم بقر بولغوغي عصيري مقلي في صلصة حارة فوق أرز مطهو على البخار، حيث تمتزج نكهات اللحم الغنية بتناغم مع الأرز.</p>
+                    <div class="card-content-price">
+                        <div><span>73 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="category-section" id="noodle">
+        <h2 class="main-category-title">المعكرونة</h2>
+
+        <div class="cards-wrapper">
+
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Japche.jpg" alt="Japche" class="card-image"> -->
+
+                <img src="../../images/food/Japche.webp"
+                    srcset="../../images/food/Japche-small-1.webp 350w, ../../images/food/Japche-small-2.webp 500w, ../../images/food/Japche.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Japche"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جابشي (Japche)</h4>
+                    <p class="card-content-description">مزيج حيوي من نودلز زجاجية، جزر، فلفل حلو، بصل، فطر وبيض، مقلي معًا، حيث يكمل كل مكوّن الآخر بشكل طبيعي.</p>
+                    <div class="card-content-price">
+                        <div><span>65 AED</span> <br> خضار</div>
+                        <div><span>70 AED</span> <br> لحم بقر</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Ramyun.jpg" alt="Ramyun" class="card-image"> -->
+
+                <img src="../../images/food/Ramyun.webp"
+                    srcset="../../images/food/Ramyun-small-1.webp 350w, ../../images/food/Ramyun-small-2.webp 500w, ../../images/food/Ramyun.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Ramyun"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">راميون (Ramyun)</h4>
+                    <p class="card-content-description">حساء نودلز كوري حار، مع نودلز طرية مطهوة في مرق غني وعطري، يمنح حرارة لطيفة ودافئة مع كل ملعقة.</p>
+                    <div class="card-content-price">
+                        <div><span>60 AED</span> <br> بيض</div>
+                        <div><span>65 AED</span> <br> جبنة</div>
+                        <div><span>75 AED</span> <br> مأكولات بحرية</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Janchigooksoo.jpg" alt="Janchigooksoo" class="card-image"> -->
+
+                <img src="../../images/food/Janchigooksoo.webp"
+                    srcset="../../images/food/Janchigooksoo-small-1.webp 350w, ../../images/food/Janchigooksoo-small-2.webp 500w, ../../images/food/Janchigooksoo.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Janchigooksoo"
+                    class="card-image"
+                    loading="lazy">
+
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جانشيغوكسو (Janchigooksoo)</h4>
+                    <p class="card-content-description">نودلز في مرق أنشوجة خفيف، مزينة بالبيض، الجزر، والكوسا، لتخلق تناغمًا لطيفًا بين الطعم والقوام.</p>
+                    <div class="card-content-price">
+                        <div><span>65 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Bibimgooksoo.jpg" alt="Bibimgooksoo" class="card-image"> -->
+
+                <img src="../../images/food/Bibimgooksoo.webp"
+                    srcset="../../images/food/Bibimgooksoo-small-1.webp 350w, ../../images/food/Bibimgooksoo-small-2.webp 500w, ../../images/food/Bibimgooksoo.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Bibimgooksoo"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">بيبيمغوكسو (Bibimgooksoo)</h4>
+                    <p class="card-content-description">نودلز باردة ممزوجة بالخيار المقرمش، الكيمتشي الحامض، الكمثرى الحلوة، والبيض، مع صلصة حيوية تجمع بين الحلاوة والحموضة والحرارة.</p>
+                    <div class="card-content-price">
+                        <div><span>65 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Moolnaengmyun.jpg" alt="Moolnaengmyun" class="card-image"> -->
+
+                <img src="../../images/food/Moolnaengmyun.webp"
+                    srcset="../../images/food/Moolnaengmyun-small-1.webp 350w, ../../images/food/Moolnaengmyun-small-2.webp 500w, ../../images/food/Moolnaengmyun.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Moolnaengmyun"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">مولنانيونغميون (Moolnaengmyun)</h4>
+                    <p class="card-content-description">نودلز رقيقة من الحنطة السوداء في مرق بارد ومالح، مزينة بالفجل، الخيار، الكمثرى، والبيض لتشكيل مزيج منعش ومقرمش.</p>
+                    <div class="card-content-price">
+                        <div><span>69 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Jjajangmyun.jpg" alt="Jjajangmyun" class="card-image"> -->
+
+                <img src="../../images/food/Jjajangmyun.webp"
+                    srcset="../../images/food/Jjajangmyun-small-1.webp 350w, ../../images/food/Jjajangmyun-small-2.webp 500w, ../../images/food/Jjajangmyun.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Jjajangmyun"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جاجانغميون (Jjajangmyun)</h4>
+                    <p class="card-content-description">نودلز مقلية مع البصل والكوسا في صلصة الفاصوليا السوداء الغنية، تُقدّم مع الخيار الطازج والبيض على الوجه.</p>
+                    <div class="card-content-price">
+                        <div><span>69 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Jjamppong.jpg" alt="Jjamppong" class="card-image"> -->
+
+                <img src="../../images/food/Jjamppong.webp"
+                    srcset="../../images/food/Jjamppong-small-1.webp 350w, ../../images/food/Jjamppong-small-2.webp 500w, ../../images/food/Jjamppong.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Jjamppong"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جامبونغ (Jjamppong)</h4>
+                    <p class="card-content-description">حساء نودلز حار مع روبيان طري وممتلئ، بلح البحر العصيري، حبار لطيف، وخضار ملونة ومقرمشة — كرنب، جزر، فطر، كوسا وبصل — مطبوخة معًا في مرق غني وعطري.</p>
+                    <div class="card-content-price">
+                        <div><span>79 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Bokkum-jjamppong.jpg" alt="Bokkum jjamppong" class="card-image"> -->
+
+                <img src="../../images/food/Bokkum-jjamppong.webp"
+                    srcset="../../images/food/Bokkum-jjamppong-small-1.webp 350w, ../../images/food/Bokkum-jjamppong-small-2.webp 500w, ../../images/food/Bokkum-jjamppong.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Bokkum jjamppong"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">بوكوم جامبونغ (Bokkum jjamppong)</h4>
+                    <p class="card-content-description">نودلز مقلية مع روبيان عصيري، بلح البحر الطري، حبار لطيف، وخضار مقرمشة وملونة — كرنب، جزر، فطر، كوسا وبصل — مغطاة بصلصة حارة وغنية وعطرية.</p>
+                    <div class="card-content-price">
+                        <div><span>79 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="category-section" id="soup">
+        <h2 class="main-category-title">الحساء</h2>
+
+        <div class="cards-wrapper">
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Kimchi-jjigae.jpg" alt="Kimchi Jjigae" class="card-image"> -->
+
+                <img src="../../images/food/Kimchi-jjigae.webp"
+                    srcset="../../images/food/Kimchi-jjigae-small-1.webp 350w, ../../images/food/Kimchi-jjigae-small-2.webp 500w, ../../images/food/Kimchi-jjigae.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Kimchi Jjigae"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">كيمتشي جيغيه (Kimchi Jjigae)</h4>
+                    <p class="card-content-description">حساء كيمتشي حار مع توفو ناعم، يُطهى برفق حتى تمتزج نكهة الكيمتشي المخمّر الحامضة مع التوفو الطري والمرق العطري.</p>
+                    <div class="card-content-price">
+                        <div><span>67 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Daenjang-jjigae.jpg" alt="Daenjang Jjigae" class="card-image"> -->
+
+                <img src="../../images/food/Daenjang-jjigae.webp"
+                    srcset="../../images/food/Daenjang-jjigae-small-1.webp 350w, ../../images/food/Daenjang-jjigae-small-2.webp 500w, ../../images/food/Daenjang-jjigae.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Daenjang Jjigae"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">دانيانغ جيغيه (Daenjang Jjigae)</h4>
+                    <p class="card-content-description">حساء معجون الصويا الغني مع توفو طري، خضار مقرمشة، ونكهات طبيعية تتمازج في مرق دافئ ومالح يبعث على الراحة.</p>
+                    <div class="card-content-price">
+                        <div><span>67 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Soondooboo-jjigae.jpg" alt="Soondooboo Jjigae" class="card-image"> -->
+
+                <img src="../../images/food/Soondooboo-jjigae.webp"
+                    srcset="../../images/food/Soondooboo-jjigae-small-1.webp 350w, ../../images/food/Soondooboo-jjigae-small-2.webp 500w, ../../images/food/Soondooboo-jjigae.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Soondooboo Jjigae"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">سوندوبو جيغيه (Soondooboo Jjigae)</h4>
+                    <p class="card-content-description">توفو ناعم وحريري مع روبيان طري مطهو في مرق حار وغني، مع لمسات من البيض تضيف كثافة وقوامًا مخمليًا.</p>
+                    <div class="card-content-price">
+                        <div><span>72 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Wooguji-harjanggook.jpg" alt="Wooguji Haejanggook" class="card-image"> -->
+
+                <img src="../../images/food/Wooguji-harjanggook.webp"
+                    srcset="../../images/food/Wooguji-harjanggook-small-1.webp 350w, ../../images/food/Wooguji-harjanggook-small-2.webp 500w, ../../images/food/Wooguji-harjanggook.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Wooguji Haejanggook"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">ووجوجي هِجانغوك (Wooguji Haejanggook)</h4>
+                    <p class="card-content-description">حساء لحم بقر حار مع شرائح لحم بقر طرية وكرنب صيني طري، مطهو معًا في مرق غني، مالح ودافئ.</p>
+                    <div class="card-content-price">
+                        <div><span>75 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Jjamppongbab.jpg" alt="Jjamppongbab" class="card-image"> -->
+
+                <img src="../../images/food/Jjamppongbab.webp"
+                    srcset="../../images/food/Jjamppongbab-small-1.webp 350w, ../../images/food/Jjamppongbab-small-2.webp 500w, ../../images/food/Jjamppongbab.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Jjamppongbab"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جامبونغباب (Jjamppongbab)</h4>
+                    <p class="card-content-description">حساء مأكولات بحرية حار مليء بالحبار الطري، الروبيان وبلح البحر، مطهو مع خضار طازجة في مرق غني وعطري.</p>
+                    <div class="card-content-price">
+                        <div><span>75 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Galbitang.jpeg" alt="Galbitang" class="card-image"> -->
+
+                <img src="../../images/food/Galbitang.webp"
+                    srcset="../../images/food/Galbitang-small-1.webp 350w, ../../images/food/Galbitang-small-2.webp 500w, ../../images/food/Galbitang.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Galbitang"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">جالبِي تانغ (Galbitang)</h4>
+                    <p class="card-content-description">حساء ضلع لحم بقر غني، يُطهى حتى الكمال مع الفجل الطري ونودلز زجاجية رقيقة.</p>
+                    <div class="card-content-price">
+                        <div><span>79 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/no-image.png" alt="Mandoo boolgogi Jjigae" class="card-image"> -->
+
+                <img src="../../images/food/Mandoo.webp"
+                    srcset="../../images/food/Mandoo-small-1.webp 350w, ../../images/food/Mandoo-small-2.webp 500w, ../../images/food/Mandoo.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Mandoo boolgogi Jjigae"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">مندو بولغوغي جيغيه (Mandoo boolgogi Jjigae)</h4>
+                    <p class="card-content-description">يخنة غنية تحتوي على لحم بقر متبل وطري وزلابية رقيقة، مطهوة في مرق مالح مشبع بنكهات عميقة ومريحة.</p>
+                    <div class="card-content-price">
+                        <div><span>79 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Yookgaejang.jpg" alt="Yookgaejang" class="card-image"> -->
+
+                <img src="../../images/food/Yookgaejang.webp"
+                    srcset="../../images/food/Yookgaejang-small-1.webp 350w, ../../images/food/Yookgaejang-small-2.webp 500w, ../../images/food/Yookgaejang.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Yookgaejang"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">يوكجايانغ (Yookgaejang)</h4>
+                    <p class="card-content-description">حساء لحم بقر حار مع شرائح لحم بقر طرية، نودلز زجاجية حريرية، بيض، وخضار ملونة ومقرمشة، مطهو في مرق عطري وحار.</p>
+                    <div class="card-content-price">
+                        <div><span>79 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Samgaetang.png" alt="Samgaetang" class="card-image"> -->
+
+                <img src="../../images/food/Samgaetang.webp"
+                    srcset="../../images/food/Samgaetang-small-1.webp 350w, ../../images/food/Samgaetang-small-2.webp 500w, ../../images/food/Samgaetang.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Samgaetang"
+                    class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">سامغاتانغ (Samgaetang)</h4>
+                    <p class="card-content-description">دجاجة كاملة طرية تُطهى برفق مع الجنسنغ العطري، لتشكيل مرق مغذي وعطري يجمع بين الغنى والرقة.</p>
+                    <div class="card-content-price">
+                        <div><span>90 AED</span></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+
+
+    <div class="category-section" id="desserts">
+        <h2 class="main-category-title">المشروبات والحلويات</h2>
+
+        <div class="cards-wrapper">
+
+            <div class="card-container">
+                <!-- <img src="../../images/food/Rice-cake.png" alt="Korean Rice Cake" class="card-image"> -->
+
+                <img src="../../images/food/Rice-cake.webp"
+                    srcset="../../images/food/Rice-cake-small-1.webp 350w, ../../images/food/Rice-cake-small-2.webp 500w, ../../images/food/Rice-cake.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Korean Rice Cake"
+                    class="card-image"
+                    loading="lazy">
+
+
+                <div class="card-content">
+                    <h4 class="card-content-title">كعكة الأرز (Rice Cake)</h4>
+                    <p class="card-content-description">كعكات أرز طرية ومطاطية محشوة بمعجون فاصوليا حمراء حلو وناعم، تقدم توازنًا لطيفًا بين الحلاوة الرقيقة والقوام الطري.</p>
+                    <div class="card-content-price">
+                        <div><span>30 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-container">
+                <!-- <img src="../images/food/Rice-cake.jpg" alt="Korean Rice Cake" class="card-image"> -->
+
+                <img src="../../images/food/Melona.webp"
+                    srcset="../../images/food/Melona-small-1.webp 350w, ../../images/food/Melona-small-2.webp 500w, ../../images/food/Melona.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Ice cream bar" class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">آيس كريم بار (Ice cream bar)</h4>
+                    <p class="card-content-description">آيس كريم كريمي بنكهة الشمام، مغلف بقشرة مثلجة ناعمة، يمنح لقمة منعشة وحلوة بنكهة الفواكه.</p>
+                    <div class="card-content-price">
+                        <div><span>20 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../images/food/Rice-cake.jpg" alt="Korean Rice Cake" class="card-image"> -->
+
+                <img src="../../images/food/Grape-juice.webp"
+                    srcset="../../images/food/Grape-juice-small-1.webp 350w, ../../images/food/Grape-juice-small-2.webp 500w, ../../images/food/Grape-juice.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Grape-juice" class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">عصير العنب (Grape juice)</h4>
+                    <p class="card-content-description">عصير عنب غني وحلو طبيعيًا، يحتوي على حبات عنب كاملة وطرية داخل العصير.</p>
+                    <div class="card-content-price">
+                        <div><span>20 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../images/food/Rice-cake.jpg" alt="Korean Rice Cake" class="card-image"> -->
+
+                <img src="../../images/food/Pear-juice.webp"
+                    srcset="../../images/food/Pear-juice-small-1.webp 350w, ../../images/food/Pear-juice-small-2.webp 500w, ../../images/food/Pear-juice.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Grape-juice" class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">عصير الكمثرى (Pear juice)</h4>
+                    <p class="card-content-description">عصير كمثرى مهدئ وحلو طبيعيًا، يقدم طعمًا ناعمًا ومنعشًا مع لمسات لطيفة من الكمثرى الناضجة.</p>
+                    <div class="card-content-price">
+                        <div><span>20 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <!-- <img src="../images/food/Rice-cake.jpg" alt="Korean Rice Cake" class="card-image"> -->
+
+                <img src="../../images/food/Rice-juice.webp"
+                    srcset="../../images/food/Rice-juice-small-1.webp 350w, ../../images/food/Rice-juice-small-2.webp 500w, ../../images/food/Rice-juice.webp 800w"
+                    sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Grape-juice" class="card-image"
+                    loading="lazy">
+
+                <div class="card-content">
+                    <h4 class="card-content-title">عصير الأرز (Rice juice)</h4>
+                    <p class="card-content-description">مشروب أرز كوري تقليدي بحلاوة خفيفة، حبوب أرز طرية، ونكهة منعشة مع لمسة خفيفة من المكسرات.</p>
+                    <div class="card-content-price">
+                        <div><span>20 AED</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="../script-menu.js"></script>
+</body>
+
+</html>

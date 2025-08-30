@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYU Korean Restaurant Dubai – Настоящая корейская кухня и атмосфера</title>
+
+    <link rel="icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style-ar.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="header-buttons">
+                <div class="header-button-menu"><a href="../menu/ru/index.html">Наше меню</a></div>
+                <div class="header-button-book">Забронировать</div>
+            </div>
+            <img src="../images/Hyu Logo.svg" alt="logo" class="header-logo">
+            <div class="header-language">
+                <div class="header-language-selected">Русский</div>
+                <img src="../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+            </div>
+        </div>
+
+        <nav class="site-nav">
+            <ul>
+                <li class="nav-list" id="en"><a href="../index.html">English</a></li>
+                <li class="nav-list" id="ko"><a href="../ko/index.html">한국어</a></li>
+                <li class="nav-list active" id="ru">Русский</li>
+                <li class="nav-list" id="ru"><a href="../ar/index.html">العربية</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="site-nav-back hidden"></div>
+
+
+    <div class="hero-block">
+        <div class="hero-block-text">
+            <h2 class="hero-block-text-title">Откройте вкус Кореи</h2>
+            <p class="hero-block-text-subtitle">Свежие продукты, богатый вкус и частичка домашнего тепла в каждом блюде.
+                Почувствуйте настоящую корейскую атмосферу за нашим столом.</p>
+        </div>
+    </div>
+
+
+    <div class="authentic-block">
+        <div class="authentic-block-1">НАСТОЯЩИЕ ВКУСЫ</div>
+        <img src="../images/Hyu Logo.svg" alt="logo">
+        <div class="authentic-block-2">НАСТОЯЩИЕ ВКУСЫ</div>
+    </div>
+
+    <img src="../images/ambience.webp" srcset="
+        ../images/small/ambience-small.webp 430w,
+        ../images/small/ambience-medium.webp 1024w,
+        ../images/ambience.webp 1814w" sizes="100vw" alt="ambience" class="ambience-image">
+
+    <div class="introducing-container">
+        <div class="text-block" id="intro-text-block">
+            <h2 class="text-block-title">Тепло и традиции</h2>
+
+            <p class="text-block-subtitle">С 2007 года HYU — это не просто ресторан, а уголок Кореи в сердце Дубая.
+                <br><br>
+                Мы встречаем каждого гостя как родного, создавая атмосферу уюта, общения и настоящей заботы.
+                <br><br>
+                Приходите и ощутите, почему HYU стал любимым местом тех, кто ценит аутентичную корейскую кухню и тёплую
+                атмосферу.
+            </p>
+        </div>
+        <div class="cooking-image-wrapper">
+            <img src="../images/cooking-bbq.webp"
+                srcset="../images/small/cooking-bbq-small.webp 350w, ../images/cooking-bbq.webp 600w"
+                sizes="(max-width: 1024px) calc(70vw - 70px), 350px" alt="BBQ" class="cooking-image" loading="lazy">
+        </div>
+    </div>
+
+    <div class="text-block" id="occasion-text-block">
+        <h2 class="text-block-title">Больше, чем просто еда</h2>
+
+        <p class="text-block-subtitle">
+            <span>Незабываемый опыт</span>
+            <br>
+            Посещение HYU — это смех, общение, радость готовки и совместного трапезного момента. Идеально для друзей,
+            семей и больших компаний.
+            <br><br>
+            <span>Вкус традиций</span>
+            <br>
+            От бибимпаба до банчана — наше меню — это путешествие в корейское наследие. Каждый визит — возможность
+            открыть аутентичные вкусы и вечные традиции.
+            <br><br>
+            <span>Празднуйте с HYU</span>
+            <br>
+            Превратите ваши особенные моменты в незабываемые события. День рождения, юбилей или корпоратив — мы создадим
+            уютную атмосферу, чтобы ваш праздник запомнился надолго.
+        </p>
+    </div>
+
+
+    <!-- <div class="separator"></div> -->
+
+
+    <div class="text-block" id="food-text-block">
+        <h2 class="text-block-title">С любовью для вас</h2>
+        <div class="text-block-wrapper">
+            <p class="text-block-subtitle">Каждое блюдо в ресторане HYU готовится с заботой, сочетая свежие ингредиенты
+                и проверенные временем рецепты.
+                <br><br>
+                От ароматного корейского барбекю до сытных супов и ярких гарниров — наше меню передаёт вкус настоящей
+                Кореи.
+                <br><br>
+                Наша цель — создать атмосферу, где каждый гость чувствует заботу, каждый кусочек рассказывает свою
+                историю, а каждый визит становится особенным.
+            </p>
+            <div class="text-block-buttons">
+                <div class="header-button-menu"><a href="../menu/ru/index.html">Наше меню</a></div>
+                <div class="header-button-book">Забронировать</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-wrapper">
+        <div class="grid-container">
+            <div class="grid-item-1">
+                <img src="../images/grid-1.webp" srcset="../images/small/grid-1-small.webp 360w, ../images/grid-1.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-2">
+                <img src="../images/grid-2.webp" srcset="../images/small/grid-2-small.webp 360w, ../images/grid-2.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-3">
+                <img src="../images/grid-3.webp" srcset="../images/small/grid-3-small.webp 360w, ../images/grid-3.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-4">
+                <img src="../images/grid-4.webp" srcset="../images/small/grid-4-small.webp 360w, ../images/grid-4.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+            <div class="grid-item-5">
+                <img src="../images/grid-5.webp" srcset="../images/small/grid-5-small.webp 360w, ../images/grid-5.webp 500w"
+                    sizes="(max-width: 430px) 180px, 250px" alt="" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="separator"></div>
+
+    <div class="reviews-section">
+        <h2 class="text-block-title">Что говорят наши гости</h2>
+        <div class="reviews-container">
+            <div class="reviews-wrapper">
+                <div class="reviews-slider">
+                    <div class="review-block active">
+                        <p class="review-text">Один из наших любимых корейских ресторанов в Дубае на протяжении многих
+                            лет. Вкус всегда на
+                            высоте, особенно наше любимое Yangnyum Galbi, а обслуживание отличное. Уже не сосчитать,
+                            сколько раз мы здесь были, но опыт всегда супер!</p>
+                        <div class="review-name">— Jenny Noynay</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">Вся наша семья осталась довольна едой. Корейское барбекю из говядины было
+                            очень вкусным, и нам даже разрешили готовить мясо по своему вкусу. Мой сын был в восторге от
+                            еды и сервиса. Очень рекомендую!</p>
+                        <div class="review-name">— Sajith Pkulangara</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">Мы остались очень довольны всем: дружелюбное и быстрое обслуживание, все
+                            блюда были прекрасно приготовлены и полностью соответствовали нашим ожиданиям.</p>
+                        <div class="review-name">— Rene Schulz</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">Настоящая находка! Давно хотели посетить это место, видели хорошие
+                            отзывы, и они полностью оправдались. Один из лучших корейских ресторанов, где я был —
+                            просто, аутентично и вкусно.</p>
+                        <div class="review-name">— Mau Carranza</div>
+                    </div>
+                    <div class="review-block active">
+                        <p class="review-text">Обслуживание на 10/10. Мы с другом пришли за 40 минут до закрытия, и всё
+                            равно сервис был на высшем уровне. Еда тоже была отличной — кимчи и куриный бибимпап. Очень
+                            вкусно. Обязательно вернёмся!</p>
+                        <div class="review-name">— Hajara Noushad</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-buttons-container">
+                <img src="../images/prev-button.svg" alt="" class="slider-button-prev">
+                <img src="../images/next-button.svg" alt="" class="slider-button-next">
+            </div>
+
+        </div>
+
+
+
+        <div class="more-reviews-container">
+            <h2 class="text-block-title">Читайте больше отзывов</h2>
+            <div class="reviews-link-container">
+                <a href="https://www.google.com/maps/place/Hyu+Korean+Restaurant/@25.0738494,55.1439252,17z/data=!3m1!4b1!4m6!3m5!1s0x3e5f5d2b2ee4a891:0xa15a9ea5f6b34b83!8m2!3d25.0738494!4d55.1439252!16s%2Fg%2F11b75gdsg_?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D"
+                    class="reviews-link-wrapper" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/google.svg" alt="google-reviews">
+                    <div>680+ отзывов</div>
+                </a>
+                <a href="https://www.zomato.com/dubai/hyu-korean-restaurant-jumeirah-lake-towers/reviews"
+                    class="reviews-link-wrapper" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/zomato.svg" alt="google-reviews">
+                    <div>450+ отзывов</div>
+                </a>
+                <a href="https://www.tripadvisor.com/Restaurant_Review-g295424-d3919393-Reviews-Hyu_Korean_Restaurant-Dubai_Emirate_of_Dubai.html"
+                    class="reviews-link-wrapper" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/tripadvisor.svg" alt="google-reviews">
+                    <div>80+ отзывов</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-section">
+        <div class="text-block">
+            <h2 class="text-block-title">В самом сердце Дубая</h2>
+            <p class="text-block-subtitle">Мы находимся в Jumeirah Lake Towers, Cluster O, вдоль Sheikh Zayed Road — добраться легко, а мы всегда рады вам.
+            </p>
+        </div>
+        <div class="adress-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.8270793358347!2d55.1439252!3d25.0738494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d2b2ee4a891%3A0xa15a9ea5f6b34b83!2sHyu%20Korean%20Restaurant!5e0!3m2!1sru!2sae!4v1754997439200!5m2!1sru!2sae"
+                width="" height="" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <div class="reservation-section">
+        <h2 class="text-block-title">Забронируйте стол прямо сейчас</h2>
+        <div class="reservation-form-container">
+            <div class="reservation-form-wrapper">
+                <form class="reservation-form">
+                    <div class="part-form active">
+
+                        <!-- Дата -->
+                        <label for="date">Дата</label>
+                        <input type="text" id="date" name="date" placeholder="Выберите дату посещения" required>
+                        <!-- <input type="date" id="date" name="date" placeholder="Date" required> -->
+
+                        <!-- Время -->
+                        <label for="time">Время</label>
+                        <select id="time" name="time" disabled required>
+                            <option value="" disabled selected>Удобное для вас время</option>
+
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:00">23:00</option>
+                        </select>
+
+                        <!-- Количество человек -->
+                        <label for="guests">Количество гостей</label>
+                        <input type="number" id="guests" name="guests" placeholder="Сколько человек придёт" required>
+                        <!-- <button type="button" class="next-form">Continue</button> -->
+                        <div class="next-form">Продолжить</div>
+                    </div>
+                    <div class="part-form">
+                        <!-- Имя -->
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" placeholder="Введите имя" required>
+
+                        <!-- Телефон -->
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+..." required>
+
+                        <!-- Email -->
+                        <label for="email">Электронная почта (по желанию)</label>
+                        <input type="email" id="email" name="email" placeholder="example@mail.com">
+
+                        <!-- Комментарий -->
+                        <label for="message">Комментарий (по желанию)</label>
+                        <textarea id="message" name="message" rows="4"
+                            placeholder="Аллергии, предпочтения по столу, повод и т.д."></textarea>
+
+                        <!-- Кнопка -->
+                        <div class="btn-form-wrapper">
+                            <div class="prev-form">Назад</div>
+                            <div class="submit-btn">Забронировать сейчас</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="confirm-form-container">
+                <div class="confirm-form">
+                    <img src="../images/close-button.svg" alt="close-button" class="close-confirm-form">
+                    <p>Спасибо, <span class="confirm-name"></span>!
+                        Ваше бронирование на <span class="confirm-date"></span> в
+                        <span class="confirm-time"></span> получено.
+                        <br><br>
+                        Мы с нетерпением ждём вас!
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="marquee-dishes">
+        <div class="marquee-dish-1">
+
+            <img src="../images/carousel-1.webp" srcset="../images/small/carousel-1-small-1.webp 250w,
+            ../images/small/carousel-1-small-2.webp 350w,
+        ../images/small/carousel-1-small-3.webp 480w,
+        ../images/small/carousel-1-small-4.webp 550w,
+        ../images/carousel-1.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Ojinguh" loading="lazy">
+
+        </div>
+        <div class="marquee-dish-2">
+
+            <img src="../images/carousel-2.webp" srcset="../images/small/carousel-2-small-1.webp 250w,
+            ../images/small/carousel-2-small-2.webp 350w,
+        ../images/small/carousel-2-small-3.webp 480w,
+        ../images/small/carousel-2-small-4.webp 550w,
+        ../images/carousel-2.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Boolgogi" loading="lazy">
+
+        </div>
+        <div class="marquee-dish-3">
+
+            <img src="../images/carousel-3.webp" srcset="../images/small/carousel-3-small-1.webp 250w,
+            ../images/small/carousel-3-small-2.webp 350w,
+        ../images/small/carousel-3-small-3.webp 480w,
+        ../images/small/carousel-3-small-4.webp 550w,
+        ../images/carousel-3.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Jjamppong" loading="lazy">
+
+        </div>
+        <div class="marquee-dish-4">
+
+            <img src="../images/carousel-4.webp" srcset="../images/small/carousel-4-small-1.webp 250w,
+            ../images/small/carousel-4-small-2.webp 350w,
+        ../images/small/carousel-4-small-3.webp 480w,
+        ../images/small/carousel-4-small-4.webp 550w,
+        ../images/carousel-4.webp 700w" sizes="(max-width: 768px) 250px,
+        (max-width: 1024px) 350px,
+        (max-width: 1650px) 480px,
+        (max-width: 1900px) 550px,
+        700px" alt="Moolnaengmyun" loading="lazy">
+        </div>
+    </div>
+
+    <div class="menu-button-block">
+        <div class="header-button-menu"><a href="../menu/ru/index.html">Посмотреть меню</a></div>
+    </div>
+
+    <div class="separator"></div>
+
+
+    <div class="text-block">
+        <h2 class="text-block-title">Вкус HYU прямо у вас дома</h2>
+        <div class="text-block-wrapper">
+            <p class="text-block-subtitle">Хотите ощутить тепло HYU, не выходя из дома? Заказывайте свои любимые блюда и наслаждайтесь нашим гостеприимством, где бы вы ни были.
+            </p>
+            <div class="delivery-buttons-container">
+
+                <a href="https://www.talabat.com/uae/hyu-korean-restaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/talabat.svg" alt="talabat" class="delivery-svg">
+                </a>
+
+                <a href="https://deliveroo.ae/menu/dubai/jlt/hyu-korean-restaurant" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="../images/deliveroo-logo.svg" alt="deliveroo" class="delivery-svg">
+                </a>
+
+                <a href="https://food.noon.com/en-ae/outlet/HYKRNRUFOZ" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/noon.svg" alt="noon" class="delivery-svg">
+                </a>
+
+                <a href="https://url.careem.com/IYdWQ2vBlcSU" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/careem.svg" alt="careem" class="delivery-svg">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="info-block">
+                <img src="../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                <div class="contact-info">
+                    <div class="contact-info-block">
+                        <img src="../images/email-icon-light.svg" alt="email">
+                        <div>hyurestaurant@gmail.com</div>
+                    </div>
+                    <div class="contact-info-block">
+                        <img src="../images/phone-icon-light.svg" alt="phone">
+                        <div>+971 502 273 004</div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-block">
+                <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/facebook.svg" alt="facebook">
+                </a>
+                <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/instagram.svg" alt="instagram">
+                </a>
+            </div>
+
+            <div class="timing-block">
+                <div>Мы ждём вас каждый день</div>
+                <div>С 11:00 до 23:30</div>
+            </div>
+
+            <div class="terms-block">
+                <a href="../privacy-policy/ru/index.html">Политика конфиденциальности</a>
+                <a href="../terms-and-conditions/ru/index.html">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

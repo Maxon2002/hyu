@@ -1,0 +1,39 @@
+
+
+
+
+.authentic-block {
+    font-size: 28px;
+}
+
+
+
+
+@media (min-width: 768px) {
+    
+
+    .authentic-block {
+        font-size: 45px;
+        padding: 18px 5px;
+        gap: 28px;
+    }
+    .authentic-block img {
+        width: 50px;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    
+
+
+    .authentic-block {
+        font-size: 55px;
+        gap: 35px;
+        padding: 25px 5px;
+    }
+
+    .authentic-block img {
+        width: 60px;
+    }
+} 
