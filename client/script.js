@@ -360,35 +360,35 @@ submitBtn.addEventListener("click", () => {
         // console.log('отправлено');
         // отправка формы на сервер
 
-        // (async () => {
-        //     const formData = {
-        //         
-        //         date: dateInput.value,
-        //         time: timeSelect.value,
-        //         guests: guestsInput.value,
-        //         name: guestName.value,
-        //         phone: document.querySelector('#phone').value,
-        //         email: document.querySelector('#email').value,
-        //         message: document.querySelector('#message').value,
-        //     };
+        (async () => {
+            const formData = {
+                
+                date: dateInput.value,
+                time: timeSelect.value,
+                guests: guestsInput.value,
+                name: guestName.value,
+                phone: document.querySelector('#phone').value,
+                email: document.querySelector('#email').value,
+                message: document.querySelector('#message').value,
+            };
 
-        //     try {
-        //         const res = await fetch('https://restaurant-backend-cpjp.onrender.com/api/reservation', {
-        //             method: 'POST',
-        //             headers: { 'Content-Type': 'application/json' },
-        //             body: JSON.stringify(formData)
-        //         });
+            try {
+                const res = await fetch('/api/reservation', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
 
-        //         if (res.ok) {
-        //             console.log('Reservation sent successfully!');
-        //         } else {
-        //             console.log('Something went wrong. Please try again.');
-        //         }
-        //     } catch (err) {
-        //         console.error(err);
-        //         console.log('Error sending reservation.');
-        //     }
-        // })();
+                if (res.ok) {
+                    console.log('Reservation sent successfully!');
+                } else {
+                    console.log('Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                console.error(err);
+                console.log('Error sending reservation.');
+            }
+        })();
 
 
         ////////////////////////////////////////////////////////

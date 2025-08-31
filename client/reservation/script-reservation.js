@@ -300,7 +300,7 @@ submitBtn.addEventListener("click", () => {
             };
 
             try {
-                const res = await fetch('https://restaurant-backend-cpjp.onrender.com/api/reservation', {
+                const res = await fetch('/api/reservation', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
