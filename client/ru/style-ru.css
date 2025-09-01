@@ -1,0 +1,17 @@
+.authentic-block {
+    gap: 20px;
+}
+
+
+@media (min-width: 768px) {
+    .authentic-block {
+        gap: 35px;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .authentic-block {
+        gap: 45px;
+    }
+}

@@ -17,7 +17,7 @@
 
 .authentic-block {
     font-size: 28px;
-    gap: 18px;
+    gap: 25px;
     padding: 12px 5px;
 }
 
@@ -77,13 +77,11 @@
 
 
     .authentic-block {
-        font-size: 50px;
+        font-size: 40px;
         padding: 18px 5px;
-        gap: 28px;
+        gap: 35px;
     }
-    .authentic-block img {
-        width: 45px;
-    }
+    
 }
 
 
@@ -92,13 +90,10 @@
 
 
     .authentic-block {
-        font-size: 65px;
-        gap: 35px;
-        padding: 25px 5px;
+        font-size: 45px;
+        gap: 45px;
+        padding: 20px 5px;
     }
 
-    .authentic-block img {
-        width: 55px;
-    }
 
 }
