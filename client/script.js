@@ -289,7 +289,7 @@ const guestsInput = document.getElementById("guests");
 
 guestsInput.addEventListener("input", () => {
     const value = parseInt(guestsInput.value, 10);
-    console.log(value)
+    // console.log(value)
 
     if (value < 1 || isNaN(value)) {
         guestsInput.classList.add("field-error");
