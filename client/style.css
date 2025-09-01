@@ -723,14 +723,15 @@ body {
 }
 
 .submit-btn {
-    padding: 12px 20px;
+    padding: 10px 12px;
     background-color: transparent;
     color: #552B1B;
     border: 2px #552B1B solid;
-    border-radius: 15px;
+    border-radius: 35px;
     font-size: 17px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-align: center;
 }
 
 
