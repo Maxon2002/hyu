@@ -810,22 +810,32 @@ body {
 
 
 .marquee-dish-1 {
-    animation: marqueeDish1 20s linear infinite;
-    animation-delay: -20s;
+    animation: marqueeDish1 30s linear infinite;
+    animation-delay: -30s;
 }
 
 .marquee-dish-2 {
-    animation: marqueeDish2 20s linear infinite;
-    animation-delay: -15s;
+    animation: marqueeDish2 30s linear infinite;
+    animation-delay: -25s;
 }
 
 .marquee-dish-3 {
-    animation: marqueeDish3 20s linear infinite;
-    animation-delay: -10s;
+    animation: marqueeDish3 30s linear infinite;
+    animation-delay: -20s;
 }
 
 .marquee-dish-4 {
-    animation: marqueeDish4 20s linear infinite;
+    animation: marqueeDish4 30s linear infinite;
+    animation-delay: -15s;
+}
+
+.marquee-dish-5 {
+    animation: marqueeDish5 30s linear infinite;
+    animation-delay: -10s;
+}
+
+.marquee-dish-6 {
+    animation: marqueeDish6 30s linear infinite;
     animation-delay: -5s;
 }
 
@@ -833,7 +843,7 @@ body {
 
 @keyframes marqueeDish1 {
     0% {
-        transform: translateX(300%);
+        transform: translateX(500%);
     }
 
     100% {
@@ -843,7 +853,7 @@ body {
 
 @keyframes marqueeDish2 {
     0% {
-        transform: translateX(200%);
+        transform: translateX(400%);
     }
 
     100% {
@@ -853,7 +863,7 @@ body {
 
 @keyframes marqueeDish3 {
     0% {
-        transform: translateX(100%);
+        transform: translateX(300%);
     }
 
     100% {
@@ -863,7 +873,7 @@ body {
 
 @keyframes marqueeDish4 {
     0% {
-        transform: translateX(0%);
+        transform: translateX(200%);
     }
 
     100% {
@@ -871,6 +881,25 @@ body {
     }
 }
 
+@keyframes marqueeDish5 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-500%);
+    }
+}
+
+@keyframes marqueeDish6 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-600%);
+    }
+}
 
 
 

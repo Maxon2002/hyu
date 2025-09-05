@@ -33,7 +33,7 @@
 
 @keyframes marqueeDish1 {
     0% {
-        transform: translateX(-300%);
+        transform: translateX(-500%);
     }
 
     100% {
@@ -43,7 +43,7 @@
 
 @keyframes marqueeDish2 {
     0% {
-        transform: translateX(-200%);
+        transform: translateX(-400%);
     }
 
     100% {
@@ -53,7 +53,7 @@
 
 @keyframes marqueeDish3 {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(-300%);
     }
 
     100% {
@@ -63,7 +63,7 @@
 
 @keyframes marqueeDish4 {
     0% {
-        transform: translateX(0%);
+        transform: translateX(-200%);
     }
 
     100% {
@@ -71,6 +71,25 @@
     }
 }
 
+@keyframes marqueeDish5 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(500%);
+    }
+}
+
+@keyframes marqueeDish6 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(600%);
+    }
+}
 
 
 
