@@ -63,6 +63,38 @@ body {
     width: 54px;
 }
 
+
+.header-right-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.header-signin {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    cursor: pointer;
+    color: #552B1B;
+
+    position: relative;
+}
+
+.header-signin a {
+    text-decoration: none;
+    color: #552B1B;
+}
+
+.header-signin-text {
+    font-size: 15px;
+}
+
+.header-signin-icon {
+    height: 16px;
+}
+
+
 .header-language {
     display: flex;
     align-items: center;
@@ -84,7 +116,8 @@ body {
 
 
 /* анимация полоски под */
-.header-language::after {
+.header-language::after,
+.header-signin::after   {
     content: "";
     position: absolute;
     left: 0;
@@ -100,7 +133,8 @@ body {
 
 /* Наведение на десктопах */
 @media (hover: hover) {
-    .header-language:hover::after {
+    .header-language:hover::after,
+    .header-signin:hover::after {
         transform: scaleX(1);
     }
 }
@@ -572,6 +606,15 @@ body {
         font-size: 16px;
     }
 
+    .header-right-buttons {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .header-signin-text {
+        font-size: 16px;
+    }
+
     .header-language-selected {
         font-size: 16px;
     }
@@ -628,8 +671,12 @@ body {
         font-size: 18px;
     }
 
+    .header-signin-text {
+        font-size: 18px;
+    }
+
     .header-language-selected {
-        font-size: 17px;
+        font-size: 18px;
     }
 
 

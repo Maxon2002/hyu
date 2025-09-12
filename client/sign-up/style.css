@@ -1,12 +1,23 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     width: 100%;
-    margin: 0;
+    /* height: 100%; */
+    /* margin: 0; */
     font-family: 'Nunito', sans-serif;
 
     background-color: #FFFCED;
 }
 
-
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 
 /* header */
@@ -74,39 +85,6 @@ body {
     width: 54px;
 }
 
-
-.header-right-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.header-signin {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-
-    cursor: pointer;
-    color: #552B1B;
-
-    position: relative;
-}
-
-.header-signin a {
-    text-decoration: none;
-    color: #552B1B;
-}
-
-.header-signin-text {
-    font-size: 15px;
-}
-
-.header-signin-icon {
-    height: 16px;
-}
-
-
-
 .header-language {
     display: flex;
     align-items: center;
@@ -129,8 +107,7 @@ body {
 
 
 /* анимация полоски под */
-.header-language::after,
-.header-signin::after  {
+.header-language::after {
     content: "";
     position: absolute;
     left: 0;
@@ -146,8 +123,7 @@ body {
 
 /* Наведение на десктопах */
 @media (hover: hover) {
-    .header-language:hover::after,
-    .header-signin:hover::after {
+    .header-language:hover::after {
         transform: scaleX(1);
     }
 }
@@ -156,6 +132,7 @@ body {
 .header-language.active::after {
     transform: scaleX(1);
 }
+
 
 
 
@@ -292,19 +269,18 @@ body {
 
 
 
+/* основа */
 
-/* текст */
 
-.main-wrapper {
-    padding: 35px;
-}
-
-.text-container {
+.main-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
     color: #552B1B;
-    font-size: 15px;
 }
 
 .main-title {
@@ -313,15 +289,146 @@ body {
     font-size: 34px;
 }
 
-.text-block span {
-    font-size: 17px;
-    font-weight: 600;
+.auth-error {
+    color: red;
+    text-align: center;
+    display: none;
+}
+
+.auth-error a {
+    color: red;
+}
+
+
+.form-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    max-width: 770px
+}
+
+
+.auth-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.auth-form label {
+    align-self: flex-start;
+    /* font-weight: 500; */
+    margin-top: 5px;
+}
+
+
+.auth-form input {
+    padding: 10px 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+
+.field-error {
+    border-color: red !important;
+}
+
+.reservation-form select {
+    background-color: #fff;
+}
+
+.reservation-form select option:checked {
+    background-color: #FFFCED;
+}
+
+
+
+.verify-email {
+    text-decoration: underline;
+    
+    color: #ccc;
+}
+
+.verify-email.active {
+    color: #552B1B;
+    cursor: pointer;
+}
+
+.verify-email.hidden {
+    display: none;
+}
+
+.verify-email-sent.hidden {
+    display: none;
+}
+
+.verify-email-sent {
+    display: block;
+}
+
+.verify-email-sent span {
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.verify-email-sent span.active {
+    color: #552B1B;
+    cursor: pointer;
+}
+
+.otp-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    display: none;
 }
 
 
 
 
 
+
+
+.form-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 15px;
+}
+
+.form-button-main {
+    align-self: start;
+    padding: 10px 12px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    background-color: #552B1B;
+}
+
+.form-button-main a {
+    text-decoration: none;
+    color: #FFFCED;
+}
+
+.form-button-question {
+    text-align: right;
+    /* line-height: 20px; */
+    text-underline-offset: 4px;
+}
+
+.form-button-question a {
+    color: #552B1B;
+}
 
 
 
@@ -430,15 +537,6 @@ body {
         font-size: 16px;
     }
 
-    .header-right-buttons {
-        flex-direction: row;
-        gap: 30px;
-    }
-
-    .header-signin-text {
-        font-size: 16px;
-    }
-
     .header-language-selected {
         font-size: 16px;
     }
@@ -460,23 +558,19 @@ body {
 
 
 
-    .main-wrapper {
-        padding: 35px 50px;
-    }
-
-    .text-container {
-        font-size: 16px;
+    .main-container {
+        padding: 60px 50px;
+        gap: 15px;
     }
 
     .main-title {
         font-size: 38px;
     }
 
-    .text-block span {
-        font-size: 18px;
+
+    .form-buttons {
+        font-size: 16px;
     }
-
-
 
 
 
@@ -508,10 +602,6 @@ body {
         font-size: 18px;
     }
 
-    .header-signin-text {
-        font-size: 18px;
-    }
-
     .header-language-selected {
         font-size: 18px;
     }
@@ -533,22 +623,18 @@ body {
 
 
 
-    .main-wrapper {
-        padding: 35px 70px;
-    }
-
-    .text-container {
-        font-size: 17px;
+    .main-container {
+        padding: 80px 50px;
+        gap: 20px;
     }
 
     .main-title {
         font-size: 45px;
     }
 
-    .text-block span {
-        font-size: 19px;
+    .form-buttons {
+        font-size: 17px;
     }
-
 
 
 

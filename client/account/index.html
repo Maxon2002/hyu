@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36BNKE66VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-36BNKE66VZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYU Korean Restaurant Dubai – Sign in</title>
+
+    <link rel="icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="header-buttons">
+                <div class="header-button-menu"><a href="../menu/">View Menu</a></div>
+                <div class="header-button-book"><a href="../reservation/">Book Your Table</a></div>
+            </div>
+            <a href="../" class="header-logo"><img src="../images/Hyu Logo.svg" alt="logo"></a>
+            <div class="header-language">
+                <div class="header-language-selected">English</div>
+                <img src="../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+            </div>
+        </div>
+
+        <nav class="site-nav">
+            <ul>
+                <li class="nav-list active" id="en">English</li>
+                <li class="nav-list" id="ko"><a href="ko/">한국어</a></li>
+                <li class="nav-list" id="ru"><a href="ru/">Русский</a></li>
+                <li class="nav-list" id="ar"><a href="ar/">العربية</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="site-nav-back hidden"></div>
+
+    <!-- <div class="navigation-container">
+        <div class="nav-categories">
+            <button class="category-btn active" data-target="account">Account</button>
+            <button class="category-btn" data-target="discount">Discount</button>
+            <button class="category-btn" data-target="visits">Visits</button>
+            <button class="category-btn" data-target="friends">Friends</button>
+        </div>
+    </div> -->
+
+    <div class="main-container">
+        <div class="category-section" id="account">
+            <h2 class="main-category-title">Account</h2>
+            <div class="account-info">
+                <strong>Account name:</strong>
+                <span class="account-data" id="account-email">example@gmail.com</span>
+            </div>
+            <div class="account-info">
+                <strong>Account ID:</strong>
+                <span class="account-data" id="account-id">GI53K9DN23</span>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="category-section" id="discount">
+            <h2 class="main-category-title">Discount</h2>
+            <div class="account-info">
+                <strong>Your Current Discount:</strong>
+                <span class="account-data" id="account-discount">13%</span>
+            </div>
+
+            <div class="account-info account-info-flex">
+                <div>Show this QR code to a staff member to get your discount:</div>
+                <div id="account-qr">
+                    <img src="../images/qr-instead.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="category-section" id="visits">
+            <h2 class="main-category-title">Visits</h2>
+            <div class="account-info">
+                <strong>Total Visits:</strong>
+                <span class="account-data" id="account-visits">9</span>
+            </div>
+
+
+            <div class="account-info">
+                Progress to
+                <span class="free-dish">
+                    Free Dish
+                    <img src="../images/info-circle.svg" alt="Info">
+                </span>:
+            </div>
+
+            <div class="progress-images">
+                <img src="../images/progress-full-plate.svg" alt="">
+                <img src="../images/progress-full-plate.svg" alt="">
+                <img src="../images/progress-full-plate.svg" alt="">
+                <img src="../images/progress-full-plate.svg" alt="">
+                <img src="../images/progress-empty-plate.svg" alt="">
+            </div>
+
+            <div class="account-info">
+                <span id="account-visits-left">1 visit</span> left for a free dish!
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="category-section" id="friends">
+            <h2 class="main-category-title">Friends</h2>
+            <div class="account-info">
+                <strong>Invited Friends:</strong>
+                <span class="account-data" id="account-friends">5</span>
+            </div>
+            <div class="account-info">
+                <strong>Your Invite Code:</strong>
+                <span class="account-data" id="account-id">GI53K9DN23</span>
+            </div>
+            <div class="account-info">
+                Share this code — friends must use it when registering to boost your discount.
+            </div>
+
+            <div class="account-info tasks-wrapper">
+                <div class="task-container">
+                    <img src="../images/completed-task.svg" alt="" class="task-img">
+                    <div>Invite 5 friends (<span id="account-friends">5</span>/5) → +3%</div>
+                </div>
+
+                <div class="task-container">
+                    <img src="../images/uncompleted-task.svg" alt="" class="task-img">
+                    <div>Invite 10 friends (<span id="account-friends">5</span>/10) → +3%</div>
+                </div>
+
+                <div class="task-container">
+                    <img src="../images/uncompleted-task.svg" alt="" class="task-img">
+                    <div>5 friends visited (<span id="account-friends">1</span>/5) → +3%</div>
+                </div>
+
+                <div class="task-container">
+                    <img src="../images/uncompleted-task.svg" alt="" class="task-img">
+                    <div>10 friends visited (<span id="account-friends">1</span>/10) → +3%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay hidden">
+        <div class="overlay-content">
+            <img src="../images/close-button-light.svg" alt="close-button" class="close-overlay">
+
+            <div class="overlay-wrapper">
+                <h3 class="overlay-main-title">Free Dish Programm</h3>
+                <div class="overlay-main-subtitle">Every 5th visit = 1 free dish</div>
+
+                <div class="overlay-offer-container">
+                    <div class="overlay-offer-title">Choose from these 5 delicious options:</div>
+                    <div class="overlay-offer-dish-container">
+                        <div class="overlay-offer-dish-image">
+                            <img src="../images/food/Dooboo-kimchi.webp" alt="">
+                        </div>
+                        <div class="overlay-offer-dish-text-box">
+                            <h4 class="overlay-offer-dish-title">
+                                Dooboo kimchi
+                            </h4>
+                            <p class="overlay-offer-dish-desc">
+                                Soft steamed tofu served with tangy, spicy stir-fried kimchi, combining mild,
+                                delicate texture with bold, spicy flavor
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="overlay-offer-dish-container">
+                        <div class="overlay-offer-dish-image">
+                            <img src="../images/food/Godunguh-jorim.webp" alt="">
+                        </div>
+
+                        <div class="overlay-offer-dish-text-box">
+                            <h4 class="overlay-offer-dish-title">
+                                Godunguh jorim
+                            </h4>
+                            <p class="overlay-offer-dish-desc">
+                                Mackerel braised with radish in a spicy sauce, the fish tender and infused with the
+                                savory heat of the seasoning
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="overlay-offer-dish-container">
+                        <div class="overlay-offer-dish-image">
+                            <img src="../images/food/Kimbab.webp" alt="">
+                        </div>
+
+                        <div class="overlay-offer-dish-text-box">
+                            <h4 class="overlay-offer-dish-title">
+                                Kimbab
+                            </h4>
+                            <p class="overlay-offer-dish-desc">
+                                Korean style seaweed roll layered with soft rice, crisp cucumber, sweet pickled radish,
+                                and carrot, paired with savory fish cake, tender crab stick, and a touch of egg for a
+                                gentle, balanced flavor
+                                <br><br>
+                                Veg / Kimchi / Cheese / Tuna / Beef
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="overlay-offer-dish-container">
+                        <div class="overlay-offer-dish-image">
+                            <img src="../images/food/Wooguji-harjanggook.webp" alt="">
+                        </div>
+
+                        <div class="overlay-offer-dish-text-box">
+                            <h4 class="overlay-offer-dish-title">
+                                Wooguji Haejanggook
+                            </h4>
+                            <p class="overlay-offer-dish-desc">
+                                Spicy beef soup with tender slices of beef and soft, wilted Chinese cabbage, simmered
+                                together in a deep, savory, and warming broth
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="overlay-offer-dish-container">
+                        <div class="overlay-offer-dish-image">
+                            <img src="../images/food/Japche.webp" alt="">
+                        </div>
+
+                        <div class="overlay-offer-dish-text-box">
+                            <h4 class="overlay-offer-dish-title">
+                                Japche
+                            </h4>
+                            <p class="overlay-offer-dish-desc">
+                                A vibrant combination of glass noodles, carrot, paprika, onion, mushroom, and egg,
+                                stir-fried together, where each ingredient naturally complements the others
+                                <br><br>
+                                Veg / Beef
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="separator"></div> -->
+
+                <div class="overlay-main-end">Enjoy your reward on your next milestone visit!</div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="info-block">
+                <img src="../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                <div class="contact-info">
+                    <div class="contact-info-block">
+                        <img src="../images/email-icon-light.svg" alt="email">
+                        <div>hyurestaurant@gmail.com</div>
+                    </div>
+                    <div class="contact-info-block">
+                        <img src="../images/phone-icon-light.svg" alt="phone">
+                        <div>+971 502 273 004</div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-block">
+                <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/facebook.svg" alt="facebook">
+                </a>
+                <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                    <img src="../images/instagram.svg" alt="instagram">
+                </a>
+            </div>
+
+            <div class="timing-block">
+                <div>We are waiting for you every day</div>
+                <div>From 11:00 to 23:30</div>
+            </div>
+            <div class="terms-block">
+                <a href="../privacy-policy/">Privacy Policy</a>
+                <a href="../terms-and-conditions/">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
