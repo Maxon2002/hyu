@@ -290,6 +290,10 @@ body {
     text-align: center;
 }
 
+.main-subtitle {
+    margin: 0;
+    text-align: center;
+}
 
 
 .form-box {
@@ -375,28 +379,34 @@ body {
 }
 
 
-.wrong-data.hidden {
+.error-message.hidden {
     display: none;
 }
 
-.wrong-data {
+.error-message {
+    display: block;
+    color: red;
+}
+
+.success-message.hidden {
+    display: none;
+}
+
+.success-message {
+    display: block;
+    color: green;
+}
+
+.wrong-password.hidden {
+    display: none;
+}
+
+.wrong-password {
     color: red;
     display: block;
 }
 
-.change-password.hidden {
-    display: none;
-}
 
-.change-password {
-    display: block;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.change-password a {
-    color: #552B1B;
-}
 
 /* footer */
 

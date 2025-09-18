@@ -5,6 +5,7 @@ import path from "path";
 
 import menuRoutes from "./routes/menu.js";
 import bookingRoutes from "./routes/booking.js";
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(process.cwd(), "client")));
 // маршруты
 app.use("/", menuRoutes);
 app.use("/api/reservation", bookingRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);

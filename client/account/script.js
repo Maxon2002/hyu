@@ -1,3 +1,73 @@
+import QRCode from 'https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js';
+
+// Функция для получения данных аккаунта
+async function fetchAccountData() {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        // Если токен отсутствует, перенаправляем на вход
+        window.location.href = '/sign-in/';
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/account', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) {
+            // Токен недействителен или истёк
+            localStorage.removeItem('authToken');
+            window.location.href = '/sign-in/';
+            return;
+        }
+
+        const data = await res.json();
+        populateAccount(data);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+// Функция для заполнения страницы данными
+function populateAccount(user) {
+    // --- Основная информация ---
+    document.getElementById('account-email').textContent = user.email;
+    document.querySelectorAll('#account-id').forEach(el => el.textContent = user.referralCode);
+    document.getElementById('account-discount').textContent = `${user.discount}%`;
+
+    // --- QR код ---
+    const qrContainer = document.getElementById('account-qr');
+    QRCode.toDataURL(user.referralCode, { width: 100, margin: 2 })
+        .then(url => {
+            qrContainer.innerHTML = `<img src="${url}" alt="QR code">`;
+        })
+        .catch(err => console.error(err));
+
+    // --- Посещения и прогресс к бесплатному блюду ---
+    document.getElementById('account-visits').textContent = user.totalVisits;
+    const visitsLeft = 5 - user.freeDishProgress; // пример, если нужно 5 посещений
+    document.getElementById('account-visits-left').textContent = `${visitsLeft} visit${visitsLeft > 1 ? 's' : ''}`;
+
+    const progressImages = document.querySelectorAll('.progress-images img');
+    progressImages.forEach((img, index) => {
+        img.src = index < user.freeDishProgress
+            ? '../images/progress-full-plate.svg'
+            : '../images/progress-empty-plate.svg';
+    });
+
+    // --- Друзья ---
+    document.querySelectorAll('#account-friends').forEach(el => el.textContent = user.friendsInvited);
+    document.querySelectorAll('#account-friends-visited').forEach(el => el.textContent = user.friendsVisited);
+}
+
+// Инициализация
+fetchAccountData();
+
+
+
+
+
+
 // раскрытие панели выбора языков
 
 const langSelect = document.querySelector('.header-language');
@@ -71,3 +141,5 @@ closeOverlay.addEventListener('click', () => {
     overlay.classList.add('hidden')
     document.body.style.overflow = '';
 })
+
+

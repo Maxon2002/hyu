@@ -49,3 +49,66 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+
+
+
+
+// --- Получаем элементы формы ---
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const signInBtn = document.querySelector(".form-button-main");
+const wrongData = document.querySelector(".wrong-data");
+
+
+// убираем ошибку поля
+[emailInput, passwordInput].forEach(field => {
+    field.addEventListener("input", () => {
+        field.classList.remove("field-error");
+    });
+
+    field.addEventListener("change", () => {
+        field.classList.remove("field-error");
+    });
+});
+
+// --- Обработка клика на Sign In ---
+signInBtn.addEventListener("click", async () => {
+
+    let isValid = true;
+
+    wrongData.classList.add("hidden");
+
+    [emailInput, passwordInput].forEach(field => {
+        if (!field.value.trim() && field.hasAttribute("required")) {
+            field.classList.add("field-error");
+            isValid = false;
+        }
+    });
+
+    if (isValid) {
+        try {
+            const res = await fetch("/api/auth/sign-in", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: emailInput.value.trim(), password: passwordInput.value.trim() })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                // Сохраняем JWT в localStorage
+                localStorage.setItem("authToken", data.token);
+
+                // Перенаправление на страницу аккаунта
+                window.location.href = "/account/";
+            } else {
+                // Показываем ошибку
+                wrongData.classList.remove("hidden");
+            }
+        } catch (err) {
+            console.error("Sign in error:", err);
+            wrongData.textContent = "Server error. Please try again later.";
+            wrongData.classList.remove("hidden");
+        }
+    }
+});

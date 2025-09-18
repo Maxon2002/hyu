@@ -287,6 +287,7 @@ body {
     font-family: "Playfair Display", serif;
     font-weight: 600;
     font-size: 34px;
+    text-align: center;
 }
 
 .auth-error {
@@ -348,10 +349,28 @@ body {
 }
 
 
+.wrong-referral.hidden {
+    display: none;
+}
+
+.wrong-referral {
+    color: red;
+    display: block;
+}
+
+.email-exists.hidden {
+    display: none;
+}
+
+.email-exists {
+    color: red;
+    display: block;
+}
+
 
 .verify-email {
     text-decoration: underline;
-    
+
     color: #ccc;
 }
 
@@ -372,15 +391,26 @@ body {
     display: block;
 }
 
-.verify-email-sent span {
+.verify-email-resend {
     color: #ccc;
     text-decoration: underline;
 }
 
-.verify-email-sent span.active {
+.verify-email-resend.active {
     color: #552B1B;
     cursor: pointer;
 }
+
+.verify-email-change.hidden {
+    display: none;
+}
+.verify-email-change {
+    display: block;
+    text-decoration: underline;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
 
 .otp-wrapper {
     width: 100%;
@@ -391,6 +421,24 @@ body {
     display: none;
 }
 
+.wrong-otp.hidden {
+    display: none;
+}
+
+.wrong-otp {
+    color: red;
+    display: block;
+}
+
+
+.wrong-password.hidden {
+    display: none;
+}
+
+.wrong-password {
+    color: red;
+    display: block;
+}
 
 
 
@@ -413,12 +461,13 @@ body {
     cursor: pointer;
 
     background-color: #552B1B;
-}
-
-.form-button-main a {
-    text-decoration: none;
     color: #FFFCED;
 }
+
+/* .form-button-main a {
+    text-decoration: none;
+    color: #FFFCED;
+} */
 
 .form-button-question {
     text-align: right;
