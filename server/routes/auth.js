@@ -321,6 +321,8 @@ router.get("/account", authenticateToken, async (req, res) => {
     try {
         const userId = req.userId;
 
+        console.log(userId)
+
         const user = await prisma.user.findUnique({
             where: { id: userId },
             select: {
@@ -338,8 +340,7 @@ router.get("/account", authenticateToken, async (req, res) => {
         });
 
         if (!user) {
-            console.log("no user")
-            console.log(userId)
+            
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
