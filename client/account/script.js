@@ -58,6 +58,24 @@ function populateAccount(user) {
     // --- Друзья ---
     document.querySelectorAll('#account-friends').forEach(el => el.textContent = user.friendsInvited);
     document.querySelectorAll('#account-friends-visited').forEach(el => el.textContent = user.friendsVisited);
+
+    // --- Достижения ---
+    const achievements = [
+        { id: '5-invited', completed: user.friendsInvited >= 5 },
+        { id: '10-invited', completed: user.friendsInvited >= 10 },
+        { id: '5-visited', completed: user.friendsVisited >= 5 },
+        { id: '10-visited', completed: user.friendsVisited >= 10 },
+    ];
+
+    achievements.forEach(ach => {
+        const container = document.getElementById(ach.id);
+        if (container) {
+            const img = container.querySelector('.task-img');
+            img.src = ach.completed 
+                ? '../images/completed-task.svg'
+                : '../images/uncompleted-task.svg';
+        }
+    });
 }
 
 // Инициализация
