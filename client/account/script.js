@@ -10,7 +10,7 @@ async function fetchAccountData() {
     }
 
     try {
-        const res = await fetch('/api/account', {
+        const res = await fetch('/api/auth/account', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

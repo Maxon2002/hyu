@@ -13,7 +13,7 @@ export function authenticateToken(req, res, next) {
         if (err) return res.status(403).json({ success: false, message: 'Invalid token' });
         req.userId = user.userId;
 
-        console.log(user.userId)
+        // console.log(user.userId)
         next();
     });
 }
