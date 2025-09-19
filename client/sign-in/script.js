@@ -98,11 +98,11 @@ signInBtn.addEventListener("click", async () => {
             if (data.success) {
                 // Сохраняем JWT в localStorage
                 localStorage.setItem("authToken", data.token);
-                const payload = JSON.parse(atob(data.token.split('.')[1]));
-                console.log("Decoded payload:", payload);
+                // const payload = JSON.parse(atob(data.token.split('.')[1]));
+                // console.log("Decoded payload:", payload);
 
                 // Перенаправление на страницу аккаунта
-                // window.location.href = "/account/";
+                window.location.href = "/account/";
             } else {
                 // Показываем ошибку
                 wrongData.classList.remove("hidden");
