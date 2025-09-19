@@ -196,7 +196,7 @@ router.post("/sign-up", async (req, res) => {
 
         // Генерация JWT
         const token = jwt.sign(
-            { userId: user.id },
+            { userId: newUser.id },
             process.env.JWT_SECRET, // секрет из .env
             { expiresIn: "7d" } // срок жизни токена
         );
