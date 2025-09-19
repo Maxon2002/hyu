@@ -1,4 +1,4 @@
-import QRCode from 'https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js';
+import * as QRCode from 'https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js';
 
 // Функция для получения данных аккаунта
 async function fetchAccountData() {
