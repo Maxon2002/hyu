@@ -37,7 +37,7 @@ function populateAccount(user) {
 
     // --- QR код ---
     const qrContainer = document.getElementById('account-qr');
-    QRCode.toDataURL(user.referralCode, { width: 100, margin: 2 })
+    QRCode.toDataURL(user.referralCode, { width: 500, margin: 2 })
         .then(url => {
             qrContainer.innerHTML = `<img src="${url}" alt="QR code">`;
         })
