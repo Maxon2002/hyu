@@ -338,6 +338,8 @@ router.get("/account", authenticateToken, async (req, res) => {
         });
 
         if (!user) {
+            console.log("no user")
+            console.log(userId)
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
