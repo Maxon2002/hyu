@@ -321,7 +321,6 @@ router.get("/account", authenticateToken, async (req, res) => {
     try {
         const userId = req.userId;
 
-        console.log(userId)
 
         const user = await prisma.user.findUnique({
             where: { id: userId },
@@ -352,6 +351,29 @@ router.get("/account", authenticateToken, async (req, res) => {
 });
 
 
+router.get("/me", authenticateToken, async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        name: true,
+        email: true,
+        phoneNumber: true
+      }
+    });
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    return res.json(user);
+  } catch (err) {
+    console.error("Error in /profile:", err);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+});
 
 
 export default router;
