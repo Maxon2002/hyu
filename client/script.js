@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 localStorage.removeItem('authToken');
             }
 
-            const user = await response.json();
+            const user = await res.json();
 
             // Заполняем форму, если данные есть
             if (user.name) document.getElementById("name").value = user.name;
