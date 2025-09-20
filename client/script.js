@@ -159,7 +159,32 @@ function getLocale(lang) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+
+    // автозаполнение полей
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+        try {
+            const res = await fetch('/api/auth/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                localStorage.removeItem('authToken');
+            }
+
+            const user = await response.json();
+
+            // Заполняем форму, если данные есть
+            if (user.name) document.getElementById("name").value = user.name;
+            if (user.email) document.getElementById("email").value = user.email;
+            if (user.phone) document.getElementById("phone").value = user.phone;
+
+        } catch (err) {
+            console.error("Не удалось загрузить данные профиля:", err);
+        }
+    }
 
     let selectedDate
 
