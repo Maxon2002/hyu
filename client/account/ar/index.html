@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36BNKE66VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-36BNKE66VZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم هيو الكوري دبي – حسابي</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="header-buttons">
+                    <div class="header-button-menu"><a href="../../menu/ar/">عرض القائمة</a></div>
+                    <div class="header-button-book"><a href="../../reservation/ar/">احجز طاولتك</a></div>
+                </div>
+                <a href="../../ar/" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+                <div class="header-language">
+                    <div class="header-language-selected">العربية</div>
+                    <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+                </div>
+            </div>
+
+            <nav class="site-nav">
+                <ul>
+                    <li class="nav-list" id="en"><a href="../">English</a></li>
+                    <li class="nav-list" id="ko"><a href="../ko/">한국어</a></li>
+                    <li class="nav-list" id="ru"><a href="../ru/">Русский</a></li>
+                    <li class="nav-list active" id="ar">العربية</li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="site-nav-back hidden"></div>
+
+
+        <div class="main-container">
+            <div class="category-section" id="account">
+                <h2 class="main-category-title">الحساب</h2>
+                <div class="account-info">
+                    <strong>اسم الحساب:</strong>
+                    <span class="account-data" id="account-email"></span>
+                </div>
+                <div class="account-info">
+                    <strong>معرّف الحساب:</strong>
+                    <span class="account-data" id="account-id"></span>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="category-section" id="discount">
+                <h2 class="main-category-title">الخصم</h2>
+                <div class="account-info">
+                    <strong>خصمك الحالي:</strong>
+                    <span class="account-data" id="account-discount"></span>
+                </div>
+
+                <div class="account-info account-info-flex">
+                    <div>اعرض رمز الاستجابة السريعة هذا على أحد الموظفين للحصول على خصمك:</div>
+                    <div id="account-qr">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="category-section" id="visits">
+                <h2 class="main-category-title">الزيارات</h2>
+                <div class="account-info">
+                    <strong>إجمالي الزيارات:</strong>
+                    <span class="account-data" id="account-visits"></span>
+                </div>
+
+
+                <div class="account-info">
+                    التقدم نحو
+                    <span class="free-dish">
+                        الطبق المجاني
+                        <img src="../../images/info-circle.svg" alt="Info">
+                    </span>:
+                </div>
+
+                <div class="progress-images">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                </div>
+
+                <div class="account-info">
+                    عدد الزيارات المتبقية للحصول على طبق مجاني: <span id="account-visits-left"></span>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="category-section" id="friends">
+                <h2 class="main-category-title">الأصدقاء</h2>
+                <div class="account-info">
+                    <strong>الأصدقاء الذين تمت دعوتهم:</strong>
+                    <span class="account-data" id="account-friends"></span>
+                </div>
+                <div class="account-info">
+                    <strong>رمز الدعوة الخاص بك:</strong>
+                    <span class="account-data" id="account-id"></span>
+                </div>
+                <div class="account-info">
+                    شارك هذا الرمز — يجب على أصدقائك استخدامه عند التسجيل لزيادة خصمك.
+                </div>
+
+                <div class="account-info tasks-wrapper">
+                    <div class="task-container" id="5-invited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>دعوة 5 أصدقاء (<span id="account-friends"></span>/5) → +3%</div>
+                    </div>
+
+                    <div class="task-container" id="10-invited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>دعوة 10 أصدقاء (<span id="account-friends"></span>/10) → +3%</div>
+                    </div>
+
+                    <div class="task-container" id="5-visited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>قام 5 أصدقاء بزيارة المطعم (<span id="account-friends-visited"></span>/5) → +3%</div>
+                    </div>
+
+                    <div class="task-container" id="10-visited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>قام 10 أصدقاء بزيارة المطعم (<span id="account-friends-visited"></span>/10) → +3%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay hidden">
+            <div class="overlay-content">
+                <img src="../../images/close-button-light.svg" alt="close-button" class="close-overlay">
+
+                <div class="overlay-wrapper">
+                    <h3 class="overlay-main-title">برنامج الوجبة المجانية</h3>
+                    <div class="overlay-main-subtitle">كل زيارة خامسة = وجبة مجانية واحدة</div>
+
+                    <div class="overlay-offer-container">
+                        <div class="overlay-offer-title">اختر من بين هذه الخيارات اللذيذة الخمسة:</div>
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Dooboo-kimchi.webp" alt="">
+                            </div>
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">دوبو كيمتشي (Dooboo kimchi)</h4>
+                                <p class="overlay-offer-dish-desc">توفو مطهو على البخار ناعم، يقدم مع كيمتشي مقلي حار
+                                    وحامض، ليجمع
+                                    بين القوام الطري والرقيق والنكهة الجريئة والحارة.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Godunguh-jorim.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">غودونغو جوريم (Godunguh jorim)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">ماكريل مطهو ببطء مع الفجل في صلصة حارة، السمك طري
+                                    ومشبع بالنكهة
+                                    الحارة والمالحة للتوابل.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Kimbab.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">كيمباب (Kimbab)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">رول الأعشاب البحرية على الطريقة الكورية، محشو بالأرز
+                                    الطري،
+                                    الخيار المقرمش، الفجل المخلل الحلو، والجزر، مع كعكة السمك المالحة، أعواد السلطعون
+                                    الطرية، ولمسة
+                                    من البيض لخلق نكهة متوازنة ولطيفة.
+                                    <br><br>
+                                    خضار / كيمتشي / جبنة / تونة / لحم بقر
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Wooguji-harjanggook.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">ووجوجي هِجانغوك (Wooguji Haejanggook)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">حساء لحم بقر حار مع شرائح لحم بقر طرية وكرنب صيني
+                                    طري، مطهو معًا
+                                    في مرق غني، مالح ودافئ.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Japche.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">جابشي (Japche)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">مزيج حيوي من نودلز زجاجية، جزر، فلفل حلو، بصل، فطر
+                                    وبيض، مقلي
+                                    معًا، حيث يكمل كل مكوّن الآخر بشكل طبيعي.s
+                                    <br><br>
+                                    خضار / لحم بقر
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="separator"></div> -->
+
+                    <div class="overlay-main-end">استمتع بمكافأتك في زيارتك التالية عند بلوغك المرحلة المطلوبة!</div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <div class="info-block">
+                    <img src="../../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                    <div class="contact-info">
+                        <div class="contact-info-block">
+                            <img src="../../images/email-icon-light.svg" alt="email">
+                            <div>hyurestaurant@gmail.com</div>
+                        </div>
+                        <div class="contact-info-block">
+                            <img src="../../images/phone-icon-light.svg" alt="phone">
+                            <div>+971 502 273 004</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-media-block">
+                    <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/facebook.svg" alt="facebook">
+                    </a>
+                    <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/instagram.svg" alt="instagram">
+                    </a>
+                </div>
+
+                <div class="timing-block">
+                    <div>نحن في انتظاركم كل يوم من الساعة 11:00 صباحًا حتى 11:30 مساءً</div>
+                </div>
+                <div class="terms-block">
+                    <a href="../../privacy-policy/ar/">سياسة الخصوصية</a>
+                    <a href="../../terms-and-conditions/ar/">الشروط والأحكام</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>

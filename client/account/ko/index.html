@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36BNKE66VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-36BNKE66VZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두바이 HYU 한식당 – 내 계정</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="header-buttons">
+                    <div class="header-button-menu"><a href="../../menu/ko/">메뉴 보기</a></div>
+                    <div class="header-button-book"><a href="../../reservation/ko/">예약하기</a></div>
+                </div>
+                <a href="../../ko/" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+                <div class="header-language">
+                    <div class="header-language-selected">한국어</div>
+                    <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+                </div>
+            </div>
+
+            <nav class="site-nav">
+                <ul>
+                    <li class="nav-list" id="en"><a href="../">English</a></li>
+                    <li class="nav-list active" id="ko">한국어</li>
+                    <li class="nav-list" id="ru"><a href="../ru/">Русский</a></li>
+                    <li class="nav-list" id="ar"><a href="../ar/">العربية</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="site-nav-back hidden"></div>
+
+
+        <div class="main-container">
+            <div class="category-section" id="account">
+                <h2 class="main-category-title">계정</h2>
+                <div class="account-info">
+                    <strong>계정 이름:</strong>
+                    <span class="account-data" id="account-email"></span>
+                </div>
+                <div class="account-info">
+                    <strong>계정 ID:</strong>
+                    <span class="account-data" id="account-id"></span>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="category-section" id="discount">
+                <h2 class="main-category-title">할인</h2>
+                <div class="account-info">
+                    <strong>현재 할인:</strong>
+                    <span class="account-data" id="account-discount"></span>
+                </div>
+
+                <div class="account-info account-info-flex">
+                    <div>이 QR 코드를 직원에게 보여주면 할인을 받을 수 있습니다:</div>
+                    <div id="account-qr">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="category-section" id="visits">
+                <h2 class="main-category-title">방문 내역</h2>
+                <div class="account-info">
+                    <strong>총 방문 횟수:</strong>
+                    <span class="account-data" id="account-visits"></span>
+                </div>
+
+
+                <div class="account-info">
+                    <span class="free-dish">
+                        무료 메뉴
+                        <img src="../../images/info-circle.svg" alt="Info">
+                    </span>
+                    까지 진행 상황:
+                </div>
+
+                <div class="progress-images">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                    <img src="../../images/progress-empty-plate.svg" alt="">
+                </div>
+
+                <div class="account-info">
+                    무료 메뉴까지 남은 방문 횟수: <span id="account-visits-left"></span>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="category-section" id="friends">
+                <h2 class="main-category-title">친구</h2>
+                <div class="account-info">
+                    <strong>초대한 친구:</strong>
+                    <span class="account-data" id="account-friends"></span>
+                </div>
+                <div class="account-info">
+                    <strong>초대 코드:</strong>
+                    <span class="account-data" id="account-id"></span>
+                </div>
+                <div class="account-info">
+                    이 코드를 공유하세요 — 친구들이 등록할 때 사용하면 할인이 증가합니다.
+                </div>
+
+                <div class="account-info tasks-wrapper">
+                    <div class="task-container" id="5-invited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>친구 5명 초대 (<span id="account-friends"></span>/5) → +3%</div>
+                    </div>
+
+                    <div class="task-container" id="10-invited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>친구 10명 초대 (<span id="account-friends"></span>/10) → +3%</div>
+                    </div>
+
+                    <div class="task-container" id="5-visited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>친구 5명 방문 완료 (<span id="account-friends-visited"></span>/5) → +3%</div>
+                    </div>
+
+                    <div class="task-container" id="10-visited">
+                        <img src="../../images/uncompleted-task.svg" alt="" class="task-img">
+                        <div>친구 10명 방문 완료 (<span id="account-friends-visited"></span>/10) → +3%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay hidden">
+            <div class="overlay-content">
+                <img src="../../images/close-button-light.svg" alt="close-button" class="close-overlay">
+
+                <div class="overlay-wrapper">
+                    <h3 class="overlay-main-title">무료 메뉴 프로그램</h3>
+                    <div class="overlay-main-subtitle">다섯 번째 방문마다 1개의 무료 메뉴 제공</div>
+
+                    <div class="overlay-offer-container">
+                        <div class="overlay-offer-title">다음 5가지 맛있는 메뉴 중에서 선택하세요:</div>
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Dooboo-kimchi.webp" alt="">
+                            </div>
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">
+                                    두부김치 (Dooboo kimchi)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">
+                                    부드럽게 쪄낸 두부와 매콤새콤하게 볶아낸 김치를 함께 제공하는 한국식 두부김치로, 순한 식감과 강렬한 김치 맛이 조화를 이룹니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Godunguh-jorim.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">
+                                    고등어조림 (Godunguh jorim)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">
+                                    무와 함께 매콤한 양념으로 조리해, 생선이 부드럽고 양념의 감칠맛과 매운맛이 잘 스며든 한국식 고등어조림입니다.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Kimbab.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">
+                                    김밥 (Kimbab)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">
+                                    부드러운 밥과 아삭한 오이, 달콤한 단무지, 당근을 김에 정성스럽게 말아, 고소한 어묵, 부드러운 게맛살, 그리고 은은한 계란을 더해 조화로운 맛을
+                                    살린 한국식 김밥.
+                                    <br><br>
+                                    야채 / 김치 / 치즈 / 참치 / 소고기
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Wooguji-harjanggook.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">
+                                    우거지해장국 (Wooguji Haejanggook)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">
+                                    부드러운 소고기와 살짝 시든 우거지를 매콤하고 깊은 맛이 나는 국물에 함께 끓인 한국식 우거지해장국입니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <div class="overlay-offer-dish-container">
+                            <div class="overlay-offer-dish-image">
+                                <img src="../../images/food/Japche.webp" alt="">
+                            </div>
+
+                            <div class="overlay-offer-dish-text-box">
+                                <h4 class="overlay-offer-dish-title">
+                                    잡채 (Japche)
+                                </h4>
+                                <p class="overlay-offer-dish-desc">
+                                    당면과 당근, 파프리카, 양파, 버섯, 계란을 함께 볶아 재료 각각의 맛이 자연스럽게 조화를 이루는 한국식 잡채입니다.
+                                    <br><br>
+                                    야채 / 소고기
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="separator"></div> -->
+
+                    <div class="overlay-main-end">다음 마일스톤 방문에서 보상을 즐기세요!</div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <div class="info-block">
+                    <img src="../../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                    <div class="contact-info">
+                        <div class="contact-info-block">
+                            <img src="../../images/email-icon-light.svg" alt="email">
+                            <div>hyurestaurant@gmail.com</div>
+                        </div>
+                        <div class="contact-info-block">
+                            <img src="../../images/phone-icon-light.svg" alt="phone">
+                            <div>+971 502 273 004</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-media-block">
+                    <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/facebook.svg" alt="facebook">
+                    </a>
+                    <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/instagram.svg" alt="instagram">
+                    </a>
+                </div>
+
+                <div class="timing-block">
+                    <div>매일 기다리고 있습니다</div>
+                    <div>영업 시간: 11:00 ~ 23:30</div>
+                </div>
+                <div class="terms-block">
+                    <a href="../../privacy-policy/ko/">개인정보 처리방침</a>
+                    <a href="../../terms-and-conditions/ko/">이용 약관</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>

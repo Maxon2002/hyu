@@ -46,7 +46,7 @@ function populateAccount(user) {
     // --- Посещения и прогресс к бесплатному блюду ---
     document.getElementById('account-visits').textContent = user.totalVisits;
     const visitsLeft = 5 - user.freeDishProgress; // пример, если нужно 5 посещений
-    document.getElementById('account-visits-left').textContent = `${visitsLeft} visit${visitsLeft > 1 ? 's' : ''}`;
+    document.getElementById('account-visits-left').textContent = `${visitsLeft}`;
 
     const progressImages = document.querySelectorAll('.progress-images img');
     progressImages.forEach((img, index) => {

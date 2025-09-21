@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36BNKE66VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-36BNKE66VZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두바이 HYU 한식당 – 회원가입</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="header-buttons">
+                    <div class="header-button-menu"><a href="../../menu/ko/">메뉴 보기</a></div>
+                    <div class="header-button-book"><a href="../../reservation/ko/">예약하기</a></div>
+                </div>
+                <a href="../../ko/" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+                <div class="header-language">
+                    <div class="header-language-selected">한국어</div>
+                    <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+                </div>
+            </div>
+
+            <nav class="site-nav">
+                <ul>
+                    <li class="nav-list" id="en"><a href="../">English</a></li>
+                    <li class="nav-list active" id="ko">한국어</li>
+                    <li class="nav-list" id="ru"><a href="../ru/">Русский</a></li>
+                    <li class="nav-list" id="ar"><a href="../ar/">العربية</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="site-nav-back hidden"></div>
+
+
+        <div class="main-container">
+            <div class="main-title">회원가입</div>
+
+            <div class="form-box">
+                <form class="auth-form">
+                    <label for="name">이름*</label>
+                    <input type="text" id="name" name="name" placeholder="이름 입력" required>
+
+                    <label for="referral-code">추천 코드</label>
+                    <input type="text" id="referral-code" name="referral-code"
+                        placeholder="코드 입력 (있다면)">
+
+                    <div class="wrong-referral hidden">추천 코드를 찾을 수 없습니다</div>
+
+                    <label for="phone">전화번호</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+...">
+
+                    <label for="email">이메일*</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                    <div class="verify-email">이메일 인증</div>
+                    <div class="email-exists hidden">이 이메일로 등록된 계정이 이미 있습니다</div>
+                    <div class="verify-email-sent hidden">인증 코드가 이메일로 전송되었습니다. <span class="verify-email-resend">코드 재전송?</span> <span class="verify-email-timer">30</span>초</div>
+                    <div class="verify-email-change hidden">이메일 주소 변경?</div>
+
+                    <label for="otp">인증 코드*</label>
+                    <input type="text" id="otp" name="otp" placeholder="이메일에서 받은 코드 입력" maxlength="6" required disabled>
+                    <div class="wrong-otp hidden">잘못된 인증 코드입니다</div>
+
+                    <label for="password">비밀번호*</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호" required>
+                    <div class="wrong-password hidden">비밀번호는 최소 8자 이상이어야 하며, 숫자 1개 이상을 포함해야 합니다</div>
+                </form>
+                <div class="form-buttons">
+                    <div class="form-button-main">회원가입</div>
+                    <div class="form-button-question"><a href="../../sign-in/ko">이미 계정이 있으신가요?<br>로그인</a></div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <div class="info-block">
+                    <img src="../../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                    <div class="contact-info">
+                        <div class="contact-info-block">
+                            <img src="../../images/email-icon-light.svg" alt="email">
+                            <div>hyurestaurant@gmail.com</div>
+                        </div>
+                        <div class="contact-info-block">
+                            <img src="../../images/phone-icon-light.svg" alt="phone">
+                            <div>+971 502 273 004</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-media-block">
+                    <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/facebook.svg" alt="facebook">
+                    </a>
+                    <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/instagram.svg" alt="instagram">
+                    </a>
+                </div>
+
+                <div class="timing-block">
+                    <div>매일 기다리고 있습니다</div>
+                    <div>영업 시간: 11:00 ~ 23:30</div>
+                </div>
+                <div class="terms-block">
+                    <a href="../../privacy-policy/ko/">개인정보 처리방침</a>
+                    <a href="../../terms-and-conditions/ko/">이용 약관</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>

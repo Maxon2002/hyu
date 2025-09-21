@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36BNKE66VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-36BNKE66VZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم هيو الكوري دبي – تسجيل حساب</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="header-buttons">
+                    <div class="header-button-menu"><a href="../../menu/ar/">عرض القائمة</a></div>
+                    <div class="header-button-book"><a href="../../reservation/ar/">احجز طاولتك</a></div>
+                </div>
+                <a href="../../ar/" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+                <div class="header-language">
+                    <div class="header-language-selected">العربية</div>
+                    <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
+                </div>
+            </div>
+
+            <nav class="site-nav">
+                <ul>
+                    <li class="nav-list" id="en"><a href="../">English</a></li>
+                    <li class="nav-list" id="ko"><a href="../ko/">한국어</a></li>
+                    <li class="nav-list" id="ru"><a href="../ru/">Русский</a></li>
+                    <li class="nav-list active" id="ar">العربية</li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="site-nav-back hidden"></div>
+
+
+        <div class="main-container">
+            <div class="main-title">تسجيل حساب</div>
+
+            <div class="form-box">
+                <form class="auth-form">
+                    <label for="name">الاسم*</label>
+                    <input type="text" id="name" name="name" placeholder="أدخل اسمك" required>
+
+                    <label for="referral-code">رمز الإحالة</label>
+                    <input type="text" id="referral-code" name="referral-code"
+                        placeholder="أدخل الرمز (إذا كان لديك)">
+
+                    <div class="wrong-referral hidden">رمز الإحالة غير موجود</div>
+
+                    <label for="phone">رقم الهاتف</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+...">
+
+                    <label for="email">البريد الإلكتروني*</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                    <div class="verify-email">تحقق من البريد الإلكتروني</div>
+                    <div class="email-exists hidden">يوجد حساب بالفعل بهذا البريد الإلكتروني</div>
+                    <div class="verify-email-sent hidden">تم إرسال الرمز إلى بريدك الإلكتروني. <span class="verify-email-resend">إعادة إرسال الرمز؟</span> <span class="verify-email-timer">30</span>ث</div>
+                    <div class="verify-email-change hidden">تغيير عنوان البريد الإلكتروني؟</div>
+
+                    <label for="otp">رمز التحقق*</label>
+                    <input type="text" id="otp" name="otp" placeholder="أدخل الرمز من البريد الإلكتروني" maxlength="6" required disabled>
+                    <div class="wrong-otp hidden">رمز التحقق خاطئ</div>
+
+                    <label for="password">كلمة المرور*</label>
+                    <input type="password" id="password" name="password" placeholder="كلمة المرور" required>
+                    <div class="wrong-password hidden">يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتتضمن رقمًا واحدًا على الأقل</div>
+                </form>
+                <div class="form-buttons">
+                    <div class="form-button-main">تسجيل الحساب</div>
+                    <div class="form-button-question"><a href="../../sign-in/ar">هل لديك حساب بالفعل؟<br>تسجيل الدخول</a></div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <div class="info-block">
+                    <img src="../../images/Hyu Logo.svg" alt="logo" class="footer-logo">
+                    <div class="contact-info">
+                        <div class="contact-info-block">
+                            <img src="../../images/email-icon-light.svg" alt="email">
+                            <div>hyurestaurant@gmail.com</div>
+                        </div>
+                        <div class="contact-info-block">
+                            <img src="../../images/phone-icon-light.svg" alt="phone">
+                            <div>+971 502 273 004</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-media-block">
+                    <a href="https://www.facebook.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/facebook.svg" alt="facebook">
+                    </a>
+                    <a href="https://www.instagram.com/hyurestaurant" target="_blank" rel="noopener noreferrer">
+                        <img src="../../images/instagram.svg" alt="instagram">
+                    </a>
+                </div>
+
+                <div class="timing-block">
+                    <div>نحن في انتظاركم كل يوم من الساعة 11:00 صباحًا حتى 11:30 مساءً</div>
+                </div>
+                <div class="terms-block">
+                    <a href="../../privacy-policy/ar/">سياسة الخصوصية</a>
+                    <a href="../../terms-and-conditions/ar/">الشروط والأحكام</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>
