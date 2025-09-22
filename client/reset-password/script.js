@@ -93,8 +93,9 @@ resetBtn.addEventListener("click", async () => {
                 // Можно сделать редирект через несколько секунд
                 let lang = document.querySelector('.nav-list.active').id
                 setTimeout(() => {
-                    
-                    window.location.href = `../sign-in/${lang}/`;
+
+                    window.location.href = `/sign-in/${lang}/`;
+
                 }, 2000);
             } else {
                 errorMessage.classList.remove("hidden");
