@@ -43,11 +43,11 @@ let currentLang = document.querySelector('.nav-list.active').id
 
 // убираем ошибку поля
 emailInput.addEventListener("input", () => {
-    field.classList.remove("field-error");
+    emailInput.classList.remove("field-error");
 });
 
 emailInput.addEventListener("change", () => {
-    field.classList.remove("field-error");
+    emailInput.classList.remove("field-error");
 });
 
 // --- Обработка клика ---

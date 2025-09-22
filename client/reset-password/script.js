@@ -48,11 +48,11 @@ const token = urlParams.get("token");
 
 // убираем ошибку поля
 passwordInput.addEventListener("input", () => {
-    field.classList.remove("field-error");
+    passwordInput.classList.remove("field-error");
 });
 
 passwordInput.addEventListener("change", () => {
-    field.classList.remove("field-error");
+    passwordInput.classList.remove("field-error");
 });
 
 resetBtn.addEventListener("click", async () => {
