@@ -28,6 +28,8 @@ async function fetchAccountData() {
     }
 }
 
+let currentLang = document.querySelector('.nav-list.active')
+
 // Функция для заполнения страницы данными
 function populateAccount(user) {
     // --- Основная информация ---
@@ -50,9 +52,15 @@ function populateAccount(user) {
 
     const progressImages = document.querySelectorAll('.progress-images img');
     progressImages.forEach((img, index) => {
-        img.src = index < user.freeDishProgress
-            ? '../images/progress-full-plate.svg'
-            : '../images/progress-empty-plate.svg';
+        if (currentLang === "en") {
+            img.src = index < user.freeDishProgress
+                ? '../images/progress-full-plate.svg'
+                : '../images/progress-empty-plate.svg';
+        } else {
+            img.src = index < user.freeDishProgress
+                ? '../../images/progress-full-plate.svg'
+                : '../../images/progress-empty-plate.svg';
+        }
     });
 
     // --- Друзья ---
@@ -71,9 +79,15 @@ function populateAccount(user) {
         const container = document.getElementById(ach.id);
         if (container) {
             const img = container.querySelector('.task-img');
-            img.src = ach.completed 
-                ? '../images/completed-task.svg'
-                : '../images/uncompleted-task.svg';
+            if (currentLang === "en") {
+                img.src = ach.completed
+                    ? '../images/completed-task.svg'
+                    : '../images/uncompleted-task.svg';
+            } else {
+                img.src = ach.completed
+                    ? '../../images/completed-task.svg'
+                    : '../../images/uncompleted-task.svg';
+            }
         }
     });
 }
