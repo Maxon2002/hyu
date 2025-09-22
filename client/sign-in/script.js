@@ -58,6 +58,7 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const signInBtn = document.querySelector(".form-button-main");
 const wrongData = document.querySelector(".wrong-data");
+const changePassword = document.querySelector(".change-password");
 
 
 // убираем ошибку поля
@@ -77,6 +78,7 @@ signInBtn.addEventListener("click", async () => {
     let isValid = true;
 
     wrongData.classList.add("hidden");
+    changePassword.classList.add("hidden");
 
     [emailInput, passwordInput].forEach(field => {
         if (!field.value.trim() && field.hasAttribute("required")) {
@@ -105,6 +107,7 @@ signInBtn.addEventListener("click", async () => {
             } else {
                 // Показываем ошибку
                 wrongData.classList.remove("hidden");
+                changePassword.classList.remove("hidden");
             }
         } catch (err) {
             console.error("Sign in error:", err);
