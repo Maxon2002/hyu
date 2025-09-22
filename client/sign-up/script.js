@@ -279,7 +279,8 @@ signUpBtn.addEventListener("click", async (e) => {
 
             if (data.success) {
                 localStorage.setItem('authToken', data.token);
-                window.location.href = "/account/";
+                let lang = document.querySelector('.nav-list.active')
+                window.location.href = `/account/${lang}/`;
             } else {
                 console.log(data.message || "Registration failed");
             }
