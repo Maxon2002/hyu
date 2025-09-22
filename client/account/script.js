@@ -28,7 +28,7 @@ async function fetchAccountData() {
     }
 }
 
-let currentLang = document.querySelector('.nav-list.active')
+let currentLang = document.querySelector('.nav-list.active').id
 
 // Функция для заполнения страницы данными
 function populateAccount(user) {

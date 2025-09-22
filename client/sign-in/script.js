@@ -100,7 +100,7 @@ signInBtn.addEventListener("click", async () => {
             if (data.success) {
                 // Сохраняем JWT в localStorage
                 localStorage.setItem("authToken", data.token);
-                let lang = document.querySelector('.nav-list.active')
+                let lang = document.querySelector('.nav-list.active').id
 
                 // Перенаправление на страницу аккаунта
                 window.location.href = `/account/${lang}/`;

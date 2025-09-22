@@ -91,12 +91,14 @@ resetBtn.addEventListener("click", async () => {
             if (data.success) {
                 successMessage.classList.remove("hidden");
                 // Можно сделать редирект через несколько секунд
+                let lang = document.querySelector('.nav-list.active').id
                 setTimeout(() => {
-                    window.location.href = "../sign-in/";
+                    
+                    window.location.href = `../sign-in/${lang}/`;
                 }, 2000);
             } else {
                 errorMessage.classList.remove("hidden");
-                console.log(data.message || "Reset failed");
+                // console.log(data.message || "Reset failed");
             }
         } catch (err) {
             console.error("Error resetting password:", err);

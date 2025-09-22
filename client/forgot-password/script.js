@@ -39,6 +39,8 @@ const sendResetBtn = document.querySelector(".form-button-main");
 const errorMessage = document.querySelector(".error-message");
 const successMessage = document.querySelector(".success-message");
 
+let currentLang = document.querySelector('.nav-list.active').id
+
 // убираем ошибку поля
 emailInput.addEventListener("input", () => {
     field.classList.remove("field-error");
@@ -62,7 +64,7 @@ sendResetBtn.addEventListener("click", async () => {
             const res = await fetch("/api/auth/forgot-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: emailInput.value.trim() })
+                body: JSON.stringify({ email: emailInput.value.trim(), language: currentLang })
             });
 
             const data = await res.json();
