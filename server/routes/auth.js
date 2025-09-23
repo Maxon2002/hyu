@@ -180,6 +180,11 @@ router.post("/sign-up", async (req, res) => {
                         achievedAt: new Date(),
                     },
                 });
+
+                await prisma.user.update({
+                    where: { id: inviter.id },
+                    data: { discount: { increment: 3 } },
+                });
             }
 
             if (inviter.friendsInvited + 1 === 10) {
@@ -190,6 +195,11 @@ router.post("/sign-up", async (req, res) => {
                         isCompleted: true,
                         achievedAt: new Date(),
                     },
+                });
+
+                await prisma.user.update({
+                    where: { id: inviter.id },
+                    data: { discount: { increment: 3 } },
                 });
             }
         }
@@ -339,7 +349,7 @@ router.get("/account", authenticateToken, async (req, res) => {
         });
 
         if (!user) {
-            
+
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
@@ -352,27 +362,27 @@ router.get("/account", authenticateToken, async (req, res) => {
 
 
 router.get("/me", authenticateToken, async (req, res) => {
-  try {
-    const userId = req.userId;
+    try {
+        const userId = req.userId;
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: {
-        name: true,
-        email: true,
-        phoneNumber: true
-      }
-    });
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: {
+                name: true,
+                email: true,
+                phoneNumber: true
+            }
+        });
 
-    if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        return res.json(user);
+    } catch (err) {
+        console.error("Error in /profile:", err);
+        return res.status(500).json({ success: false, message: "Server error" });
     }
-
-    return res.json(user);
-  } catch (err) {
-    console.error("Error in /profile:", err);
-    return res.status(500).json({ success: false, message: "Server error" });
-  }
 });
 
 

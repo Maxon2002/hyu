@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sign in</title>
+
+    <link rel="icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="header-nav active">Scanner</div>
+                <div class="header-nav"><a href="../users/">Clients</a></div>
+            </div>
+        </header>
+
+
+        <div class="main-container">
+            <div class="main-title">QR Scanner</div>
+
+            <!-- Кнопка запуска -->
+            <div class="scan-button" id="start-scan">Scan QR</div>
+
+            <!-- Контейнер для сканера (появится при старте) -->
+            <div class="scanner-box hidden" id="scanner-box">
+                <!-- Здесь библиотека вставит видео -->
+                <div id="scanner-view"></div>
+
+                <div class="scanner-close">Close Scanner</div>
+            </div>
+
+            <!-- Блок с результатами -->
+            <div class="client-data hidden" id="client-data">
+                <div class="client-info">
+                    <h3>Client Information</h3>
+                    <p><strong>Discount:</strong> <span id="client-discount"></span>%</p>
+                    <p><strong>Name:</strong> <span id="client-name"></span></p>
+                    <p><strong>Email:</strong> <span id="client-email"></span></p>
+                    <p><strong>Visits:</strong> <span id="client-visits"></span></p>
+                    <p><strong>Friends invited:</strong> <span id="client-friends"></span></p>
+                </div>
+
+                <div class="action-buttons">
+                    <div class="mark-visit" id="mark-visit">Mark Visit</div>
+                    <div class="close-button" id="close-client-data">Close</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

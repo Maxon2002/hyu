@@ -335,13 +335,6 @@ body {
     border-color: red !important;
 }
 
-.reservation-form select {
-    background-color: #fff;
-}
-
-.reservation-form select option:checked {
-    background-color: #FFFCED;
-}
 
 
 .form-buttons {
