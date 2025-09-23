@@ -52,13 +52,20 @@ startScanBtn.addEventListener("click", () => {
 
     Html5Qrcode.getCameras().then(cameras => {
         if (cameras && cameras.length) {
-            const cameraId = cameras[0].id;
+            // Найти камеру с "environment" (задняя) если есть
+            let cameraId = cameras[0].id; // по умолчанию первая камера
+            for (let cam of cameras) {
+                if (cam.label.toLowerCase().includes("back") || cam.label.toLowerCase().includes("rear")) {
+                    cameraId = cam.id;
+                    break;
+                }
+            }
+
             html5QrCode.start(
-                cameraId,
+                { deviceId: { exact: cameraId }, facingMode: { exact: "environment" } },
                 { fps: 10, qrbox: 250 },
                 qrCodeMessage => {
-                    // QR код считан
-                    referralCodeUser = qrCodeMessage
+                    referralCodeUser = qrCodeMessage;
                     fetchClientData(qrCodeMessage);
                     html5QrCode.stop();
                     scannerBox.classList.add("hidden");
@@ -89,7 +96,7 @@ async function fetchClientData(referralCode) {
     try {
         const res = await fetch(`/api/admin/client`, {
             method: "POST", // теперь POST
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${adminToken}`
             },
