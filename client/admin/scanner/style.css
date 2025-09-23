@@ -113,6 +113,11 @@ body {
     gap: 20px;
 }
 
+#scanner-view {
+    width: 300px;
+    height: 300px;
+}
+
 .scanner-close {
     padding: 10px 12px;
     border-radius: 20px;
