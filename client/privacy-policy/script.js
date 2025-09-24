@@ -1,3 +1,43 @@
+const headerSignin = document.querySelector('.header-signin')
+const headerAccount = document.querySelector('.header-account')
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    // автозаполнение полей
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+        try {
+            const res = await fetch('/api/auth/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                localStorage.removeItem('authToken');
+            } else {
+                headerSignin.classList.add('hidden')
+                headerAccount.classList.remove('hidden')
+
+            }
+
+        } catch (err) {
+            console.error("Не удалось загрузить данные профиля:", err);
+        }
+    }
+
+});
+
+const signOutBtn = document.querySelector('#sign-out')
+
+signOutBtn.addEventListener("click", () => {
+    localStorage.removeItem("authToken"); // удаляем токен
+    headerSignin.classList.remove("hidden");
+    headerAccount.classList.add("hidden");
+});
+
+
+
+
 // раскрытие панели выбора языков
 
 const langSelect = document.querySelector('.header-language');

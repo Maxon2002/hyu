@@ -1,72 +1,3 @@
-window.addEventListener('resize', () => {
-    changeFormWidth()
-})
-
-
-
-
-
-
-
-
-// раскрытие панели выбора языков
-
-const langSelect = document.querySelector('.header-language');
-const langDropDown = document.querySelector('.site-nav');
-
-const navBackground = document.querySelector('.site-nav-back');
-
-const header = document.querySelector('.header');
-
-
-// Клик по кнопке выбора языка
-langSelect.addEventListener('click', () => {
-    const isOpen = langDropDown.classList.contains('visible');
-
-    if (isOpen) {
-        langSelect.classList.remove('active');
-        langDropDown.classList.remove('visible');
-        langDropDown.classList.remove('line');
-        navBackground.classList.add('hidden');
-        header.classList.remove('active')
-        document.body.style.overflow = '';
-    } else {
-        langSelect.classList.add('active');
-        langDropDown.classList.add('visible');
-        navBackground.classList.remove('hidden');
-        header.classList.add('active')
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => {
-            langDropDown.classList.add('line');
-        }, 200);
-    }
-});
-
-// Клик вне меню закрывает всё
-document.addEventListener('click', (e) => {
-    const target = e.target;
-
-    if (
-        !target.closest('.site-nav') &&
-        !target.closest('.header-language')
-    ) {
-        if (langSelect.classList.contains('active')) {
-            langSelect.classList.remove('active');
-            langDropDown.classList.remove('visible');
-            langDropDown.classList.remove('line');
-            navBackground.classList.add('hidden');
-            header.classList.remove('active')
-            document.body.style.overflow = '';
-        }
-    }
-});
-
-
-
-
-
-
-
 const dateInput = document.getElementById("date");
 const timeSelect = document.getElementById("time");
 const timeOptions = timeSelect.querySelectorAll("option");
@@ -89,6 +20,9 @@ function getLocale(lang) {
     }
 }
 
+const headerSignin = document.querySelector('.header-signin')
+const headerAccount = document.querySelector('.header-account')
+
 document.addEventListener("DOMContentLoaded", async function () {
 
     // автозаполнение полей
@@ -102,14 +36,18 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             if (!res.ok) {
                 localStorage.removeItem('authToken');
+            } else {
+
+                headerSignin.classList.add('hidden')
+                headerAccount.classList.remove('hidden')
+
+                const user = await res.json();
+
+                // Заполняем форму, если данные есть
+                if (user.name) document.getElementById("name").value = user.name;
+                if (user.email) document.getElementById("email").value = user.email;
+                if (user.phone) document.getElementById("phone").value = user.phone;
             }
-
-            const user = await res.json();
-
-            // Заполняем форму, если данные есть
-            if (user.name) document.getElementById("name").value = user.name;
-            if (user.email) document.getElementById("email").value = user.email;
-            if (user.phone) document.getElementById("phone").value = user.phone;
 
         } catch (err) {
             console.error("Не удалось загрузить данные профиля:", err);
@@ -172,6 +110,82 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
 });
+
+
+const signOutBtn = document.querySelector('#sign-out')
+
+signOutBtn.addEventListener("click", () => {
+    localStorage.removeItem("authToken"); // удаляем токен
+    headerSignin.classList.remove("hidden");
+    headerAccount.classList.add("hidden");
+});
+
+
+
+window.addEventListener('resize', () => {
+    changeFormWidth()
+})
+
+
+// раскрытие панели выбора языков
+
+const langSelect = document.querySelector('.header-language');
+const langDropDown = document.querySelector('.site-nav');
+
+const navBackground = document.querySelector('.site-nav-back');
+
+const header = document.querySelector('.header');
+
+
+// Клик по кнопке выбора языка
+langSelect.addEventListener('click', () => {
+    const isOpen = langDropDown.classList.contains('visible');
+
+    if (isOpen) {
+        langSelect.classList.remove('active');
+        langDropDown.classList.remove('visible');
+        langDropDown.classList.remove('line');
+        navBackground.classList.add('hidden');
+        header.classList.remove('active')
+        document.body.style.overflow = '';
+    } else {
+        langSelect.classList.add('active');
+        langDropDown.classList.add('visible');
+        navBackground.classList.remove('hidden');
+        header.classList.add('active')
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            langDropDown.classList.add('line');
+        }, 200);
+    }
+});
+
+// Клик вне меню закрывает всё
+document.addEventListener('click', (e) => {
+    const target = e.target;
+
+    if (
+        !target.closest('.site-nav') &&
+        !target.closest('.header-language')
+    ) {
+        if (langSelect.classList.contains('active')) {
+            langSelect.classList.remove('active');
+            langDropDown.classList.remove('visible');
+            langDropDown.classList.remove('line');
+            navBackground.classList.add('hidden');
+            header.classList.remove('active')
+            document.body.style.overflow = '';
+        }
+    }
+});
+
+
+
+
+
+
+
+
 
 
 

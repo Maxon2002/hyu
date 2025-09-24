@@ -1,4 +1,4 @@
-// import * as QRCode from 'https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js';
+
 
 // Функция для получения данных аккаунта
 async function fetchAccountData() {
@@ -21,12 +21,21 @@ async function fetchAccountData() {
             return;
         }
 
+
         const data = await res.json();
         populateAccount(data);
     } catch (err) {
         console.error(err);
     }
 }
+
+const signOutBtn = document.querySelector('#sign-out')
+
+signOutBtn.addEventListener("click", () => {
+    localStorage.removeItem("authToken"); // удаляем токен
+    headerSignin.classList.remove("hidden");
+    headerAccount.classList.add("hidden");
+});
 
 let currentLang = document.querySelector('.nav-list.active').id
 

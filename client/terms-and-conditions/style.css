@@ -92,6 +92,10 @@ body {
     position: relative;
 }
 
+.header-signin.hidden {
+    display: none;
+}
+
 .header-signin a {
     text-decoration: none;
     color: #552B1B;
@@ -104,6 +108,110 @@ body {
 .header-signin-icon {
     height: 16px;
 }
+
+
+
+.header-account {
+    position: relative;
+}
+
+
+.header-account.hidden {
+    display: none;
+}
+
+.header-account-btn {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    cursor: pointer;
+    color: #552B1B;
+}
+
+
+.header-account-text {
+    font-size: 15px;
+}
+
+.header-account-icon {
+    height: 20px;
+}
+
+.header-account-nav {
+    z-index: 100;
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    transform: translateY(-20px);
+    opacity: 0;
+    background-color: #FFFCED;
+    color: #552B1B;
+
+
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.2s ease;
+
+    padding: 7px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 0px 0px 10px 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-account-nav.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.header-account-nav-btn {
+    position: relative;
+    font-size: 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    /* padding: 5px 0; */
+}
+
+
+.header-account-nav-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #552B1B;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+/* При наведении (десктоп) */
+@media (hover: hover) {
+    .header-account-nav-btn:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.header-account-nav-btn.active::after {
+    transform: scaleX(1);
+}
+
+
+.header-account-nav-btn a {
+    text-decoration: none;
+    color: #552B1B;
+    padding: 5px 0;
+}
+
+
 
 
 .header-language {
@@ -130,7 +238,8 @@ body {
 
 /* анимация полоски под */
 .header-language::after,
-.header-signin::after  {
+.header-signin::after,
+.header-account-btn::after  {
     content: "";
     position: absolute;
     left: 0;
@@ -147,13 +256,15 @@ body {
 /* Наведение на десктопах */
 @media (hover: hover) {
     .header-language:hover::after,
-    .header-signin:hover::after {
+    .header-signin:hover::after,
+    .header-account-btn:hover::after {
         transform: scaleX(1);
     }
 }
 
 /* Активное состояние */
-.header-language.active::after {
+.header-language.active::after,
+.header-account-btn.active::after {
     transform: scaleX(1);
 }
 
@@ -445,6 +556,21 @@ body {
         font-size: 16px;
     }
 
+
+    .header-account-text {
+        font-size: 16px;
+    }
+
+    .header-account-nav {
+        top: 25px;
+        /* padding: 15px 50px; */
+    }
+
+    .header-account-nav-btn {
+        font-size: 16px;
+    }
+
+
     .header-language-selected {
         font-size: 16px;
     }
@@ -515,6 +641,21 @@ body {
     .header-signin-text {
         font-size: 18px;
     }
+
+
+    .header-account-text {
+        font-size: 18px;
+    }
+
+    .header-account-nav {
+        top: 28px;
+        /* padding: 15px 70px; */
+    }
+
+    .header-account-nav-btn {
+        font-size: 17px;
+    }
+
 
     .header-language-selected {
         font-size: 18px;
