@@ -104,7 +104,7 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
         let freeDishEarned = false;
 
         if (newFreeDishProgress > 5) {
-            newFreeDishProgress = 0;
+            newFreeDishProgress = 1;
             // freeDishEarned = true;
         }
 
