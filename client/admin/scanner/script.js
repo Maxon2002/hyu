@@ -3,7 +3,7 @@ let adminToken = localStorage.getItem("adminToken");
 document.addEventListener("DOMContentLoaded", async () => {
 
     if (!adminToken) {
-        window.location.href = "/sign-in/";
+        window.location.href = "/admin/sign-in/";
         return;
     }
 
@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!res.ok) {
             // Токен недействителен
             localStorage.removeItem("adminToken");
-            window.location.href = "/sign-in/";
+            window.location.href = "/admin/sign-in/";
             return;
         }
 
     } catch (err) {
         console.error("Token verification error:", err);
         localStorage.removeItem("adminToken");
-        window.location.href = "/sign-in/";
+        window.location.href = "/admin/sign-in/";
     }
 });
 
@@ -73,7 +73,7 @@ startScanBtn.addEventListener("click", () => {
             );
         }
     }).catch(err => console.error("Camera error:", err));
-    
+
 });
 
 scannerClose.addEventListener("click", () => {
