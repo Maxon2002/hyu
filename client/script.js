@@ -1,3 +1,128 @@
+// booking form
+
+
+const dateInput = document.getElementById("date");
+const timeSelect = document.getElementById("time");
+const timeOptions = timeSelect.querySelectorAll("option");
+
+let currentLang = document.querySelector('.site-nav .active').id;
+
+
+function getLocale(lang) {
+    switch (lang) {
+        case 'ru':
+            return flatpickr.l10ns.ru;
+        case 'en':
+            return flatpickr.l10ns.default;
+        case 'ko':
+            return flatpickr.l10ns.ko;
+        case 'ar':
+            return flatpickr.l10ns.ar;
+        default:
+            return flatpickr.l10ns.default;
+    }
+}
+
+const headerSignin = document.querySelector('.header-signin')
+const headerAccount = document.querySelector('.header-account')
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    // автозаполнение полей
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+        try {
+            const res = await fetch('/api/auth/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                localStorage.removeItem('authToken');
+
+
+            } else {
+
+                headerSignin.classList.add('hidden')
+                headerAccount.classList.remove('hidden')
+
+                const user = await res.json();
+
+                // Заполняем форму, если данные есть
+                if (user.name) document.getElementById("name").value = user.name;
+                if (user.email) document.getElementById("email").value = user.email;
+                if (user.phone) document.getElementById("phone").value = user.phone;
+            }
+
+
+        } catch (err) {
+            console.error("Не удалось загрузить данные профиля:", err);
+        }
+    }
+
+    let selectedDate
+
+    // Установим flatpickr
+    let calendar = flatpickr(dateInput, {
+        dateFormat: "Y-m-d",
+        disableMobile: true,
+        minDate: "today",
+        locale: {
+            ...getLocale(currentLang),
+            firstDayOfWeek: 1
+        },
+        onChange: function () {
+            selectedDate = calendar.selectedDates[0]
+            if (selectedDate) {
+                timeSelect.disabled = false;
+                updateTimeOptions();
+            }
+        }
+    });
+
+    function updateTimeOptions() {
+
+        const now = new Date();
+        const selectedDate = calendar.selectedDates[0];
+        const isToday = selectedDate && selectedDate.toDateString() === now.toDateString();
+
+        timeOptions.forEach(option => {
+            const timeStr = option.value;
+
+            // Пропускаем пустую первую опцию
+            if (!timeStr) return;
+
+            const timeValue = new Date(selectedDate || now);
+            const [hour, min] = timeStr.split(":");
+            timeValue.setHours(parseInt(hour), parseInt(min), 0, 0);
+
+
+            if (isToday && timeValue <= now) {
+
+                if (option.value === timeSelect.value) {
+                    timeSelect.selectedIndex = 0
+                }
+
+                option.disabled = true;
+            } else {
+                option.disabled = false;
+            }
+
+        });
+    }
+
+});
+
+const signOutBtn = document.querySelector('#sign-out')
+
+signOutBtn.addEventListener("click", () => {
+    localStorage.removeItem("authToken"); // удаляем токен
+    headerSignin.classList.remove("hidden");
+    headerAccount.classList.add("hidden");
+});
+
+
+
 window.addEventListener('resize', () => {
     changeReviewsWidth()
     changeFormWidth()
@@ -55,7 +180,64 @@ document.addEventListener('click', (e) => {
             document.body.style.overflow = '';
         }
     }
+
+    if (
+        !target.closest('.header-account-nav') &&
+        !target.closest('.header-account-btn') &&
+        !target.closest('.header-account-nav-btn')
+    ) {
+        if (accountBtn.classList.contains('active')) {
+            accountBtn.classList.remove('active');
+            accountPanel.classList.remove('visible');
+
+        }
+    }
 });
+
+
+
+// раскрытие панели аккаунта
+
+const accountBtn = document.querySelector('.header-account-btn');
+const accountPanel = document.querySelector('.header-account-nav');
+
+accountBtn.addEventListener('click', (e) => {
+    const isOpen = accountPanel.classList.contains('visible');
+
+    if (isOpen) {
+        accountBtn.classList.remove('active');
+        accountPanel.classList.remove('visible');
+        // langDropDown.classList.remove('line');
+    } else {
+        accountBtn.classList.add('active');
+        accountPanel.classList.add('visible');
+        // setTimeout(() => {
+        //     langDropDown.classList.add('line');
+        // }, 200);
+    }
+});
+
+// Клик вне меню закрывает всё
+// document.addEventListener('click', (e) => {
+//     const target = e.target;
+
+//     if (
+//         !target.closest('.site-nav') &&
+//         !target.closest('.header-language')
+//     ) {
+//         if (langSelect.classList.contains('active')) {
+//             langSelect.classList.remove('active');
+//             langDropDown.classList.remove('visible');
+//             langDropDown.classList.remove('line');
+//             navBackground.classList.add('hidden');
+//             header.classList.remove('active')
+//             document.body.style.overflow = '';
+//         }
+//     }
+// });
+
+
+
 
 
 
@@ -133,111 +315,7 @@ bookButtons.forEach(button => {
 
 
 
-// booking form
 
-
-const dateInput = document.getElementById("date");
-const timeSelect = document.getElementById("time");
-const timeOptions = timeSelect.querySelectorAll("option");
-
-let currentLang = document.querySelector('.site-nav .active').id;
-
-
-function getLocale(lang) {
-    switch (lang) {
-        case 'ru':
-            return flatpickr.l10ns.ru;
-        case 'en':
-            return flatpickr.l10ns.default;
-        case 'ko':
-            return flatpickr.l10ns.ko;
-        case 'ar':
-            return flatpickr.l10ns.ar;
-        default:
-            return flatpickr.l10ns.default;
-    }
-}
-
-
-document.addEventListener("DOMContentLoaded", async function () {
-
-    // автозаполнение полей
-    const token = localStorage.getItem('authToken');
-
-    if (token) {
-        try {
-            const res = await fetch('/api/auth/me', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
-            if (!res.ok) {
-                localStorage.removeItem('authToken');
-            }
-
-            const user = await res.json();
-
-            // Заполняем форму, если данные есть
-            if (user.name) document.getElementById("name").value = user.name;
-            if (user.email) document.getElementById("email").value = user.email;
-            if (user.phone) document.getElementById("phone").value = user.phone;
-
-        } catch (err) {
-            console.error("Не удалось загрузить данные профиля:", err);
-        }
-    }
-
-    let selectedDate
-
-    // Установим flatpickr
-    let calendar = flatpickr(dateInput, {
-        dateFormat: "Y-m-d",
-        disableMobile: true,
-        minDate: "today",
-        locale: {
-            ...getLocale(currentLang),
-            firstDayOfWeek: 1
-        },
-        onChange: function () {
-            selectedDate = calendar.selectedDates[0]
-            if (selectedDate) {
-                timeSelect.disabled = false;
-                updateTimeOptions();
-            }
-        }
-    });
-
-    function updateTimeOptions() {
-
-        const now = new Date();
-        const selectedDate = calendar.selectedDates[0];
-        const isToday = selectedDate && selectedDate.toDateString() === now.toDateString();
-
-        timeOptions.forEach(option => {
-            const timeStr = option.value;
-
-            // Пропускаем пустую первую опцию
-            if (!timeStr) return;
-
-            const timeValue = new Date(selectedDate || now);
-            const [hour, min] = timeStr.split(":");
-            timeValue.setHours(parseInt(hour), parseInt(min), 0, 0);
-
-
-            if (isToday && timeValue <= now) {
-
-                if (option.value === timeSelect.value) {
-                    timeSelect.selectedIndex = 0
-                }
-
-                option.disabled = true;
-            } else {
-                option.disabled = false;
-            }
-
-        });
-    }
-
-});
 
 
 
@@ -387,7 +465,7 @@ submitBtn.addEventListener("click", () => {
 
         (async () => {
             const formData = {
-                
+
                 date: dateInput.value,
                 time: timeSelect.value,
                 guests: guestsInput.value,
