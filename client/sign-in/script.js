@@ -103,7 +103,12 @@ signInBtn.addEventListener("click", async () => {
                 let lang = document.querySelector('.nav-list.active').id
 
                 // Перенаправление на страницу аккаунта
-                window.location.href = `/account/${lang}/`;
+                if (lang === "en") {
+                    window.location.href = `/account/`
+                } else {
+                    window.location.href = `/account/${lang}/`;
+                }
+
             } else {
                 // Показываем ошибку
                 wrongData.classList.remove("hidden");
