@@ -63,6 +63,13 @@ function populateAccount(user) {
         }
     });
 
+    let freeDishAchived = document.querySelector('.free-dish-achived')
+    if (visitsLeft === 0) {
+        freeDishAchived.classList.remove('hidden')
+    } else {
+        freeDishAchived.classList.add('hidden')
+    }
+
     // --- Друзья ---
     document.querySelectorAll('#account-friends').forEach(el => el.textContent = user.friendsInvited);
     document.querySelectorAll('#account-friends-visited').forEach(el => el.textContent = user.friendsVisited);

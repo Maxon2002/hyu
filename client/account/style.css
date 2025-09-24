@@ -390,6 +390,13 @@ body {
     height: 35px;
 }
 
+.free-dish-achived.hidden {
+    display: none;
+}
+
+.free-dish-achived {
+    color: green;
+}
 
 .tasks-wrapper {
     display: flex;

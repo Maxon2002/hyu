@@ -98,10 +98,22 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
             return res.status(404).json({ success: false, message: "Client not found" });
         }
 
+        // Считаем новое значение freeDishProgress
+        let newFreeDishProgress = user.freeDishProgress + 1;
+        let freeDishEarned = false;
+
+        if (newFreeDishProgress > 5) {
+            newFreeDishProgress = 0;
+            // freeDishEarned = true;
+        }
+
         // Увеличиваем количество визитов
         const updatedUser = await prisma.user.update({
             where: { id: user.id },
-            data: { totalVisits: { increment: 1 } }
+            data: {
+                totalVisits: { increment: 1 },
+                freeDishProgress: newFreeDishProgress
+            }
         });
 
         // Если был приглашён кем-то, обновляем прогресс пригласившего
