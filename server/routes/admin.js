@@ -90,6 +90,7 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
             select: {
                 id: true,
                 totalVisits: true,
+                freeDishProgress: true,
                 invitedById: true
             }
         });
