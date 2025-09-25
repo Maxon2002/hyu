@@ -1,3 +1,36 @@
+let lang = document.querySelector('.nav-list.active').id
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    // автозаполнение полей
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+        try {
+            const res = await fetch('/api/auth/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                localStorage.removeItem('authToken');
+            } else {
+                
+                if (lang === "en") {
+                    window.location.href = `/account/`
+                } else {
+                    window.location.href = `/account/${lang}/`;
+                }
+            }
+
+        } catch (err) {
+            console.error("Не удалось загрузить данные профиля:", err);
+        }
+    }
+
+});
+
+
+
 // раскрытие панели выбора языков
 
 const langSelect = document.querySelector('.header-language');
@@ -100,7 +133,7 @@ signInBtn.addEventListener("click", async () => {
             if (data.success) {
                 // Сохраняем JWT в localStorage
                 localStorage.setItem("authToken", data.token);
-                let lang = document.querySelector('.nav-list.active').id
+                
 
                 // Перенаправление на страницу аккаунта
                 if (lang === "en") {
