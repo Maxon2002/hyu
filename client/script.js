@@ -217,24 +217,6 @@ accountBtn.addEventListener('click', (e) => {
     }
 });
 
-// Клик вне меню закрывает всё
-// document.addEventListener('click', (e) => {
-//     const target = e.target;
-
-//     if (
-//         !target.closest('.site-nav') &&
-//         !target.closest('.header-language')
-//     ) {
-//         if (langSelect.classList.contains('active')) {
-//             langSelect.classList.remove('active');
-//             langDropDown.classList.remove('visible');
-//             langDropDown.classList.remove('line');
-//             navBackground.classList.add('hidden');
-//             header.classList.remove('active')
-//             document.body.style.overflow = '';
-//         }
-//     }
-// });
 
 
 

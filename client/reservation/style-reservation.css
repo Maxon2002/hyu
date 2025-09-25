@@ -81,6 +81,10 @@ body {
     position: relative;
 }
 
+.header-signin.hidden {
+    display: none;
+}
+
 .header-signin a {
     text-decoration: none;
     color: #552B1B;

@@ -79,33 +79,7 @@ body {
     gap: 8px;
 }
 
-.header-signin {
-    display: flex;
-    align-items: center;
-    gap: 3px;
 
-    cursor: pointer;
-    color: #552B1B;
-
-    position: relative;
-}
-
-.header-signin.hidden {
-    display: none;
-}
-
-.header-signin a {
-    text-decoration: none;
-    color: #552B1B;
-}
-
-.header-signin-text {
-    font-size: 15px;
-}
-
-.header-signin-icon {
-    height: 16px;
-}
 
 
 
@@ -234,7 +208,6 @@ body {
 
 /* анимация полоски под */
 .header-language::after,
-.header-signin::after,
 .header-account-btn::after {
     content: "";
     position: absolute;
@@ -252,7 +225,6 @@ body {
 /* Наведение на десктопах */
 @media (hover: hover) {
     .header-language:hover::after,
-    .header-signin:hover::after,
     .header-account-btn:hover::after  {
         transform: scaleX(1);
     }
@@ -810,9 +782,7 @@ body {
         gap: 30px;
     }
 
-    .header-signin-text {
-        font-size: 16px;
-    }
+    
 
 
     .header-account-text {
@@ -929,9 +899,7 @@ body {
         font-size: 18px;
     }
 
-    .header-signin-text {
-        font-size: 18px;
-    }
+    
 
 
     .header-account-text {

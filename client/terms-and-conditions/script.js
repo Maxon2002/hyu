@@ -86,4 +86,38 @@ document.addEventListener('click', (e) => {
             document.body.style.overflow = '';
         }
     }
+
+    if (
+        !target.closest('.header-account-nav') &&
+        !target.closest('.header-account-btn') &&
+        !target.closest('.header-account-nav-btn')
+    ) {
+        if (accountBtn.classList.contains('active')) {
+            accountBtn.classList.remove('active');
+            accountPanel.classList.remove('visible');
+
+        }
+    }
+});
+
+
+// раскрытие панели аккаунта
+
+const accountBtn = document.querySelector('.header-account-btn');
+const accountPanel = document.querySelector('.header-account-nav');
+
+accountBtn.addEventListener('click', (e) => {
+    const isOpen = accountPanel.classList.contains('visible');
+
+    if (isOpen) {
+        accountBtn.classList.remove('active');
+        accountPanel.classList.remove('visible');
+        // langDropDown.classList.remove('line');
+    } else {
+        accountBtn.classList.add('active');
+        accountPanel.classList.add('visible');
+        // setTimeout(() => {
+        //     langDropDown.classList.add('line');
+        // }, 200);
+    }
 });
