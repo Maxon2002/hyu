@@ -625,6 +625,30 @@ body {
 }
 
 
+/* about account block */
+
+#account-text-block {
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+#account-text-block .text-block-subtitle {
+    text-align: left;
+}
+
+#account-text-block .text-block-buttons {
+    width: 100%;
+}
+
+#account-text-block .header-button-menu {
+    background-color: #FFFCED;
+    border: none;
+    width: 100%;
+}
+
+#account-text-block .header-button-menu a {
+    color: #552B1B
+}
 
 /* reviews */
 
@@ -1568,6 +1592,25 @@ body {
         padding: 10px 50px 50px 50px;
     }
 
+
+    #account-text-block {
+        flex-direction: row;
+        gap: 70px;
+
+        padding: 50px;
+    }
+
+    #account-text-block .text-block-title {
+        width: 100%;
+        max-width: 350px;
+
+        padding: 0;
+    }
+
+    #account-text-block .text-block-wrapper {
+        width: 100%;
+        max-width: 350px;
+    }
 
 
     .reviews-section {
