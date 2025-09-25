@@ -1,11 +1,16 @@
-
+let currentLang = document.querySelector('.nav-list.active').id
 
 // Функция для получения данных аккаунта
 async function fetchAccountData() {
     const token = localStorage.getItem('authToken');
     if (!token) {
         // Если токен отсутствует, перенаправляем на вход
-        window.location.href = '/sign-in/';
+        if (currentLang === "en") {
+            window.location.href = '/sign-in/';
+        } else {
+            window.location.href = `/sign-in/${currentLang}/`;
+        }
+
         return;
     }
 
@@ -17,7 +22,13 @@ async function fetchAccountData() {
         if (!res.ok) {
             // Токен недействителен или истёк
             localStorage.removeItem('authToken');
-            window.location.href = '/sign-in/';
+
+            if (currentLang === "en") {
+                window.location.href = '/sign-in/';
+            } else {
+                window.location.href = `/sign-in/${currentLang}/`;
+            }
+
             return;
         }
 
@@ -33,11 +44,15 @@ const signOutBtn = document.querySelector('#sign-out')
 
 signOutBtn.addEventListener("click", () => {
     localStorage.removeItem("authToken"); // удаляем токен
-    headerSignin.classList.remove("hidden");
-    headerAccount.classList.add("hidden");
+
+    if (currentLang === "en") {
+        window.location.href = '/sign-in/';
+    } else {
+        window.location.href = `/sign-in/${currentLang}/`;
+    }
 });
 
-let currentLang = document.querySelector('.nav-list.active').id
+
 
 // Функция для заполнения страницы данными
 function populateAccount(user) {
