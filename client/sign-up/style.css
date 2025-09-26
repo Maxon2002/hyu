@@ -365,6 +365,7 @@ body {
     text-decoration: underline;
 
     color: #ccc;
+    align-self: flex-start;
 }
 
 .verify-email.active {
