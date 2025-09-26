@@ -96,7 +96,12 @@ emailInput.addEventListener("input", () => {
 
 // --- Отправка OTP ---
 verifyEmailBtn.addEventListener("click", async () => {
-    if (!verifyEmailBtn.classList.contains("active")) return;
+    if (!verifyEmailBtn.classList.contains("active")) {
+        return;
+    } else {
+        verifyEmailBtn.classList.remove("active");
+    }
+
 
     const email = emailInput.value.trim();
 
@@ -132,6 +137,7 @@ verifyEmailBtn.addEventListener("click", async () => {
             if (data.message === "Email already registered") {
                 emailInput.classList.add("field-error");
                 emailExists.classList.remove("hidden");
+                verifyEmailBtn.classList.add("active");
             } else {
                 console.log(data.message || "Ошибка при отправке OTP");
             }
@@ -162,6 +168,7 @@ changeEmailBtn.addEventListener("click", () => {
     verifyEmailBtn.classList.remove("hidden");
     verifyEmailSent.classList.add("hidden");
     changeEmailBtn.classList.add("hidden");
+    verifyEmailBtn.classList.add("active");
 });
 
 
