@@ -100,6 +100,8 @@ verifyEmailBtn.addEventListener("click", async () => {
         return;
     } else {
         verifyEmailBtn.classList.remove("active");
+        emailInput.classList.remove("field-error");
+        emailExists.classList.add("hidden");
     }
 
 
