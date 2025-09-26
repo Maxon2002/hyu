@@ -153,6 +153,7 @@ verifyEmailBtn.addEventListener("click", async () => {
 resendSpan.addEventListener("click", async () => {
     if (!resendSpan.classList.contains("active")) return;
     resendSpan.classList.remove("active");
+    verifyEmailBtn.classList.add("active");
     verifyEmailBtn.click();
 });
 
