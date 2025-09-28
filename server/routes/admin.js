@@ -101,11 +101,9 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
 
         // Считаем новое значение freeDishProgress
         let newFreeDishProgress = user.freeDishProgress + 1;
-        let freeDishEarned = false;
 
         if (newFreeDishProgress > 5) {
             newFreeDishProgress = 1;
-            // freeDishEarned = true;
         }
 
         // Увеличиваем количество визитов
@@ -114,6 +112,14 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
             data: {
                 totalVisits: { increment: 1 },
                 freeDishProgress: newFreeDishProgress
+            }
+        });
+
+        // Создаём запись визита
+        await prisma.visit.create({
+            data: {
+                userId: user.id,
+                // visitDate автоматически поставится now(), так как в модели default(now())
             }
         });
 
