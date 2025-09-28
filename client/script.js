@@ -25,6 +25,7 @@ function getLocale(lang) {
 
 const headerSignin = document.querySelector('.header-signin')
 const headerAccount = document.querySelector('.header-account')
+let user = null
 
 document.addEventListener("DOMContentLoaded", async function () {
 
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 headerSignin.classList.add('hidden')
                 headerAccount.classList.remove('hidden')
 
-                const user = await res.json();
+                user = await res.json();
 
                 // Заполняем форму, если данные есть
                 if (user.name) document.getElementById("name").value = user.name;
@@ -455,6 +456,7 @@ submitBtn.addEventListener("click", () => {
                 phone: document.querySelector('#phone').value,
                 email: document.querySelector('#email').value,
                 message: document.querySelector('#message').value,
+                user
             };
 
             try {
