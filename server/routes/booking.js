@@ -4,9 +4,12 @@ import { sendReservationMail } from "../utils/mailer.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { date, time, guests, name, phone, email, message } = req.body;
+  const { date, time, guests, name, phone, email, message, user } = req.body;
 
-  const content = `
+  let content
+
+  if (!user) {
+    content = `
 🪑 New Reservation
 
 Date: ${date}
@@ -18,6 +21,24 @@ Phone: ${phone}
 Email: ${email || "Not provided"}
 Message: ${message || "None"}
 `;
+  } else {
+    content = `
+🪑 New Reservation
+
+Date: ${date}
+Time: ${time}
+Guests: ${guests}
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email || "Not provided"}
+Message: ${message || "None"}
+
+Account info:
+
+Discount: ${user.discount}
+Visits: ${user.totalVisits}`;
+  }
 
   try {
     await sendReservationMail(content);

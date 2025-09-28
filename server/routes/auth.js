@@ -370,7 +370,9 @@ router.get("/me", authenticateToken, async (req, res) => {
             select: {
                 name: true,
                 email: true,
-                phoneNumber: true
+                phoneNumber: true,
+                discount: true, 
+                totalVisits: true
             }
         });
 
