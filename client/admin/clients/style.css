@@ -130,6 +130,8 @@ body {
     transform: translateY(-20px);
     opacity: 0;
     transition: transform 0.4s ease, opacity 0.2s ease;
+
+    z-index: 100;
 }
 
 .search-results.active {
@@ -204,6 +206,8 @@ body {
     background-color: #FFFCED;
 
     visibility: hidden;
+
+    z-index: 80;
 }
 
 .filter-dropdown.active {
