@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 const router = express.Router();
 
-// POST /api/admin/sign-in
+// авторизация
 router.post("/sign-in", async (req, res) => {
     try {
         const { login, password } = req.body;
@@ -38,10 +38,14 @@ router.post("/sign-in", async (req, res) => {
     }
 });
 
+
+// проверка токена
 router.get("/verify-token", authenticateAdmin, (req, res) => {
     return res.json({ success: true });
 });
 
+
+// сканер
 router.post("/client", authenticateAdmin, async (req, res) => {
     try {
         const { referralCode } = req.body;
@@ -167,6 +171,43 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
     } catch (err) {
         console.error("Error in /mark-visit:", err);
         return res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
+
+// clients
+
+// Поиск клиентов по email
+router.get("/search", async (req, res) => {
+    try {
+        const { email } = req.query;
+
+        if (!email || typeof email !== "string") {
+            return res.status(400).json({ error: "Email query is required" });
+        }
+
+        // Ищем пользователей, где email содержит запрос, регистронезависимо
+        const clients = await prisma.user.findMany({
+            where: {
+                email: {
+                    contains: email,
+                    mode: "insensitive",
+                },
+            },
+            select: {
+                referralCode: true,
+                email: true,
+                discount: true,
+                totalVisits: true,
+                createdAt: true,
+            },
+            take: 20, // ограничим количество результатов
+        });
+
+        res.json(clients);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
     }
 });
 
