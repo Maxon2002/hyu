@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <tr>
               <td>${email}</td>
               <td>${client.referralCode}</td>
-              <td>${client.createdAt}</td>
+              <td>${client.createdAt.slice(0, 10)}</td>
               <td><span class="clickable table-visits">${client.totalVisits}</span></td>
-              <td>${lastVisit ? lastVisit : "-"}</td>
+              <td>${lastVisit ? lastVisit.slice(0, 10) : "-"}</td>
               <td><span class="clickable table-discount">${client.discount}%</span></td>
               <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
             </tr>
