@@ -221,12 +221,16 @@ router.get("/search-result", async (req, res) => {
         const client = await prisma.user.findUnique({
             where: { email },
             select: {
-                id: true,
                 referralCode: true,
                 totalVisits: true,
                 createdAt: true,
                 discount: true,
-                friendsInvited: true
+                friendsInvited: true,
+                visits: {
+                    orderBy: { visitDate: "desc" },
+                    take: 1,
+                    select: { visitDate: true }
+                }
             }
         });
 
@@ -234,16 +238,8 @@ router.get("/search-result", async (req, res) => {
             return res.status(404).json({ success: false, message: "Client not found" });
         }
 
-        const lastVisit = await prisma.visit.findFirst({
-            where: { userId: client.id },
-            orderBy: { visitDate: "desc" },
-            select: { visitDate: true }
-        });
-
-        res.json({
-            ...client,
-            lastVisit: lastVisit ? lastVisit.visitDate : null
-        });
+        
+        res.json(client);
 
     } catch (err) {
         console.error(err);

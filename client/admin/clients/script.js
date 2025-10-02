@@ -66,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch(`/api/admin/search-result?email=${encodeURIComponent(email)}`)
                 .then((res) => res.json())
                 .then((client) => {
+
+                    const lastVisit = client.visits[0]?.visitDate || null;
                     // рендерим строку в модальное окно
                     modalBody.innerHTML = `
             <tr>
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <td>${client.referralCode}</td>
               <td>${client.createdAt}</td>
               <td><span class="clickable table-visits">${client.totalVisits}</span></td>
-              <td>${client.lastVisit ? client.lastVisit : "-"}</td>
+              <td>${lastVisit ? lastVisit : "-"}</td>
               <td><span class="clickable table-discount">${client.discount}%</span></td>
               <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
             </tr>
