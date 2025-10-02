@@ -235,7 +235,7 @@ router.get("/search-result", async (req, res) => {
         }
 
         const lastVisit = await prisma.visit.findFirst({
-            where: { user: { email } },
+            where: { userId: client.id },
             orderBy: { visitDate: "desc" },
             select: { visitDate: true }
         });
