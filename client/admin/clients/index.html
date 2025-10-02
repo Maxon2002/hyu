@@ -43,9 +43,6 @@
 
                 <!-- список совпадений -->
                 <ul class="search-results">
-                    <li>user1@example.com</li>
-                    <li>user2@example.com</li>
-                    <li>user3@example.com</li>
                 </ul>
             </div>
 
@@ -221,6 +218,34 @@
                 <button class="page-btn">3</button>
 
                 <button class="page-btn next">Next</button>
+            </div>
+
+
+
+
+
+            <!-- Модальное окно -->
+            <div class="modal" id="client-modal">
+                <div class="modal-content">
+                    <span class="modal-close"><img src="../../images/close-button.svg" alt=""></span>
+                    <h2>Client details</h2>
+                    <table class="clients-table modal-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>ID</th>
+                                <th>Registration date</th>
+                                <th>Total visits</th>
+                                <th>Last visit</th>
+                                <th>Discount</th>
+                                <th>Friends invited</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-client-body">
+                            <!-- сюда динамически вставляем строку клиента -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

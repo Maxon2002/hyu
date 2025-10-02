@@ -50,4 +50,51 @@ document.addEventListener("DOMContentLoaded", () => {
             .map((client) => `<li>${client.email}</li>`)
             .join("");
     }
+
+
+    const modal = document.getElementById("client-modal");
+    const modalClose = document.querySelector(".modal-close");
+    const modalBody = document.getElementById("modal-client-body");
+
+
+    // обработка клика по email в списке результатов
+    resultsContainer.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+            const email = e.target.textContent.trim();
+
+            // запрос на сервер за полными данными клиента
+            fetch(`/api/admin/search-result?email=${encodeURIComponent(email)}`)
+                .then((res) => res.json())
+                .then((client) => {
+                    // рендерим строку в модальное окно
+                    modalBody.innerHTML = `
+            <tr>
+              <td>${email}</td>
+              <td>${client.referralCode}</td>
+              <td>${client.createdAt}</td>
+              <td><span class="clickable table-visits">${client.totalVisits}</span></td>
+              <td>${client.lastVisit ? client.lastVisit : "-"}</td>
+              <td><span class="clickable table-discount">${client.discount}%</span></td>
+              <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
+            </tr>
+          `;
+                    modal.style.display = "block";
+                })
+                .catch((err) => {
+                    console.error("Error loading client:", err);
+                });
+        }
+    });
+
+    // закрытие модалки
+    modalClose.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    // закрытие по клику вне окна
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
 });

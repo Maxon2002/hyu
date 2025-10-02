@@ -195,16 +195,55 @@ router.get("/search", async (req, res) => {
                 },
             },
             select: {
-                referralCode: true,
-                email: true,
-                discount: true,
-                totalVisits: true,
-                createdAt: true,
+                email: true
             },
             take: 20, // ограничим количество результатов
         });
 
         res.json(clients);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
+// Выбор клиента из поиска
+router.get("/search-result", async (req, res) => {
+    try {
+        const { email } = req.query;
+
+        if (!email || typeof email !== "string") {
+            return res.status(400).json({ error: "Email query is required" });
+        }
+
+        // Находим пользователя
+        const client = await prisma.user.findUnique({
+            where: { email },
+            select: {
+                referralCode: true,
+                totalVisits: true,
+                createdAt: true,
+                discount: true,
+                friendsInvited: true
+            }
+        });
+
+        if (!client) {
+            return res.status(404).json({ success: false, message: "Client not found" });
+        }
+
+        const lastVisit = await prisma.visit.findFirst({
+            where: { user: { email } },
+            orderBy: { visitDate: "desc" },
+            select: { visitDate: true }
+        });
+
+        res.json({
+            ...client,
+            lastVisit: lastVisit ? lastVisit.visitDate : null
+        });
+        
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Server error" });
