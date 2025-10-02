@@ -221,6 +221,7 @@ router.get("/search-result", async (req, res) => {
         const client = await prisma.user.findUnique({
             where: { email },
             select: {
+                id: true,
                 referralCode: true,
                 totalVisits: true,
                 createdAt: true,
@@ -243,7 +244,7 @@ router.get("/search-result", async (req, res) => {
             ...client,
             lastVisit: lastVisit ? lastVisit.visitDate : null
         });
-        
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Server error" });
