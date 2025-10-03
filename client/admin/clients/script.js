@@ -11,6 +11,105 @@ document.querySelectorAll('.filter-button').forEach(button => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+
+    const tableBody = document.querySelector(".clients-table tbody");
+    const paginationContainer = document.querySelector(".pagination");
+
+    let currentPage = 1;
+    const limit = 30;
+
+    // загрузка клиентов
+    function loadClients(page = 1) {
+        fetch(`/api/admin/clients-table?page=${page}&limit=${limit}`)
+            .then((res) => res.json())
+            .then((data) => {
+                // data = { clients: [...], total: number }
+                renderTable(data.clients);
+                renderPagination(data.total, page);
+            })
+            .catch((err) => {
+                console.error("Error loading clients:", err);
+            });
+    }
+
+    // рендер таблицы
+    function renderTable(clients) {
+        tableBody.innerHTML = clients
+            .map((client) => {
+                const lastVisit = client.visits[0]?.visitDate || null;
+
+        return `<tr>
+          <td>${client.email}</td>
+          <td>${client.referralCode}</td>
+          <td>${client.createdAt.slice(0, 10)}</td>
+          <td><span class="clickable table-visits">${client.totalVisits}</span></td>
+          <td>${lastVisit ? lastVisit.slice(0, 10) : "-"}</td>
+          <td><span class="clickable table-discount">${client.discount}%</span></td>
+          <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
+        </tr>`
+                })
+            .join("");
+    }
+
+    // рендер пагинации
+    function renderPagination(total, page) {
+        const totalPages = Math.ceil(total / limit);
+        currentPage = page;
+
+        let buttonsHTML = "";
+
+        // prev
+        buttonsHTML += `<button class="page-btn prev" ${page === 1 ? "disabled" : ""
+            }>Prev</button>`;
+
+        // номера страниц (ограничим 5 страниц вокруг текущей)
+        const start = Math.max(1, page - 2);
+        const end = Math.min(totalPages, page + 2);
+
+        for (let i = start; i <= end; i++) {
+            buttonsHTML += `<button class="page-btn ${i === page ? "active" : ""
+                }">${i}</button>`;
+        }
+
+        // next
+        buttonsHTML += `<button class="page-btn next" ${page === totalPages ? "disabled" : ""
+            }>Next</button>`;
+
+        paginationContainer.innerHTML = buttonsHTML;
+
+        // обработчики кликов
+        paginationContainer
+            .querySelectorAll(".page-btn")
+            .forEach((btn) =>
+                btn.addEventListener("click", () => handlePageClick(btn, totalPages))
+            );
+    }
+
+    // обработка клика
+    function handlePageClick(btn, totalPages) {
+        if (btn.classList.contains("prev") && currentPage > 1) {
+            loadClients(currentPage - 1);
+        } else if (btn.classList.contains("next") && currentPage < totalPages) {
+            loadClients(currentPage + 1);
+        } else {
+            const pageNum = parseInt(btn.textContent);
+            if (!isNaN(pageNum)) {
+                loadClients(pageNum);
+            }
+        }
+    }
+
+    // первый запрос
+    loadClients(1);
+
+
+
+
+
+
+
+
     const searchInput = document.getElementById("search-input");
     const resultsContainer = document.querySelector(".search-results");
 
