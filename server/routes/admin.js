@@ -293,5 +293,34 @@ router.get("/clients-table", async (req, res) => {
 });
 
 
+// всего посещений 
+router.get("/api/admin/month-visits", async (req, res) => {
+    try {
+        const now = new Date();
+
+        // начало текущего месяца
+        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        // конец текущего месяца
+        const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+
+        // считаем количество визитов
+        const visitsCount = await prisma.visit.count({
+            where: {
+                visitDate: {
+                    gte: startOfMonth,
+                    lte: endOfMonth
+                }
+            }
+        });
+
+        res.json({ monthVisits: visitsCount });
+    } catch (err) {
+        console.error("Error fetching month visits:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
 
 export default router;

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalClients = document.querySelector("#total-clients")
 
     let currentPage = 1;
-    const limit = 2;
+    const limit = 30;
 
     // загрузка клиентов
     function loadClients(page = 1) {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .map((client) => {
                 const lastVisit = client.visits[0]?.visitDate || null;
 
-        return `<tr>
+                return `<tr>
           <td>${client.email}</td>
           <td>${client.referralCode}</td>
           <td>${client.createdAt.slice(0, 10)}</td>
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td><span class="clickable table-discount">${client.discount}%</span></td>
           <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
         </tr>`
-                })
+            })
             .join("");
     }
 
@@ -103,8 +103,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // загрузка количества визитов за месяц
+    function loadMonthVisits() {
+        fetch("/api/admin/month-visits")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("month-visits").textContent = data.monthVisits;
+            })
+            .catch(err => {
+                console.error("Error loading month visits:", err);
+            });
+    }
+
     // первый запрос
     loadClients(1);
+    loadMonthVisits();
 
 
 
