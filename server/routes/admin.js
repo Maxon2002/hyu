@@ -285,27 +285,12 @@ router.get("/clients-table", async (req, res) => {
             }
         });
 
-        res.json({ clients, total });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Server error" });
-    }
-});
-
-
-// всего посещений 
-router.get("/api/admin/month-visits", async (req, res) => {
-    try {
+        // --- подсчёт визитов за месяц ---
         const now = new Date();
-
-        // начало текущего месяца
         const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-
-        // конец текущего месяца
         const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
 
-        // считаем количество визитов
-        const visitsCount = await prisma.visit.count({
+        const monthVisits = await prisma.visit.count({
             where: {
                 visitDate: {
                     gte: startOfMonth,
@@ -314,12 +299,14 @@ router.get("/api/admin/month-visits", async (req, res) => {
             }
         });
 
-        res.json({ monthVisits: visitsCount });
+        res.json({ clients, total, monthVisits });
     } catch (err) {
-        console.error("Error fetching month visits:", err);
-        res.status(500).json({ error: "Internal server error" });
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
     }
 });
+
+
 
 
 

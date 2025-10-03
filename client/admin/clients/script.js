@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderTable(data.clients);
                 renderPagination(data.total, page);
 
-                totalClients.innerHTML = data.total
+                document.getElementById("month-visits").textContent = data.monthVisits;
+                document.getElementById("total-clients").textContent = data.total;
+                
             })
             .catch((err) => {
                 console.error("Error loading clients:", err);
@@ -103,21 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // загрузка количества визитов за месяц
-    function loadMonthVisits() {
-        fetch("/api/admin/month-visits")
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("month-visits").textContent = data.monthVisits;
-            })
-            .catch(err => {
-                console.error("Error loading month visits:", err);
-            });
-    }
 
     // первый запрос
     loadClients(1);
-    loadMonthVisits();
 
 
 
