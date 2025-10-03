@@ -15,9 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tableBody = document.querySelector(".clients-table tbody");
     const paginationContainer = document.querySelector(".pagination");
+    const totalClients = document.querySelector("#total-clients")
 
     let currentPage = 1;
-    const limit = 30;
+    const limit = 2;
 
     // загрузка клиентов
     function loadClients(page = 1) {
@@ -27,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // data = { clients: [...], total: number }
                 renderTable(data.clients);
                 renderPagination(data.total, page);
+
+                totalClients.innerHTML = data.total
             })
             .catch((err) => {
                 console.error("Error loading clients:", err);
