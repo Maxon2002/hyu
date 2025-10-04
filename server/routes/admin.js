@@ -248,42 +248,11 @@ router.get("/search-result", async (req, res) => {
 });
 
 
-// отображение таблицы всех клиентов
-
-router.get("/clients-table", async (req, res) => {
+// отображение общей информации
+router.get("/clients-brief", async (req, res) => {
     try {
-        let { page = 1, limit = 30 } = req.query;
-
-        page = parseInt(page, 10);
-        limit = parseInt(limit, 10);
-
-        if (isNaN(page) || page < 1) page = 1;
-        if (isNaN(limit) || limit < 1) limit = 30;
-
-        const skip = (page - 1) * limit;
-
         // общее количество клиентов
         const total = await prisma.user.count();
-
-        // список клиентов с последним визитом
-        const clients = await prisma.user.findMany({
-            skip,
-            take: limit,
-            orderBy: { createdAt: "desc" }, // например, новые сверху
-            select: {
-                email: true,
-                referralCode: true,
-                createdAt: true,
-                totalVisits: true,
-                discount: true,
-                friendsInvited: true,
-                visits: {
-                    orderBy: { visitDate: "desc" },
-                    take: 1,
-                    select: { visitDate: true }
-                }
-            }
-        });
 
         // --- подсчёт визитов за месяц ---
         const now = new Date();
@@ -299,9 +268,162 @@ router.get("/clients-table", async (req, res) => {
             }
         });
 
-        res.json({ clients, total, monthVisits });
+
+        res.json({ total, monthVisits });
+
     } catch (err) {
         console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
+
+// отображение таблицы всех клиентов
+
+// router.get("/clients-table", async (req, res) => {
+//     try {
+//         let { page = 1, limit = 30 } = req.query;
+
+//         page = parseInt(page, 10);
+//         limit = parseInt(limit, 10);
+
+//         if (isNaN(page) || page < 1) page = 1;
+//         if (isNaN(limit) || limit < 1) limit = 30;
+
+//         const skip = (page - 1) * limit;
+
+//         // общее количество клиентов
+//         const total = await prisma.user.count();
+
+//         // список клиентов с последним визитом
+//         const clients = await prisma.user.findMany({
+//             skip,
+//             take: limit,
+//             orderBy: { createdAt: "desc" }, // например, новые сверху
+//             select: {
+//                 email: true,
+//                 referralCode: true,
+//                 createdAt: true,
+//                 totalVisits: true,
+//                 discount: true,
+//                 friendsInvited: true,
+//                 visits: {
+//                     orderBy: { visitDate: "desc" },
+//                     take: 1,
+//                     select: { visitDate: true }
+//                 }
+//             }
+//         });
+
+
+//         res.json({ clients, total });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ error: "Server error" });
+//     }
+// });
+
+
+
+
+router.post("/clients-table", async (req, res) => {
+    try {
+        let { page = 1, limit = 30, filters = {} } = req.body;
+
+        page = parseInt(page, 10);
+        limit = parseInt(limit, 10);
+
+        if (isNaN(page) || page < 1) page = 1;
+        if (isNaN(limit) || limit < 1) limit = 30;
+
+        const skip = (page - 1) * limit;
+
+        // where для фильтрации
+        const where = {};
+
+        // фильтр по дате регистрации
+        if (filters.registrationDate?.from || filters.registrationDate?.to) {
+            where.createdAt = {};
+            if (filters.registrationDate.from) {
+                where.createdAt.gte = new Date(filters.registrationDate.from);
+            }
+            if (filters.registrationDate.to) {
+                where.createdAt.lte = new Date(filters.registrationDate.to);
+            }
+        }
+
+        // фильтр по totalVisits
+        if (filters.totalVisits?.from || filters.totalVisits?.to) {
+            where.totalVisits = {};
+            if (filters.totalVisits.from) {
+                where.totalVisits.gte = parseInt(filters.totalVisits.from, 10);
+            }
+            if (filters.totalVisits.to) {
+                where.totalVisits.lte = parseInt(filters.totalVisits.to, 10);
+            }
+        }
+
+        // фильтр по скидке
+        if (filters.discount?.from || filters.discount?.to) {
+            where.discount = {};
+            if (filters.discount.from) {
+                where.discount.gte = parseFloat(filters.discount.from);
+            }
+            if (filters.discount.to) {
+                where.discount.lte = parseFloat(filters.discount.to);
+            }
+        }
+
+        // фильтр по друзьям
+        if (filters.friends?.from || filters.friends?.to) {
+            where.friendsInvited = {};
+            if (filters.friends.from) {
+                where.friendsInvited.gte = parseInt(filters.friends.from, 10);
+            }
+            if (filters.friends.to) {
+                where.friendsInvited.lte = parseInt(filters.friends.to, 10);
+            }
+        }
+
+        // фильтр по последнему визиту
+        if (filters.lastVisit?.from || filters.lastVisit?.to) {
+            where.visits = { some: { visitDate: {} } };
+            if (filters.lastVisit.from) {
+                where.visits.some.visitDate.gte = new Date(filters.lastVisit.from);
+            }
+            if (filters.lastVisit.to) {
+                where.visits.some.visitDate.lte = new Date(filters.lastVisit.to);
+            }
+        }
+
+        // общее количество
+        const total = await prisma.user.count({ where });
+
+        // список клиентов
+        const clients = await prisma.user.findMany({
+            where,
+            skip,
+            take: limit,
+            orderBy: { createdAt: "desc" },
+            select: {
+                email: true,
+                referralCode: true,
+                createdAt: true,
+                totalVisits: true,
+                discount: true,
+                friendsInvited: true,
+                visits: {
+                    orderBy: { visitDate: "desc" },
+                    take: 1,
+                    select: { visitDate: true }
+                }
+            }
+        });
+
+        res.json({ clients, total });
+    } catch (err) {
+        console.error("Error fetching clients with filters:", err);
         res.status(500).json({ error: "Server error" });
     }
 });

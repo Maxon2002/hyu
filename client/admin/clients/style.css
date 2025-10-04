@@ -281,23 +281,27 @@ body {
 .apply-filters {
     border: 1px solid #16B656;
     color: #16B656;
+    cursor: not-allowed;
 }
 
 .apply-filters.active {
     border: none;
     background-color: #16B656;
     color: #FFFCED;
+    cursor: pointer;
 }
 
 .reset-filters {
     border: 1px solid #B63616;
     color: #B63616;
+    cursor: not-allowed;
 }
 
-.apply-filters.active {
+.reset-filters.active {
     border: none;
     background-color: #B63616;
     color: #FFFCED;
+    cursor: pointer;
 }
 
 
