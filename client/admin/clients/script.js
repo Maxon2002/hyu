@@ -7,24 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
     const limit = 30;
 
-    // загрузка клиентов
-    // function loadClients(page = 1) {
-    //     fetch(`/api/admin/clients-table?page=${page}&limit=${limit}`)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             // data = { clients: [...], total: number }
-    //             renderTable(data.clients);
-    //             renderPagination(data.total, page);
-
-    //             document.getElementById("month-visits").textContent = data.monthVisits;
-    //             document.getElementById("total-clients").textContent = data.total;
-
-    //         })
-    //         .catch((err) => {
-    //             console.error("Error loading clients:", err);
-    //         });
-    // }
-
 
     // загрузка бриф инфо
     function briefInfo() {
@@ -108,10 +90,19 @@ document.addEventListener("DOMContentLoaded", () => {
         resetBtn.classList.add("active");
         const resetIcon = resetBtn.querySelector("img");
         resetIcon.src = "../../images/reset-filters-active.svg";
+
+        document.querySelectorAll('.filter-panel').forEach(panel => {
+            panel.classList.remove('active')
+        });
+
+
+
     });
 
     // Сброс фильтров
     resetBtn.addEventListener("click", () => {
+        if (!resetBtn.classList.contains("active")) return;
+
         document.querySelectorAll(".filter-dropdown input").forEach(input => {
             input.value = "";
         });
@@ -127,6 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resetBtn.classList.remove("active");
         resetBtn.querySelector("img").src = "../../images/reset-filters.svg";
+
+        document.querySelectorAll('.filter-panel').forEach(panel => {
+            panel.classList.remove('active')
+        });
 
         fetchClients({}, 1);
     });

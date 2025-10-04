@@ -242,7 +242,7 @@ body {
     background-color: #552B1B;
 }
 
-.quick-filters {
+/* .quick-filters {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -250,7 +250,6 @@ body {
 
 .quick-btn {
     flex: 1;
-    /* margin: 0 4px; */
     padding: 6px 8px;
     font-size: 13px;
     border: 1px solid #552B1B;
@@ -262,7 +261,7 @@ body {
 .quick-btn:hover {
     background: #552B1B;
     color: #FFFCED;
-}
+} */
 
 
 .apply-filters,
