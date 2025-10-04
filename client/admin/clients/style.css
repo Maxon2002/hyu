@@ -226,6 +226,7 @@ body {
 .filter-dropdown-wrapper label {
     font-size: 14px;
     display: block;
+    color: #552B1B;
 }
 
 .filter-dropdown-wrapper input {
