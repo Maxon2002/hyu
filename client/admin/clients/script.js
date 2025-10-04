@@ -106,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchClients(collectFilters(), 1);
         // включаем reset-filters
         resetBtn.classList.add("active");
+        const resetIcon = resetBtn.querySelector("img");
+        resetIcon.src = "../../images/reset-filters-active.svg";
     });
 
     // Сброс фильтров
@@ -115,12 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         filterButtons.forEach(button => {
-            const panel = button.querySelector(".filter-panel");
-            panel.classList.remove("checked");
+            button.classList.remove("checked");
+            const arrow = button.querySelector(".filter-panel img");
+            arrow.src = "../../images/panel-arrow.svg";
         });
 
         applyBtn.classList.remove("active");
+        applyBtn.querySelector("img").src = "../../images/apply-filters.svg";
+
         resetBtn.classList.remove("active");
+        resetBtn.querySelector("img").src = "../../images/reset-filters.svg";
 
         fetchClients({}, 1);
     });
@@ -323,19 +329,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         filterButtons.forEach(button => {
             const panel = button.querySelector(".filter-panel");
+            const arrow = panel.querySelector("img");
             const inputs = button.querySelectorAll("input");
 
             // если хотя бы одно поле внутри фильтра заполнено → checked
             let isChecked = Array.from(inputs).some(input => input.value.trim() !== "");
-            panel.classList.toggle("checked", isChecked);
+            button.classList.toggle("checked", isChecked);
 
             if (isChecked) {
                 anyChecked = true;
+                arrow.src = "../../images/panel-arrow-active.svg";
+            } else {
+                arrow.src = "../../images/panel-arrow.svg";
             }
         });
 
         // apply-filters активен, если есть хотя бы один фильтр
         applyBtn.classList.toggle("active", anyChecked);
+        const applyIcon = applyBtn.querySelector("img");
+        applyIcon.src = anyChecked
+            ? "../../images/apply-filters-active.svg"
+            : "../../images/apply-filters.svg";
     }
 
     // Навешиваем на все input фильтров

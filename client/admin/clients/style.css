@@ -169,7 +169,7 @@ body {
     position: relative;
 }
 
-.filter-panel.checked {
+.filter-button.checked {
     background-color: #552B1B;
     border: none;
     color: #FFFCED;
