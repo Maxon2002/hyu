@@ -95,6 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
             panel.classList.remove('active')
         });
 
+        document.querySelectorAll('.filter-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active')
+        });
+
 
 
     });
@@ -121,6 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelectorAll('.filter-panel').forEach(panel => {
             panel.classList.remove('active')
+        });
+
+        document.querySelectorAll('.filter-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active')
         });
 
         fetchClients({}, 1);
