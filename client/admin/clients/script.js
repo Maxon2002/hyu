@@ -301,15 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // закрытие модалки
     modalClientClose.addEventListener("click", () => {
-        modal.style.display = "none";
+        modalClient.style.display = "none";
     });
 
-    // закрытие по клику вне окна
-    window.addEventListener("click", (e) => {
-        if (e.target === modalClient) {
-            modalClient.style.display = "none";
-        }
-    });
+
 
 
 
@@ -410,7 +405,73 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // обработка кликов по .table-visits
+
+
+    // закрытие модалки
+    modalVisitsClose.addEventListener("click", () => {
+        modalVisits.style.display = "none";
+    });
+
+
+
+
+
+
+    const friendsModal = document.getElementById("friends-modal");
+    const friendsEmail = friendsModal.querySelector(".modal-email");
+    const friendsTableBody = friendsModal.querySelector("tbody");
+    const friendsClose = friendsModal.querySelector(".modal-close");
+
+    async function loadClientFriends(email) {
+        try {
+            const res = await fetch("/api/admin/client-friends", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("Ошибка запроса");
+            const data = await res.json();
+
+            friendsTableBody.innerHTML = "";
+
+            if (data.friends && data.friends.length > 0) {
+                data.friends.forEach(friend => {
+                    const tr = document.createElement("tr");
+
+                    const lastVisit = friend.visits[0]?.visitDate || null;
+
+                    tr.innerHTML = `
+          <td>${friend.email}</td>
+          <td>${friend.referralCode}</td>
+          <td>${friend.createdAt.slice(0, 10)}</td>
+          <td><span class="clickable table-visits">${friend.totalVisits}</span></td>
+          <td>${lastVisit ? lastVisit.slice(0, 10) : "-"}</td>
+          <td><span class="clickable table-discount">${friend.discount}</span></td>
+          <td><span class="clickable table-friends">${friend.friendsInvited}</span></td>
+        `;
+
+                    friendsTableBody.appendChild(tr);
+                });
+            } else {
+                friendsTableBody.innerHTML = `<tr><td colspan="7">No invited friends</td></tr>`;
+            }
+
+        } catch (err) {
+            console.error(err);
+            friendsTableBody.innerHTML = "<tr><td colspan='7'>Error loading friends</td></tr>";
+        }
+    }
+
+
+    // закрытие
+    friendsClose.addEventListener("click", () => {
+        friendsModal.style.display = "none";
+    });
+
+
+
+    // обработка кликов по .table-visits и 
 
     document.querySelector(".clients-table tbody").addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
@@ -422,14 +483,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientVisits(email);
         }
+        if (e.target.classList.contains("ttable-friends")) {
+            const row = el.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            friendsEmail.textContent = `Client: ${email}`;
+            friendsModal.style.display = "block";
+
+            loadClientFriends(email);
+        }
     });
 
-    // закрытие модалки
-    modalVisitsClose.addEventListener("click", () => {
-        modalVisits.style.display = "none";
-    });
+
     window.addEventListener("click", e => {
+        if (e.target === friendsModal) friendsModal.style.display = "none";
         if (e.target === modalVisits) modalVisits.style.display = "none";
+        if (e.target === modalClient) modalClient.style.display = "none";
     });
+
+
 
 });

@@ -468,6 +468,59 @@ router.post("/client-visits", async (req, res) => {
 });
 
 
+// список приглашённых друзей
+router.post("/client-friends", async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        // находим клиента с его рефералами
+        const client = await prisma.user.findUnique({
+            where: { email },
+            select: {
+                id: true,
+                referrals: {
+                    orderBy: { createdAt: "desc" },
+                    select: {
+                        email: true,
+                        referralCode: true,
+                        createdAt: true,
+                        totalVisits: true,
+                        discount: true,
+                        friendsInvited: true,
+                        visits: {
+                            orderBy: { visitDate: "desc" },
+                            take: 1,
+                            select: { visitDate: true }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!client) {
+            return res.status(404).json({ error: "Client not found" });
+        }
+
+        // форматируем visits (чтобы фронту было удобно сразу использовать slice(0,10))
+        const friends = client.referrals.map(f => ({
+            ...f,
+            visits: f.visits.map(v => ({
+                visitDate: v.visitDate.toISOString()
+            }))
+        }));
+
+        res.json({ friends });
+    } catch (err) {
+        console.error("Error fetching client friends:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
 
 
 export default router;
