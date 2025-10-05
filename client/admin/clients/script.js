@@ -302,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // закрытие модалки
     modalClientClose.addEventListener("click", () => {
         modalClient.style.display = "none";
+        modalClientBody.innerHTML = "";
     });
 
 
@@ -380,8 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!res.ok) throw new Error("Ошибка запроса");
             const data = await res.json();
 
-            // очищаем прошлые данные
-            modalVisitsBody.innerHTML = "";
+
 
             if (data.visits && data.visits.length > 0) {
                 data.visits.forEach(date => {
@@ -410,6 +410,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // закрытие модалки
     modalVisitsClose.addEventListener("click", () => {
         modalVisits.style.display = "none";
+        // очищаем прошлые данные
+        modalVisitsBody.innerHTML = "";
     });
 
 
@@ -433,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!res.ok) throw new Error("Ошибка запроса");
             const data = await res.json();
 
-            friendsTableBody.innerHTML = "";
+
 
             if (data.friends && data.friends.length > 0) {
                 data.friends.forEach(friend => {
@@ -467,6 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // закрытие
     friendsClose.addEventListener("click", () => {
         friendsModal.style.display = "none";
+        friendsTableBody.innerHTML = "";
     });
 
 
@@ -475,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector(".clients-table tbody").addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
-            
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -498,6 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
     friendsTableBody.addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
             friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
 
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
@@ -509,6 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (e.target.classList.contains("table-friends")) {
             friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
 
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
@@ -523,6 +528,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalVisitsBody.addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
             modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
 
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
@@ -534,6 +540,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (e.target.classList.contains("table-friends")) {
             modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
 
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
@@ -549,9 +556,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     window.addEventListener("click", e => {
-        if (e.target === friendsModal) friendsModal.style.display = "none";
-        if (e.target === modalVisits) modalVisits.style.display = "none";
-        if (e.target === modalClient) modalClient.style.display = "none";
+        if (e.target === friendsModal) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+        }
+        if (e.target === modalVisits) {
+            modalVisits.style.display = "none";
+            modalVisitsBody.innerHTML = "";
+        }
+        if (e.target === modalClient) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+        }
     });
 
 
