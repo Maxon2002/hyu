@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const modalClient = document.getElementById("client-modal");
     const modalClientClose = modalClient.querySelector(".modal-close");
-    const modalClientBody = modalClient.getElementById("modal-client-body");
+    const modalClientBody = modalClient.querySelector("tbody");
 
 
     // обработка клика по email в списке результатов
