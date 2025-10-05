@@ -411,17 +411,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // обработка кликов по .table-visits
-    document.querySelectorAll(".table-visits").forEach(el => {
-        el.addEventListener("click", () => {
-            const row = el.closest("tr");
+
+    document.querySelector(".clients-table tbody").addEventListener("click", (e) => {
+        if (e.target.classList.contains("table-visits")) {
+            const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
             modalVisitsEmail.textContent = email;
             modalVisits.style.display = "block";
 
-            // грузим данные с бэкенда
             loadClientVisits(email);
-        });
+        }
     });
 
     // закрытие модалки
