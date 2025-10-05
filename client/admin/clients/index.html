@@ -224,7 +224,7 @@
 
 
 
-            <!-- Модальное окно -->
+            <!-- Модальное окно поиска клиентов -->
             <div class="modal" id="client-modal">
                 <div class="modal-content">
                     <img src="../../images/close-button.svg" alt="" class="modal-close">
@@ -243,6 +243,25 @@
                         </thead>
                         <tbody id="modal-client-body">
                             <!-- сюда динамически вставляем строку клиента -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Модальное окно всех визитов -->
+            <div id="visits-modal" class="modal">
+                <div class="modal-content">
+                    <img src="../../images/close-button.svg" alt="" class="modal-close">
+                    <h2>Total visits</h2>
+                    <p class="modal-email"></p>
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>Visit date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- динамические строки -->
                         </tbody>
                     </table>
                 </div>

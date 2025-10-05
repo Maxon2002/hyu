@@ -429,6 +429,44 @@ router.post("/clients-table", async (req, res) => {
 });
 
 
+// список визитов клиента
+router.post("/client-visits", async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        // находим клиента
+        const client = await prisma.user.findUnique({
+            where: { email },
+            select: { id: true }
+        });
+
+        if (!client) {
+            return res.status(404).json({ error: "Client not found" });
+        }
+
+        // достаём все визиты
+        const visits = await prisma.visit.findMany({
+            where: { userId: client.id },
+            orderBy: { visitDate: "desc" },
+            select: { visitDate: true }
+        });
+
+        // форматируем даты (например "2025-10-02")
+        const formattedVisits = visits.map(v =>
+            v.visitDate.toISOString().slice(0, 10)
+        );
+
+        res.json({ visits: formattedVisits });
+    } catch (err) {
+        console.error("Error fetching client visits:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
 
 
 

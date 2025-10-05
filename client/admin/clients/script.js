@@ -263,9 +263,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    const modal = document.getElementById("client-modal");
-    const modalClose = document.querySelector(".modal-close");
-    const modalBody = document.getElementById("modal-client-body");
+    const modalClient = document.getElementById("client-modal");
+    const modalClientClose = modalClient.querySelector(".modal-close");
+    const modalClientBody = modalClient.getElementById("modal-client-body");
 
 
     // обработка клика по email в списке результатов
@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const lastVisit = client.visits[0]?.visitDate || null;
                     // рендерим строку в модальное окно
-                    modalBody.innerHTML = `
+                    modalClientBody.innerHTML = `
             <tr>
               <td>${email}</td>
               <td>${client.referralCode}</td>
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
             </tr>
           `;
-                    modal.style.display = "block";
+                    modalClient.style.display = "block";
                 })
                 .catch((err) => {
                     console.error("Error loading client:", err);
@@ -300,14 +300,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // закрытие модалки
-    modalClose.addEventListener("click", () => {
+    modalClientClose.addEventListener("click", () => {
         modal.style.display = "none";
     });
 
     // закрытие по клику вне окна
     window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.style.display = "none";
+        if (e.target === modalClient) {
+            modalClient.style.display = "none";
         }
     });
 
@@ -363,5 +363,73 @@ document.addEventListener("DOMContentLoaded", () => {
     // первая инициализация
     updateFilterStates();
 
+
+
+
+
+
+    const modalVisits = document.getElementById("visits-modal");
+    const modalVisitsEmail = modalVisits.querySelector(".modal-email");
+    const modalVisitsBody = modalVisits.querySelector("tbody");
+    const modalVisitsClose = modalVisits.querySelector(".modal-close");
+
+    // функция загрузки и рендера данных
+    async function loadClientVisits(email) {
+        try {
+            const res = await fetch("/api/admin/client-visits", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("Ошибка запроса");
+            const data = await res.json();
+
+            // очищаем прошлые данные
+            modalVisitsBody.innerHTML = "";
+
+            if (data.visits && data.visits.length > 0) {
+                data.visits.forEach(date => {
+                    const tr = document.createElement("tr");
+                    const td = document.createElement("td");
+                    td.textContent = date;
+                    tr.appendChild(td);
+                    modalVisitsBody.appendChild(tr);
+                });
+            } else {
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.textContent = "No visits";
+                tr.appendChild(td);
+                modalVisitsBody.appendChild(tr);
+            }
+
+        } catch (err) {
+            console.error(err);
+            modalTableBody.innerHTML = "<tr><td>Error loading visits</td></tr>";
+        }
+    }
+
+    // обработка кликов по .table-visits
+    document.querySelectorAll(".table-visits").forEach(el => {
+        el.addEventListener("click", () => {
+            const row = el.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalVisitsEmail.textContent = email;
+            modalVisits.style.display = "block";
+
+            // грузим данные с бэкенда
+            loadClientVisits(email);
+        });
+    });
+
+    // закрытие модалки
+    modalVisitsClose.addEventListener("click", () => {
+        modalVisits.style.display = "none";
+    });
+    window.addEventListener("click", e => {
+        if (e.target === modalVisits) modalVisits.style.display = "none";
+    });
 
 });
