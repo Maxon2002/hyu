@@ -484,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
             loadClientVisits(email);
         }
         if (e.target.classList.contains("table-friends")) {
-            const row = el.closest("tr");
+            const row = e.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
             friendsEmail.textContent = `Client: ${email}`;
