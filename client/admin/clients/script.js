@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${friend.createdAt.slice(0, 10)}</td>
           <td><span class="clickable table-visits">${friend.totalVisits}</span></td>
           <td>${lastVisit ? lastVisit.slice(0, 10) : "-"}</td>
-          <td><span class="clickable table-discount">${friend.discount}</span></td>
+          <td><span class="clickable table-discount">${friend.discount}%</span></td>
           <td><span class="clickable table-friends">${friend.friendsInvited}</span></td>
         `;
 
@@ -471,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // обработка кликов по .table-visits и 
+    // обработка кликов по .table-visits и .table-friends
 
     document.querySelector(".clients-table tbody").addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
@@ -493,6 +493,50 @@ document.addEventListener("DOMContentLoaded", () => {
             loadClientFriends(email);
         }
     });
+
+    friendsTableBody.addEventListener("click", (e) => {
+        if (e.target.classList.contains("table-visits")) {
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalVisitsEmail.textContent = email;
+            modalVisits.style.display = "block";
+
+            loadClientVisits(email);
+        }
+        if (e.target.classList.contains("table-friends")) {
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            friendsEmail.textContent = `Client: ${email}`;
+            friendsModal.style.display = "block";
+
+            loadClientFriends(email);
+        }
+    });
+
+    modalVisitsBody.addEventListener("click", (e) => {
+        if (e.target.classList.contains("table-visits")) {
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalVisitsEmail.textContent = email;
+            modalVisits.style.display = "block";
+
+            loadClientVisits(email);
+        }
+        if (e.target.classList.contains("table-friends")) {
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            friendsEmail.textContent = `Client: ${email}`;
+            friendsModal.style.display = "block";
+
+            loadClientFriends(email);
+        }
+    });
+
+
 
 
     window.addEventListener("click", e => {
