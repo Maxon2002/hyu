@@ -475,6 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector(".clients-table tbody").addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
+            
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -496,6 +497,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     friendsTableBody.addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
+            friendsModal.style.display = "none";
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -505,6 +508,8 @@ document.addEventListener("DOMContentLoaded", () => {
             loadClientVisits(email);
         }
         if (e.target.classList.contains("table-friends")) {
+            friendsModal.style.display = "none";
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -517,6 +522,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modalVisitsBody.addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
+            modalClient.style.display = "none";
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -526,6 +533,8 @@ document.addEventListener("DOMContentLoaded", () => {
             loadClientVisits(email);
         }
         if (e.target.classList.contains("table-friends")) {
+            modalClient.style.display = "none";
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
