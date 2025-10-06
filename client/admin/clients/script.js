@@ -395,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 const tr = document.createElement("tr");
                 const td = document.createElement("td");
+                td.classList.add('comment')
                 td.textContent = "No comments";
                 tr.appendChild(td);
                 modalEmailBody.appendChild(tr);

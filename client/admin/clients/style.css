@@ -434,6 +434,8 @@ body {
     border: 1px solid #552B1B;
     background-color: transparent;
     color: #552B1B;
+
+    margin: 10px 0;
 }
 
 .action-buttons {
