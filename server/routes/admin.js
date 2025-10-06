@@ -437,7 +437,7 @@ router.post("/client-comment", async (req, res) => {
         }
 
 
-        res.json({ client });
+        res.json(client);
     } catch (err) {
         console.error("Error fetching client visits:", err);
         res.status(500).json({ error: "Server error" });

@@ -423,6 +423,8 @@ body {
 
 #edit-comment-form textarea {
     font-size: 16px;
+    width: 100%;
+    resize: vertical;
 }
 
 #edit-comment-btn {
