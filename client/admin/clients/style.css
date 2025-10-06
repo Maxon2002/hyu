@@ -417,6 +417,53 @@ body {
 }
 
 
+#edit-comment-form.hidden {
+    display: none;
+}
+
+#edit-comment-form textarea {
+    font-size: 16px;
+}
+
+#edit-comment-btn {
+    padding: 7px 11px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    border: 1px solid #552B1B;
+    background-color: transparent;
+    color: #552B1B;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#save-comment-btn {
+    padding: 7px 11px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+#cancel-comment-btn {
+    padding: 7px 11px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    border: 1px solid #552B1B;
+    background-color: transparent;
+    color: #552B1B;
+}
+
 
 
 

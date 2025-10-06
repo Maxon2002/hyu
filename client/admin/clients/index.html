@@ -248,13 +248,43 @@
                 </div>
             </div>
 
+            <!-- Модальное окно email -->
+            <div id="email-modal" class="modal">
+                <div class="modal-content">
+                    <img src="../../images/close-button.svg" alt="" class="modal-close">
+                    <h2>Comments</h2>
+                    <p class="modal-email"></p>
+                    <table class="clients-table modal-table">
+                        <thead>
+                            <tr>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- динамические строки -->
+                        </tbody>
+                    </table>
+
+                    <div id="edit-comment-btn">Edit comment</div>
+
+                    <!-- Скрытая форма для редактирования -->
+                    <div id="edit-comment-form" class="hidden">
+                        <textarea id="comment-input" rows="3" cols="30"></textarea><br>
+                        <div class="action-buttons">
+                            <div id="save-comment-btn">Save comment</div>
+                            <div id="cancel-comment-btn">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Модальное окно всех визитов -->
             <div id="visits-modal" class="modal">
                 <div class="modal-content">
                     <img src="../../images/close-button.svg" alt="" class="modal-close">
                     <h2>Total visits</h2>
                     <p class="modal-email"></p>
-                    <table class="modal-table">
+                    <table class="clients-table modal-table">
                         <thead>
                             <tr>
                                 <th>Visit date</th>

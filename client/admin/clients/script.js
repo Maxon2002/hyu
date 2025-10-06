@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const lastVisit = client.visits[0]?.visitDate || null;
 
                 return `<tr>
-          <td>${client.email}</td>
+          <td><span class="clickable table-email">${client.email}</span></td>
           <td>${client.referralCode}</td>
           <td>${client.createdAt.slice(0, 10)}</td>
           <td><span class="clickable table-visits">${client.totalVisits}</span></td>
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // рендерим строку в модальное окно
                     modalClientBody.innerHTML = `
             <tr>
-              <td>${email}</td>
+              <td><span class="clickable table-email">${email}</span></td>
               <td>${client.referralCode}</td>
               <td>${client.createdAt.slice(0, 10)}</td>
               <td><span class="clickable table-visits">${client.totalVisits}</span></td>
@@ -359,6 +359,110 @@ document.addEventListener("DOMContentLoaded", () => {
     // первая инициализация
     updateFilterStates();
 
+
+
+
+    const modalEmail = document.getElementById("email-modal");
+    const modalEmailEmail = modalEmail.querySelector(".modal-email");
+    const modalEmailBody = modalEmail.querySelector("tbody");
+    const modalEmailClose = modalEmail.querySelector(".modal-close");
+    let currentEmail
+
+    // функция загрузки и рендера данных
+    async function loadClientComment(email) {
+        currentEmail = email
+        try {
+            const res = await fetch("/api/admin/client-comment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("Ошибка запроса");
+            const data = await res.json();
+
+
+
+            if (data.comment && data.comment.length > 0) {
+
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.classList.add('comment')
+                td.textContent = data.comment;
+                tr.appendChild(td);
+                modalEmailBody.appendChild(tr);
+
+            } else {
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.textContent = "No comments";
+                tr.appendChild(td);
+                modalEmailBody.appendChild(tr);
+            }
+
+        } catch (err) {
+            console.error(err);
+            modalEmailBody.innerHTML = "<tr><td>Error loading visits</td></tr>";
+        }
+    }
+
+
+
+    // закрытие модалки
+    modalEmailClose.addEventListener("click", () => {
+        modalEmail.style.display = "none";
+        // очищаем прошлые данные
+        modalEmailBody.innerHTML = "";
+    });
+
+
+
+    const editCommentBtn = document.getElementById("edit-comment-btn");
+    const editCommentForm = document.getElementById("edit-comment-form");
+    const commentInput = document.getElementById("comment-input");
+    const saveCommentBtn = document.getElementById("save-comment-btn");
+    const cancelCommentBtn = document.getElementById("cancel-comment-btn");
+
+    editCommentBtn.addEventListener("click", () => {
+        // показать форму и подставить текст
+        commentInput.value = document.querySelector('.comment').textContent !== "No comments" ? document.querySelector('.comment').textContent : "";
+        editCommentForm.classList.remove("hidden");
+    });
+
+    cancelCommentBtn.addEventListener("click", () => {
+        // скрыть форму без изменений
+        editCommentForm.classList.add("hidden");
+    });
+
+    saveCommentBtn.addEventListener("click", async () => {
+        const newComment = commentInput.value.trim();
+
+        try {
+            const res = await fetch("/api/admin/update-comment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}` // если у тебя как в других запросах
+                },
+                body: JSON.stringify({
+                    email: currentEmail,
+                    comment: newComment
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                document.querySelector('.comment').textContent = newComment || "No comments";
+                editCommentForm.classList.add("hidden");
+            } else {
+                alert(data.message || "Failed to update comment");
+            }
+        } catch (err) {
+            console.error("Update comment error:", err);
+            alert("Server error. Please try again later.");
+        }
+    });
 
 
 
@@ -444,7 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const lastVisit = friend.visits[0]?.visitDate || null;
 
                     tr.innerHTML = `
-          <td>${friend.email}</td>
+          <td><span class="clickable table-email">${friend.email}</span></td>
           <td>${friend.referralCode}</td>
           <td>${friend.createdAt.slice(0, 10)}</td>
           <td><span class="clickable table-visits">${friend.totalVisits}</span></td>
@@ -474,7 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // обработка кликов по .table-visits и .table-friends
+    // обработка кликов по модалкам
 
     document.querySelector(".clients-table tbody").addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
@@ -496,6 +600,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientFriends(email);
         }
+
+        if (e.target.classList.contains("table-email")) {
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalEmailEmail.textContent = `Client: ${email}`;
+            modalEmail.style.display = "block";
+
+            loadClientComment(email);
+        }
     });
 
     friendsTableBody.addEventListener("click", (e) => {
@@ -503,6 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
             friendsModal.style.display = "none";
             friendsTableBody.innerHTML = "";
 
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -515,6 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
             friendsModal.style.display = "none";
             friendsTableBody.innerHTML = "";
 
+
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
@@ -525,7 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    modalVisitsBody.addEventListener("click", (e) => {
+    modalClientBody.addEventListener("click", (e) => {
         if (e.target.classList.contains("table-visits")) {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
@@ -551,6 +667,7 @@ document.addEventListener("DOMContentLoaded", () => {
             loadClientFriends(email);
         }
     });
+
 
 
 

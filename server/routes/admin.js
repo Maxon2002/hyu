@@ -311,52 +311,6 @@ router.get("/clients-brief", async (req, res) => {
 
 
 
-// отображение таблицы всех клиентов
-
-// router.get("/clients-table", async (req, res) => {
-//     try {
-//         let { page = 1, limit = 30 } = req.query;
-
-//         page = parseInt(page, 10);
-//         limit = parseInt(limit, 10);
-
-//         if (isNaN(page) || page < 1) page = 1;
-//         if (isNaN(limit) || limit < 1) limit = 30;
-
-//         const skip = (page - 1) * limit;
-
-//         // общее количество клиентов
-//         const total = await prisma.user.count();
-
-//         // список клиентов с последним визитом
-//         const clients = await prisma.user.findMany({
-//             skip,
-//             take: limit,
-//             orderBy: { createdAt: "desc" }, // например, новые сверху
-//             select: {
-//                 email: true,
-//                 referralCode: true,
-//                 createdAt: true,
-//                 totalVisits: true,
-//                 discount: true,
-//                 friendsInvited: true,
-//                 visits: {
-//                     orderBy: { visitDate: "desc" },
-//                     take: 1,
-//                     select: { visitDate: true }
-//                 }
-//             }
-//         });
-
-
-//         res.json({ clients, total });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ error: "Server error" });
-//     }
-// });
-
-
 
 
 router.post("/clients-table", async (req, res) => {
@@ -456,6 +410,36 @@ router.post("/clients-table", async (req, res) => {
         res.json({ clients, total });
     } catch (err) {
         console.error("Error fetching clients with filters:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
+
+
+// получение комментария
+router.post("/client-comment", async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        // находим клиента
+        const client = await prisma.user.findUnique({
+            where: { email },
+            select: { comment: true }
+        });
+
+        if (!client) {
+            return res.status(404).json({ error: "Client not found" });
+        }
+
+
+        res.json({ client });
+    } catch (err) {
+        console.error("Error fetching client visits:", err);
         res.status(500).json({ error: "Server error" });
     }
 });
