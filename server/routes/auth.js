@@ -170,10 +170,10 @@ router.post("/sign-up", async (req, res) => {
                 data: { friendsInvited: { increment: 1 } },
             });
 
-            console.log("friendsInvited", inviter.friendsInvited)
+            // console.log("friendsInvited", inviter.friendsInvited)
 
             // Проверка достижений
-            if (inviter.friendsInvited + 1 === 5) {
+            if (inviter.friendsInvited === 5) {
                 await prisma.achievement.create({
                     data: {
                         userId: inviter.id,
@@ -189,7 +189,7 @@ router.post("/sign-up", async (req, res) => {
                 });
             }
 
-            if (inviter.friendsInvited + 1 === 10) {
+            if (inviter.friendsInvited === 10) {
                 await prisma.achievement.create({
                     data: {
                         userId: inviter.id,
