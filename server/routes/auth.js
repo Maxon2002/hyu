@@ -278,7 +278,12 @@ router.post("/forgot-password", async (req, res) => {
         await redis.setex(`resetPassword:${token}`, 3600, user.id);
 
         // Отправляем письмо со ссылкой
-        const resetLink = `https://hyu.ae/reset-password/${language}?token=${token}`;
+        let resetLink
+        if (language === "en") {
+            resetLink = `https://hyu.ae/reset-password?token=${token}`
+        } else {
+            resetLink = `https://hyu.ae/reset-password/${language}?token=${token}`;
+        }
         await sendResetPasswordMail(email, resetLink);
 
         return res.json({ success: true, message: "Password reset link sent" });
@@ -371,7 +376,7 @@ router.get("/me", authenticateToken, async (req, res) => {
                 name: true,
                 email: true,
                 phoneNumber: true,
-                discount: true, 
+                discount: true,
                 totalVisits: true,
                 comment: true
             }
