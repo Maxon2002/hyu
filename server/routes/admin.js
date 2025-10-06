@@ -198,9 +198,9 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
                 data: { friendsVisited: { increment: 1 } }
             });
 
-            console.log(inviter.friendsVisited)
+            // console.log(inviter.friendsVisited)
 
-            if (inviter.friendsVisited + 1 === 5) {
+            if (inviter.friendsVisited === 5) {
                 await prisma.achievement.create({
                     data: {
                         userId: inviter.id,
@@ -215,7 +215,7 @@ router.post("/mark-visit", authenticateAdmin, async (req, res) => {
                 });
             }
 
-            if (inviter.friendsVisited + 1 === 10) {
+            if (inviter.friendsVisited === 10) {
                 await prisma.achievement.create({
                     data: {
                         userId: inviter.id,
