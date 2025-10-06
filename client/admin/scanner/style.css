@@ -97,18 +97,16 @@ body {
     color: #FFFCED;
 }
 
-.hidden {
+
+
+.scan-button.hidden {
     display: none;
 }
 
-/* .scan-button.hidden {
-    display: none;
-} */
 
-
-/* .scanner-box.hidden {
+.scanner-box.hidden {
     display: none
-} */
+}
 
 .scanner-box {
     display: flex;
@@ -132,15 +130,19 @@ body {
     color: #FFFCED;
 }
 
-/* .client-data.hidden {
+.client-data.hidden {
     display: none
-} */
+}
 
 .client-data {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+}
+
+#edit-comment-form.hidden {
+    display: none;
 }
 
 #edit-comment-btn {
