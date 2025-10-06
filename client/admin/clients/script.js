@@ -482,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalVisitsEmail.textContent = email;
+            modalVisitsEmail.textContent = `Client: ${email}`;
             modalVisits.style.display = "block";
 
             loadClientVisits(email);
@@ -506,7 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalVisitsEmail.textContent = email;
+            modalVisitsEmail.textContent = `Client: ${email}`;
             modalVisits.style.display = "block";
 
             loadClientVisits(email);
@@ -533,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalVisitsEmail.textContent = email;
+            modalVisitsEmail.textContent = `Client: ${email}`;
             modalVisits.style.display = "block";
 
             loadClientVisits(email);
