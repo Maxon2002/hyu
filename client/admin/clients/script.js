@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ email })
             });
 
-            if (!res.ok) throw new Error("Ошибка запроса");
+            if (!res.ok) throw new Error("error");
             const data = await res.json();
 
 
@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (err) {
             console.error(err);
-            modalEmailBody.innerHTML = "<tr><td>Error loading visits</td></tr>";
+            modalEmailBody.innerHTML = "<tr><td>Error loading comments</td></tr>";
         }
     }
 
@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ email })
             });
 
-            if (!res.ok) throw new Error("Ошибка запроса");
+            if (!res.ok) throw new Error("error");
             const data = await res.json();
 
 
@@ -548,6 +548,104 @@ document.addEventListener("DOMContentLoaded", () => {
         modalVisits.style.display = "none";
         // очищаем прошлые данные
         modalVisitsBody.innerHTML = "";
+    });
+
+
+
+
+
+    const modalDiscount = document.getElementById("email-modal");
+    const modalDiscountEmail = modalDiscount.querySelector(".modal-email");
+    const modalDiscountBody = modalDiscount.querySelector("tbody");
+    const modalDiscountClose = modalDiscount.querySelector(".modal-close");
+    // let currentEmail
+
+    // функция загрузки и рендера данных
+    async function loadClientDiscount(email) {
+        currentEmail = email
+        try {
+            const res = await fetch("/api/admin/client-discount", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("error");
+            const data = await res.json();
+
+
+            const tr = document.createElement("tr");
+            const td = document.createElement("td");
+            td.classList.add('discount')
+            td.textContent = data.discount;
+            tr.appendChild(td);
+            modalDiscountBody.appendChild(tr);
+
+
+        } catch (err) {
+            console.error(err);
+            modalDiscountBody.innerHTML = "<tr><td>Error loading discount</td></tr>";
+        }
+    }
+
+
+
+    // закрытие модалки
+    modalDiscountClose.addEventListener("click", () => {
+        modalDiscount.style.display = "none";
+        // очищаем прошлые данные
+        modalDiscountBody.innerHTML = "";
+
+        editDiscountForm.classList.add("hidden");
+    });
+
+
+
+    const editDiscountBtn = document.getElementById("edit-discount-btn");
+    const editDiscountForm = document.getElementById("edit-discount-form");
+    const discountInput = document.getElementById("discount-input");
+    const saveDiscountBtn = document.getElementById("save-discount-btn");
+    const cancelDiscountBtn = document.getElementById("cancel-discount-btn");
+
+    editDiscountBtn.addEventListener("click", () => {
+        // показать форму и подставить текст
+        // discountInput.value = document.querySelector('.discount').textContent !== "No comments" ? document.querySelector('.comment').textContent : "";
+        editDiscountForm.classList.remove("hidden");
+    });
+
+    cancelDiscountBtn.addEventListener("click", () => {
+        // скрыть форму без изменений
+        editDiscountForm.classList.add("hidden");
+    });
+
+    saveDiscountBtn.addEventListener("click", async () => {
+        const newDiscount = discountInput.value.trim();
+
+        try {
+            const res = await fetch("/api/admin/update-discount", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}`
+                },
+                body: JSON.stringify({
+                    email: currentEmail,
+                    discount: newDiscount
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                document.querySelector('.discount').textContent = newDiscount;
+                editDiscountForm.classList.add("hidden");
+            } else {
+                alert(data.message || "Failed to update discount");
+            }
+        } catch (err) {
+            console.error("Update discount error:", err);
+            alert("Server error. Please try again later.");
+        }
     });
 
 
@@ -642,6 +740,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientComment(email);
         }
+
+        if (e.target.classList.contains("table-discount")) {
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalDiscountEmail.textContent = `Client: ${email}`;
+            modalDiscount.style.display = "block";
+
+            loadClientDiscount(email);
+        }
     });
 
     friendsTableBody.addEventListener("click", (e) => {
@@ -684,6 +792,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientComment(email);
         }
+
+        if (e.target.classList.contains("table-discount")) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalDiscountEmail.textContent = `Client: ${email}`;
+            modalDiscount.style.display = "block";
+
+            loadClientDiscount(email);
+        }
     });
 
     modalClientBody.addEventListener("click", (e) => {
@@ -724,6 +845,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientComment(email);
         }
+
+        if (e.target.classList.contains("table-discount")) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalDiscountEmail.textContent = `Client: ${email}`;
+            modalDiscount.style.display = "block";
+
+            loadClientDiscount(email);
+        }
     });
 
 
@@ -746,6 +880,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === modalEmail) {
             modalEmail.style.display = "none";
             modalEmailBody.innerHTML = "";
+        }
+        if (e.target === modalDiscount) {
+            modalDiscount.style.display = "none";
+            modalDiscountBody.innerHTML = "";
         }
     });
 

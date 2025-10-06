@@ -37,7 +37,9 @@ Message: ${message || "None"}
 Account info:
 
 Discount: ${user.discount}
-Visits: ${user.totalVisits}`;
+Visits: ${user.totalVisits}
+Comment: ${user.comment ? user.comment : "No comments"}`;
+
   }
 
   try {

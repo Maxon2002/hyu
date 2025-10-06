@@ -372,7 +372,8 @@ router.get("/me", authenticateToken, async (req, res) => {
                 email: true,
                 phoneNumber: true,
                 discount: true, 
-                totalVisits: true
+                totalVisits: true,
+                comment: true
             }
         });
 

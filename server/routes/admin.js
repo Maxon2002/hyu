@@ -111,6 +111,38 @@ router.post("/update-comment", authenticateAdmin, async (req, res) => {
     }
 });
 
+
+// обновление скидки
+router.post("/update-discount", authenticateAdmin, async (req, res) => {
+    try {
+        const { email, discount } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ success: false, message: "Email is required" });
+        }
+
+        // Обновляем комментарий
+        await prisma.user.update({
+            where: { email },
+            data: { discount: discount }
+        });
+
+        return res.json({
+            success: true,
+            message: "Discount updated successfully"
+        });
+
+    } catch (err) {
+        console.error("Error in /update-discount:", err);
+
+        if (err.code === "P2025") { // Prisma "Record not found"
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        return res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
 // отметка визитов
 router.post("/mark-visit", authenticateAdmin, async (req, res) => {
     try {
@@ -430,6 +462,33 @@ router.post("/client-comment", async (req, res) => {
         const client = await prisma.user.findUnique({
             where: { email },
             select: { comment: true }
+        });
+
+        if (!client) {
+            return res.status(404).json({ error: "Client not found" });
+        }
+
+
+        res.json(client);
+    } catch (err) {
+        console.error("Error fetching client visits:", err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// получение скидки
+router.post("/client-discount", async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        // находим клиента
+        const client = await prisma.user.findUnique({
+            where: { email },
+            select: { discount: true }
         });
 
         if (!client) {
