@@ -80,7 +80,38 @@ router.post("/client", authenticateAdmin, async (req, res) => {
     }
 });
 
+// обновление комментария
+router.post("/update-comment", authenticateAdmin, async (req, res) => {
+    try {
+        const { email, comment } = req.body;
 
+        if (!email) {
+            return res.status(400).json({ success: false, message: "Email is required" });
+        }
+
+        // Обновляем комментарий
+        await prisma.user.update({
+            where: { email },
+            data: { comment: comment || "" }
+        });
+
+        return res.json({
+            success: true,
+            message: "Comment updated successfully"
+        });
+
+    } catch (err) {
+        console.error("Error in /update-comment:", err);
+
+        if (err.code === "P2025") { // Prisma "Record not found"
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        return res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
+// отметка визитов
 router.post("/mark-visit", authenticateAdmin, async (req, res) => {
     try {
         const { email } = req.body;
