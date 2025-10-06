@@ -124,7 +124,7 @@ router.post("/update-discount", authenticateAdmin, async (req, res) => {
         // Обновляем комментарий
         await prisma.user.update({
             where: { email },
-            data: { discount }
+            data: { discount: +discount }
         });
 
         return res.json({
