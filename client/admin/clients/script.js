@@ -609,7 +609,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     editDiscountBtn.addEventListener("click", () => {
         // показать форму и подставить текст
-        // discountInput.value = document.querySelector('.discount').textContent !== "No comments" ? document.querySelector('.comment').textContent : "";
+        discountInput.value = "";
         editDiscountForm.classList.remove("hidden");
     });
 
@@ -621,7 +621,6 @@ document.addEventListener("DOMContentLoaded", () => {
     saveDiscountBtn.addEventListener("click", async () => {
         const newDiscount = discountInput.value.trim();
 
-        console.log(newDiscount)
 
         try {
             const res = await fetch("/api/admin/update-discount", {
