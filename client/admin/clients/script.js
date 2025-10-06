@@ -671,6 +671,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientFriends(email);
         }
+
+        if (e.target.classList.contains("table-email")) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalEmailEmail.textContent = `Client: ${email}`;
+            modalEmail.style.display = "block";
+
+            loadClientComment(email);
+        }
     });
 
     modalClientBody.addEventListener("click", (e) => {
@@ -698,6 +711,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             loadClientFriends(email);
         }
+
+        if (e.target.classList.contains("table-email")) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalEmailEmail.textContent = `Client: ${email}`;
+            modalEmail.style.display = "block";
+
+            loadClientComment(email);
+        }
     });
 
 
@@ -716,6 +742,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === modalClient) {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
+        }
+        if (e.target === modalEmail) {
+            modalEmail.style.display = "none";
+            modalEmailBody.innerHTML = "";
         }
     });
 
