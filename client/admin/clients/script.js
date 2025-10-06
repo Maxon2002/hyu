@@ -554,7 +554,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    const modalDiscount = document.getElementById("email-modal");
+    const modalDiscount = document.getElementById("discount-modal");
     const modalDiscountEmail = modalDiscount.querySelector(".modal-email");
     const modalDiscountBody = modalDiscount.querySelector("tbody");
     const modalDiscountClose = modalDiscount.querySelector(".modal-close");
