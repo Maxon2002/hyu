@@ -425,6 +425,14 @@ body {
     display: none;
 }
 
+#edit-comment-form,
+#edit-discount-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
 #edit-comment-form textarea {
     padding: 10px 8px;
     border: 1px solid #ccc;
