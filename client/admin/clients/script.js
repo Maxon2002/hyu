@@ -621,6 +621,8 @@ document.addEventListener("DOMContentLoaded", () => {
     saveDiscountBtn.addEventListener("click", async () => {
         const newDiscount = discountInput.value.trim();
 
+        console.log(newDiscount)
+
         try {
             const res = await fetch("/api/admin/update-discount", {
                 method: "POST",
