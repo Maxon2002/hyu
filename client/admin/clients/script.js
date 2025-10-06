@@ -414,6 +414,8 @@ document.addEventListener("DOMContentLoaded", () => {
         modalEmail.style.display = "none";
         // очищаем прошлые данные
         modalEmailBody.innerHTML = "";
+
+        editCommentForm.classList.add("hidden");
     });
 
 
