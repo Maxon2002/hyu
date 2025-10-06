@@ -38,6 +38,7 @@ const clientEmail = document.getElementById("client-email");
 const clientName = document.getElementById("client-name");
 const clientVisits = document.getElementById("client-visits");
 const clientFriends = document.getElementById("client-friends");
+const clientComment = document.getElementById("client-comment");
 const markVisitBtn = document.getElementById("mark-visit");
 const closeClientDataBtn = document.getElementById("close-client-data");
 
@@ -90,10 +91,12 @@ closeClientDataBtn.addEventListener("click", () => {
 
 });
 
+let currentEmail
+
 async function fetchClientData(referralCode) {
     try {
         const res = await fetch(`/api/admin/client`, {
-            method: "POST", // теперь POST
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${adminToken}`
@@ -110,10 +113,12 @@ async function fetchClientData(referralCode) {
             clientName.textContent = user.name;
             clientVisits.textContent = user.totalVisits;
             clientFriends.textContent = user.friendsInvited;
+            clientComment.textContent = user.comment ? user.comment : "No comments";
 
             clientData.classList.remove("hidden");
 
-            // Здесь можно привязать markVisitBtn к вызову API для отметки визита
+            currentEmail = user.email;
+
         } else {
             alert(data.message || "Client not found");
         }
@@ -122,6 +127,55 @@ async function fetchClientData(referralCode) {
         alert("Server error. Please try again later.");
     }
 }
+
+
+const editCommentBtn = document.getElementById("edit-comment-btn");
+const editCommentForm = document.getElementById("edit-comment-form");
+const commentInput = document.getElementById("comment-input");
+const saveCommentBtn = document.getElementById("save-comment-btn");
+const cancelCommentBtn = document.getElementById("cancel-comment-btn");
+
+editCommentBtn.addEventListener("click", () => {
+    // показать форму и подставить текст
+    commentInput.value = clientComment.textContent !== "No comments" ? clientComment.textContent : "";
+    editCommentForm.classList.remove("hidden");
+});
+
+cancelCommentBtn.addEventListener("click", () => {
+    // скрыть форму без изменений
+    editCommentForm.classList.add("hidden");
+});
+
+saveCommentBtn.addEventListener("click", async () => {
+    const newComment = commentInput.value.trim();
+
+    try {
+        const res = await fetch("/api/admin/update-comment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${adminToken}` // если у тебя как в других запросах
+            },
+            body: JSON.stringify({
+                email: currentEmail,
+                comment: newComment
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            clientComment.textContent = newComment || "No comments";
+            editCommentForm.classList.add("hidden");
+        } else {
+            alert(data.message || "Failed to update comment");
+        }
+    } catch (err) {
+        console.error("Update comment error:", err);
+        alert("Server error. Please try again later.");
+    }
+});
+
 
 markVisitBtn.addEventListener("click", async () => {
     if (markVisitBtn.classList.contains("used")) return; // уже отмечено
@@ -134,7 +188,7 @@ markVisitBtn.addEventListener("click", async () => {
                 "Authorization": `Bearer ${adminToken}`
             },
             body: JSON.stringify({
-                referralCode: referralCodeUser // или user.referralCode
+                email: currentEmail 
             })
         });
 

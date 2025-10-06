@@ -97,14 +97,18 @@ body {
     color: #FFFCED;
 }
 
-.scan-button.hidden {
+.hidden {
     display: none;
 }
 
+/* .scan-button.hidden {
+    display: none;
+} */
 
-.scanner-box.hidden {
+
+/* .scanner-box.hidden {
     display: none
-}
+} */
 
 .scanner-box {
     display: flex;
@@ -128,15 +132,40 @@ body {
     color: #FFFCED;
 }
 
-.client-data.hidden {
+/* .client-data.hidden {
     display: none
-}
+} */
 
 .client-data {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+}
+
+#edit-comment-btn {
+    text-decoration: underline;
+}
+
+#save-comment-btn {
+    padding: 10px 12px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+#cancel-comment-btn {
+    padding: 10px 12px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    border: 1px solid #552B1B;
+    background-color: transparent;
+    color: #552B1B;
 }
 
 .action-buttons {

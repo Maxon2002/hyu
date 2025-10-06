@@ -64,7 +64,8 @@ router.post("/client", authenticateAdmin, async (req, res) => {
                 discount: true,
                 totalVisits: true,
                 friendsInvited: true,
-                friendsVisited: true
+                friendsVisited: true,
+                comment: true
             }
         });
 
@@ -82,15 +83,15 @@ router.post("/client", authenticateAdmin, async (req, res) => {
 
 router.post("/mark-visit", authenticateAdmin, async (req, res) => {
     try {
-        const { referralCode } = req.body;
+        const { email } = req.body;
 
-        if (!referralCode) {
-            return res.status(400).json({ success: false, message: "Referral code is required" });
+        if (!email) {
+            return res.status(400).json({ success: false, message: "Email code is required" });
         }
 
         // Находим пользователя
         const user = await prisma.user.findUnique({
-            where: { referralCode },
+            where: { email },
             select: {
                 id: true,
                 totalVisits: true,

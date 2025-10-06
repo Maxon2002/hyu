@@ -52,6 +52,20 @@
                     <p><strong>Email:</strong> <span id="client-email"></span></p>
                     <p><strong>Visits:</strong> <span id="client-visits"></span></p>
                     <p><strong>Friends invited:</strong> <span id="client-friends"></span></p>
+                    <p>
+                        <strong>Comment:</strong>
+                        <span id="client-comment"></span>
+                        <button id="edit-comment-btn">Edit</button>
+                    </p>
+
+                    <!-- Скрытая форма для редактирования -->
+                    <div id="edit-comment-form" class="hidden">
+                        <textarea id="comment-input" rows="3" cols="30"></textarea><br>
+                        <div class="action-buttons">
+                            <button id="save-comment-btn">Save comment</button>
+                            <button id="cancel-comment-btn">Cancel</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="action-buttons">
