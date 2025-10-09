@@ -1,5 +1,7 @@
 let adminToken = localStorage.getItem("adminToken");
 
+
+
 document.addEventListener("DOMContentLoaded", async () => {
 
     if (!adminToken) {
@@ -25,9 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.removeItem("adminToken");
         window.location.href = "/admin/sign-in/";
     }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
 
 
     const tableBody = document.querySelector(".clients-table tbody");

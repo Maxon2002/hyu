@@ -17,8 +17,8 @@ Time: ${time}
 Guests: ${guests}
 
 Name: ${name}
-Phone: ${phone}
-Email: ${email || "Not provided"}
+Email: ${email}
+Phone: ${phone || "Not provided"}
 Message: ${message || "None"}
 `;
   } else {
@@ -30,8 +30,8 @@ Time: ${time}
 Guests: ${guests}
 
 Name: ${name}
-Phone: ${phone}
-Email: ${email || "Not provided"}
+Email: ${email}
+Phone: ${phone || "Not provided"}
 Message: ${message || "None"}
 
 Account info:
@@ -43,8 +43,25 @@ Comment: ${user.comment ? user.comment : "No comments"}`;
   }
 
   try {
+
+    // Сохраняем бронирование в базу
+    await prisma.booking.create({
+      data: {
+        date,
+        time,
+        guests: Number(guests),
+        name,
+        phone: phone || null,
+        email,
+        message: message || null,
+        userId: user?.id || null
+      }
+    });
+
+    // Отправляем письмо
     await sendReservationMail(content);
-    res.status(200).json({ success: true, message: "Reservation sent" });
+
+    res.status(200).json({ success: true, message: "Reservation saved and sent" });
   } catch (err) {
     console.error("Email error:", err);
     res.status(500).json({ success: false, message: "Email failed to send" });

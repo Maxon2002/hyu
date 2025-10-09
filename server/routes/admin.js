@@ -345,7 +345,7 @@ router.get("/clients-brief", async (req, res) => {
 
 
 
-
+// отображение таблицы клиентов
 router.post("/clients-table", async (req, res) => {
     try {
         let { page = 1, limit = 30, filters = {} } = req.body;
@@ -593,6 +593,63 @@ router.post("/client-friends", async (req, res) => {
     } catch (err) {
         console.error("Error fetching client friends:", err);
         res.status(500).json({ error: "Server error" });
+    }
+});
+
+
+// Получение всех бронирований
+router.get("/bookings", authenticateAdmin, async (req, res) => {
+     try {
+        const { date } = req.query; // фильтр по дате, если указан
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        let whereCondition = {};
+
+        if (date) {
+            // фильтр по конкретной дате (например "2025-10-10")
+            const selectedDate = new Date(date);
+            const nextDay = new Date(selectedDate);
+            nextDay.setDate(selectedDate.getDate() + 1);
+
+            whereCondition.date = {
+                gte: selectedDate,
+                lt: nextDay
+            };
+        } else {
+            // upcoming — только начиная с сегодняшнего дня
+            whereCondition.date = {
+                gte: today
+            };
+        }
+
+        const bookings = await prisma.booking.findMany({
+            where: whereCondition,
+            orderBy: { date: "asc" },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        discount: true,
+                        totalVisits: true,
+                        comment: true
+                    }
+                }
+            }
+        });
+
+        return res.json({
+            success: true,
+            bookings
+        });
+    } catch (err) {
+        console.error("Error fetching bookings:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Server error while fetching bookings"
+        });
     }
 });
 

@@ -1,0 +1,327 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    /* height: 100%; */
+    /* margin: 0; */
+    font-family: 'Nunito', sans-serif;
+
+    background-color: #FFFCED;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* header */
+
+.header {
+    position: relative;
+    background-color: #FFFCED;
+    z-index: 120;
+    border-bottom: 1px solid #552B1B;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    padding: 15px 15px;
+    position: relative;
+}
+
+.header-nav {
+    padding: 10px 12px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    border: 1px solid #552B1B;
+    background-color: transparent;
+
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #552B1B;
+}
+
+.header-nav.active {
+    border: none;
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+
+
+
+/* основа */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding: 30px 40px;
+    color: #552B1B;
+
+    font-size: 16px;
+}
+
+.main-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 34px;
+    text-align: left;
+}
+
+
+/* Фильтр */
+.filter-button {
+    width: 100%;
+    /* padding: 6px 10px; */
+    background-color: #FFFCED;
+    border: 1px solid #552B1B;
+    border-radius: 20px;
+    cursor: pointer;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* .filter-button.checked {
+    background-color: #552B1B;
+    border: none;
+    color: #FFFCED;
+} */
+
+.filter-panel {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 10px;
+}
+
+.filter-panel div {
+    text-decoration: underline;
+}
+
+/* .filter-panel img {
+    transition: transform 0.3s ease
+} */
+
+/* .filter-panel.active img {
+    transform: rotate(180deg);
+} */
+
+.filter-dropdown {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 100%;
+
+
+
+    border: 1px solid #552B1B;
+    border-radius: 20px;
+
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    background-color: #FFFCED;
+
+    visibility: hidden;
+
+    z-index: 80;
+}
+
+.filter-dropdown.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.filter-dropdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px 10px;
+    align-items: center;
+}
+
+/* .filter-dropdown-wrapper label {
+    font-size: 14px;
+    display: block;
+    color: #552B1B;
+} */
+
+.filter-dropdown-wrapper input {
+    width: 200px;
+    padding: 6px 8px;
+    font-size: 16px;
+    border: 1px solid #552B1B;
+    border-radius: 15px;
+}
+
+.apply-filters,
+.reset-filters {
+    padding: 6px 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 200px;
+    background-color: #FFFCED;
+    text-align: center;
+}
+
+.apply-filters.hidden,
+.reset-filters.hidden {
+    display: none;
+}
+
+.apply-filters {
+    border: 2px solid #16B656;
+    color: #16B656;
+}
+
+.reset-filters {
+    border: 2px solid #B63616;
+    color: #B63616;
+}
+
+.filter-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #552B1B;
+}
+
+.quick-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quick-btn {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 13px;
+    border: 1px solid #552B1B;
+    border-radius: 15px;
+    background: #FFFCED;
+    cursor: pointer;
+    width: 200px;
+}
+
+.quick-btn:hover {
+    background: #552B1B;
+    color: #FFFCED;
+}
+
+
+
+/* Таблица бронирований */
+.bookings-wrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.bookings-table-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.bookings-table-wrapper .bookings-table-container:first-child .bookings-table-date:first-child {
+    border-radius: 15px 15px 0 0;
+    border: none;
+}
+
+.bookings-table-date {
+    display: flex;
+    align-items: center;
+    background-color: #ECECEC;
+    padding: 8px 10px;
+    border-top: 2px solid #552B1B;
+}
+
+.bookings-table-date-date {
+    margin: 0 auto
+}
+
+.bookings-table-date-total {
+    margin-left: 0;
+    font-weight: bold;
+}
+
+.bookings-table-info {
+    border-top: 2px solid #552B1B;
+    /* border-bottom: 2px solid #552B1B; */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.bookings-table-info-top {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookings-table-info-bottom {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bookings-table-img {
+    width: 15px;
+    height: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+    .main-container {
+        padding: 30px 50px;
+        gap: 15px;
+    }
+
+    .main-title {
+        font-size: 38px;
+    }
+}
+
+
+@media (min-width: 1024px) {
+
+
+    .main-container {
+        padding: 30px 50px;
+        gap: 20px;
+    }
+
+    .main-title {
+        font-size: 45px;
+    }
+}
