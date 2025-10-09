@@ -32,7 +32,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function loadBookings(date = null) {
         try {
-            const res = await fetch(`/api/admin/bookings?date=${date}`);
+            // const res = await fetch(`/api/admin/bookings?date=${date}`);
+            const res = await fetch(`/api/admin/bookings?date=${date}`, {
+                headers: { "Authorization": `Bearer ${adminToken}` }
+            });
             const data = await res.json();
 
             if (!data.success) {
@@ -155,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     resetBtn.addEventListener('click', async () => {
-        
+
         let succesLoading = await loadBookings();
 
         if (succesLoading) {
