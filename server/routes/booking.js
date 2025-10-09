@@ -1,6 +1,9 @@
 import express from "express";
 import { sendReservationMail } from "../utils/mailer.js";
 
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
 const router = express.Router();
 
 router.post("/", async (req, res) => {
