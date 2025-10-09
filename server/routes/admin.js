@@ -606,7 +606,7 @@ router.get("/bookings", authenticateAdmin, async (req, res) => {
 
         let whereCondition = {};
 
-        if (date) {
+        if (date && date !== "null" && date !== "undefined" && date.trim() !== "") {
             // фильтр по конкретной дате (например "2025-10-10")
             const selectedDate = new Date(date);
             const nextDay = new Date(selectedDate);
