@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const { date, time, guests, name, phone, email, message, user } = req.body;
-  console.log(date)
+  const parsedDate = new Date(`${date}T00:00:00.000Z`);
 
   let content
 
@@ -51,7 +51,7 @@ Comment: ${user.comment ? user.comment : "No comments"}`;
     // Сохраняем бронирование в базу
     await prisma.booking.create({
       data: {
-        date,
+        date: parsedDate,
         time,
         guests: Number(guests),
         name,
