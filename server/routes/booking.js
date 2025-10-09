@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const { date, time, guests, name, phone, email, message, user } = req.body;
+  console.log(date)
 
   let content
 
