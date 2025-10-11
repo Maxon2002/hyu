@@ -56,47 +56,48 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderBookingsTable(bookings) {
         bookingsTableWrapper.innerHTML = "";
 
-        // Группируем по дате
-        const grouped = {};
-        bookings.forEach((b) => {
-            const date = b.date.split("T")[0]; // "2025-10-09"
-            if (!grouped[date]) grouped[date] = [];
-            grouped[date].push(b);
-        });
+        if (bookings.length > 0) {
+            // Группируем по дате
+            const grouped = {};
+            bookings.forEach((b) => {
+                const date = b.date.split("T")[0]; // "2025-10-09"
+                if (!grouped[date]) grouped[date] = [];
+                grouped[date].push(b);
+            });
 
-        Object.keys(grouped)
-            .sort() // сортировка по дате
-            .forEach((date) => {
-                const dayBookings = grouped[date];
+            Object.keys(grouped)
+                .sort() // сортировка по дате
+                .forEach((date) => {
+                    const dayBookings = grouped[date];
 
-                const totalBookings = dayBookings.length;
-                const totalGuests = dayBookings.reduce((sum, b) => sum + b.guests, 0);
+                    const totalBookings = dayBookings.length;
+                    const totalGuests = dayBookings.reduce((sum, b) => sum + b.guests, 0);
 
-                // контейнер дня
-                const container = document.createElement("div");
-                container.className = "bookings-table-container";
+                    // контейнер дня
+                    const container = document.createElement("div");
+                    container.className = "bookings-table-container";
 
-                // верхний блок с датой
-                const dateDiv = document.createElement("div");
-                dateDiv.className = "bookings-table-date";
-                dateDiv.innerHTML = `
+                    // верхний блок с датой
+                    const dateDiv = document.createElement("div");
+                    dateDiv.className = "bookings-table-date";
+                    dateDiv.innerHTML = `
                 <div class="bookings-table-date-date">${date}</div>
                 <div class="bookings-table-date-total">${totalBookings} (${totalGuests})</div>
             `;
-                container.appendChild(dateDiv);
+                    container.appendChild(dateDiv);
 
-                // блоки бронирований этого дня
-                dayBookings
-                    .sort((a, b) => a.time.localeCompare(b.time)) // сортировка по времени
-                    .forEach((b) => {
-                        const infoDiv = document.createElement("div");
-                        infoDiv.className = "bookings-table-info";
+                    // блоки бронирований этого дня
+                    dayBookings
+                        .sort((a, b) => a.time.localeCompare(b.time)) // сортировка по времени
+                        .forEach((b) => {
+                            const infoDiv = document.createElement("div");
+                            infoDiv.className = "bookings-table-info";
 
-                        infoDiv.id = b.id
+                            infoDiv.id = b.id
 
-                        const hasAccount = !!b.user;
+                            const hasAccount = !!b.user;
 
-                        infoDiv.innerHTML = `
+                            infoDiv.innerHTML = `
                         <div class="bookings-table-info-top">
                             <div class="bookings-table-time">${b.time}</div>
                             <div class="bookings-table-pax">${b.guests}</div>
@@ -104,17 +105,22 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <div class="bookings-table-info-bottom">
                             <div class="bookings-table-name">${b.name}</div>
                             ${hasAccount
-                                ? `<img src="../../images/account-icon.svg" alt="" class="bookings-table-img">`
-                                : ""
-                            }
+                                    ? `<img src="../../images/account-icon.svg" alt="" class="bookings-table-img">`
+                                    : ""
+                                }
                         </div>
                     `;
 
-                        container.appendChild(infoDiv);
-                    });
+                            container.appendChild(infoDiv);
+                        });
 
-                bookingsTableWrapper.appendChild(container);
-            });
+                    bookingsTableWrapper.appendChild(container);
+                });
+        } else {
+            const div = document.createElement("div")
+            div.innerHTML = "Bookings not found"
+            bookingsTableWrapper.appendChild(div);
+        }
     }
 
     // Загружаем при открытии страницы
@@ -303,14 +309,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
-     window.addEventListener("click", e => {
-        
+    window.addEventListener("click", e => {
+
         if (e.target === modalClient) {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
             document.body.style.overflow = ''
         }
-        
+
     });
 
 });
