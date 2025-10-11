@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function loadBookings(date = null) {
         try {
-            // const res = await fetch(`/api/admin/bookings?date=${date}`);
+
             const res = await fetch(`/api/admin/bookings?date=${date}`, {
                 headers: { "Authorization": `Bearer ${adminToken}` }
             });
@@ -172,13 +172,51 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let bookingInfo = document.querySelector(".booking-info-wrapper")
     let bookingInfoClose = document.querySelector(".booking-info-close")
+    let bookingName = bookingInfo.querySelector("#booking-name")
+    let bookingDate = bookingInfo.querySelector("#booking-date")
+    let bookingTime = bookingInfo.querySelector("#booking-time")
+    let bookingGuests = bookingInfo.querySelector("#booking-guests")
+    let bookingEmail = bookingInfo.querySelector("#booking-email")
+    let bookingPhone = bookingInfo.querySelector("#booking-phone")
+    let bookingMessage = bookingInfo.querySelector("#booking-message")
+    let bookingComment = bookingInfo.querySelector("#booking-comment")
 
-    document.querySelector(".bookings-table-wrapper").addEventListener("click", (e) => {
+    let accountInfo = document.querySelectorAll(".account-info")
+
+
+    document.querySelector(".bookings-table-wrapper").addEventListener("click", async (e) => {
 
         if (e.target.closest(".bookings-table-info")) {
 
             let booking = e.target.closest(".bookings-table-info")
 
+            const res = await fetch(`/api/admin/get-booking?id=${booking.id}`, {
+                headers: { "Authorization": `Bearer ${adminToken}` }
+            });
+            const data = await res.json();
+
+            if (!data.success) {
+                console.error("Ошибка при загрузке бронирований:", data.message);
+                return data.success;
+            }
+
+            let bookingInformation = data.booking
+
+            bookingName.innerHTML = bookingInformation.name
+            bookingDate.innerHTML = bookingInformation.date.slice(0, 10)
+            bookingTime.innerHTML = bookingInformation.time
+            bookingGuests.innerHTML = bookingInformation.guests
+            bookingEmail.innerHTML = bookingInformation.email
+            bookingPhone.innerHTML = bookingInformation.phone ? bookingInformation.phone : "Not provided"
+            bookingMessage.innerHTML = bookingInformation.message ? bookingInformation.message : "None"
+
+            if (bookingInformation.user) {
+                accountInfo.forEach(acInfo => {
+                    acInfo.classList.remove('hidden')
+                })
+
+                bookingComment.innerHTML = bookingInformation.user.comment ? bookingInformation.user.comment : "No comments"
+            }
 
             booking.classList.add('active')
             let imgAccount = booking.querySelector('img')
@@ -193,6 +231,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     bookingInfoClose.addEventListener('click', () => {
         bookingInfo.closest('.booking-info-wrapper').classList.remove('active')
+
+
 
         document.querySelectorAll('.bookings-table-info').forEach(booking => {
             booking.classList.remove('active')

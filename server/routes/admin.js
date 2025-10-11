@@ -599,7 +599,7 @@ router.post("/client-friends", async (req, res) => {
 
 // Получение всех бронирований
 router.get("/bookings", authenticateAdmin, async (req, res) => {
-     try {
+    try {
         const { date } = req.query; // фильтр по дате, если указан
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -649,6 +649,48 @@ router.get("/bookings", authenticateAdmin, async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Server error while fetching bookings"
+        });
+    }
+});
+
+
+router.get("/get-booking", authenticateAdmin, async (req, res) => {
+    try {
+
+        const { id } = req.query;
+
+        if (!id) {
+            return res.status(400).json({ error: "Id is required" });
+        }
+
+        // находим бронирование
+        const booking = await prisma.booking.findUnique({
+            where: { id },
+            select: {
+                date: true,
+                time: true,
+                guests: true,
+                name: true,
+                phone: true,
+                email: true,
+                message: true,
+                user: true
+            }
+        });
+
+        if (!booking) {
+            return res.status(404).json({ error: "Booking not found" });
+        }
+
+        return res.json({
+            success: true,
+            booking
+        });
+    } catch (err) {
+        console.error("Error fetching booking:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Server error while fetching booking"
         });
     }
 });
