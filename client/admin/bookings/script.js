@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // рендерим строку в модальное окно
                 modalClientBody.innerHTML = `
             <tr>
-              <td><span class="clickable table-email">${email}</span></td>
+              <td><span class="clickable table-email">${currentEmail}</span></td>
               <td>${client.referralCode}</td>
               <td>${client.createdAt.slice(0, 10)}</td>
               <td><span class="clickable table-visits">${client.totalVisits}</span></td>
