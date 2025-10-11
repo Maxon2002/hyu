@@ -76,6 +76,7 @@ body {
     color: #552B1B;
 
     font-size: 16px;
+    align-items: center;
 }
 
 .main-title {
@@ -303,6 +304,7 @@ body {
 
 
 .booking-info-wrapper {
+    background-color: #FFFCED;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -312,7 +314,8 @@ body {
     position: absolute;
 
     top: 0;
-    left: 350px;
+    left: -10px;
+    padding: 10px;
 
     opacity: 0;
     visibility: hidden;
@@ -459,10 +462,16 @@ body {
     .main-container {
         padding: 30px 50px;
         gap: 15px;
+        align-items: start;
     }
 
     .main-title {
         font-size: 38px;
+    }
+
+
+    .booking-info-wrapper {
+        left: 350px;
     }
 }
 
