@@ -231,6 +231,10 @@ body {
 
 
 /* Таблица бронирований */
+.bookings-main-container {
+    position: relative;
+}
+
 .bookings-wrapper {
     width: 300px;
     display: flex;
@@ -275,6 +279,11 @@ body {
     cursor: pointer;
 }
 
+.bookings-table-info.active {
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
 .bookings-table-info-top {
     font-weight: bold;
     display: flex;
@@ -293,10 +302,72 @@ body {
 }
 
 
+.booking-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    width: 300px;
+
+    position: absolute;
+
+    top: 0;
+    left: 350px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+    
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
 
 
+    
+
+.booking-info-wrapper.active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
 
 
+.booking-info-close {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.booking-info-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+}
+
+.booking-info-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.booking-info-main-changeable {
+    display: flex;
+    justify-content: space-between;
+}
+
+.change-booking-info {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.account-info.hidden {
+    display: none;
+}
+
+.view-account {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 
 

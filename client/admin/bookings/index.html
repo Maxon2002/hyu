@@ -33,86 +33,135 @@
         <div class="main-container">
             <div class="main-title">Bookings</div>
 
-            <div class="bookings-wrapper">
-                <div class="filter-button" id="date-filter">
-                    <div class="filter-panel">
-                        <div class="filter-value">Upcoming bookings</div>
-                    </div>
-                    <div class="filter-dropdown">
-                        <div class="filter-dropdown-wrapper">
-                            <input type="date" id="date">
+            <div class="bookings-main-container">
+                <div class="bookings-wrapper">
+                    <div class="filter-button" id="date-filter">
+                        <div class="filter-panel">
+                            <div class="filter-value">Upcoming bookings</div>
+                        </div>
+                        <div class="filter-dropdown">
+                            <div class="filter-dropdown-wrapper">
+                                <input type="date" id="date">
 
-                            <div class="apply-filters hidden">
-                                <div>Apply date</div>
-                            </div>
+                                <div class="apply-filters hidden">
+                                    <div>Apply date</div>
+                                </div>
 
-                            <div class="reset-filters hidden">
-                                <div>Reset date</div>
-                            </div>
+                                <div class="reset-filters hidden">
+                                    <div>Reset date</div>
+                                </div>
 
-                            <div class="filter-separator"></div>
+                                <div class="filter-separator"></div>
 
-                            <div class="quick-filters">
-                                <button type="button" class="quick-btn" id="yesterday">Yesterday</button>
-                                <button type="button" class="quick-btn" id="today">Today</button>
-                                <button type="button" class="quick-btn" id="tommorow">Tommorow</button>
+                                <div class="quick-filters">
+                                    <button type="button" class="quick-btn" id="yesterday">Yesterday</button>
+                                    <button type="button" class="quick-btn" id="today">Today</button>
+                                    <button type="button" class="quick-btn" id="tommorow">Tommorow</button>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="bookings-table-wrapper">
+                        <!-- <div class="bookings-table-container">
+                            <div class="bookings-table-date">
+                                <div class="bookings-table-date-date">2025-10-08</div>
+                                <div class="bookings-table-date-total">2(8)</div>
+                            </div>
+                            <div class="bookings-table-info">
+                                <div class="bookings-table-info-top">
+                                    <div class="bookings-table-time">15:00</div>
+                                    <div class="bookings-table-pax">3</div>
+                                </div>
+                                <div class="bookings-table-info-bottom">
+                                    <div class="bookings-table-name">Maksim Khaisarov</div>
+                                    <img src="../../images/account-icon.svg" alt="" class="bookings-table-img">
+                                </div>
+                            </div>
+                            <div class="bookings-table-info">
+                                <div class="bookings-table-info-top">
+                                    <div class="bookings-table-time">16:30</div>
+                                    <div class="bookings-table-pax">5</div>
+                                </div>
+                                <div class="bookings-table-info-bottom">
+                                    <div class="bookings-table-name">Anton</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bookings-table-container">
+                            <div class="bookings-table-date">
+                                <div class="bookings-table-date-date">2025-10-09</div>
+                                <div class="bookings-table-date-total">2(3)</div>
+                            </div>
+                            <div class="bookings-table-info">
+                                <div class="bookings-table-info-top">
+                                    <div class="bookings-table-time">12:30</div>
+                                    <div class="bookings-table-pax">1</div>
+                                </div>
+                                <div class="bookings-table-info-bottom">
+                                    <div class="bookings-table-name">Boris Morozov</div>
+                                </div>
+                            </div>
+                            <div class="bookings-table-info">
+                                <div class="bookings-table-info-top">
+                                    <div class="bookings-table-time">17:00</div>
+                                    <div class="bookings-table-pax">2</div>
+                                </div>
+                                <div class="bookings-table-info-bottom">
+                                    <div class="bookings-table-name">Andrew Tate</div>
+                                    <img src="../../images/account-icon.svg" alt="" class="bookings-table-img">
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
 
-                <div class="bookings-table-wrapper">
-                    <!-- <div class="bookings-table-container">
-                        <div class="bookings-table-date">
-                            <div class="bookings-table-date-date">2025-10-08</div>
-                            <div class="bookings-table-date-total">2(8)</div>
+                <div class="booking-info-wrapper">
+                    <img src="../../images/prev-button.svg" alt="" class="booking-info-close">
+                    <div class="booking-info-title">Booking information</div>
+                    <div class="booking-info-main-container">
+                        <div>
+                            <strong>Name:</strong><br><span id="booking-name">Maksim Khaisarov</span>
                         </div>
-                        <div class="bookings-table-info">
-                            <div class="bookings-table-info-top">
-                                <div class="bookings-table-time">15:00</div>
-                                <div class="bookings-table-pax">3</div>
+                        <div class="booking-info-main-changeable">
+                            <div>
+                                <strong>Date:</strong><br><span id="booking-date">2025-10-08</span>
                             </div>
-                            <div class="bookings-table-info-bottom">
-                                <div class="bookings-table-name">Maksim Khaisarov</div>
-                                <img src="../../images/account-icon.svg" alt="" class="bookings-table-img">
-                            </div>
-                        </div>
-                        <div class="bookings-table-info">
-                            <div class="bookings-table-info-top">
-                                <div class="bookings-table-time">16:30</div>
-                                <div class="bookings-table-pax">5</div>
-                            </div>
-                            <div class="bookings-table-info-bottom">
-                                <div class="bookings-table-name">Anton</div>
+                            <div class="change-booking-info change-date">
+                                Change
                             </div>
                         </div>
+                        <div class="booking-info-main-changeable">
+                            <div>
+                                <strong>Time:</strong><br><span id="booking-time">15:00</span>
+                            </div>
+                            <div class="change-booking-info change-date">
+                                Change
+                            </div>
+                        </div>
+                        <div class="booking-info-main-changeable">
+                            <div>
+                                <strong>Guests:</strong><br><span id="booking-guests">3</span>
+                            </div>
+                            <div class="change-booking-info change-date">
+                                Change
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Email:</strong><br><span id="booking-email">haisarov16@gmail.com</span>
+                        </div>
+                        <div>
+                            <strong>Phone:</strong><br><span id="booking-phone">Not provided</span>
+                        </div>
+                        <div>
+                            <strong>Message:</strong><br><span id="booking-phone">None</span>
+                        </div>
+                        <div class="account-info">
+                            <strong>Comment from account:</strong><br><span id="booking-comment">No comments</span>
+                        </div>
+                        <div class="account-info view-account">View account</div>
                     </div>
-
-                    <div class="bookings-table-container">
-                        <div class="bookings-table-date">
-                            <div class="bookings-table-date-date">2025-10-09</div>
-                            <div class="bookings-table-date-total">2(3)</div>
-                        </div>
-                        <div class="bookings-table-info">
-                            <div class="bookings-table-info-top">
-                                <div class="bookings-table-time">12:30</div>
-                                <div class="bookings-table-pax">1</div>
-                            </div>
-                            <div class="bookings-table-info-bottom">
-                                <div class="bookings-table-name">Boris Morozov</div>
-                            </div>
-                        </div>
-                        <div class="bookings-table-info">
-                            <div class="bookings-table-info-top">
-                                <div class="bookings-table-time">17:00</div>
-                                <div class="bookings-table-pax">2</div>
-                            </div>
-                            <div class="bookings-table-info-bottom">
-                                <div class="bookings-table-name">Andrew Tate</div>
-                                <img src="../../images/account-icon.svg" alt="" class="bookings-table-img">
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

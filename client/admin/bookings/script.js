@@ -92,6 +92,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         const infoDiv = document.createElement("div");
                         infoDiv.className = "bookings-table-info";
 
+                        infoDiv.id = b.id
+
                         const hasAccount = !!b.user;
 
                         infoDiv.innerHTML = `
@@ -168,5 +170,37 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
+    let bookingInfo = document.querySelector(".booking-info-wrapper")
+    let bookingInfoClose = document.querySelector(".booking-info-close")
+
+    document.querySelector(".bookings-table-wrapper").addEventListener("click", (e) => {
+
+        if (e.target.closest(".bookings-table-info")) {
+
+            let booking = e.target.closest(".bookings-table-info")
+
+
+            booking.classList.add('active')
+            let imgAccount = booking.querySelector('img')
+            if (imgAccount) {
+                imgAccount.src = "../../images/account-icon-light.svg";
+            }
+
+            bookingInfo.classList.add('active')
+        }
+
+    });
+
+    bookingInfoClose.addEventListener('click', () => {
+        bookingInfo.closest('.booking-info-wrapper').classList.remove('active')
+
+        document.querySelectorAll('.bookings-table-info').forEach(booking => {
+            booking.classList.remove('active')
+            let imgAccount = booking.querySelector('img')
+            if (imgAccount) {
+                imgAccount.src = "../../images/account-icon.svg";
+            }
+        })
+    })
 
 });
