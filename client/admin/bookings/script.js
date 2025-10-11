@@ -216,6 +216,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 })
 
                 bookingComment.innerHTML = bookingInformation.user.comment ? bookingInformation.user.comment : "No comments"
+            } else {
+                accountInfo.forEach(acInfo => {
+                    acInfo.classList.add('hidden')
+                })
             }
 
             document.querySelectorAll('.bookings-table-info').forEach(booking => {
