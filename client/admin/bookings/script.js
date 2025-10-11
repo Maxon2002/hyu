@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dropdown = document.querySelector('.filter-dropdown');
 
     panel.addEventListener('click', () => {
-        panel.classList.toggle('active');
+        // panel.classList.toggle('active');
         dropdown.classList.toggle('active');
     });
 
@@ -156,6 +156,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             filterValue.textContent = selectedDate.slice(0, 10);
             applyBtn.classList.add('hidden');
             resetBtn.classList.remove('hidden');
+
+            dropdown.classList.remove('active')
         }
     });
 
@@ -164,9 +166,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         let succesLoading = await loadBookings();
 
         if (succesLoading) {
+            dateInput.value = ""
             filterValue.textContent = "Upcoming bookings";
-            applyBtn.classList.add('hidden');
-            resetBtn.classList.remove('hidden');
+            resetBtn.classList.add('hidden');
+
         }
     });
 
