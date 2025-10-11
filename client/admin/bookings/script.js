@@ -218,6 +218,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 bookingComment.innerHTML = bookingInformation.user.comment ? bookingInformation.user.comment : "No comments"
             }
 
+            document.querySelectorAll('.bookings-table-info').forEach(booking => {
+                booking.classList.remove('active')
+                let imgAccount = booking.querySelector('img')
+                if (imgAccount) {
+                    imgAccount.src = "../../images/account-icon.svg";
+                }
+            })
+
             booking.classList.add('active')
             let imgAccount = booking.querySelector('img')
             if (imgAccount) {
