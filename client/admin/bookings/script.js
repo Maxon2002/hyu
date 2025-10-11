@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             dateInput.value = ""
             filterValue.textContent = "Upcoming bookings";
             resetBtn.classList.add('hidden');
-
+            applyBtn.classList.add('hidden');
         }
     });
 
