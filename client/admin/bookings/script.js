@@ -183,6 +183,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let accountInfo = document.querySelectorAll(".account-info")
 
+    let currentEmail
+
 
     document.querySelector(".bookings-table-wrapper").addEventListener("click", async (e) => {
 
@@ -214,6 +216,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 accountInfo.forEach(acInfo => {
                     acInfo.classList.remove('hidden')
                 })
+
+                currentEmail = bookingInformation.user.email
 
                 bookingComment.innerHTML = bookingInformation.user.comment ? bookingInformation.user.comment : "No comments"
             } else {
@@ -254,5 +258,43 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         })
     })
+
+
+
+    const modalClient = document.getElementById("client-modal");
+    const modalClientClose = modalClient.querySelector(".modal-close");
+    const modalClientBody = modalClient.querySelector("tbody");
+
+    document.querySelector('.view-account').addEventListener('click', () => {
+        // запрос на сервер за полными данными клиента
+        fetch(`/api/admin/search-result?email=${currentEmail}`)
+            .then((res) => res.json())
+            .then((client) => {
+
+                const lastVisit = client.visits[0]?.visitDate || null;
+                // рендерим строку в модальное окно
+                modalClientBody.innerHTML = `
+            <tr>
+              <td><span class="clickable table-email">${email}</span></td>
+              <td>${client.referralCode}</td>
+              <td>${client.createdAt.slice(0, 10)}</td>
+              <td><span class="clickable table-visits">${client.totalVisits}</span></td>
+              <td>${lastVisit ? lastVisit.slice(0, 10) : "-"}</td>
+              <td><span class="clickable table-discount">${client.discount}%</span></td>
+              <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
+            </tr>
+          `;
+                modalClient.style.display = "block";
+            })
+            .catch((err) => {
+                console.error("Error loading client:", err);
+            });
+    })
+
+    // закрытие модалки
+    modalClientClose.addEventListener("click", () => {
+        modalClient.style.display = "none";
+        modalClientBody.innerHTML = "";
+    });
 
 });

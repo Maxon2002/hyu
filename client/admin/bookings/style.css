@@ -317,12 +317,12 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateX(-20px);
-    
+
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 
-    
+
 
 .booking-info-wrapper.active {
     transform: translateX(0);
@@ -369,6 +369,89 @@ body {
     cursor: pointer;
 }
 
+
+
+
+/* фоновый слой */
+.modal {
+    display: none;
+    /* скрыто по умолчанию */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* затемнение */
+}
+
+/* содержимое окна */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* кнопка закрытия */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+
+.modal-table {
+    margin-top: 20px;
+}
+
+
+
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+
+}
+
+.clients-table th,
+.clients-table td {
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.clients-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.clients-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.clients-table .clickable {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.clients-table .clickable:hover {
+    color: #005bb5;
+    /* эффект при наведении */
+}
 
 
 
