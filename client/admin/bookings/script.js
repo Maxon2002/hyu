@@ -285,6 +285,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             </tr>
           `;
                 modalClient.style.display = "block";
+                document.body.style.overflow = 'hidden'
             })
             .catch((err) => {
                 console.error("Error loading client:", err);
@@ -295,6 +296,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     modalClientClose.addEventListener("click", () => {
         modalClient.style.display = "none";
         modalClientBody.innerHTML = "";
+        document.body.style.overflow = ''
+    });
+
+
+     window.addEventListener("click", e => {
+        
+        if (e.target === modalClient) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+            document.body.style.overflow = ''
+        }
+        
     });
 
 });

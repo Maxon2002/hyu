@@ -28,7 +28,7 @@ router.post("/sign-in", async (req, res) => {
         const token = jwt.sign(
             { role: "admin" }, // полезно добавить роль в payload
             process.env.JWT_SECRET,
-            { expiresIn: "7d" }
+            { expiresIn: "30d" }
         );
 
         return res.json({ success: true, token });

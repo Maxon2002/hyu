@@ -320,6 +320,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             </tr>
           `;
                     modalClient.style.display = "block";
+                    document.body.style.overflow = 'hidden'
                 })
                 .catch((err) => {
                     console.error("Error loading client:", err);
@@ -331,6 +332,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     modalClientClose.addEventListener("click", () => {
         modalClient.style.display = "none";
         modalClientBody.innerHTML = "";
+        document.body.style.overflow = ''
     });
 
 
@@ -444,6 +446,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalEmailBody.innerHTML = "";
 
         editCommentForm.classList.add("hidden");
+
+        document.body.style.overflow = ''
     });
 
 
@@ -547,6 +551,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalVisits.style.display = "none";
         // очищаем прошлые данные
         modalVisitsBody.innerHTML = "";
+        document.body.style.overflow = ''
     });
 
 
@@ -596,6 +601,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalDiscountBody.innerHTML = "";
 
         editDiscountForm.classList.add("hidden");
+        document.body.style.overflow = 'hidden'
     });
 
 
@@ -704,6 +710,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     friendsClose.addEventListener("click", () => {
         friendsModal.style.display = "none";
         friendsTableBody.innerHTML = "";
+        document.body.style.overflow = 'hidden'
     });
 
 
@@ -718,6 +725,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalVisitsEmail.textContent = `Client: ${email}`;
             modalVisits.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientVisits(email);
         }
@@ -727,6 +735,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             friendsEmail.textContent = `Client: ${email}`;
             friendsModal.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientFriends(email);
         }
@@ -737,6 +746,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalEmailEmail.textContent = `Client: ${email}`;
             modalEmail.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientComment(email);
         }
@@ -747,6 +757,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalDiscountEmail.textContent = `Client: ${email}`;
             modalDiscount.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientDiscount(email);
         }
@@ -763,6 +774,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalVisitsEmail.textContent = `Client: ${email}`;
             modalVisits.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientVisits(email);
         }
@@ -776,6 +788,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             friendsEmail.textContent = `Client: ${email}`;
             friendsModal.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientFriends(email);
         }
@@ -789,6 +802,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalEmailEmail.textContent = `Client: ${email}`;
             modalEmail.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientComment(email);
         }
@@ -802,6 +816,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalDiscountEmail.textContent = `Client: ${email}`;
             modalDiscount.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientDiscount(email);
         }
@@ -817,6 +832,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalVisitsEmail.textContent = `Client: ${email}`;
             modalVisits.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientVisits(email);
         }
@@ -829,6 +845,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             friendsEmail.textContent = `Client: ${email}`;
             friendsModal.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientFriends(email);
         }
@@ -842,6 +859,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalEmailEmail.textContent = `Client: ${email}`;
             modalEmail.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientComment(email);
         }
@@ -855,6 +873,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modalDiscountEmail.textContent = `Client: ${email}`;
             modalDiscount.style.display = "block";
+            document.body.style.overflow = 'hidden'
 
             loadClientDiscount(email);
         }
@@ -868,22 +887,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (e.target === friendsModal) {
             friendsModal.style.display = "none";
             friendsTableBody.innerHTML = "";
+            document.body.style.overflow = ''
         }
         if (e.target === modalVisits) {
             modalVisits.style.display = "none";
             modalVisitsBody.innerHTML = "";
+            document.body.style.overflow = ''
         }
         if (e.target === modalClient) {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
+            document.body.style.overflow = ''
         }
         if (e.target === modalEmail) {
             modalEmail.style.display = "none";
             modalEmailBody.innerHTML = "";
+            document.body.style.overflow = ''
         }
         if (e.target === modalDiscount) {
             modalDiscount.style.display = "none";
             modalDiscountBody.innerHTML = "";
+            document.body.style.overflow = ''
         }
     });
 
