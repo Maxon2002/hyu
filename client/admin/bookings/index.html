@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="bookings-table-wrapper">
-                        <!-- <div class="bookings-table-container">
+                        <div class="bookings-table-container">
                             <div class="bookings-table-date">
                                 <div class="bookings-table-date-date">2025-10-08</div>
                                 <div class="bookings-table-date-total">2(8)</div>
@@ -113,11 +113,11 @@
                                     <img src="../../images/account-icon.svg" alt="" class="bookings-table-img">
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
-                <div class="booking-info-wrapper">
+                <div class="booking-info-wrapper active">
                     <img src="../../images/prev-button.svg" alt="" class="booking-info-close">
                     <div class="booking-info-title">Booking information</div>
                     <div class="booking-info-main-container">
@@ -128,24 +128,38 @@
                             <div>
                                 <strong>Date:</strong><br><span id="booking-date"></span>
                             </div>
-                            <div class="change-booking-info change-date">
-                                Change
+                            <div class="change-booking-info">
+                                <div class="change-booking-info-btn">Change</div>
+                                <div class="change-input hidden">
+                                    <input type="date" id="date-change">
+                                    <img src="../../images/change-button.svg" alt="" class="change-date">
+                                </div>
                             </div>
                         </div>
                         <div class="booking-info-main-changeable">
                             <div>
                                 <strong>Time:</strong><br><span id="booking-time"></span>
                             </div>
-                            <div class="change-booking-info change-date">
-                                Change
+                            <div class="change-booking-info">
+                                <div class="change-booking-info-btn">Change</div>
+                                <div class="change-input hidden">
+                                    <input type="time" id="time-change">
+                                    <img src="../../images/change-button.svg" alt="" class="change-time">
+                                </div>
                             </div>
                         </div>
                         <div class="booking-info-main-changeable">
                             <div>
-                                <strong>Guests:</strong><br><span id="booking-guests">3</span>
+                                <strong>Guests:</strong><br><span id="booking-guests"></span>
                             </div>
                             <div class="change-booking-info change-date">
-                                Change
+                                <div class="change-booking-info">
+                                    <div class="change-booking-info-btn">Change</div>
+                                    <div class="change-input hidden">
+                                        <input type="number" id="guests-change">
+                                        <img src="../../images/change-button.svg" alt="" class="change-guests">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -262,7 +276,8 @@
 
                     <!-- Скрытая форма для редактирования -->
                     <div id="edit-discount-form" class="hidden">
-                        <input type="number" id="discount-input" name="discount" placeholder="Enter new discount value" required>
+                        <input type="number" id="discount-input" name="discount" placeholder="Enter new discount value"
+                            required>
                         <!-- <textarea id="comment-input" rows="3" cols="30"></textarea><br> -->
                         <div class="action-buttons">
                             <div id="save-discount-btn">Save</div>

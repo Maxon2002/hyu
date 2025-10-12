@@ -727,6 +727,66 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
+    friendsTableBody.addEventListener("click", (e) => {
+        if (e.target.classList.contains("table-visits")) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalVisitsEmail.textContent = `Client: ${email}`;
+            modalVisits.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientVisits(email);
+        }
+        if (e.target.classList.contains("table-friends")) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            friendsEmail.textContent = `Client: ${email}`;
+            friendsModal.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientFriends(email);
+        }
+
+        if (e.target.classList.contains("table-email")) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalEmailEmail.textContent = `Client: ${email}`;
+            modalEmail.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientComment(email);
+        }
+
+        if (e.target.classList.contains("table-discount")) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalDiscountEmail.textContent = `Client: ${email}`;
+            modalDiscount.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientDiscount(email);
+        }
+    });
+
+
 
     window.addEventListener("click", e => {
 
@@ -759,5 +819,63 @@ document.addEventListener("DOMContentLoaded", async () => {
             dropdown.classList.remove('active')
         }
     });
+
+
+    let changeBookingInfoBtn = document.querySelectorAll('.change-booking-info-btn')
+
+    changeBookingInfoBtn.forEach(changeBtn => {
+        changeBtn.addEventListener('click', () => {
+            let inputBlock = changeBtn.closest(".change-booking-info").querySelector(".change-input")
+            if (changeBtn.classList.contains('active')) {
+
+                inputBlock.classList.add('hidden')
+                changeBtn.classList.remove('active')
+                inputBlock.querySelector('input').value = ""
+            } else {
+                changeBtn.classList.add('active')
+
+                inputBlock.classList.remove('hidden')
+            }
+        })
+    })
+
+    let changeDateBtn = document.querySelector('.change-date')
+    let changeTimeBtn = document.querySelector('.change-time')
+    let changeGuestsBtn = document.querySelector('.change-guests')
+
+    changeDateBtn.addEventListener('click', async () => {
+
+        if(changeDateBtn.classList.contains('active')) return
+        changeDateBtn.classList.add('active')
+
+        let dateInput = document.getElementById('date-change')
+        if (dateInput.value) {
+            let bookingId = document.querySelector('.bookings-table-info.active').id
+            fetch("/api/admin/change-booking-date", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}`
+                },
+                body: JSON.stringify({
+                    id: bookingId,
+                    date: dateInput.value
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        bookingDate.innerHTML = dateInput.value.slice(0, 10)
+
+                        changeDateBtn.closest('.change-input').classList.add('hidden')
+
+                        dateInput.value = ""
+                    } else {
+                        alert(data.message || "Failed to change the booking date");
+                    }
+                })
+                .catch(err => console.error("Error fetching clients:", err));
+        }
+    })
 
 });

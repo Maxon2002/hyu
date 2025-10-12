@@ -362,6 +362,38 @@ body {
 .change-booking-info {
     text-decoration: underline;
     cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.change-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.change-input.hidden {
+    display: none;
+}
+
+.change-input input {
+    padding: 3px 5px;
+    font-size: 16px;
+    border: 1px solid #552B1B;
+    border-radius: 15px;
+    /* max-width: 150px; */
+}
+
+#guests-change {
+    width: 50px;
+}
+
+.change-input img {
+    width: 18px;
+    height: 18px;
 }
 
 .account-info.hidden {
