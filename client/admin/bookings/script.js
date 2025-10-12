@@ -911,7 +911,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         bookingTime.innerHTML = timeInput.value
 
                         changeTimeBtn.closest('.change-input').classList.add('hidden')
-                        changeDateBtn.closest('.change-booking-info').querySelector('.change-booking-info-btn').classList.remove('active')
+                        changeTimeBtn.closest('.change-booking-info').querySelector('.change-booking-info-btn').classList.remove('active')
 
                         timeInput.value = ""
 
@@ -952,7 +952,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         bookingGuests.innerHTML = guestsInput.value
 
                         changeGuestsBtn.closest('.change-input').classList.add('hidden')
-                        changeDateBtn.closest('.change-booking-info').querySelector('.change-booking-info-btn').classList.remove('active')
+                        changeGuestsBtn.closest('.change-booking-info').querySelector('.change-booking-info-btn').classList.remove('active')
 
                         guestsInput.value = ""
 
