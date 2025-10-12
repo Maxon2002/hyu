@@ -877,9 +877,50 @@ document.addEventListener("DOMContentLoaded", async () => {
                         alert(data.message || "Failed to change the booking date");
                     }
                 })
-                .catch(err => console.error("Error fetching clients:", err));
+                .catch(err => console.error("Error fetching:", err));
         } else {
             changeDateBtn.classList.remove('active')
+        }
+    })
+
+
+    changeTimeBtn.addEventListener('click', async () => {
+
+        if(changeTimeBtn.classList.contains('active')) return
+        changeTimeBtn.classList.add('active')
+
+        let timeInput = document.getElementById('time-change')
+        if (timeInput.value) {
+            let bookingId = document.querySelector('.bookings-table-info.active').id
+            
+            fetch("/api/admin/change-booking-time", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}`
+                },
+                body: JSON.stringify({
+                    id: bookingId,
+                    time: timeInput.value
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        bookingTime.innerHTML = timeInput.value
+
+                        changeTimeBtn.closest('.change-input').classList.add('hidden')
+
+                        timeInput.value = ""
+
+                        changeTimeBtn.classList.remove('active')
+                    } else {
+                        alert(data.message || "Failed to change the booking time");
+                    }
+                })
+                .catch(err => console.error("Error fetching:", err));
+        } else {
+            changeTimeBtn.classList.remove('active')
         }
     })
 

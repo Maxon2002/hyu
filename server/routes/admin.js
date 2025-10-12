@@ -729,5 +729,38 @@ router.post("/change-booking-date", authenticateAdmin, async (req, res) => {
 });
 
 
+// изменить время бронирования
+
+router.post("/change-booking-time", authenticateAdmin, async (req, res) => {
+    try {
+        const { id, time } = req.body;
+
+        if (!id) {
+            return res.status(400).json({ success: false, message: "Id is required" });
+        }
+
+        // Обновляем комментарий
+        await prisma.booking.update({
+            where: { id },
+            data: { time }
+        });
+
+        return res.json({
+            success: true,
+            message: "Booking time updated successfully"
+        });
+
+    } catch (err) {
+        console.error("Error in /change-booking-time:", err);
+
+        if (err.code === "P2025") { // Prisma "Record not found"
+            return res.status(404).json({ success: false, message: "Booking not found" });
+        }
+
+        return res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
+
 
 export default router;
