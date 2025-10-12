@@ -166,12 +166,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         d.setDate(d.getDate() - 1);
         const dateStr = formatDate(d);
         dateInput.value = dateStr;
+        applyBtn.classList.remove('hidden');
     });
 
     todayBtn.addEventListener("click", async () => {
         const d = new Date();
         const dateStr = formatDate(d);
         dateInput.value = dateStr;
+        applyBtn.classList.remove('hidden');
     });
 
     tomorrowBtn.addEventListener("click", async () => {
@@ -179,6 +181,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         d.setDate(d.getDate() + 1);
         const dateStr = formatDate(d);
         dateInput.value = dateStr;
+        applyBtn.classList.remove('hidden');
     });
 
 
