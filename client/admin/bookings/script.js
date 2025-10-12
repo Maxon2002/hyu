@@ -924,4 +924,44 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     })
 
+    changeGuestsBtn.addEventListener('click', async () => {
+
+        if(changeGuestsBtn.classList.contains('active')) return
+        changeGuestsBtn.classList.add('active')
+
+        let guestsInput = document.getElementById('guests-change')
+        if (guestsInput.value) {
+            let bookingId = document.querySelector('.bookings-table-info.active').id
+            
+            fetch("/api/admin/change-booking-guests", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}`
+                },
+                body: JSON.stringify({
+                    id: bookingId,
+                    guests: guestsInput.value
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        bookingGuests.innerHTML = guestsInput.value
+
+                        changeGuestsBtn.closest('.change-input').classList.add('hidden')
+
+                        guestsInput.value = ""
+
+                        changeGuestsBtn.classList.remove('active')
+                    } else {
+                        alert(data.message || "Failed to change the booking guests");
+                    }
+                })
+                .catch(err => console.error("Error fetching:", err));
+        } else {
+            changeGuestsBtn.classList.remove('active')
+        }
+    })
+
 });
