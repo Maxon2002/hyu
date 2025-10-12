@@ -870,6 +870,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         changeDateBtn.closest('.change-input').classList.add('hidden')
 
                         dateInput.value = ""
+
+                        changeDateBtn.classList.remove('active')
                     } else {
                         alert(data.message || "Failed to change the booking date");
                     }
