@@ -143,10 +143,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resetBtn = document.querySelector('.reset-filters');
     const filterValue = document.querySelector('.filter-value');
 
+    // Быстрые кнопки
+    const yesterdayBtn = document.getElementById("yesterday");
+    const todayBtn = document.getElementById("today");
+    const tomorrowBtn = document.getElementById("tommorow");
+
     dateInput.addEventListener('change', () => {
         if (dateInput.value) {
             applyBtn.classList.remove('hidden');
+        } else {
+            applyBtn.classList.add("hidden");
         }
+    });
+
+    function formatDate(date) {
+        return date.toISOString().split("T")[0];
+    }
+
+    // === Быстрые фильтры ===
+    yesterdayBtn.addEventListener("click", async () => {
+        const d = new Date();
+        d.setDate(d.getDate() - 1);
+        const dateStr = formatDate(d);
+        dateInput.value = dateStr;
+    });
+
+    todayBtn.addEventListener("click", async () => {
+        const d = new Date();
+        const dateStr = formatDate(d);
+        dateInput.value = dateStr;
+    });
+
+    tomorrowBtn.addEventListener("click", async () => {
+        const d = new Date();
+        d.setDate(d.getDate() + 1);
+        const dateStr = formatDate(d);
+        dateInput.value = dateStr;
     });
 
 
