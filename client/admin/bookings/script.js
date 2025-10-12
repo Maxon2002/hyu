@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalClientBody.innerHTML = "";
             document.body.style.overflow = ''
         }
-        if(!e.target.closest(".filter-dropdown") && dropdown.classList.contains('active')) {
+        if(!e.target.closest(".filter-dropdown") && dropdown.classList.contains('active') && !e.target.closest(".filter-panel")) {
             dropdown.classList.remove('active')
         }
     });
