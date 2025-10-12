@@ -851,6 +851,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         let dateInput = document.getElementById('date-change')
         if (dateInput.value) {
             let bookingId = document.querySelector('.bookings-table-info.active').id
+            const parsedDate = new Date(`${dateInput.value}T00:00:00.000Z`);
             fetch("/api/admin/change-booking-date", {
                 method: "POST",
                 headers: {
@@ -859,7 +860,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 },
                 body: JSON.stringify({
                     id: bookingId,
-                    date: dateInput.value
+                    date: parsedDate
                 })
             })
                 .then(res => res.json())
@@ -877,6 +878,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                 })
                 .catch(err => console.error("Error fetching clients:", err));
+        } else {
+            changeDateBtn.classList.remove('active')
         }
     })
 
