@@ -166,7 +166,7 @@
             </div>
 
 
-
+            <!-- модальное окно клиента -->
             <div class="modal" id="client-modal">
                 <div class="modal-content">
                     <img src="../../images/close-button.svg" alt="" class="modal-close">
@@ -185,6 +185,114 @@
                         </thead>
                         <tbody id="modal-client-body">
                             <!-- сюда динамически вставляем строку клиента -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- Модальное окно email -->
+            <div id="email-modal" class="modal">
+                <div class="modal-content">
+                    <img src="../../images/close-button.svg" alt="" class="modal-close">
+                    <h2>Comments</h2>
+                    <p class="modal-email"></p>
+                    <table class="clients-table modal-table">
+                        <thead>
+                            <tr>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- динамические строки -->
+                        </tbody>
+                    </table>
+
+                    <div id="edit-comment-btn">Edit comment</div>
+
+                    <!-- Скрытая форма для редактирования -->
+                    <div id="edit-comment-form" class="hidden">
+                        <textarea id="comment-input" rows="3" cols="30"></textarea><br>
+                        <div class="action-buttons">
+                            <div id="save-comment-btn">Save comment</div>
+                            <div id="cancel-comment-btn">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно всех визитов -->
+            <div id="visits-modal" class="modal">
+                <div class="modal-content">
+                    <img src="../../images/close-button.svg" alt="" class="modal-close">
+                    <h2>Total visits</h2>
+                    <p class="modal-email"></p>
+                    <table class="clients-table modal-table">
+                        <thead>
+                            <tr>
+                                <th>Visit date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- динамические строки -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- Модальное окно для скидки -->
+            <div id="discount-modal" class="modal">
+                <div class="modal-content">
+                    <img src="../../images/close-button.svg" alt="" class="modal-close">
+                    <h2>Discount</h2>
+                    <p class="modal-email"></p>
+                    <table class="clients-table modal-table">
+                        <thead>
+                            <tr>
+                                <th>Discount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- динамические строки -->
+                        </tbody>
+                    </table>
+
+                    <div id="edit-discount-btn">Edit discount</div>
+
+                    <!-- Скрытая форма для редактирования -->
+                    <div id="edit-discount-form" class="hidden">
+                        <input type="number" id="discount-input" name="discount" placeholder="Enter new discount value" required>
+                        <!-- <textarea id="comment-input" rows="3" cols="30"></textarea><br> -->
+                        <div class="action-buttons">
+                            <div id="save-discount-btn">Save</div>
+                            <div id="cancel-discount-btn">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Модальное окно для друзей -->
+            <div id="friends-modal" class="modal">
+                <div class="modal-content modal-large">
+                    <img src="../../images/close-button.svg" alt="" class="modal-close">
+                    <h2>Friends invited</h2>
+                    <p class="modal-email"></p>
+                    <table class="clients-table modal-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>ID</th>
+                                <th>Registration date</th>
+                                <th>Total visits</th>
+                                <th>Last visit</th>
+                                <th>Discount</th>
+                                <th>Friends invited</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- динамически вставляем -->
                         </tbody>
                     </table>
                 </div>

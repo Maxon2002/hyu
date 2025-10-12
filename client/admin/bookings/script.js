@@ -343,14 +343,419 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
+
+    const modalEmail = document.getElementById("email-modal");
+    const modalEmailEmail = modalEmail.querySelector(".modal-email");
+    const modalEmailBody = modalEmail.querySelector("tbody");
+    const modalEmailClose = modalEmail.querySelector(".modal-close");
+
+
+    // функция загрузки и рендера данных
+    async function loadClientComment(email) {
+        currentEmail = email
+        try {
+            const res = await fetch("/api/admin/client-comment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("error");
+            const data = await res.json();
+
+
+
+            if (data.comment && data.comment.length > 0) {
+
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.classList.add('comment')
+                td.textContent = data.comment;
+                tr.appendChild(td);
+                modalEmailBody.appendChild(tr);
+
+            } else {
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.classList.add('comment')
+                td.textContent = "No comments";
+                tr.appendChild(td);
+                modalEmailBody.appendChild(tr);
+            }
+
+        } catch (err) {
+            console.error(err);
+            modalEmailBody.innerHTML = "<tr><td>Error loading comments</td></tr>";
+        }
+    }
+
+
+
+    // закрытие модалки
+    modalEmailClose.addEventListener("click", () => {
+        modalEmail.style.display = "none";
+        // очищаем прошлые данные
+        modalEmailBody.innerHTML = "";
+
+        editCommentForm.classList.add("hidden");
+
+        document.body.style.overflow = ''
+    });
+
+
+
+
+
+    const editCommentBtn = document.getElementById("edit-comment-btn");
+    const editCommentForm = document.getElementById("edit-comment-form");
+    const commentInput = document.getElementById("comment-input");
+    const saveCommentBtn = document.getElementById("save-comment-btn");
+    const cancelCommentBtn = document.getElementById("cancel-comment-btn");
+
+    editCommentBtn.addEventListener("click", () => {
+        // показать форму и подставить текст
+        commentInput.value = document.querySelector('.comment').textContent !== "No comments" ? document.querySelector('.comment').textContent : "";
+        editCommentForm.classList.remove("hidden");
+    });
+
+    cancelCommentBtn.addEventListener("click", () => {
+        // скрыть форму без изменений
+        editCommentForm.classList.add("hidden");
+    });
+
+    saveCommentBtn.addEventListener("click", async () => {
+        const newComment = commentInput.value.trim();
+
+        try {
+            const res = await fetch("/api/admin/update-comment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}` // если у тебя как в других запросах
+                },
+                body: JSON.stringify({
+                    email: currentEmail,
+                    comment: newComment
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                document.querySelector('.comment').textContent = newComment || "No comments";
+                editCommentForm.classList.add("hidden");
+            } else {
+                alert(data.message || "Failed to update comment");
+            }
+        } catch (err) {
+            console.error("Update comment error:", err);
+            alert("Server error. Please try again later.");
+        }
+    });
+
+
+
+
+
+    const modalVisits = document.getElementById("visits-modal");
+    const modalVisitsEmail = modalVisits.querySelector(".modal-email");
+    const modalVisitsBody = modalVisits.querySelector("tbody");
+    const modalVisitsClose = modalVisits.querySelector(".modal-close");
+
+    // функция загрузки и рендера данных
+    async function loadClientVisits(email) {
+        try {
+            const res = await fetch("/api/admin/client-visits", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("error");
+            const data = await res.json();
+
+
+
+            if (data.visits && data.visits.length > 0) {
+                data.visits.forEach(date => {
+                    const tr = document.createElement("tr");
+                    const td = document.createElement("td");
+                    td.textContent = date;
+                    tr.appendChild(td);
+                    modalVisitsBody.appendChild(tr);
+                });
+            } else {
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.textContent = "No visits";
+                tr.appendChild(td);
+                modalVisitsBody.appendChild(tr);
+            }
+
+        } catch (err) {
+            console.error(err);
+            modalTableBody.innerHTML = "<tr><td>Error loading visits</td></tr>";
+        }
+    }
+
+
+
+    // закрытие модалки
+    modalVisitsClose.addEventListener("click", () => {
+        modalVisits.style.display = "none";
+        // очищаем прошлые данные
+        modalVisitsBody.innerHTML = "";
+        document.body.style.overflow = ''
+    });
+
+
+
+
+
+    const modalDiscount = document.getElementById("discount-modal");
+    const modalDiscountEmail = modalDiscount.querySelector(".modal-email");
+    const modalDiscountBody = modalDiscount.querySelector("tbody");
+    const modalDiscountClose = modalDiscount.querySelector(".modal-close");
+    // let currentEmail
+
+    // функция загрузки и рендера данных
+    async function loadClientDiscount(email) {
+        currentEmail = email
+        try {
+            const res = await fetch("/api/admin/client-discount", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("error");
+            const data = await res.json();
+
+
+            const tr = document.createElement("tr");
+            const td = document.createElement("td");
+            td.classList.add('discount')
+            td.textContent = data.discount;
+            tr.appendChild(td);
+            modalDiscountBody.appendChild(tr);
+
+
+        } catch (err) {
+            console.error(err);
+            modalDiscountBody.innerHTML = "<tr><td>Error loading discount</td></tr>";
+        }
+    }
+
+
+
+    // закрытие модалки
+    modalDiscountClose.addEventListener("click", () => {
+        modalDiscount.style.display = "none";
+        // очищаем прошлые данные
+        modalDiscountBody.innerHTML = "";
+
+        editDiscountForm.classList.add("hidden");
+        document.body.style.overflow = ''
+    });
+
+
+
+    const editDiscountBtn = document.getElementById("edit-discount-btn");
+    const editDiscountForm = document.getElementById("edit-discount-form");
+    const discountInput = document.getElementById("discount-input");
+    const saveDiscountBtn = document.getElementById("save-discount-btn");
+    const cancelDiscountBtn = document.getElementById("cancel-discount-btn");
+
+    editDiscountBtn.addEventListener("click", () => {
+        // показать форму и подставить текст
+        discountInput.value = "";
+        editDiscountForm.classList.remove("hidden");
+    });
+
+    cancelDiscountBtn.addEventListener("click", () => {
+        // скрыть форму без изменений
+        editDiscountForm.classList.add("hidden");
+    });
+
+    saveDiscountBtn.addEventListener("click", async () => {
+        const newDiscount = discountInput.value.trim();
+
+
+        try {
+            const res = await fetch("/api/admin/update-discount", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${adminToken}`
+                },
+                body: JSON.stringify({
+                    email: currentEmail,
+                    discount: newDiscount
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                document.querySelector('.discount').textContent = newDiscount;
+                editDiscountForm.classList.add("hidden");
+            } else {
+                alert(data.message || "Failed to update discount");
+            }
+        } catch (err) {
+            console.error("Update discount error:", err);
+            alert("Server error. Please try again later.");
+        }
+    });
+
+
+
+
+
+
+    const friendsModal = document.getElementById("friends-modal");
+    const friendsEmail = friendsModal.querySelector(".modal-email");
+    const friendsTableBody = friendsModal.querySelector("tbody");
+    const friendsClose = friendsModal.querySelector(".modal-close");
+
+    async function loadClientFriends(email) {
+        try {
+            const res = await fetch("/api/admin/client-friends", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            if (!res.ok) throw new Error("Ошибка запроса");
+            const data = await res.json();
+
+
+
+            if (data.friends && data.friends.length > 0) {
+                data.friends.forEach(friend => {
+                    const tr = document.createElement("tr");
+
+                    const lastVisit = friend.visits[0]?.visitDate || null;
+
+                    tr.innerHTML = `
+          <td><span class="clickable table-email">${friend.email}</span></td>
+          <td>${friend.referralCode}</td>
+          <td>${friend.createdAt.slice(0, 10)}</td>
+          <td><span class="clickable table-visits">${friend.totalVisits}</span></td>
+          <td>${lastVisit ? lastVisit.slice(0, 10) : "-"}</td>
+          <td><span class="clickable table-discount">${friend.discount}%</span></td>
+          <td><span class="clickable table-friends">${friend.friendsInvited}</span></td>
+        `;
+
+                    friendsTableBody.appendChild(tr);
+                });
+            } else {
+                friendsTableBody.innerHTML = `<tr><td colspan="7">No invited friends</td></tr>`;
+            }
+
+        } catch (err) {
+            console.error(err);
+            friendsTableBody.innerHTML = "<tr><td colspan='7'>Error loading friends</td></tr>";
+        }
+    }
+
+
+    // закрытие
+    friendsClose.addEventListener("click", () => {
+        friendsModal.style.display = "none";
+        friendsTableBody.innerHTML = "";
+        document.body.style.overflow = 'hidden'
+    });
+
+
+
+    modalClientBody.addEventListener("click", (e) => {
+        if (e.target.classList.contains("table-visits")) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalVisitsEmail.textContent = `Client: ${email}`;
+            modalVisits.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientVisits(email);
+        }
+        if (e.target.classList.contains("table-friends")) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            friendsEmail.textContent = `Client: ${email}`;
+            friendsModal.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientFriends(email);
+        }
+
+        if (e.target.classList.contains("table-email")) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalEmailEmail.textContent = `Client: ${email}`;
+            modalEmail.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientComment(email);
+        }
+
+        if (e.target.classList.contains("table-discount")) {
+            modalClient.style.display = "none";
+            modalClientBody.innerHTML = "";
+
+            const row = e.target.closest("tr");
+            const email = row.querySelector("td").textContent.trim();
+
+            modalDiscountEmail.textContent = `Client: ${email}`;
+            modalDiscount.style.display = "block";
+            document.body.style.overflow = 'hidden'
+
+            loadClientDiscount(email);
+        }
+    });
+
+
+
     window.addEventListener("click", e => {
 
+        if (e.target === friendsModal) {
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+            document.body.style.overflow = ''
+        }
+        if (e.target === modalVisits) {
+            modalVisits.style.display = "none";
+            modalVisitsBody.innerHTML = "";
+            document.body.style.overflow = ''
+        }
         if (e.target === modalClient) {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
             document.body.style.overflow = ''
         }
-        if(!e.target.closest(".filter-dropdown") && dropdown.classList.contains('active') && !e.target.closest(".filter-panel")) {
+        if (e.target === modalEmail) {
+            modalEmail.style.display = "none";
+            modalEmailBody.innerHTML = "";
+            document.body.style.overflow = ''
+        }
+        if (e.target === modalDiscount) {
+            modalDiscount.style.display = "none";
+            modalDiscountBody.innerHTML = "";
+            document.body.style.overflow = ''
+        }
+        if (!e.target.closest(".filter-dropdown") && dropdown.classList.contains('active') && !e.target.closest(".filter-panel")) {
             dropdown.classList.remove('active')
         }
     });
