@@ -144,7 +144,7 @@ body {
     transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
     background-color: #FFFCED;
 
-    
+
 
     z-index: 80;
 }
@@ -458,6 +458,85 @@ body {
     /* эффект при наведении */
 }
 
+
+
+
+#edit-comment-form.hidden,
+#edit-discount-form.hidden {
+    display: none;
+}
+
+#edit-comment-form,
+#edit-discount-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#edit-comment-form textarea {
+    padding: 10px 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+
+#edit-discount-form input {
+    padding: 10px 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#edit-comment-btn,
+#edit-discount-btn {
+    padding: 7px 11px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    border: 1px solid #552B1B;
+    background-color: transparent;
+    color: #552B1B;
+
+    margin: 15px 0;
+
+    align-self: center;
+}
+
+
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#save-comment-btn,
+#save-discount-btn {
+    padding: 7px 11px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    background-color: #552B1B;
+    color: #FFFCED;
+}
+
+#cancel-comment-btn,
+#cancel-discount-btn {
+    padding: 7px 11px;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    border: 1px solid #552B1B;
+    background-color: transparent;
+    color: #552B1B;
+}
 
 
 @media (min-width: 768px) {
