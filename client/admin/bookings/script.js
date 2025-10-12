@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    
+    const panel = document.querySelector('.filter-panel');
     const dropdown = document.querySelector('.filter-dropdown');
 
     panel.addEventListener('click', () => {
