@@ -128,11 +128,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    const panel = document.querySelector('.filter-panel');
+    
     const dropdown = document.querySelector('.filter-dropdown');
 
     panel.addEventListener('click', () => {
-        // panel.classList.toggle('active');
         dropdown.classList.toggle('active');
     });
 
@@ -351,7 +350,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalClientBody.innerHTML = "";
             document.body.style.overflow = ''
         }
-
+        if(!e.target.closest(".filter-dropdown") && dropdown.classList.contains('active')) {
+            dropdown.classList.remove('active')
+        }
     });
 
 });
