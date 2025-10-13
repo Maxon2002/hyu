@@ -238,10 +238,10 @@ body {
 }
 
 .bookings-wrapper {
-    width: 300px;
+    width: 320px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 6px;
 }
 
 .bookings-table-wrapper {
@@ -310,7 +310,7 @@ body {
     flex-direction: column;
     gap: 15px;
 
-    width: 300px;
+    width: 320px;
 
     position: absolute;
 
