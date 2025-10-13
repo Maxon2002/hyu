@@ -1119,6 +1119,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalObj = {}
             countModalObj = 0
         }
+        if (!e.target.closest(".filter-dropdown") && e.target.closest(".filter-dropdown")?.classList.contains('active') && !e.target.closest(".filter-panel")) {
+            e.target.closest(".filter-panel").classList.remove('active')
+            dropdown.classList.remove('active')
+        }
     });
 
 
