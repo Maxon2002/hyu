@@ -664,7 +664,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     friendsClose.addEventListener("click", () => {
         friendsModal.style.display = "none";
         friendsTableBody.innerHTML = "";
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = ''
     });
 
 
@@ -788,7 +788,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    window.addEventListener("click", e => {
+    window.addEventListener("pointerdown", e => {
 
         if (e.target === friendsModal) {
             friendsModal.style.display = "none";
