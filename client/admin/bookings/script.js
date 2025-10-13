@@ -823,6 +823,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         if (lastModal.modal === "modalFriends") {
+            friendsTableBody.innerHTML = "";
             loadClientFriends(lastModal.email)
         }
 
