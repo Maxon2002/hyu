@@ -710,7 +710,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     friendsClose.addEventListener("click", () => {
         friendsModal.style.display = "none";
         friendsTableBody.innerHTML = "";
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = ''
     });
 
 

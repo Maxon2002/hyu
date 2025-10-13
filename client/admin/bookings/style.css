@@ -427,7 +427,7 @@ body {
 .modal-content {
     background-color: #fff;
     margin: 10% auto;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     width: 80%;
     max-width: 900px;
@@ -438,14 +438,27 @@ body {
     overflow: auto;
 }
 
-/* кнопка закрытия */
-.modal-close {
+.modal-prev {
     position: absolute;
     top: 10px;
     left: 10px;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+}
+
+.modal-prev.hidden {
+    display: none;
+}
+
+/* кнопка закрытия */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
 }
 
 
