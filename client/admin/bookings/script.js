@@ -348,9 +348,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalClient.style.display = "none";
         modalClientBody.innerHTML = "";
         document.body.style.overflow = ''
-        prevModal.forEach(prev => {
-            prev.classList.add('hidden')
-        })
+ 
         modalObj = {}
         countModalObj = 0
     });
@@ -366,10 +364,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // функция загрузки и рендера данных
     async function loadClientComment(email) {
+        currentEmail = email
+
         modalEmailEmail.textContent = `Client: ${email}`;
         modalEmail.style.display = "block";
         document.body.style.overflow = 'hidden'
-        modalEmailPrev.classList.remove('hidden')
+       
 
         try {
             const res = await fetch("/api/admin/client-comment", {
@@ -419,9 +419,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         document.body.style.overflow = ''
 
-        prevModal.forEach(prev => {
-            prev.classList.add('hidden')
-        })
 
         modalObj = {}
         countModalObj = 0
@@ -516,7 +513,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalVisitsEmail.textContent = `Client: ${email}`;
         modalVisits.style.display = "block";
         document.body.style.overflow = 'hidden'
-        modalVisitsPrev.classList.remove('hidden')
+        
 
         try {
             const res = await fetch("/api/admin/client-visits", {
@@ -561,9 +558,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalVisitsBody.innerHTML = "";
         document.body.style.overflow = ''
 
-        prevModal.forEach(prev => {
-            prev.classList.add('hidden')
-        })
 
         modalObj = {}
         countModalObj = 0
@@ -607,10 +601,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // функция загрузки и рендера данных
     async function loadClientDiscount(email) {
+        currentEmail = email
+
         modalDiscountEmail.textContent = `Client: ${email}`;
         modalDiscount.style.display = "block";
         document.body.style.overflow = 'hidden'
-        modalDiscountPrev.classList.remove('hidden')
+        
 
         try {
             const res = await fetch("/api/admin/client-discount", {
@@ -647,10 +643,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         editDiscountForm.classList.add("hidden");
         document.body.style.overflow = ''
-
-        prevModal.forEach(prev => {
-            prev.classList.add('hidden')
-        })
 
         modalObj = {}
         countModalObj = 0
@@ -749,7 +741,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         friendsEmail.textContent = `Client: ${email}`;
         friendsModal.style.display = "block";
         document.body.style.overflow = 'hidden'
-        modalfriendsPrev.classList.remove('hidden')
+        
 
         try {
             const res = await fetch("/api/admin/client-friends", {
@@ -798,10 +790,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         friendsTableBody.innerHTML = "";
         document.body.style.overflow = ''
 
-        prevModal.forEach(prev => {
-            prev.classList.add('hidden')
-        })
-
         modalObj = {}
         countModalObj = 0
     });
@@ -827,8 +815,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             friendsTableBody.innerHTML = "";
             loadClientFriends(lastModal.email)
         }
-
-
 
         delete modalObj[lastKey];
         countModalObj--
@@ -861,6 +847,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
+
             currentModalEmail = email
 
             countModalObj++
@@ -918,10 +905,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            // modalVisitsEmail.textContent = `Client: ${email}`;
-            // modalVisits.style.display = "block";
-            // document.body.style.overflow = 'hidden'
-            // modalVisitsPrev.classList.remove('hidden')
 
             countModalObj++
             modalObj[countModalObj] = {
@@ -939,10 +922,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            // friendsEmail.textContent = `Client: ${email}`;
-            // friendsModal.style.display = "block";
-            // document.body.style.overflow = 'hidden'
-            // modalfriendsPrev.classList.remove('hidden')
 
             countModalObj++
             modalObj[countModalObj] = {
@@ -962,10 +941,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            // modalEmailEmail.textContent = `Client: ${email}`;
-            // modalEmail.style.display = "block";
-            // document.body.style.overflow = 'hidden'
-            // modalEmailPrev.classList.remove('hidden')
 
             countModalObj++
             modalObj[countModalObj] = {
@@ -984,10 +959,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            // modalDiscountEmail.textContent = `Client: ${email}`;
-            // modalDiscount.style.display = "block";
-            // document.body.style.overflow = 'hidden'
-            // modalDiscountPrev.classList.remove('hidden')
 
             countModalObj++
             modalObj[countModalObj] = {
@@ -1007,9 +978,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             friendsModal.style.display = "none";
             friendsTableBody.innerHTML = "";
             document.body.style.overflow = ''
-            prevModal.forEach(prev => {
-                prev.classList.add('hidden')
-            })
+ 
 
             modalObj = {}
             countModalObj = 0
@@ -1018,9 +987,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalVisits.style.display = "none";
             modalVisitsBody.innerHTML = "";
             document.body.style.overflow = ''
-            prevModal.forEach(prev => {
-                prev.classList.add('hidden')
-            })
+ 
 
             modalObj = {}
             countModalObj = 0
@@ -1029,9 +996,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
             document.body.style.overflow = ''
-            prevModal.forEach(prev => {
-                prev.classList.add('hidden')
-            })
 
             modalObj = {}
             countModalObj = 0
@@ -1040,9 +1004,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalEmail.style.display = "none";
             modalEmailBody.innerHTML = "";
             document.body.style.overflow = ''
-            prevModal.forEach(prev => {
-                prev.classList.add('hidden')
-            })
 
             modalObj = {}
             countModalObj = 0
@@ -1051,9 +1012,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalDiscount.style.display = "none";
             modalDiscountBody.innerHTML = "";
             document.body.style.overflow = ''
-            prevModal.forEach(prev => {
-                prev.classList.add('hidden')
-            })
 
             modalObj = {}
             countModalObj = 0

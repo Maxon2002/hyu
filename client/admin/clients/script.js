@@ -291,24 +291,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
+    const prevModal = document.querySelectorAll('.modal-prev')
+
+    let modalObj = {}
+    let countModalObj = 0
+
+    let currentEmail
+    let currentModalEmail
+
     const modalClient = document.getElementById("client-modal");
     const modalClientClose = modalClient.querySelector(".modal-close");
     const modalClientBody = modalClient.querySelector("tbody");
 
 
-    // обработка клика по email в списке результатов
-    resultsContainer.addEventListener("click", (e) => {
-        if (e.target.tagName === "LI") {
-            const email = e.target.textContent.trim();
+    async function loadClientOne(email) {
 
-            // запрос на сервер за полными данными клиента
-            fetch(`/api/admin/search-result?email=${encodeURIComponent(email)}`)
-                .then((res) => res.json())
-                .then((client) => {
+        // запрос на сервер за полными данными клиента
+        fetch(`/api/admin/search-result?email=${encodeURIComponent(email)}`)
+            .then((res) => res.json())
+            .then((client) => {
 
-                    const lastVisit = client.visits[0]?.visitDate || null;
-                    // рендерим строку в модальное окно
-                    modalClientBody.innerHTML = `
+                const lastVisit = client.visits[0]?.visitDate || null;
+                // рендерим строку в модальное окно
+                modalClientBody.innerHTML = `
             <tr>
               <td><span class="clickable table-email">${email}</span></td>
               <td>${client.referralCode}</td>
@@ -319,12 +324,20 @@ document.addEventListener("DOMContentLoaded", async () => {
               <td><span class="clickable table-friends">${client.friendsInvited}</span></td>
             </tr>
           `;
-                    modalClient.style.display = "block";
-                    document.body.style.overflow = 'hidden'
-                })
-                .catch((err) => {
-                    console.error("Error loading client:", err);
-                });
+                modalClient.style.display = "block";
+                document.body.style.overflow = 'hidden'
+            })
+            .catch((err) => {
+                console.error("Error loading client:", err);
+            });
+    }
+
+    // обработка клика по email в списке результатов
+    resultsContainer.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+            const email = e.target.textContent.trim();
+
+            loadClientOne(email)
         }
     });
 
@@ -333,6 +346,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalClient.style.display = "none";
         modalClientBody.innerHTML = "";
         document.body.style.overflow = ''
+
+        modalObj = {}
+        countModalObj = 0
     });
 
 
@@ -396,11 +412,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     const modalEmailEmail = modalEmail.querySelector(".modal-email");
     const modalEmailBody = modalEmail.querySelector("tbody");
     const modalEmailClose = modalEmail.querySelector(".modal-close");
-    let currentEmail
+    const modalEmailPrev = modalEmail.querySelector(".modal-prev");
+    
 
     // функция загрузки и рендера данных
     async function loadClientComment(email) {
         currentEmail = email
+
+        modalEmailEmail.textContent = `Client: ${email}`;
+        modalEmail.style.display = "block";
+        document.body.style.overflow = 'hidden'
+
+        const keys = Object.keys(modalObj);
+        if(keys.length > 0) {
+            modalEmailPrev.classList.remove('hidden')
+        } else {
+            modalEmailPrev.classList.add('hidden')
+        }
+
         try {
             const res = await fetch("/api/admin/client-comment", {
                 method: "POST",
@@ -448,6 +477,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         editCommentForm.classList.add("hidden");
 
         document.body.style.overflow = ''
+
+    
+
+        modalObj = {}
+        countModalObj = 0
+    });
+
+    // предыдущая модалка 
+    modalEmailPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
+
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        modalEmail.style.display = "none";
+        modalEmailBody.innerHTML = "";
+
+        editCommentForm.classList.add("hidden");
+        modalEmailPrev.classList.add("hidden");
+
+        delete modalObj[lastKey];
+        countModalObj--
     });
 
 
@@ -507,9 +565,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     const modalVisitsEmail = modalVisits.querySelector(".modal-email");
     const modalVisitsBody = modalVisits.querySelector("tbody");
     const modalVisitsClose = modalVisits.querySelector(".modal-close");
+    const modalVisitsPrev = modalVisits.querySelector(".modal-prev");
 
     // функция загрузки и рендера данных
     async function loadClientVisits(email) {
+
+        modalVisitsEmail.textContent = `Client: ${email}`;
+        modalVisits.style.display = "block";
+        document.body.style.overflow = 'hidden'
+        
+        const keys = Object.keys(modalObj);
+        if(keys.length > 0) {
+            modalVisitsPrev.classList.remove('hidden')
+        } else {
+            modalVisitsPrev.classList.add('hidden')
+        }
+
         try {
             const res = await fetch("/api/admin/client-visits", {
                 method: "POST",
@@ -552,21 +623,59 @@ document.addEventListener("DOMContentLoaded", async () => {
         // очищаем прошлые данные
         modalVisitsBody.innerHTML = "";
         document.body.style.overflow = ''
+
+
+        modalObj = {}
+        countModalObj = 0
     });
 
 
+    // предыдущая модалка 
+    modalVisitsPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
 
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        modalVisits.style.display = "none";
+        // очищаем прошлые данные
+        modalVisitsBody.innerHTML = "";
+        modalVisitsPrev.classList.add("hidden");
+
+        delete modalObj[lastKey];
+        countModalObj--
+    });
 
 
     const modalDiscount = document.getElementById("discount-modal");
     const modalDiscountEmail = modalDiscount.querySelector(".modal-email");
     const modalDiscountBody = modalDiscount.querySelector("tbody");
     const modalDiscountClose = modalDiscount.querySelector(".modal-close");
-    // let currentEmail
+    const modalDiscountPrev = modalDiscount.querySelector(".modal-prev");
 
     // функция загрузки и рендера данных
     async function loadClientDiscount(email) {
         currentEmail = email
+
+        modalDiscountEmail.textContent = `Client: ${email}`;
+        modalDiscount.style.display = "block";
+        document.body.style.overflow = 'hidden'
+
+        const keys = Object.keys(modalObj);
+        if(keys.length > 0) {
+            modalDiscountPrev.classList.remove('hidden')
+        } else {
+            modalDiscountPrev.classList.add('hidden')
+        }
+        
+
         try {
             const res = await fetch("/api/admin/client-discount", {
                 method: "POST",
@@ -602,6 +711,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         editDiscountForm.classList.add("hidden");
         document.body.style.overflow = ''
+
+        modalObj = {}
+        countModalObj = 0
+    });
+
+
+    // предыдущая модалка 
+    modalDiscountPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
+
+
+
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        modalDiscount.style.display = "none";
+        // очищаем прошлые данные
+        modalDiscountBody.innerHTML = "";
+
+        editDiscountForm.classList.add("hidden");
+        modalDiscountPrev.classList.add("hidden");
+
+        delete modalObj[lastKey];
+        countModalObj--
     });
 
 
@@ -663,8 +803,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     const friendsEmail = friendsModal.querySelector(".modal-email");
     const friendsTableBody = friendsModal.querySelector("tbody");
     const friendsClose = friendsModal.querySelector(".modal-close");
+    const modalfriendsPrev = friendsModal.querySelector(".modal-prev");
 
     async function loadClientFriends(email) {
+
+        friendsEmail.textContent = `Client: ${email}`;
+        friendsModal.style.display = "block";
+        document.body.style.overflow = 'hidden'
+        
+        const keys = Object.keys(modalObj);
+        if(keys.length > 0) {
+            modalfriendsPrev.classList.remove('hidden')
+        } else {
+            modalfriendsPrev.classList.add('hidden')
+        }
+
         try {
             const res = await fetch("/api/admin/client-friends", {
                 method: "POST",
@@ -711,6 +864,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         friendsModal.style.display = "none";
         friendsTableBody.innerHTML = "";
         document.body.style.overflow = ''
+
+        modalObj = {}
+        countModalObj = 0
+    });
+
+    // предыдущая модалка 
+    modalfriendsPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
+
+
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+
+            friendsModal.style.display = "none";
+            friendsTableBody.innerHTML = "";
+            modalfriendsPrev.classList.add("hidden");
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            currentModalEmail = lastModal.email
+            friendsTableBody.innerHTML = "";
+            loadClientFriends(lastModal.email)
+        }
+
+        delete modalObj[lastKey];
+        countModalObj--
     });
 
 
@@ -723,19 +904,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalVisitsEmail.textContent = `Client: ${email}`;
-            modalVisits.style.display = "block";
-            document.body.style.overflow = 'hidden'
 
             loadClientVisits(email);
         }
         if (e.target.classList.contains("table-friends")) {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
-
-            friendsEmail.textContent = `Client: ${email}`;
-            friendsModal.style.display = "block";
-            document.body.style.overflow = 'hidden'
 
             loadClientFriends(email);
         }
@@ -744,9 +918,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalEmailEmail.textContent = `Client: ${email}`;
-            modalEmail.style.display = "block";
-            document.body.style.overflow = 'hidden'
 
             loadClientComment(email);
         }
@@ -755,9 +926,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalDiscountEmail.textContent = `Client: ${email}`;
-            modalDiscount.style.display = "block";
-            document.body.style.overflow = 'hidden'
+  
 
             loadClientDiscount(email);
         }
@@ -772,9 +941,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalVisitsEmail.textContent = `Client: ${email}`;
-            modalVisits.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalFriends",
+                email: currentModalEmail
+            }
 
             loadClientVisits(email);
         }
@@ -786,9 +957,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            friendsEmail.textContent = `Client: ${email}`;
-            friendsModal.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalFriends",
+                email: currentModalEmail
+            }
+
+            currentModalEmail = email
 
             loadClientFriends(email);
         }
@@ -800,9 +975,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalEmailEmail.textContent = `Client: ${email}`;
-            modalEmail.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalFriends",
+                email: currentModalEmail
+            }
 
             loadClientComment(email);
         }
@@ -814,9 +991,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalDiscountEmail.textContent = `Client: ${email}`;
-            modalDiscount.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalFriends",
+                email: currentModalEmail
+            }
 
             loadClientDiscount(email);
         }
@@ -830,9 +1009,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalVisitsEmail.textContent = `Client: ${email}`;
-            modalVisits.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalClient",
+                email
+            }
 
             loadClientVisits(email);
         }
@@ -843,9 +1024,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            friendsEmail.textContent = `Client: ${email}`;
-            friendsModal.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            currentModalEmail = email
+
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalClient",
+                email
+            }
 
             loadClientFriends(email);
         }
@@ -857,9 +1042,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalEmailEmail.textContent = `Client: ${email}`;
-            modalEmail.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalClient",
+                email
+            }
 
             loadClientComment(email);
         }
@@ -871,9 +1058,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-            modalDiscountEmail.textContent = `Client: ${email}`;
-            modalDiscount.style.display = "block";
-            document.body.style.overflow = 'hidden'
+            countModalObj++
+            modalObj[countModalObj] = {
+                modal: "modalClient",
+                email
+            }
 
             loadClientDiscount(email);
         }
@@ -888,26 +1077,48 @@ document.addEventListener("DOMContentLoaded", async () => {
             friendsModal.style.display = "none";
             friendsTableBody.innerHTML = "";
             document.body.style.overflow = ''
+
+            // prevModal.forEach(prev => {
+            //     prev.classList.remove('hidden')
+            // })
+
+            modalObj = {}
+            countModalObj = 0
         }
         if (e.target === modalVisits) {
             modalVisits.style.display = "none";
             modalVisitsBody.innerHTML = "";
             document.body.style.overflow = ''
+
+
+            modalObj = {}
+            countModalObj = 0
         }
         if (e.target === modalClient) {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
             document.body.style.overflow = ''
+
+
+            modalObj = {}
+            countModalObj = 0
         }
         if (e.target === modalEmail) {
             modalEmail.style.display = "none";
             modalEmailBody.innerHTML = "";
             document.body.style.overflow = ''
+
+
+            modalObj = {}
+            countModalObj = 0
         }
         if (e.target === modalDiscount) {
             modalDiscount.style.display = "none";
             modalDiscountBody.innerHTML = "";
             document.body.style.overflow = ''
+
+            modalObj = {}
+            countModalObj = 0
         }
     });
 

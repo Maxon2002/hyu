@@ -407,11 +407,28 @@ body {
     overflow: auto;
 }
 
-/* кнопка закрытия */
-.modal-close {
+
+.modal-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 20px;
+}
+
+.modal-prev {
+    cursor: pointer;
+    width: 19px;
+    height: 19px;
+}
+
+.modal-prev.hidden {
+    display: none;
+}
+
+/* кнопка закрытия */
+.modal-close {
     cursor: pointer;
     width: 35px;
     height: 35px;
