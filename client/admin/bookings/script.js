@@ -227,6 +227,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let accountInfo = document.querySelectorAll(".account-info")
 
     let currentEmail
+    let currentModalEmail
 
 
     document.querySelector(".bookings-table-wrapper").addEventListener("click", async (e) => {
@@ -365,7 +366,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // функция загрузки и рендера данных
     async function loadClientComment(email) {
-        currentEmail = email
+        // currentEmail = email
         try {
             const res = await fetch("/api/admin/client-comment", {
                 method: "POST",
@@ -838,6 +839,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
+            currentModalEmail = email
 
             friendsEmail.textContent = `Client: ${email}`;
             friendsModal.style.display = "block";
@@ -914,7 +916,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             countModalObj++
             modalObj[countModalObj] = {
                 modal: "modalFriends",
-                email
+                email: currentModalEmail
             }
 
             loadClientVisits(email);
@@ -935,8 +937,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             countModalObj++
             modalObj[countModalObj] = {
                 modal: "modalFriends",
-                email
+                email: currentModalEmail
             }
+
+            currentModalEmail = email
 
             loadClientFriends(email);
         }
@@ -956,7 +960,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             countModalObj++
             modalObj[countModalObj] = {
                 modal: "modalFriends",
-                email
+                email: currentModalEmail
             }
 
             loadClientComment(email);
@@ -977,7 +981,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             countModalObj++
             modalObj[countModalObj] = {
                 modal: "modalFriends",
-                email
+                email: currentModalEmail
             }
 
             loadClientDiscount(email);
