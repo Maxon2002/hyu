@@ -413,7 +413,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const modalEmailBody = modalEmail.querySelector("tbody");
     const modalEmailClose = modalEmail.querySelector(".modal-close");
     const modalEmailPrev = modalEmail.querySelector(".modal-prev");
-    
+
 
     // функция загрузки и рендера данных
     async function loadClientComment(email) {
@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.body.style.overflow = 'hidden'
 
         const keys = Object.keys(modalObj);
-        if(keys.length > 0) {
+        if (keys.length > 0) {
             modalEmailPrev.classList.remove('hidden')
         } else {
             modalEmailPrev.classList.add('hidden')
@@ -478,7 +478,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         document.body.style.overflow = ''
 
-    
+
 
         modalObj = {}
         countModalObj = 0
@@ -573,9 +573,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalVisitsEmail.textContent = `Client: ${email}`;
         modalVisits.style.display = "block";
         document.body.style.overflow = 'hidden'
-        
+
         const keys = Object.keys(modalObj);
-        if(keys.length > 0) {
+        if (keys.length > 0) {
             modalVisitsPrev.classList.remove('hidden')
         } else {
             modalVisitsPrev.classList.add('hidden')
@@ -669,12 +669,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.body.style.overflow = 'hidden'
 
         const keys = Object.keys(modalObj);
-        if(keys.length > 0) {
+        if (keys.length > 0) {
             modalDiscountPrev.classList.remove('hidden')
         } else {
             modalDiscountPrev.classList.add('hidden')
         }
-        
+
 
         try {
             const res = await fetch("/api/admin/client-discount", {
@@ -808,9 +808,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         friendsEmail.textContent = `Client: ${email}`;
         friendsModal.style.display = "block";
         document.body.style.overflow = 'hidden'
-        
+
         const keys = Object.keys(modalObj);
-        if(keys.length > 0) {
+        if (keys.length > 0) {
             modalfriendsPrev.classList.remove('hidden')
         } else {
             modalfriendsPrev.classList.add('hidden')
@@ -925,7 +925,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
-  
+
 
             loadClientDiscount(email);
         }
@@ -1119,9 +1119,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalObj = {}
             countModalObj = 0
         }
-        if (!e.target.closest(".filter-dropdown") && e.target.closest(".filter-dropdown")?.classList.contains('active') && !e.target.closest(".filter-panel")) {
-            e.target.closest(".filter-panel").classList.remove('active')
-            dropdown.classList.remove('active')
+        if (!e.target.closest(".filter-dropdown") && !e.target.closest(".filter-panel")) {
+            filterButtons.forEach(button => {
+                const panel = button.querySelector('.filter-panel');
+                const dropdown = button.querySelector('.filter-dropdown');
+
+                if(panel.classList.contains('active')) {
+                    panel.classList.remove('active')
+                    dropdown.classList.remove('active')
+                }
+            });
         }
     });
 
