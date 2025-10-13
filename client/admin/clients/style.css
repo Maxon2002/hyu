@@ -404,14 +404,14 @@ body {
     display: flex;
     flex-direction: column;
 
-    overflow-y: auto;
+    overflow: auto;
 }
 
 /* кнопка закрытия */
 .modal-close {
     position: absolute;
     top: 10px;
-    right: 10px;
+    left: 10px;
     cursor: pointer;
     width: 30px;
     height: 30px;
