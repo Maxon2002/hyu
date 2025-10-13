@@ -663,7 +663,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
 
-        console.log(modalObj)
+        
 
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
@@ -812,6 +812,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const keys = Object.keys(modalObj);
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
+        console.log(modalObj)
 
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
