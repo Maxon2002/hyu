@@ -852,6 +852,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 email
             }
 
+            console.log(modalObj)
+
             loadClientFriends(email);
         }
 
@@ -962,6 +964,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 modal: "modalFriends",
                 email: currentModalEmail
             }
+
+            console.log(modalObj)
 
             loadClientComment(email);
         }
