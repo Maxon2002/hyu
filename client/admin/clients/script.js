@@ -908,6 +908,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
+            currentModalEmail = email
+
             loadClientFriends(email);
         }
 
