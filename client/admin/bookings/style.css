@@ -438,13 +438,19 @@ body {
     overflow: auto;
 }
 
-.modal-prev {
+.modal-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     position: absolute;
     top: 10px;
     left: 10px;
+}
+
+.modal-prev {
     cursor: pointer;
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
 }
 
 .modal-prev.hidden {
@@ -453,9 +459,6 @@ body {
 
 /* кнопка закрытия */
 .modal-close {
-    position: absolute;
-    top: 10px;
-    left: 25px;
     cursor: pointer;
     width: 35px;
     height: 35px;
