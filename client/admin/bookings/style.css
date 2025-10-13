@@ -441,16 +441,16 @@ body {
 .modal-buttons {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 20px;
 }
 
 .modal-prev {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 19px;
 }
 
 .modal-prev.hidden {

@@ -423,21 +423,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // предыдущая модалка 
-
     modalEmailPrev.addEventListener("click", () => {
         const keys = Object.keys(modalObj);
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
+
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
-
-            modalEmail.style.display = "none";
-            // очищаем прошлые данные
-            modalEmailBody.innerHTML = "";
-
-            editCommentForm.classList.add("hidden");
-            modalEmailPrev.classList.add("hidden");
         }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        modalEmail.style.display = "none";
+        modalEmailBody.innerHTML = "";
+
+        editCommentForm.classList.add("hidden");
+        modalEmailPrev.classList.add("hidden");
 
         delete modalObj[lastKey];
         countModalObj--
@@ -557,6 +560,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
+    // предыдущая модалка 
+    modalVisitsPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
+
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        modalVisits.style.display = "none";
+        // очищаем прошлые данные
+        modalVisitsBody.innerHTML = "";
+        modalVisitsPrev.classList.add("hidden");
+
+        delete modalObj[lastKey];
+        countModalObj--
+    });
+
+
+
+
 
 
 
@@ -611,6 +640,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         modalObj = {}
         countModalObj = 0
+    });
+
+
+    // предыдущая модалка 
+    modalDiscountPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
+
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        modalDiscount.style.display = "none";
+        // очищаем прошлые данные
+        modalDiscountBody.innerHTML = "";
+
+        editDiscountForm.classList.add("hidden");
+        modalDiscountPrev.classList.add("hidden");
+
+        delete modalObj[lastKey];
+        countModalObj--
     });
 
 
@@ -728,6 +783,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         modalObj = {}
         countModalObj = 0
+    });
+
+
+    // предыдущая модалка 
+    modalfriendsPrev.addEventListener("click", () => {
+        const keys = Object.keys(modalObj);
+        const lastKey = keys[keys.length - 1];
+        const lastModal = modalObj[lastKey];
+
+        if (lastModal.modal === "modalClient") {
+            loadClientOne(lastModal.email)
+        }
+
+        if (lastModal.modal === "modalFriends") {
+            loadClientFriends(lastModal.email)
+        }
+
+        friendsModal.style.display = "none";
+        friendsTableBody.innerHTML = "";
+        modalfriendsPrev.classList.add("hidden");
+
+        delete modalObj[lastKey];
+        countModalObj--
     });
 
 
