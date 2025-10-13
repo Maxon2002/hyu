@@ -663,6 +663,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
 
+        console.log(modalObj)
+
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
         }
@@ -851,6 +853,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalClient.style.display = "none";
             modalClientBody.innerHTML = "";
 
+            console.log(modalObj)
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
             currentModalEmail = email
@@ -927,7 +930,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             friendsModal.style.display = "none";
             friendsTableBody.innerHTML = "";
 
-
+            console.log(modalObj)
             const row = e.target.closest("tr");
             const email = row.querySelector("td").textContent.trim();
 
