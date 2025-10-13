@@ -430,6 +430,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
 
+        delete modalObj[lastKey];
+        countModalObj--
+
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
         }
@@ -443,9 +446,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         editCommentForm.classList.add("hidden");
         modalEmailPrev.classList.add("hidden");
-
-        delete modalObj[lastKey];
-        countModalObj--
     });
 
 
@@ -569,6 +569,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const keys = Object.keys(modalObj);
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
+        
+        delete modalObj[lastKey];
+        countModalObj--
 
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
@@ -582,9 +585,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         // очищаем прошлые данные
         modalVisitsBody.innerHTML = "";
         modalVisitsPrev.classList.add("hidden");
-
-        delete modalObj[lastKey];
-        countModalObj--
     });
 
 
@@ -655,7 +655,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
 
-
+        delete modalObj[lastKey];
+        countModalObj--
 
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
@@ -671,9 +672,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         editDiscountForm.classList.add("hidden");
         modalDiscountPrev.classList.add("hidden");
-
-        delete modalObj[lastKey];
-        countModalObj--
     });
 
 
@@ -800,7 +798,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const keys = Object.keys(modalObj);
         const lastKey = keys[keys.length - 1];
         const lastModal = modalObj[lastKey];
-
+        
+        delete modalObj[lastKey];
+        countModalObj--
 
         if (lastModal.modal === "modalClient") {
             loadClientOne(lastModal.email)
@@ -815,9 +815,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             friendsTableBody.innerHTML = "";
             loadClientFriends(lastModal.email)
         }
-
-        delete modalObj[lastKey];
-        countModalObj--
     });
 
 
