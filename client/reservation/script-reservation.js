@@ -117,6 +117,12 @@ const signOutBtn = document.querySelector('#sign-out')
 
 signOutBtn.addEventListener("click", () => {
     localStorage.removeItem("authToken"); // удаляем токен
+
+    user = null
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    
     headerSignin.classList.remove("hidden");
     headerAccount.classList.add("hidden");
 });
