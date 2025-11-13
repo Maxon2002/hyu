@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String           @id @default(uuid()) // Account ID = Invite Code
+  referralCode     String           @unique
+  name             String // имя обязательно
+  email            String           @unique
+  phoneNumber      String? // опционально
+  passwordHash     String // храним только хэш
+  discount         Float            @default(10) // начальная скидка 10%
+  totalVisits      Int              @default(0) // всего визитов
+  freeDishProgress Int              @default(0) // от 0 до 4
+  invitedById      String?
+  invitedBy        User?            @relation("Referrals", fields: [invitedById], references: [id])
+  referrals        User[]           @relation("Referrals")
+  friendsInvited   Int              @default(0)
+  friendsVisited   Int              @default(0)
+  comment          String? // комментарий о клиенте, опционально
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  visits           Visit[]
+  achievements     Achievement[]
+  rewards          FreeDishReward[]
+  bookings         Booking[]
+}
+
+model Visit {
+  id             String          @id @default(uuid())
+  user           User            @relation(fields: [userId], references: [id])
+  userId         String
+  visitDate      DateTime        @default(now())
+  rewardUsed     Boolean         @default(false) // получал ли бесплатное блюдо в этот визит
+  freeDishReward FreeDishReward? // обратная связь
+}
+
+model Achievement {
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  type        String // например: "invite_5", "invite_10", "5_friends_visited"
+  isCompleted Boolean   @default(false)
+  achievedAt  DateTime?
+}
+
+model FreeDishReward {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  visit     Visit?   @relation(fields: [visitId], references: [id])
+  visitId   String?  @unique
+  dishName  String? // какой именно выбрал (из 5 доступных)
+  createdAt DateTime @default(now())
+}
+
+model Booking {
+  id        String   @id @default(uuid())
+  date      DateTime
+  time      String
+  guests    Int
+  name      String
+  phone     String?
+  email     String
+  message   String?
+  createdAt DateTime @default(now())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model MenuCategory {
+  id          String                      @id @default(uuid())
+  slug        String                      @unique   // "appetizer", "meat-seafood" и т.д.
+  position    Int                          @default(0)
+
+  items       MenuItem[]
+  translations MenuCategoryTranslation[]
+}
+
+model MenuCategoryTranslation {
+  id           String        @id @default(uuid())
+  category     MenuCategory  @relation(fields: [categoryId], references: [id])
+  categoryId   String
+
+  language     String        // "en", "ru", "ko", "ar"
+  title        String
+}
+
+model MenuItem {
+  id            String                  @id @default(uuid())
+  category      MenuCategory            @relation(fields: [categoryId], references: [id])
+  categoryId    String
+
+  imageSmall    String?
+  imageMedium   String?
+  imageLarge    String?
+
+  position      Int                     @default(0)
+
+  variants      MenuItemVariant[]
+  translations  MenuItemTranslation[]
+}
+
+model MenuItemTranslation {
+  id         String       @id @default(uuid())
+  item       MenuItem     @relation(fields: [itemId], references: [id])
+  itemId     String
+
+  language   String       // "en", "ru", "ko", "ar"
+  title      String
+  description String?
+}
+
+model MenuItemVariant {
+  id          String                    @id @default(uuid())
+  item        MenuItem                  @relation(fields: [itemId], references: [id])
+  itemId      String
+
+  position    Int                        @default(0)
+  price       Float
+  showLabel    Boolean                   @default(true) 
+  translations MenuItemVariantTranslation[]
+}
+
+model MenuItemVariantTranslation {
+  id        String             @id @default(uuid())
+  variant   MenuItemVariant    @relation(fields: [variantId], references: [id])
+  variantId String
+
+  language  String
+  name      String?            // Veg, Tuna, Cheese и т.д. Может быть пустым.
+}
