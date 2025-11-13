@@ -41,3 +41,4 @@ app.set("view engine", "ejs");
 // Публичные файлы (картинки, css, js)
 // app.use("/public", express.static(path.join(__dirname, "../images")));
 app.use("/images", express.static(path.join(__dirname, "client/images"))); 
+app.use('/menu', express.static(path.join(__dirname, 'client/menu')));
