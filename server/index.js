@@ -12,6 +12,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+const __dirname = path.resolve();
 
 
 // middleware
@@ -31,3 +32,12 @@ app.use("/api/admin", adminRoutes);
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
 });
+
+
+// Указываем папку для EJS-шаблонов
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+// Публичные файлы (картинки, css, js)
+// app.use("/public", express.static(path.join(__dirname, "../images")));
+app.use("/images", express.static(path.join(__dirname, "client/images"))); 

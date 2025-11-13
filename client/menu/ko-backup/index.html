@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ko">
 
 <head>
     <!-- Google tag (gtag.js) -->
@@ -14,7 +14,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HYU Korean Restaurant Dubai – Наше меню</title>
+    <title>두바이 HYU 한식당 – 메뉴 보기</title>
 
     <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
@@ -26,37 +26,35 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../style-menu.css">
-    <!-- <link rel="stylesheet" href="style-menu-kr.css"> -->
 </head>
 
 <body>
     <header class="header">
         <div class="header-wrapper">
             <div class="header-buttons">
-
-                <div class="header-button-book"><a href="../../reservation/ru/">Забронировать</a></div>
+                <div class="header-button-book"><a href="../../reservation/ko/">예약하기</a></div>
             </div>
-            <a href="../../ru/" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
+            <a href="../../ko/" class="header-logo"><img src="../../images/Hyu Logo.svg" alt="logo"></a>
             <div class="header-right-buttons">
                 <div class="header-signin">
-                    <div class="header-signin-text"><a href="../../sign-in/ru/">Войти</a></div>
+                    <div class="header-signin-text"><a href="../../sign-in/ko/">로그인</a></div>
                     <img src="../../images/signin-icon.svg" alt="signin-icon" class="header-signin-icon">
                 </div>
 
                 <div class="header-account hidden">
                     <div class="header-account-btn">
-                        <div class="header-account-text">Аккаунт</div>
+                        <div class="header-account-text">계정</div>
                         <img src="../../images/account-icon.svg" alt="account-icon" class="header-account-icon">
                     </div>
                     <div class="header-account-nav">
 
-                        <div class="header-account-nav-btn"><a href="../../account/ru/">Профиль</a></div>
-                        <div class="header-account-nav-btn" id="sign-out">Выйти</div>
+                        <div class="header-account-nav-btn"><a href="../../account/ko/">프로필</a></div>
+                        <div class="header-account-nav-btn" id="sign-out">로그아웃</div>
                     </div>
                 </div>
 
                 <div class="header-language">
-                    <div class="header-language-selected">Русский</div>
+                    <div class="header-language-selected">한국어</div>
                     <img src="../../images/language-icon.svg" alt="language-icon" class="header-language-icon">
                 </div>
             </div>
@@ -65,8 +63,8 @@
         <nav class="site-nav">
             <ul>
                 <li class="nav-list" id="en"><a href="../">English</a></li>
-                <li class="nav-list" id="ko"><a href="../ko/">한국어</a></li>
-                <li class="nav-list active" id="ru">Русский</li>
+                <li class="nav-list active" id="ko">한국어</li>
+                <li class="nav-list" id="ru"><a href="../ru/">Русский</a></li>
                 <li class="nav-list" id="ar"><a href="../ar/">العربية</a></li>
             </ul>
         </nav>
@@ -79,18 +77,18 @@
     <div class="navigation-container">
         <!-- Категории -->
         <div class="nav-categories">
-            <button class="category-btn active" data-target="appetizer">Закуски</button>
-            <button class="category-btn" data-target="meat-seafood">Мясо и морепродукты</button>
-            <button class="category-btn" data-target="rice">Рис</button>
-            <button class="category-btn" data-target="noodle">Лапша</button>
-            <button class="category-btn" data-target="soup">Супы</button>
-            <button class="category-btn" data-target="desserts">Напитки и десерты</button>
+            <button class="category-btn active" data-target="appetizer">전채요리</button>
+            <button class="category-btn" data-target="meat-seafood">고기 & 해산물</button>
+            <button class="category-btn" data-target="rice">밥 요리</button>
+            <button class="category-btn" data-target="noodle">면 요리</button>
+            <button class="category-btn" data-target="soup">국/탕</button>
+            <button class="category-btn" data-target="desserts">음료와 디저트</button>
         </div>
     </div>
 
 
     <div class="category-section" id="appetizer">
-        <h2 class="main-category-title">Закуски</h2>
+        <h2 class="main-category-title">전채요리</h2>
         <div class="cards-wrapper">
             <div class="card-container">
                 <!-- <img src="../../images/food/Kimbab.jpg" alt="Kimbab" class="card-image"> -->
@@ -100,16 +98,15 @@
                     sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Kimbab" class="card-image">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Кимбаб (Kimbab)</h4>
-                    <p class="card-content-description">Корейский ролл из водорослей с мягким рисом, хрустящим огурцом,
-                        сладкой маринованной редькой и морковью, дополненный пикантной рыбной котлетой, нежной крабовой
-                        палочкой и небольшим количеством яйца — для мягкого и сбалансированного вкуса.</p>
+                    <h4 class="card-content-title">김밥 (Kimbab)</h4>
+                    <p class="card-content-description">부드러운 밥과 아삭한 오이, 달콤한 단무지, 당근을 김에 정성스럽게 말아, 고소한 어묵, 부드러운 게맛살, 그리고
+                        은은한 계란을 더해 조화로운 맛을 살린 한국식 김밥.</p>
                     <div class="card-content-price">
-                        <div><span>45 AED</span> <br> Овощи</div>
-                        <div><span>50 AED</span> <br> Кимчи</div>
-                        <div><span>50 AED</span> <br> Сыр</div>
-                        <div><span>55 AED</span> <br> Тунец</div>
-                        <div><span>55 AED</span> <br> Говядина</div>
+                        <div><span>45 AED</span> <br> 야채</div>
+                        <div><span>50 AED</span> <br> 김치</div>
+                        <div><span>50 AED</span> <br> 치즈</div>
+                        <div><span>55 AED</span> <br> 참치</div>
+                        <div><span>55 AED</span> <br> 소고기</div>
                     </div>
                 </div>
             </div>
@@ -123,12 +120,12 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Гунманду (Goonmandoo)</h4>
-                    <p class="card-content-description">Золотистые жареные на сковороде пельмени с хрустящей тонкой
-                        оболочкой, начинённые приправленным мясом или овощами для тёплого и насыщенного вкуса.</p>
+                    <h4 class="card-content-title">군만두 (Goonmandoo)</h4>
+                    <p class="card-content-description">노릇하게 구워낸 바삭하고 얇은 피 속에 양념한 고기나 채소가 가득 들어 있어 따뜻하고 감칠맛 나는 한 입을 선사하는
+                        한국식 군만두.</p>
                     <div class="card-content-price">
-                        <div><span>45 AED</span> <br> Овощи</div>
-                        <div><span>45 AED</span> <br> Говядина</div>
+                        <div><span>45 AED</span> <br> 야채</div>
+                        <div><span>45 AED</span> <br> 소고기</div>
                     </div>
                 </div>
             </div>
@@ -142,9 +139,8 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Гаеланмари (Gaelanmari)</h4>
-                    <p class="card-content-description">Пушистый корейский омлет-ролл, аккуратно свернутый и нарезанный,
-                        с мягкой текстурой и нежным, слегка пикантным вкусом.</p>
+                    <h4 class="card-content-title">계란말이 (Gaelanmari)</h4>
+                    <p class="card-content-description">부드럽게 겹겹이 말아 썰어낸 한국식 달걀말이로, 폭신한 식감과 은은하고 고소한 맛이 특징입니다.</p>
                     <div class="card-content-price">
                         <div><span>50 AED</span></div>
                     </div>
@@ -160,9 +156,8 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Кимчи-чон (Kimchi jeon)</h4>
-                    <p class="card-content-description">Жареный на сковороде корейский блинчик с кимчи, где хрустящие
-                        края сочетаются с мягкой серединой, насыщенный остро-кислым вкусом кимчи.</p>
+                    <h4 class="card-content-title">김치전 (Kimchi jeon)</h4>
+                    <p class="card-content-description">겉은 바삭하고 속은 부드러운 한국식 김치전으로, 매콤하고 새콤한 김치 풍미가 가득합니다.</p>
                     <div class="card-content-price">
                         <div><span>55 AED</span></div>
                     </div>
@@ -178,9 +173,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Хемуль-паджон (Haemool pajeon)</h4>
-                    <p class="card-content-description">Жареный на сковороде блинчик из морепродуктов с нежными
-                        кальмарами, креветками и зелёным луком, хрустящий снаружи и мягкий внутри.</p>
+                    <h4 class="card-content-title">해물파전 (Haemool pajeon)</h4>
+                    <p class="card-content-description">겉은 바삭하고 속은 부드러운 한국식 해물파전으로, 오징어와 새우, 파가 풍부하게 들어 있어 감칠맛이 살아납니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>60 AED</span></div>
                     </div>
@@ -196,9 +191,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Такканчжон (Dakgangjeong)</h4>
-                    <p class="card-content-description">Хрустящие кусочки куриного бедра без костей, обжаренные и
-                        покрытые глянцевым сладко-острым соусом для яркого и незабываемого вкуса.</p>
+                    <h4 class="card-content-title">닭강정 (Dakgangjeong)</h4>
+                    <p class="card-content-description">뼈 없는 닭다리살을 바삭하게 튀겨 달콤하고 매콤한 소스로 버무린 한국식 닭강정으로, 강렬하면서도 중독성 있는 맛이
+                        특징입니다.</p>
                     <div class="card-content-price">
                         <div><span>65 AED</span></div>
                     </div>
@@ -214,9 +209,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Дубу чон (Dooboo jeon)</h4>
-                    <p class="card-content-description">Лёгкий обжаренный на сковороде тофу с хрустящей корочкой снаружи
-                        и нежной серединой, идеально сочетающийся с небольшим количеством соевого соуса.</p>
+                    <h4 class="card-content-title">두부전 (Dooboo jeon)</h4>
+                    <p class="card-content-description">겉은 바삭하고 속은 부드러운 한국식 두부전으로, 가볍게 부쳐낸 두부에 간장을 곁들여 즐기시면 더욱 맛있습니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>55 AED</span></div>
                     </div>
@@ -232,9 +227,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Дубу кимчи (Dooboo kimchi)</h4>
-                    <p class="card-content-description">Мягкий тофу на пару, поданный с остро-кислым жареным кимчи,
-                        сочетая нежную, деликатную текстуру с ярким, пряным вкусом.</p>
+                    <h4 class="card-content-title">두부김치 (Dooboo kimchi)</h4>
+                    <p class="card-content-description">부드럽게 쪄낸 두부와 매콤새콤하게 볶아낸 김치를 함께 제공하는 한국식 두부김치로, 순한 식감과 강렬한 김치 맛이
+                        조화를 이룹니다.</p>
                     <div class="card-content-price">
                         <div><span>60 AED</span></div>
                     </div>
@@ -250,9 +245,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Рабокки (Rabokki)</h4>
-                    <p class="card-content-description">Лапша рамён и нежные рисовые клецки, обжаренные с капустой и
-                        луком в насыщенном остром соусе, сочетающем пряность, пикантность и согревающее тепло.</p>
+                    <h4 class="card-content-title">라볶이 (Rabokki)</h4>
+                    <p class="card-content-description">라면과 쫄깃한 떡을 양배추와 양파와 함께 볶아 매콤하고 감칠맛 나는 소스로 버무린 한국식 라볶이로, 매운맛과
+                        고소함, 따뜻한 풍미가 조화를 이룹니다.</p>
                     <div class="card-content-price">
                         <div><span>65 AED</span></div>
                     </div>
@@ -268,10 +263,10 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Ттокпокки (Ttukbokki)</h4>
-                    <p class="card-content-description">Классическое корейское блюдо из рисовых клецок и рыбной котлеты,
-                        обжаренных с капустой и луком, в сладко-остром соусе, раскрывающем богатый вкус в каждом
-                        кусочке.</p>
+                    <h4 class="card-content-title">떡볶이 (Ttukbokki)</h4>
+                    <p class="card-content-description">쫄깃한 떡과 어묵을 양배추와 양파와 함께 볶아 달콤하고 매콤한 소스로 버무린 한국식 떡볶이로, 한 입 먹을 때마다
+                        풍부한 맛을 느낄 수 있습니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>65 AED</span></div>
                     </div>
@@ -285,7 +280,7 @@
 
 
     <div class="category-section" id="meat-seafood">
-        <h2 class="main-category-title">Мясо и морепродукты</h2>
+        <h2 class="main-category-title">고기 & 해산물</h2>
         <div class="cards-wrapper">
 
 
@@ -298,10 +293,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Таккальби (Dakgalbi)</h4>
-                    <p class="card-content-description">Сочное куриное бедро и мягкие рисовые клецки, обжаренные с
-                        капустой, морковью и луком в насыщенном остром соусе, который гармонично сочетает вкус с
-                        овощами.</p>
+                    <h4 class="card-content-title">닭갈비 (Dakgalbi)</h4>
+                    <p class="card-content-description">촉촉한 닭다리살과 부드러운 떡을 양배추, 당근, 양파와 함께 볶아 매콤하고 진한 소스로 버무린 한국식 닭갈비로,
+                        채소와 어우러진 풍미가 일품입니다.</p>
                     <div class="card-content-price">
                         <div><span>77 AED</span></div>
                     </div>
@@ -318,9 +312,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Булгоги (Boolgogi)</h4>
-                    <p class="card-content-description">Сочные кубики говядины, обжаренные с фунчозой, грибами, морковью
-                        и луком, в ароматном маринаде, который насыщает каждый кусочек вкусом.</p>
+                    <h4 class="card-content-title">불고기 (Boolgogi)</h4>
+                    <p class="card-content-description">육즙 가득한 소고기 큐브를 당면, 버섯, 당근, 양파와 함께 볶아 감칠맛 나는 양념에 버무린 한국식 불고기로, 한
+                        입 한 입마다 풍미가 살아납니다.</p>
                     <div class="card-content-price">
                         <div><span>83 AED</span></div>
                     </div>
@@ -336,10 +330,9 @@
                     class="card-image" loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Мэун Гальбиджим (Maewoon Galbijjim)</h4>
-                    <p class="card-content-description">Нежные говяжьи ребрышки и упругие рисовые клецки
-                        тушатся вместе с фунчозой и редькой в ароматном соусе, который пронизывает каждый ингредиент в
-                        процессе приготовления.</p>
+                    <h4 class="card-content-title">매운 갈비찜 (Maewoon Galbijjim)</h4>
+                    <p class="card-content-description">부드러운 소갈비와 쫄깃한 떡, 당면, 무를 향긋한 양념과 함께 푹 끓여 재료마다 맛이 스며든 한국식 매운
+                        갈비찜입니다.</p>
                     <div class="card-content-price">
                         <div><span>90 AED</span></div>
                     </div>
@@ -355,10 +348,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Яннём Гальби (Yangnyum Galbi)</h4>
-                    <p class="card-content-description">Маринованные говяжьи ребрышки, идеально приготовленные
-                        на гриле, подаются с хрустящими листьями зелёного салата, свежим чесноком, перцем чили и соевой
-                        пастой для обёртывания и наслаждения вкусом.</p>
+                    <h4 class="card-content-title">양념 갈비 (Yangnyum Galbi)</h4>
+                    <p class="card-content-description">양념에 재운 소갈비를 완벽하게 구워, 아삭한 상추와 신선한 마늘, 고추, 된장과 함께 싸서 즐길 수 있는 한국식
+                        양념 갈비입니다.</p>
                     <div class="card-content-price">
                         <div><span>139 AED</span></div>
                     </div>
@@ -375,9 +367,9 @@
                     class="card-image" loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Оджингу боккум (Ojinguh bokkum)</h4>
-                    <p class="card-content-description">Острый жареный кальмар с хрустящей капустой, сладкой морковью и
-                        луком, создающий живое сочетание текстур и остроты в каждом кусочке.</p>
+                    <h4 class="card-content-title">오징어볶음 (Ojinguh bokkum)</h4>
+                    <p class="card-content-description">아삭한 양배추와 달콤한 당근, 양파와 함께 매콤하게 볶아내어 씹는 맛과 매운맛이 조화를 이루는 한국식
+                        오징어볶음입니다.</p>
                     <div class="card-content-price">
                         <div><span>75 AED</span></div>
                     </div>
@@ -393,9 +385,8 @@
                     class="card-image" loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Кодунгу гуй (Godunguh gooi)</h4>
-                    <p class="card-content-description">Нежная скумбрия, обжаренная на сковороде до лёгкой хрустящей
-                        корочки, с сочной и ароматной серединой.</p>
+                    <h4 class="card-content-title">고등어구이 (Godunguh gooi)</h4>
+                    <p class="card-content-description">겉은 살짝 바삭하게 구워지고 속은 육즙 가득하고 풍미가 살아있는 한국식 고등어구이입니다.</p>
                     <div class="card-content-price">
                         <div><span>60 AED</span></div>
                     </div>
@@ -411,9 +402,9 @@
                     class="card-image" loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Кодунгу джорим (Godunguh jorim)</h4>
-                    <p class="card-content-description">Нежная скумбрия, пропитанная пикантным вкусом приправ и тушёная
-                        с редькой в остром соусе.</p>
+                    <h4 class="card-content-title">고등어조림 (Godunguh jorim)</h4>
+                    <p class="card-content-description">무와 함께 매콤한 양념으로 조리해, 생선이 부드럽고 양념의 감칠맛과 매운맛이 잘 스며든 한국식 고등어조림입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>75 AED</span></div>
                     </div>
@@ -426,7 +417,7 @@
 
 
     <div class="category-section" id="rice">
-        <h2 class="main-category-title">Рис</h2>
+        <h2 class="main-category-title">밥 요리</h2>
         <div class="cards-wrapper">
 
             <div class="card-container">
@@ -438,16 +429,14 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Бибимбаб (Bibimbab)</h4>
-                    <p class="card-content-description">Яркая смесь салата, огурца, моркови, свежих соевых ростков и
-                        кабачка на
-                        паровом рисе, сверху — жареное яйцо и корейский острый соус, создающие гармоничное сочетание
-                        вкусов.</p>
+                    <h4 class="card-content-title">비빔밥 (Bibimbab)</h4>
+                    <p class="card-content-description">쪄낸 밥 위에 상추, 오이, 당근, 숙주, 애호박을 올리고, 팬에 부친 계란과 고추장을 곁들여 재료들이 조화롭게
+                        어우러지는 한국식 비빔밥입니다.</p>
                     <div class="card-content-price">
-                        <div><span>60 AED</span> <br> Овощи</div>
-                        <div><span>65 AED</span> <br> Кимчи</div>
-                        <div><span>65 AED</span> <br> Курица</div>
-                        <div><span>69 AED</span> <br> Говядина</div>
+                        <div><span>60 AED</span> <br> 야채</div>
+                        <div><span>65 AED</span> <br> 김치</div>
+                        <div><span>65 AED</span> <br> 치킨</div>
+                        <div><span>69 AED</span> <br> 소고기</div>
                     </div>
                 </div>
             </div>
@@ -461,9 +450,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Юльму Бибимбаб (Yulmoo Bibimbab)</h4>
-                    <p class="card-content-description">Порция парового риса с ароматным кимчи Юльму, подается с тёплым
-                        супом из соевой пасты, создавая гармоничное сочетание свежести и насыщенного вкуса.</p>
+                    <h4 class="card-content-title">열무비빔밥 (Yulmoo Bibimbab)</h4>
+                    <p class="card-content-description">쪄낸 밥 위에 맛있게 숙성된 열무김치를 올리고, 따뜻한 된장국과 함께 제공되어 신선함과 깊은 맛이 조화를 이루는
+                        한국식 열무비빔밥입니다.</p>
                     <div class="card-content-price">
                         <div><span>75 AED</span></div>
                     </div>
@@ -479,16 +468,15 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Боккымбап (Bokkumbab)</h4>
-                    <p class="card-content-description">Яркая смесь риса и ингредиентов — от свежих овощей до нежной
-                        курицы, креветок или говядины — обжаренная, чтобы идеально сочетать текстуры и насыщенные вкусы.
-                    </p>
+                    <h4 class="card-content-title">볶음밥 (Bokkumbab)</h4>
+                    <p class="card-content-description">신선한 채소와 부드러운 닭고기, 새우, 소고기 등 다양한 재료를 밥과 함께 볶아 식감과 감칠맛이 조화롭게 어우러지는
+                        한국식 볶음밥입니다.</p>
                     <div class="card-content-price">
-                        <div><span>57 AED</span> <br> Овощи</div>
-                        <div><span>63 AED</span> <br> Кимчи</div>
-                        <div><span>63 AED</span> <br> Курица</div>
-                        <div><span>65 AED</span> <br> Креветки</div>
-                        <div><span>69 AED</span> <br> Говядина</div>
+                        <div><span>57 AED</span> <br> 야채</div>
+                        <div><span>63 AED</span> <br> 김치</div>
+                        <div><span>63 AED</span> <br> 치킨</div>
+                        <div><span>65 AED</span> <br> 새우</div>
+                        <div><span>69 AED</span> <br> 소고기</div>
                     </div>
                 </div>
             </div>
@@ -502,9 +490,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Оджингу Доббап (Ojinguh Deobbab)</h4>
-                    <p class="card-content-description">Острый жареный кальмар на паровом рисе, где нежные морепродукты
-                        и соус естественно сочетаются с мягкими, пушистыми зёрнами.</p>
+                    <h4 class="card-content-title">오징어덮밥 (Ojinguh Deobbab)</h4>
+                    <p class="card-content-description">쫄깃한 오징어를 매콤하게 볶아 쪄낸 밥 위에 올린 한국식 오징어덮밥으로, 부드럽고 폭신한 밥과 소스가 자연스럽게
+                        어우러집니다.</p>
                     <div class="card-content-price">
                         <div><span>69 AED</span></div>
                     </div>
@@ -520,9 +508,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Таккальби Доббап (Dakgalbi Deobbab)</h4>
-                    <p class="card-content-description">Паровой рис с острым жареным куриным мясом, где соус и нежные
-                        кусочки курицы гармонично сочетаются с рисом.</p>
+                    <h4 class="card-content-title">닭갈비덮밥 (Dakgalbi Deobbab)</h4>
+                    <p class="card-content-description">쪄낸 밥 위에 매콤하게 볶은 닭고기를 올린 한국식 닭갈비덮밥으로, 소스와 부드러운 닭고기가 밥과 조화롭게
+                        어우러집니다.</p>
                     <div class="card-content-price">
                         <div><span>69 AED</span></div>
                     </div>
@@ -538,9 +526,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Булгоги Доббап (Boolgogi Deobbab)</h4>
-                    <p class="card-content-description">Сочный булгоги из говядины, обжаренный в остром соусе на паровом
-                        рисе, где насыщенные вкусы мяса идеально сочетаются с рисом.</p>
+                    <h4 class="card-content-title">불고기덮밥 (Boolgogi Deobbab)</h4>
+                    <p class="card-content-description">쪄낸 밥 위에 매콤한 양념에 볶은 육즙 가득한 불고기를 올린 한국식 불고기덮밥으로, 고기의 풍부한 맛이 밥과
+                        자연스럽게 어우러집니다.</p>
                     <div class="card-content-price">
                         <div><span>73 AED</span></div>
                     </div>
@@ -553,7 +541,7 @@
 
 
     <div class="category-section" id="noodle">
-        <h2 class="main-category-title">Лапша</h2>
+        <h2 class="main-category-title">면 요리</h2>
 
         <div class="cards-wrapper">
 
@@ -566,12 +554,12 @@
                     sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Japche" class="card-image" loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Чапче (Japche)</h4>
-                    <p class="card-content-description">Яркое сочетание фунчозы, моркови, болгарского перца, лука,
-                        грибов и яйца, обжаренных вместе, где каждый ингредиент гармонично дополняет друг друга.</p>
+                    <h4 class="card-content-title">잡채 (Japche)</h4>
+                    <p class="card-content-description">당면과 당근, 파프리카, 양파, 버섯, 계란을 함께 볶아 재료 각각의 맛이 자연스럽게 조화를 이루는 한국식
+                        잡채입니다.</p>
                     <div class="card-content-price">
-                        <div><span>65 AED</span> <br> Овощи</div>
-                        <div><span>70 AED</span> <br> Говядина</div>
+                        <div><span>65 AED</span> <br> 야채</div>
+                        <div><span>70 AED</span> <br> 소고기</div>
                     </div>
                 </div>
             </div>
@@ -584,13 +572,12 @@
                     sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="Ramyun" class="card-image" loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Рамён (Ramyun)</h4>
-                    <p class="card-content-description">Корейский острый суп с лапшой, где нежная лапша тушится в
-                        ароматном бульоне с мягкой, согревающей остротой.</p>
+                    <h4 class="card-content-title">라면 (Ramyun)</h4>
+                    <p class="card-content-description">부드러운 면을 진하고 향긋한 육수에 끓여 매콤하면서도 따뜻한 맛을 느낄 수 있는 한국식 매운 라면입니다.</p>
                     <div class="card-content-price">
-                        <div><span>60 AED</span> <br> Яйцо</div>
-                        <div><span>65 AED</span> <br> Сыр</div>
-                        <div><span>75 AED</span> <br> Морепродукты</div>
+                        <div><span>60 AED</span> <br> 계란</div>
+                        <div><span>65 AED</span> <br> 치즈</div>
+                        <div><span>75 AED</span> <br> 해물</div>
                     </div>
                 </div>
             </div>
@@ -604,9 +591,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Чанчигуксу (Janchigooksoo)</h4>
-                    <p class="card-content-description">Лапша в нежном бульоне из анчоусов, украшенная яйцом, морковью и
-                        кабачком, создающая мягкую гармонию вкуса и текстуры.</p>
+                    <h4 class="card-content-title">잔치국수 (Janchigooksoo)</h4>
+                    <p class="card-content-description">멸치 육수에 면을 담고 계란, 당근, 애호박을 올려 부드러운 맛과 식감이 조화를 이루는 한국식 잔치국수입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>65 AED</span></div>
                     </div>
@@ -622,9 +609,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Бибимгуксу (Bibimgooksoo)</h4>
-                    <p class="card-content-description">Холодная лапша с хрустящим огурцом, острым кимчи, сладкой грушей
-                        и яйцом, заправленная ароматным сладко-кисло-острым соусом.</p>
+                    <h4 class="card-content-title">비빔국수 (Bibimgooksoo)</h4>
+                    <p class="card-content-description">차가운 면에 아삭한 오이, 새콤한 김치, 달콤한 배, 계란을 올리고 매콤달콤새콤한 소스로 버무린 한국식
+                        비빔국수입니다.</p>
                     <div class="card-content-price">
                         <div><span>65 AED</span></div>
                     </div>
@@ -641,9 +628,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Мульнэнмён (Moolnaengmyun)</h4>
-                    <p class="card-content-description">Тонкая гречневая лапша в холодном ароматном бульоне, украшенная
-                        редькой, огурцом, грушей и яйцом для хрустящего и освежающего вкусового сочетания.</p>
+                    <h4 class="card-content-title">물냉면 (Moolnaengmyun)</h4>
+                    <p class="card-content-description">가느다란 메밀면을 시원하고 감칠맛 나는 육수에 담고, 무, 오이, 배, 계란을 올려 아삭하고 상쾌한 맛을 느낄 수
+                        있는 한국식 물냉면입니다.</p>
                     <div class="card-content-price">
                         <div><span>69 AED</span></div>
                     </div>
@@ -659,9 +646,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Ччаджанмён (Jjajangmyun)</h4>
-                    <p class="card-content-description">Лапша с обжаренным луком и кабачком в насыщенном соусе из чёрной
-                        фасоли, сверху — свежий огурец и яйцо.</p>
+                    <h4 class="card-content-title">짜장면 (Jjajangmyun)</h4>
+                    <p class="card-content-description">양파와 애호박을 볶아 진한 춘장 소스와 함께 버무린 면 요리로, 신선한 오이와 계란을 올린 한국식 짜장면입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>69 AED</span></div>
                     </div>
@@ -677,10 +664,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Чамппон (Jjamppong)</h4>
-                    <p class="card-content-description">Острый суп с лапшой, с нежными, сочными креветками, мидиями,
-                        деликатными кальмарами и хрустящими яркими овощами — капустой, морковью, грибами, кабачком и
-                        луком — приготовленный в насыщенном ароматном бульоне.</p>
+                    <h4 class="card-content-title">짬뽕 (Jjamppong)</h4>
+                    <p class="card-content-description">통통한 새우, 육즙 가득한 홍합, 부드러운 오징어와 아삭한 양배추, 당근, 버섯, 애호박, 양파 등 다양한 채소를
+                        진하고 향긋한 육수에 끓인 매콤한 한국식 해물 국수입니다.</p>
                     <div class="card-content-price">
                         <div><span>79 AED</span></div>
                     </div>
@@ -696,10 +682,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Боккым Чамппон (Bokkum jjamppong)</h4>
-                    <p class="card-content-description">Лапша, обжаренная с сочными креветками, нежными мидиями,
-                        деликатными кальмарами и хрустящей яркой смесью капусты, моркови, грибов, кабачка и лука, в
-                        насыщенном ароматном остром соусе.</p>
+                    <h4 class="card-content-title">볶음짬뽕 (Bokkum jjamppong)</h4>
+                    <p class="card-content-description">통통한 새우, 부드러운 홍합, 연한 오징어와 아삭한 양배추, 당근, 버섯, 애호박, 양파를 매콤하고 향긋한 소스로
+                        볶아낸 한국식 볶음짬뽕입니다.</p>
                     <div class="card-content-price">
                         <div><span>79 AED</span></div>
                     </div>
@@ -714,7 +699,7 @@
 
 
     <div class="category-section" id="soup">
-        <h2 class="main-category-title">Супы</h2>
+        <h2 class="main-category-title">국/탕</h2>
 
         <div class="cards-wrapper">
 
@@ -727,9 +712,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Кимчи Ччиге (Kimchi Jjigae)</h4>
-                    <p class="card-content-description">Острый суп с кимчи и мягким тофу, томлёный до нежной гармонии
-                        вкусов — пикантное кимчи идеально сочетается с деликатным тофу и ароматным бульоном.</p>
+                    <h4 class="card-content-title">김치찌개 (Kimchi Jjigae)</h4>
+                    <p class="card-content-description">부드러운 두부와 함께 매콤하게 끓인 김치찌개로, 새콤하게 발효된 김치와 부드러운 두부, 향긋한 육수가 조화를 이루는
+                        한국식 김치찌개입니다.</p>
                     <div class="card-content-price">
                         <div><span>67 AED</span></div>
                     </div>
@@ -745,9 +730,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Дэнджан Ччиге (Daenjang Jjigae)</h4>
-                    <p class="card-content-description">Насыщенный суп на основе соевой пасты с нежным тофу и хрустящими
-                        овощами, где все ингредиенты естественно соединяются в согревающем и ароматном бульоне.</p>
+                    <h4 class="card-content-title">된장찌개 (Daenjang Jjigae)</h4>
+                    <p class="card-content-description">부드러운 두부와 아삭한 채소를 넣고 진하게 끓인 된장찌개로, 구수하고 감칠맛 나는 육수가 자연스럽게 어우러진 한국식
+                        된장찌개입니다.</p>
                     <div class="card-content-price">
                         <div><span>67 AED</span></div>
                     </div>
@@ -763,9 +748,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Сундубу Ччиге (Soondooboo Jjigae)</h4>
-                    <p class="card-content-description">Мягкий нежный тофу и сочные креветки, приготовленные в
-                        насыщенном остром бульоне, с добавлением яйца для кремовой, бархатистой текстуры.</p>
+                    <h4 class="card-content-title">순두부찌개 (Soondooboo Jjigae)</h4>
+                    <p class="card-content-description">부드럽고 실키한 순두부와 탱글한 새우를 진하고 매콤한 국물에 끓이고, 계란을 넣어 고소하고 부드러운 식감을 더한
+                        한국식 순두부찌개입니다.</p>
                     <div class="card-content-price">
                         <div><span>72 AED</span></div>
                     </div>
@@ -781,9 +766,8 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Угуджи Хэджангук (Wooguji Haejanggook)</h4>
-                    <p class="card-content-description">Острый говяжий суп с нежными ломтиками мяса и мягкой тушёной
-                        пекинской капустой, томлёный в насыщенном, согревающем и ароматном бульоне.</p>
+                    <h4 class="card-content-title">우거지해장국 (Wooguji Haejanggook)</h4>
+                    <p class="card-content-description">부드러운 소고기와 살짝 시든 우거지를 매콤하고 깊은 맛이 나는 국물에 함께 끓인 한국식 우거지해장국입니다.</p>
                     <div class="card-content-price">
                         <div><span>75 AED</span></div>
                     </div>
@@ -799,9 +783,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Чамппонбап (Jjamppongbab)</h4>
-                    <p class="card-content-description">Острый суп с морепродуктами — нежными кальмарами, креветками и
-                        мидиями, приготовленный с свежими овощами в насыщенном бульоне.</p>
+                    <h4 class="card-content-title">짬뽕밥 (Jjamppongbab)</h4>
+                    <p class="card-content-description">부드러운 오징어, 새우, 홍합과 신선한 채소를 진하고 향긋한 육수에 끓여 매콤하게 즐기는 한국식 짬뽕밥입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>75 AED</span></div>
                     </div>
@@ -817,9 +801,8 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Гальбитан (Galbitang)</h4>
-                    <p class="card-content-description">Насыщенный суп из говяжьих ребрышек, томлёный до идеальной
-                        мягкости с нежной редькой и тонкой фунчозой.</p>
+                    <h4 class="card-content-title">갈비탕 (Galbitang)</h4>
+                    <p class="card-content-description">부드러운 무와 당면을 넣고 진하게 끓인 소갈비 육수로, 깊고 담백한 맛이 특징인 한국식 갈비탕입니다.</p>
                     <div class="card-content-price">
                         <div><span>79 AED</span></div>
                     </div>
@@ -835,9 +818,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Манду Булгоги Ччиге (Mandoo boolgogi Jjigae)</h4>
-                    <p class="card-content-description">Сытное рагу с нежной маринованной говядиной и деликатными
-                        пельменями, томлёное в ароматном бульоне с насыщенным, согревающим вкусом.</p>
+                    <h4 class="card-content-title">만두불고기찌개 (Mandoo boolgogi Jjigae)</h4>
+                    <p class="card-content-description">부드럽게 양념한 소고기와 촉촉한 만두를 진한 국물에 끓여 깊고 따뜻한 풍미가 어우러진 한국식 만두불고기찌개입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>79 AED</span></div>
                     </div>
@@ -853,9 +836,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Юккэджан (Yookgaejang)</h4>
-                    <p class="card-content-description">Острый говяжий суп с нежной, рубленой говядиной, нежной
-                        фунчозой, яйцами и хрустящими яркими овощами, томлёный в пикантном бульоне.</p>
+                    <h4 class="card-content-title">육개장 (Yookgaejang)</h4>
+                    <p class="card-content-description">부드럽게 찢은 소고기와 실키한 당면, 계란, 아삭한 다채로운 채소를 향긋하고 매콤한 육수에 끓인 한국식
+                        육개장입니다.</p>
                     <div class="card-content-price">
                         <div><span>79 AED</span></div>
                     </div>
@@ -871,9 +854,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Самгетан (Samgaetang)</h4>
-                    <p class="card-content-description">Нежная целая курица, томлёная с ароматным женьшенем, создавая
-                        питательный и ароматный бульон с богатым и деликатным вкусом.</p>
+                    <h4 class="card-content-title">삼계탕 (Samgaetang)</h4>
+                    <p class="card-content-description">부드러운 통닭을 향긋한 인삼과 함께 은은하게 끓여, 든든하면서도 섬세한 풍미가 살아있는 한국식 삼계탕입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>90 AED</span></div>
                     </div>
@@ -887,7 +870,7 @@
 
 
     <div class="category-section" id="desserts">
-        <h2 class="main-category-title">Напитки и десерты</h2>
+        <h2 class="main-category-title">음료와 디저트</h2>
 
         <div class="cards-wrapper">
 
@@ -900,9 +883,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Сладкие рисовые клецки (Rice Cake)</h4>
-                    <p class="card-content-description">Мягкие, упругие рисовые клецки с начинкой из сладкой бархатистой
-                        пасты из красной фасоли, создающие нежный баланс сладости и текстуры.</p>
+                    <h4 class="card-content-title">떡 (Rice Cake)</h4>
+                    <p class="card-content-description">부드럽고 쫄깃한 떡 안에 달콤하고 부드러운 팥소가 들어 있어, 은은한 단맛과 촉촉한 식감이 조화를 이루는 한국식
+                        떡입니다.</p>
                     <div class="card-content-price">
                         <div><span>30 AED</span></div>
                     </div>
@@ -919,9 +902,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Мороженое на палочке (Ice cream bar)</h4>
-                    <p class="card-content-description">Кремовое мороженое со вкусом дыни в гладкой ледяной оболочке,
-                        дарящее освежающе-сладкий и фруктовый вкус.</p>
+                    <h4 class="card-content-title">아이스크림 바 (Ice cream bar)</h4>
+                    <p class="card-content-description">부드러운 멜론 맛 아이스크림을 매끄럽고 시원한 코팅으로 감싸, 상큼하고 달콤한 맛을 즐길 수 있는 한국식 아이스크림
+                        바입니다.</p>
                     <div class="card-content-price">
                         <div><span>20 AED</span></div>
                     </div>
@@ -937,9 +920,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Виноградный сок (Grape juice)</h4>
-                    <p class="card-content-description">Насыщенный, естественно сладкий виноградный сок с нежными целыми
-                        ягодами внутри.</p>
+                    <h4 class="card-content-title">포도 주스 (Grape juice)</h4>
+                    <p class="card-content-description">진하고 자연스러운 단맛의 포도 주스로, 부드러운 통포도가 함께 들어 있어 풍미가 살아있는 한국식 포도 주스입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>20 AED</span></div>
                     </div>
@@ -955,9 +938,9 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Грушевый сок (Pear juice)</h4>
-                    <p class="card-content-description">Мягкий, сладкий грушевый сок с гладким, освежающим вкусом и
-                        лёгкими нотками спелой груши.</p>
+                    <h4 class="card-content-title">배 주스 (Pear juice)</h4>
+                    <p class="card-content-description">부드럽고 자연스러운 단맛의 배 주스로, 잘 익은 배의 은은한 향과 상쾌한 맛을 느낄 수 있는 한국식 배 주스입니다.
+                    </p>
                     <div class="card-content-price">
                         <div><span>20 AED</span></div>
                     </div>
@@ -973,9 +956,8 @@
                     loading="lazy">
 
                 <div class="card-content">
-                    <h4 class="card-content-title">Рисовый сок (Rice juice)</h4>
-                    <p class="card-content-description">Традиционный корейский рисовый напиток с лёгкой сладостью,
-                        мягкими зёрнами и освежающим, слегка ореховым вкусом.</p>
+                    <h4 class="card-content-title">식혜 (Rice juice)</h4>
+                    <p class="card-content-description">순한 단맛과 부드러운 쌀알, 상쾌하고 은은한 고소한 풍미가 어우러진 전통 한국식 식혜입니다.</p>
                     <div class="card-content-price">
                         <div><span>20 AED</span></div>
                     </div>

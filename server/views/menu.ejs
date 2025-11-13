@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" <%= lang === 'ar' ? 'dir="rtl"' : '' %>>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36BNKE66VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-36BNKE66VZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        <% if(lang==='en' ){ %>
+            HYU Korean Restaurant Dubai – Explore Our Menu
+            <% } else if(lang==='ru' ){ %>
+                HYU Korean Restaurant Dubai – Наше меню
+                <% } else if(lang==='ko' ){ %>
+                    두바이 HYU 한식당 – 메뉴 보기
+                    <% } else if(lang==='ar' ){ %>
+                        مطعم هيو الكوري دبي – اكتشف قائمتنا
+                        <% } %>
+    </title>
+
+    <link rel="icon" href="/images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="<%= lang === 'en' ? 'style-menu.css' : '../style-menu.css' %>">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-wrapper">
+            <div class="header-buttons">
+                <div class="header-button-book">
+                    <a
+                        href="<%= lang === 'en' ? '../reservation/' : lang === 'ru' ? '../../reservation/ru/' : lang === 'ko' ? '../../reservation/ko/' : '../../reservation/ar/' %>">
+                        <%= lang==='en' ? 'Book Your Table' : lang==='ru' ? 'Забронировать' : lang==='ko' ? '예약하기'
+                            : 'احجز طاولتك' %>
+                    </a>
+                </div>
+            </div>
+
+            <a href="<%= lang === 'en' ? '../' : lang === 'ru' ? '../../ru/' : lang === 'ko' ? '../../ko/' : '../../ar/' %>"
+                class="header-logo">
+                <img src="/images/Hyu Logo.svg" alt="logo">
+            </a>
+
+            <div class="header-right-buttons">
+                <div class="header-signin">
+                    <div class="header-signin-text">
+                        <a
+                            href="<%= lang === 'en' ? '../sign-in/' : lang === 'ru' ? '../../sign-in/ru/' : lang === 'ko' ? '../../sign-in/ko/' : '../../sign-in/ar/' %>">
+                            <%= lang==='en' ? 'Sign in' : lang==='ru' ? 'Войти' : lang==='ko' ? '로그인' : 'تسجيل الدخول'
+                                %>
+                        </a>
+                    </div>
+                    <img src="/images/signin-icon.svg" alt="signin-icon" class="header-signin-icon">
+                </div>
+
+                <div class="header-account hidden">
+                    <div class="header-account-btn">
+                        <div class="header-account-text">
+                            <%= lang==='en' ? 'Account' : lang==='ru' ? 'Аккаунт' : lang==='ko' ? '계정' : 'الحساب' %>
+                        </div>
+                        <img src="/images/account-icon.svg" alt="account-icon" class="header-account-icon">
+                    </div>
+                    <div class="header-account-nav">
+                        <div class="header-account-nav-btn">
+                            <a
+                                href="<%= lang === 'en' ? '../account/' : lang === 'ru' ? '../../account/ru/' : lang === 'ko' ? '../../account/ko/' : '../../account/ar/' %>">
+                                <%= lang==='en' ? 'Profile' : lang==='ru' ? 'Профиль' : lang==='ko' ? '프로필'
+                                    : 'الملف الشخصي' %>
+                            </a>
+                        </div>
+                        <div class="header-account-nav-btn" id="sign-out">
+                            <%= lang==='en' ? 'Sign out' : lang==='ru' ? 'Выйти' : lang==='ko' ? '로그아웃' : 'تسجيل الخروج'
+                                %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-language">
+                    <div class="header-language-selected">
+                        <%= lang==='en' ? 'English' : lang==='ru' ? 'Русский' : lang==='ko' ? '한국어' : 'العربية' %>
+                    </div>
+                    <img src="/images/language-icon.svg" alt="language-icon" class="header-language-icon">
+                </div>
+            </div>
+        </div>
+
+        <nav class="site-nav">
+            <ul>
+                <li class="nav-list <%= lang === 'en' ? 'active' : '' %>" id="en">
+                    <a href="<%= lang === 'en' ? '#' : '../' %>">English</a>
+                </li>
+                <li class="nav-list <%= lang === 'ko' ? 'active' : '' %>" id="ko">
+                    <a href="<%= lang === 'ko' ? '#' : (lang === 'en' ? 'ko/' : '../ko/') %>">한국어</a>
+                </li>
+                <li class="nav-list <%= lang === 'ru' ? 'active' : '' %>" id="ru">
+                    <a href="<%= lang === 'ru' ? '#' : (lang === 'en' ? 'ru/' : '../ru/') %>">Русский</a>
+                </li>
+                <li class="nav-list <%= lang === 'ar' ? 'active' : '' %>" id="ar">
+                    <a href="<%= lang === 'ar' ? '#' : (lang === 'en' ? 'ar/' : '../ar/') %>">العربية</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="site-nav-back hidden"></div>
+
+    <div class="navigation-container">
+        <div class="nav-categories">
+            <% menu.forEach(category=> { %>
+                <button class="category-btn <%= category === menu[0] ? 'active' : '' %>"
+                    data-target="<%= category.slug %>">
+                    <%= category.title %>
+                </button>
+                <% }) %>
+        </div>
+    </div>
+
+    <!-- категории с блюдами -->
+    <% menu.forEach(category=> { %>
+        <div class="category-section" id="<%= category.slug %>">
+            <h2 class="main-category-title">
+                <%= category.title %>
+            </h2>
+            <div class="cards-wrapper">
+                <% category.items.forEach(item=> { %>
+                    <div class="card-container">
+                        <img src="/images/food/<%= item.imageLarge %>"
+                            srcset="/images/food/<%= item.imageSmall %> 350w, /images/food/<%= item.imageMedium %> 500w, /images/food/<%= item.imageLarge %> 800w"
+                            sizes="(max-width: 500px) calc(100vw - 50px), 450px" alt="<%= item.title %>"
+                            class="card-image">
+
+                        <div class="card-content">
+                            <h4 class="card-content-title">
+                                <%= item.title %>
+                            </h4>
+                            <p class="card-content-description">
+                                <%= item.description %>
+                            </p>
+                            <div class="card-content-price">
+                                <% item.variants.forEach(variant=> { %>
+                                    <% if(variant.showLabel) { %>
+                                        <div><span>
+                                                <%= variant.price %> AED
+                                            </span> <br>
+                                            <%= variant.name %>
+                                        </div>
+                                        <% } else { %>
+                                            <div><span>
+                                                    <%= variant.price %> AED
+                                                </span></div>
+                                            <% } %>
+                                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    <% }) %>
+
+    <script src="<%= lang === 'en' ? 'script-menu.js' : '../script-menu.js' %>"></script>
+</body>
+</html>
