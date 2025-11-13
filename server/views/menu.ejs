@@ -46,14 +46,14 @@
             <div class="header-buttons">
                 <div class="header-button-book">
                     <a
-                        href="<%= lang === 'en' ? '../reservation/' : lang === 'ru' ? '../../reservation/ru/' : lang === 'ko' ? '../../reservation/ko/' : '../../reservation/ar/' %>">
+                        href="<%= lang === 'en' ? '../../reservation/' : lang === 'ru' ? '../../reservation/ru/' : lang === 'ko' ? '../../reservation/ko/' : '../../reservation/ar/' %>">
                         <%= lang==='en' ? 'Book Your Table' : lang==='ru' ? 'Забронировать' : lang==='ko' ? '예약하기'
                             : 'احجز طاولتك' %>
                     </a>
                 </div>
             </div>
 
-            <a href="<%= lang === 'en' ? '../' : lang === 'ru' ? '../../ru/' : lang === 'ko' ? '../../ko/' : '../../ar/' %>"
+            <a href="<%= lang === 'en' ? '../../' : lang === 'ru' ? '../../ru/' : lang === 'ko' ? '../../ko/' : '../../ar/' %>"
                 class="header-logo">
                 <img src="/images/Hyu Logo.svg" alt="logo">
             </a>
@@ -62,7 +62,7 @@
                 <div class="header-signin">
                     <div class="header-signin-text">
                         <a
-                            href="<%= lang === 'en' ? '../sign-in/' : lang === 'ru' ? '../../sign-in/ru/' : lang === 'ko' ? '../../sign-in/ko/' : '../../sign-in/ar/' %>">
+                            href="<%= lang === 'en' ? '../../sign-in/' : lang === 'ru' ? '../../sign-in/ru/' : lang === 'ko' ? '../../sign-in/ko/' : '../../sign-in/ar/' %>">
                             <%= lang==='en' ? 'Sign in' : lang==='ru' ? 'Войти' : lang==='ko' ? '로그인' : 'تسجيل الدخول'
                                 %>
                         </a>
@@ -80,7 +80,7 @@
                     <div class="header-account-nav">
                         <div class="header-account-nav-btn">
                             <a
-                                href="<%= lang === 'en' ? '../account/' : lang === 'ru' ? '../../account/ru/' : lang === 'ko' ? '../../account/ko/' : '../../account/ar/' %>">
+                                href="<%= lang === 'en' ? '../../account/' : lang === 'ru' ? '../../account/ru/' : lang === 'ko' ? '../../account/ko/' : '../../account/ar/' %>">
                                 <%= lang==='en' ? 'Profile' : lang==='ru' ? 'Профиль' : lang==='ko' ? '프로필'
                                     : 'الملف الشخصي' %>
                             </a>
@@ -102,21 +102,13 @@
         </div>
 
         <nav class="site-nav">
-            <ul>
-                <li class="nav-list <%= lang === 'en' ? 'active' : '' %>" id="en">
-                    <a href="<%= lang === 'en' ? '#' : '../' %>">English</a>
-                </li>
-                <li class="nav-list <%= lang === 'ko' ? 'active' : '' %>" id="ko">
-                    <a href="<%= lang === 'ko' ? '#' : (lang === 'en' ? 'ko/' : '../ko/') %>">한국어</a>
-                </li>
-                <li class="nav-list <%= lang === 'ru' ? 'active' : '' %>" id="ru">
-                    <a href="<%= lang === 'ru' ? '#' : (lang === 'en' ? 'ru/' : '../ru/') %>">Русский</a>
-                </li>
-                <li class="nav-list <%= lang === 'ar' ? 'active' : '' %>" id="ar">
-                    <a href="<%= lang === 'ar' ? '#' : (lang === 'en' ? 'ar/' : '../ar/') %>">العربية</a>
-                </li>
-            </ul>
-        </nav>
+        <ul>
+            <li class="nav-list <%= lang === 'en' ? 'active' : '' %>" id="en"><a href="<%= lang === 'en' ? '#' : '../en/' %>">English</a></li>
+            <li class="nav-list <%= lang === 'ko' ? 'active' : '' %>" id="ko"><a href="<%= lang === 'ko' ? '#' : '../ko/' %>">한국어</a></li>
+            <li class="nav-list <%= lang === 'ru' ? 'active' : '' %>" id="ru"><a href="<%= lang === 'ru' ? '#' : '../ru/' %>">Русский</a></li>
+            <li class="nav-list <%= lang === 'ar' ? 'active' : '' %>" id="ar"><a href="<%= lang === 'ar' ? '#' : '../ar/' %>">العربية</a></li>
+        </ul>
+    </nav>
     </header>
 
     <div class="site-nav-back hidden"></div>
