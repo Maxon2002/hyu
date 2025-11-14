@@ -72,8 +72,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     padding: 60px 40px;
     color: #552B1B;
 }
@@ -111,18 +111,20 @@ body {
 .category-block-info {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     align-items: center;
     border-bottom: 2px solid #552B1B;
     padding: 8px;
 }
 
 .category-name {
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .edit-btn {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
 }
 
 .category-block-edit {

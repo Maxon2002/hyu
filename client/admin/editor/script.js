@@ -38,3 +38,24 @@ editBtnsCategory.forEach(editBtnCategory => {
         categoryBlockEdit.classList.toggle('active')
     })
 })
+
+let saveBtnsCategory = document.querySelectorAll('.save-btn-category')
+let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
+
+saveBtnsCategory.forEach(saveBtnCategory => {
+    saveBtnCategory.addEventListener('click', () => {
+
+
+
+        saveBtnCategory.closest('.category-block-edit').classList.toggle('active')
+    })
+})
+
+exitBtnsCategory.forEach(exitBtnCategory => {
+    exitBtnCategory.addEventListener('click', () => {
+
+
+
+        exitBtnCategory.closest('.category-block-edit').classList.toggle('active')
+    })
+})
