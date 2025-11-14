@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Scanner</title>
+
+    <link rel="icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Hyu-favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="header-nav"><a href="../scanner/">Scanner</a></div>
+                <div class="header-nav"><a href="../clients/">Clients</a></div>
+                <div class="header-nav"><a href="../bookings/">Bookings</a></div>
+                <div class="header-nav active">Editor</div>
+            </div>
+        </header>
+
+
+        <div class="main-container">
+            <div class="main-title">Editor</div>
+
+
+            <div class="categories-main-container">
+                <div class="subtitle">Categories</div>
+
+                <div class="categories-wrapper">
+                    <div class="category-block">
+                        <div class="category-block-info">
+                            <div class="category-name">Appetizer</div>
+                            <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-category">
+                        </div>
+                        <div class="category-block-edit">
+                            <label for="en-category">en</label>
+                            <input type="text" id="en-category" name="en-category" placeholder="Appetizer">
+
+                            <label for="ru-category">ru</label>
+                            <input type="text" id="ru-category" name="ru-category" placeholder="Закуски">
+
+                            <label for="ko-category">ko</label>
+                            <input type="text" id="ko-category" name="ko-category" placeholder="전채요리">
+
+                            <label for="ar-category">ar</label>
+                            <input type="text" id="ar-category" name="ar-category" placeholder="المقبلات">
+
+                            <div class="change-buttons">
+                                <button type="button" class="save-btn">Save</button>
+                                <button type="button" class="exit-btn">Exit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
