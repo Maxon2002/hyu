@@ -88,7 +88,7 @@ body {
 
 .main-editor-wrapper {
     display: flex;
-    gap: 30px;
+    gap: 150px;
 }
 
 /* таблица категорий */
@@ -117,11 +117,14 @@ body {
     flex-direction: column;
 }
 
-.category-block-info {
+.category-block-info-wrapper {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     align-items: center;
+}
+
+.category-block-info {
     border-bottom: 2px solid #552B1B;
     padding: 8px;
 }
@@ -218,6 +221,7 @@ body {
     text-decoration: underline;
     cursor: pointer;
     font-size: 17px;
+    margin-top: 20px;
 }
 
 
