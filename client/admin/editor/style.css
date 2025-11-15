@@ -166,6 +166,10 @@ body {
 }
 
 
+.add-category-container {
+    margin-top: 20px;
+}
+
 .add-category-btn {
     text-decoration: underline;
     cursor: pointer;
