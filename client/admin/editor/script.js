@@ -83,3 +83,15 @@ cancelBtnCategory.addEventListener('click', () => {
 
     cancelBtnCategory.closest('.add-category-container').querySelector('.add-category-btn').classList.add('active')
 })
+
+
+let categoryBlocks = document.querySelectorAll('.category-block-info')
+
+categoryBlocks.forEach(categoryBlock => {
+    categoryBlock.addEventListener('click', () => {
+        categoryBlock.classList.add('active')
+        
+        let itemsContainer = document.querySelector('.items-main-container')
+        itemsContainer.classList.remove('hidden')
+    })
+})

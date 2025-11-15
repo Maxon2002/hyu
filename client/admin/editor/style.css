@@ -125,8 +125,14 @@ body {
 }
 
 .category-block-info {
+    flex: 1;
     border-bottom: 2px solid #552B1B;
     padding: 8px;
+}
+
+.category-block-info.active {
+    background-color: #552B1B;
+    color: #FFFCED;
 }
 
 .category-name,
@@ -212,6 +218,10 @@ body {
 
 /* таблица блюд */
 
+.items-main-container .hidden {
+    display: none;
+}
+
 .item-block {
     border-bottom: 2px solid #552B1B;
     padding: 8px;
@@ -223,6 +233,7 @@ body {
     font-size: 17px;
     margin-top: 20px;
 }
+
 
 
 
