@@ -41,7 +41,7 @@
                 <div class="categories-wrapper">
                     <div class="category-block">
                         <div class="category-block-info">
-                            <div class="category-name">Appetizer</div>
+                            <div class="category-name" id="appetizer">Appetizer</div>
                             <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-category">
                         </div>
                         <div class="category-block-edit">
@@ -58,15 +58,15 @@
                             <input type="text" id="ar-category" name="ar-category" value="المقبلات">
 
                             <div class="change-buttons">
-                                <button type="button" class="save-btn save-btn-category">Save</button>
-                                <button type="button" class="exit-btn exit-btn-category">Exit</button>
+                                <button type="button" class="act-btn save-btn-category">Save</button>
+                                <button type="button" class="act-btn exit-btn-category">Exit</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="category-block">
                         <div class="category-block-info">
-                            <div class="category-name">Meat & Seafood</div>
+                            <div class="category-name" id="meat-seafood">Meat & Seafood</div>
                             <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-category">
                         </div>
                         <div class="category-block-edit">
@@ -83,8 +83,35 @@
                             <input type="text" id="ar-category" name="ar-category" value="اللحوم والمأكولات البحرية">
 
                             <div class="change-buttons">
-                                <button type="button" class="save-btn save-btn-category">Save</button>
-                                <button type="button" class="exit-btn exit-btn-category">Exit</button>
+                                <button type="button" class="act-btn save-btn-category">Save</button>
+                                <button type="button" class="act-btn exit-btn-category">Exit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-category-container">
+                        <div class="add-category-btn active">Add category</div>
+
+                        <div class="add-category-block">
+                            <div class="category-block-edit">
+                                <div class="category-name">New category</div>
+                                
+                                <label for="en-category">en</label>
+                                <input type="text" id="en-category" name="en-category">
+
+                                <label for="ru-category">ru</label>
+                                <input type="text" id="ru-category" name="ru-category">
+
+                                <label for="ko-category">ko</label>
+                                <input type="text" id="ko-category" name="ko-category">
+
+                                <label for="ar-category">ar</label>
+                                <input type="text" id="ar-category" name="ar-category">
+
+                                <div class="change-buttons">
+                                    <button type="button" class="act-btn add-btn-category">Add</button>
+                                    <button type="button" class="act-btn cancel-btn-category">Cancel</button>
+                                </div>
                             </div>
                         </div>
                     </div>

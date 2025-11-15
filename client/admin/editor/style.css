@@ -102,6 +102,7 @@ body {
 .categories-wrapper {
     display: flex;
     flex-direction: column;
+    width: 250px;
 }
 
 .category-block {
@@ -149,8 +150,7 @@ body {
     gap: 7px;
 }
 
-.save-btn,
-.exit-btn {
+.act-btn {
     flex: 1;
     padding: 6px 8px;
     font-size: 13px;
@@ -160,12 +160,30 @@ body {
     cursor: pointer;
 }
 
-.save-btn:hover,
-.exit-btn:hover {
+.act-btn:hover {
     background: #552B1B;
     color: #FFFCED;
 }
 
+
+.add-category-btn {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 17px;
+    display: none;
+}
+
+.add-category-btn.active {
+    display: block;
+}
+
+.add-category-block {
+    display: none;
+}
+
+.add-category-block.active {
+    display: block;
+}
 
 @media (min-width: 768px) {
     .main-container {
