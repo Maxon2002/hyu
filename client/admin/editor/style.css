@@ -189,6 +189,14 @@ body {
     display: block;
 }
 
+.add-category-block-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    font-size: 12px;
+}
+
 @media (min-width: 768px) {
     .main-container {
         padding: 60px 50px;
