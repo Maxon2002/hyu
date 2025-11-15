@@ -86,20 +86,27 @@ body {
 }
 
 
+.main-editor-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
 /* таблица категорий */
 
-.categories-main-container {
+.categories-main-container,
+.items-main-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-self: flex-start;
+    /* align-self: flex-start; */
 }
 
 .subtitle {
     font-size: 20px;
 }
 
-.categories-wrapper {
+.categories-wrapper,
+.items-wrapper {
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -119,7 +126,8 @@ body {
     padding: 8px;
 }
 
-.category-name {
+.category-name,
+.item-name {
     font-size: 18px;
 }
 
@@ -196,6 +204,24 @@ body {
 
     font-size: 12px;
 }
+
+
+
+/* таблица блюд */
+
+.item-block {
+    border-bottom: 2px solid #552B1B;
+    padding: 8px;
+}
+
+.add-item-btn {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+
+
 
 @media (min-width: 768px) {
     .main-container {
