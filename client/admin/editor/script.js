@@ -64,7 +64,7 @@ let addCategoryBtn = document.querySelector('.add-category-btn')
 
 addCategoryBtn.addEventListener('click', () => {
     addCategoryBtn.classList.remove('active')
-    addCategoryBtn.closest('.add-category-container').querySelector('.add-category-block').classList.add('.active')
+    addCategoryBtn.closest('.add-category-container').querySelector('.add-category-block').classList.add('active')
 })
 
 
@@ -73,9 +73,9 @@ let addSaveBtnCategory = document.querySelector('.add-btn-category')
 let cancelBtnCategory = document.querySelector('.cancel-btn-category')
 
 addSaveBtnCategory.addEventListener('click', () => {
-    addSaveBtnCategory.classList.remove('active')
+    addSaveBtnCategory.closest('.add-category-block').classList.remove('active')
 
-    addSaveBtnCategory.closest('.add-category-container').querySelector('.add-category-block').classList.add('active')
+    addSaveBtnCategory.closest('.add-category-container').querySelector('.add-category-btn').classList.add('active')
 })
 
 cancelBtnCategory.addEventListener('click', () => {
