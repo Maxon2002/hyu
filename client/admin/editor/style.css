@@ -218,7 +218,7 @@ body {
 
 /* таблица блюд */
 
-.items-main-container .hidden {
+.items-main-container.hidden {
     display: none;
 }
 
