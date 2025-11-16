@@ -106,7 +106,8 @@ body {
 }
 
 .categories-wrapper,
-.items-wrapper {
+.items-wrapper,
+.item-editor-wrapper {
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -128,6 +129,7 @@ body {
     flex: 1;
     border-bottom: 2px solid #552B1B;
     padding: 8px;
+    cursor: pointer;
 }
 
 .category-block-info.active {
@@ -183,7 +185,8 @@ body {
 }
 
 
-.add-category-container {
+.add-category-container,
+.add-option-container {
     margin-top: 20px;
 }
 
@@ -198,15 +201,20 @@ body {
     display: block;
 }
 
-.add-category-block {
+.add-category-block,
+.add-option-block,
+.add-option-name-block {
     display: none;
 }
 
-.add-category-block.active {
+.add-category-block.active,
+.add-option-block.active,
+.add-option-name-block.active {
     display: block;
 }
 
-.add-category-block-edit {
+.add-category-block-edit,
+.add-option-block-edit {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -225,6 +233,12 @@ body {
 .item-block {
     border-bottom: 2px solid #552B1B;
     padding: 8px;
+    cursor: pointer;
+}
+
+.item-block.active {
+    background-color: #552B1B;
+    color: #FFFCED;
 }
 
 .add-item-btn {
@@ -233,6 +247,51 @@ body {
     font-size: 17px;
     margin-top: 20px;
 }
+
+
+/* изменение/добавление блюд */
+
+.item-editor-main-container.hidden {
+    display: none;
+}
+
+.item-editor-wrapper {
+    gap: 10px;
+}
+
+.item-editor-wrapper textarea {
+    resize: vertical;
+}
+
+.item-editor-block-name {
+    font-size: 17px;
+}
+
+.option-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.option-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

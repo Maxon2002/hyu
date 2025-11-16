@@ -137,13 +137,13 @@
 
                     <div class="items-wrapper">
                         <div class="item-block">
-                            <div class="item-name">Kimbab</div>
+                            <div class="item-name" id="Kimbab">Kimbab</div>
                         </div>
                         <div class="item-block">
-                            <div class="item-name">Goonmandoo</div>
+                            <div class="item-name" id="Goonmandoo">Goonmandoo</div>
                         </div>
                         <div class="item-block">
-                            <div class="item-name">Gaelanmari</div>
+                            <div class="item-name" id="Gaelanmari">Gaelanmari</div>
                         </div>
 
 
@@ -151,6 +151,250 @@
                     </div>
                 </div>
 
+
+                <div class="item-editor-main-container hidden">
+                    <div class="subtitle">Item editor</div>
+
+                    <div class="item-editor-wrapper">
+                        <div class="item-editor-block">
+                            <label for="position">Position</label>
+                            <input type="number" id="position" name="position" value="1">
+                        </div>
+
+                        <div class="item-editor-block">
+                            <div class="item-editor-block-name">Name</div>
+
+                            <label for="en-item-name">en</label>
+                            <input type="text" id="en-item-name" name="en-item-name" value="Kimbab">
+
+                            <label for="ru-item-name">ru</label>
+                            <input type="text" id="ru-item-name" name="ru-item-name" value="Кимбаб (Kimbab)">
+
+                            <label for="ko-item-name">ko</label>
+                            <input type="text" id="ko-item-name" name="ko-item-name" value="김밥 (Kimbab)">
+
+                            <label for="ar-item-name">ar</label>
+                            <input type="text" id="ar-item-name" name="ar-item-name" value="كيمباب (Kimbab)">
+                        </div>
+
+                        <div class="item-editor-block">
+                            <div class="item-editor-block-name">Description</div>
+
+                            <label for="en-item-description">en</label>
+                            <textarea id="en-item-description" name="en-item-description" rows="4"
+                                value="Korean style seaweed roll layered with soft rice, crisp cucumber, sweet pickled radish, and carrot, paired with savory fish cake, tender crab stick, and a touch of egg for a gentle, balanced flavor"></textarea>
+
+                            <label for="ru-item-description">ru</label>
+                            <textarea id="ru-item-description" name="ru-item-description" rows="4"
+                                value="Корейский ролл из водорослей с мягким рисом, хрустящим огурцом, сладкой маринованной редькой и морковью, дополненный пикантной рыбной котлетой, нежной крабовой палочкой и небольшим количеством яйца — для мягкого и сбалансированного вкуса."></textarea>
+
+                            <label for="ko-item-description">ko</label>
+                            <textarea id="ko-item-description" name="ko-item-description" rows="4"
+                                value="부드러운 밥과 아삭한 오이, 달콤한 단무지, 당근을 김에 정성스럽게 말아, 고소한 어묵, 부드러운 게맛살, 그리고 은은한 계란을 더해 조화로운 맛을 살린 한국식 김밥."></textarea>
+
+                            <label for="ar-item-description">ar</label>
+                            <textarea id="ar-item-description" name="ar-item-description" rows="4"
+                                value="رول الأعشاب البحرية على الطريقة الكورية، محشو بالأرز الطري، الخيار المقرمش، الفجل المخلل الحلو، والجزر، مع كعكة السمك المالحة، أعواد السلطعون الطرية، ولمسة من البيض لخلق نكهة متوازنة ولطيفة."></textarea>
+                        </div>
+
+                        <div class="item-editor-block">
+                            <div class="item-editor-block-name">Price</div>
+
+                            <div class="option-container">
+                                <div class="option-block">
+                                    <div class="option-data">
+                                        <label for="option-1">Veg</label>
+                                        <input type="number" id="option-1" name="option-1" value="45">
+                                    </div>
+                                    <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-option">
+                                </div>
+
+
+                                <div class="category-block-edit">
+                                    <label for="position">Position</label>
+                                    <input type="number" id="position" name="position" value="1">
+
+                                    <label for="en-option">en</label>
+                                    <input type="text" id="en-option" name="en-option" value="Veg">
+
+                                    <label for="ru-option">ru</label>
+                                    <input type="text" id="ru-option" name="ru-option" value="Овощи">
+
+                                    <label for="ko-option">ko</label>
+                                    <input type="text" id="ko-option" name="ko-option" value="야채">
+
+                                    <label for="ar-option">ar</label>
+                                    <input type="text" id="ar-option" name="ar-option" value="خضار">
+
+                                    <div class="change-buttons">
+                                        <button type="button" class="act-btn save-btn-option">Save</button>
+                                        <button type="button" class="act-btn exit-btn-option">Exit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="option-container">
+                                <div class="option-block">
+                                    <div class="option-data">
+                                        <label for="option-1">Kimchi</label>
+                                        <input type="number" id="option-1" name="option-1" value="50">
+                                    </div>
+                                    <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-option">
+                                </div>
+
+
+                                <div class="category-block-edit">
+                                    <label for="position">Position</label>
+                                    <input type="number" id="position" name="position" value="2">
+
+                                    <label for="en-option">en</label>
+                                    <input type="text" id="en-option" name="en-option" value="Kimchi">
+
+                                    <label for="ru-option">ru</label>
+                                    <input type="text" id="ru-option" name="ru-option" value="Кимчи">
+
+                                    <label for="ko-option">ko</label>
+                                    <input type="text" id="ko-option" name="ko-option" value="김치">
+
+                                    <label for="ar-option">ar</label>
+                                    <input type="text" id="ar-option" name="ar-option" value="كيمتشي">
+
+                                    <div class="change-buttons">
+                                        <button type="button" class="act-btn save-btn-option">Save</button>
+                                        <button type="button" class="act-btn exit-btn-option">Exit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="option-container">
+                                <div class="option-block">
+                                    <div class="option-data">
+                                        <label for="option-1">Cheese</label>
+                                        <input type="number" id="option-1" name="option-1" value="50">
+                                    </div>
+                                    <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-option">
+                                </div>
+
+
+                                <div class="category-block-edit">
+                                    <label for="position">Position</label>
+                                    <input type="number" id="position" name="position" value="3">
+
+                                    <label for="en-option">en</label>
+                                    <input type="text" id="en-option" name="en-option" value="Cheese">
+
+                                    <label for="ru-option">ru</label>
+                                    <input type="text" id="ru-option" name="ru-option" value="Сыр">
+
+                                    <label for="ko-option">ko</label>
+                                    <input type="text" id="ko-option" name="ko-option" value="치즈">
+
+                                    <label for="ar-option">ar</label>
+                                    <input type="text" id="ar-option" name="ar-option" value="جبنة">
+
+                                    <div class="change-buttons">
+                                        <button type="button" class="act-btn save-btn-option">Save</button>
+                                        <button type="button" class="act-btn exit-btn-option">Exit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="option-container">
+                                <div class="option-block">
+                                    <div class="option-data">
+                                        <label for="option-1">Tuna</label>
+                                        <input type="number" id="option-1" name="option-1" value="55">
+                                    </div>
+                                    <img src="../../images/edit-btn.svg" alt="" class="edit-btn edit-btn-option">
+                                </div>
+
+
+                                <div class="category-block-edit">
+                                    <label for="position">Position</label>
+                                    <input type="number" id="position" name="position" value="4">
+
+                                    <label for="en-option">en</label>
+                                    <input type="text" id="en-option" name="en-option" value="Tuna">
+
+                                    <label for="ru-option">ru</label>
+                                    <input type="text" id="ru-option" name="ru-option" value="Тунец">
+
+                                    <label for="ko-option">ko</label>
+                                    <input type="text" id="ko-option" name="ko-option" value="참치">
+
+                                    <label for="ar-option">ar</label>
+                                    <input type="text" id="ar-option" name="ar-option" value="تونة">
+
+                                    <div class="change-buttons">
+                                        <button type="button" class="act-btn save-btn-option">Save</button>
+                                        <button type="button" class="act-btn exit-btn-option">Exit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="add-option-container">
+                                <div class="add-option-btn active">Add option</div>
+
+                                <div class="add-option-block">
+                                    <div class="add-option-block-edit">
+                                        <div class="category-name">New option</div>
+
+                                        <label for="position">Position</label>
+                                        <input type="number" id="position" name="position">
+
+                                        <label for="price">Price</label>
+                                        <input type="number" id="price" name="price">
+
+                                        <div class="add-option-name-container">
+                                            <div class="add-option-name-btn active">Add option name</div>
+
+                                            <div class="add-option-name-block">
+                                                <label for="en-option">en</label>
+                                                <input type="text" id="en-option" name="en-option">
+
+                                                <label for="ru-option">ru</label>
+                                                <input type="text" id="ru-option" name="ru-option">
+
+                                                <label for="ko-option">ko</label>
+                                                <input type="text" id="ko-option" name="ko-option">
+
+                                                <label for="ar-option">ar</label>
+                                                <input type="text" id="ar-option" name="ar-option">
+                                            </div>
+
+                                            <div class="change-buttons">
+                                                <button type="button" class="act-btn save-btn-option-name">Save
+                                                    name</button>
+                                                <button type="button"
+                                                    class="act-btn cancel-btn-option-name">Cancel</button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="change-buttons">
+                                            <button type="button" class="act-btn add-btn-option">Add</button>
+                                            <button type="button" class="act-btn cancel-btn-option">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="item-editor-block">
+                            <label for="image">Image</label>
+                            <input type="file" accept="image/*" id="image" name="image" value="Kimbab.webp">
+                        </div>
+
+                        <div class="change-buttons">
+                            <button type="button" class="act-btn save-btn-item-editor">Save changes</button>
+                            <button type="button" class="act-btn exit-btn-item-editor">Exit editor</button>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
 
