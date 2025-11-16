@@ -193,12 +193,12 @@ saveBtnOptionName.addEventListener('click', () => {
 
 
     let valid = true
-    const hasEmpty = optionNameFields.some(field => !field.value.trim());
-
-    if (hasEmpty) {
-        alert('Not all fields for option name are filled in');
-        valid = false
-        return;
+    for (const field of optionNameFields) {
+        if (!field.value.trim()) {
+            alert('Not all fields for option name are filled in');
+            valid = false
+            return;
+        }
     }
 
 
@@ -208,7 +208,6 @@ saveBtnOptionName.addEventListener('click', () => {
             if (field.id === "en-option") {
                 addOptionNameBtn.textContent = field.value.trim()
 
-                return
             }
         })
 
@@ -240,15 +239,16 @@ saveBtnItemEditor.addEventListener('click', () => {
     let valid = true
     let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
 
-    const hasEmpty = allEditorFields.some(field => !field.value.trim() && field.id !== ("en-option" || "ru-option" || "ko-option" || "ar-option"));
-
-    if (hasEmpty) {
-        alert('Not all fields are filled in')
-        valid = false
-        return
+    for (const field of allEditorFields) {
+        if (!field.value.trim() && field.id !== ("en-option" || "ru-option" || "ko-option" || "ar-option")) {
+            alert('Not all fields are filled in')
+            valid = false
+            return
+        }
     }
 
-    
+
+
 
     if (valid) {
         alert('Changes have been successfully applied.')
