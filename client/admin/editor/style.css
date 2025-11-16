@@ -164,6 +164,12 @@ body {
     font-size: 16px;
 }
 
+.change-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
 .change-buttons {
     display: flex;
     gap: 7px;
@@ -182,6 +188,12 @@ body {
 .act-btn:hover {
     background: #552B1B;
     color: #FFFCED;
+}
+
+.delete-btn {
+    border: none;
+    background: red;
+    color: black;
 }
 
 

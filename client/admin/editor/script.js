@@ -36,6 +36,8 @@ editBtnsCategory.forEach(editBtnCategory => {
         let categoryBlock = editBtnCategory.closest('.category-block')
         let categoryBlockEdit = categoryBlock.querySelector('.category-block-edit')
 
+
+
         categoryBlockEdit.classList.toggle('active')
     })
 })
@@ -45,10 +47,21 @@ let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
 
 saveBtnsCategory.forEach(saveBtnCategory => {
     saveBtnCategory.addEventListener('click', () => {
+        let categoryBlockEdit = saveBtnCategory.closest('.category-block-edit')
+        let fields = categoryBlockEdit.querySelectorAll('input')
 
+        let valid = true
+        for (const field of fields) {
+            if (!field.value.trim()) {
+                alert('Position and names are required');
+                valid = false
+                return;
+            }
+        }
 
-
-        saveBtnCategory.closest('.category-block-edit').classList.toggle('active')
+        if (valid) {
+            categoryBlockEdit.classList.toggle('active')
+        }
     })
 })
 
@@ -64,6 +77,8 @@ exitBtnsCategory.forEach(exitBtnCategory => {
 let addCategoryBtn = document.querySelector('.add-category-btn')
 
 addCategoryBtn.addEventListener('click', () => {
+
+
     addCategoryBtn.classList.remove('active')
     addCategoryBtn.closest('.add-category-container').querySelector('.add-category-block').classList.add('active')
 })
@@ -74,14 +89,42 @@ let addSaveBtnCategory = document.querySelector('.add-btn-category')
 let cancelBtnCategory = document.querySelector('.cancel-btn-category')
 
 addSaveBtnCategory.addEventListener('click', () => {
-    addSaveBtnCategory.closest('.add-category-block').classList.remove('active')
 
-    addCategoryBtn.classList.add('active')
+    let addCategoryBlock = addSaveBtnCategory.closest('.add-category-block')
+    let fields = addCategoryBlock.querySelectorAll('input')
+
+    let valid = true
+    for (const field of fields) {
+        if (!field.value.trim()) {
+            alert('Position and names of category are required');
+            valid = false
+            return;
+        }
+    }
+
+
+    if (valid) {
+        fields.forEach(field => {
+            field.value = ""
+        })
+
+        addCategoryBlock.classList.remove('active')
+
+        addCategoryBtn.classList.add('active')
+    }
+
 })
 
 cancelBtnCategory.addEventListener('click', () => {
-    cancelBtnCategory.closest('.add-category-block').classList.remove('active')
 
+    let addCategoryBlock = addSaveBtnCategory.closest('.add-category-block')
+    let fields = addCategoryBlock.querySelectorAll('input')
+    fields.forEach(field => {
+        field.value = ""
+    })
+
+  
+    addCategoryBlock.classList.remove('active')
     addCategoryBtn.classList.add('active')
 })
 
@@ -92,6 +135,11 @@ let itemsContainer = document.querySelector('.items-main-container')
 
 categoryBlocks.forEach(categoryBlock => {
     categoryBlock.addEventListener('click', () => {
+
+        categoryBlocks.forEach(categoryBlock => {
+            categoryBlock.classList.remove('active')
+        })
+
         categoryBlock.classList.add('active')
 
 
@@ -105,6 +153,11 @@ let itemEditorContainer = document.querySelector('.item-editor-main-container')
 
 itemBlocks.forEach(itemBlock => {
     itemBlock.addEventListener('click', () => {
+
+        itemBlocks.forEach(itemBlock => {
+            itemBlock.classList.remove('active')
+        })
+
         itemBlock.classList.add('active')
 
 
@@ -131,14 +184,29 @@ let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
 saveBtnsOption.forEach(saveBtnOption => {
     saveBtnOption.addEventListener('click', () => {
 
+        let categoryBlockEdit = saveBtnsOption.closest('.category-block-edit')
+        let fields = categoryBlockEdit.querySelectorAll('input')
 
+        let valid = true
+        for (const field of fields) {
+            if (!field.value.trim()) {
+                alert('Position and names of option are required');
+                valid = false
+                return;
+            }
+        }
 
-        saveBtnOption.closest('.category-block-edit').classList.toggle('active')
+        if (valid) {
+            categoryBlockEdit.classList.toggle('active')
+        }
+
     })
 })
 
 exitBtnsOption.forEach(exitBtnOption => {
     exitBtnOption.addEventListener('click', () => {
+
+
 
         exitBtnOption.closest('.category-block-edit').classList.toggle('active')
     })
@@ -171,7 +239,7 @@ addSaveBtnOption.addEventListener('click', () => {
     let valid = true
     for (const field of fields) {
         if (!field.value.trim()) {
-            alert('Position and price are required');
+            alert('Position and price of option are required');
             valid = false
             return;
         }
