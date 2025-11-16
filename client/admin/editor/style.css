@@ -198,7 +198,8 @@ body {
     display: none;
 }
 
-.add-category-btn.active {
+.add-category-btn.active,
+.add-option-btn.active {
     display: block;
 }
 
