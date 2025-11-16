@@ -195,7 +195,7 @@ body {
 .add-option-block-edit,
 .item-editor-block,
 .option-data,
-.add-option-name-container {
+.add-option-name-block {
     display: flex;
     flex-direction: column;
     gap: 5px;
