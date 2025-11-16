@@ -151,8 +151,11 @@ exitBtnsOption.forEach(exitBtnOption => {
 let addOptionBtn = document.querySelector('.add-option-btn')
 
 addOptionBtn.addEventListener('click', () => {
+
+
     addOptionBtn.classList.remove('active')
     addOptionBtn.closest('.add-option-container').querySelector('.add-option-block').classList.add('active')
+
 })
 
 
@@ -161,13 +164,36 @@ let addSaveBtnOption = document.querySelector('.add-btn-option')
 let cancelBtnOption = document.querySelector('.cancel-btn-option')
 
 addSaveBtnOption.addEventListener('click', () => {
-    addSaveBtnOption.closest('.add-option-block').classList.remove('active')
 
-    addOptionBtn.classList.add('active')
+    let addOptionBlock = addSaveBtnOption.closest('.add-option-block')
+    let fields = addOptionBlock.querySelectorAll('#position, #price')
+
+    let valid = true
+    for (const field of fields) {
+        if (!field.value.trim()) {
+            alert('Position and price are required');
+            valid = false
+            return;
+        }
+    }
+
+
+    if (valid) {
+        addOptionBlock.classList.remove('active')
+        addOptionBtn.classList.add('active')
+    }
 })
 
 cancelBtnOption.addEventListener('click', () => {
-    cancelBtnOption.closest('.add-option-block').classList.remove('active')
+    let addOptionBlock = cancelBtnOption.closest('.add-option-block')
+    let fields = addOptionBlock.querySelectorAll('input')
+    fields.forEach(field => {
+        field.value = ""
+    })
+
+    addOptionNameBtn.textContent = "Add option name"
+
+    addOptionBlock.classList.remove('active')
 
     addOptionBtn.classList.add('active')
 })
