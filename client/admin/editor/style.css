@@ -107,7 +107,8 @@ body {
 
 .categories-wrapper,
 .items-wrapper,
-.item-editor-wrapper {
+.item-editor-wrapper,
+.add-item-wrapper {
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -253,7 +254,9 @@ body {
 
 /* таблица блюд */
 
-.items-main-container.hidden {
+.items-main-container.hidden,
+.item-editor-main-container.hidden,
+.add-item-main-container.hidden {
     display: none;
 }
 
@@ -278,9 +281,7 @@ body {
 
 /* изменение/добавление блюд */
 
-.item-editor-main-container.hidden {
-    display: none;
-}
+ 
 
 .item-editor-wrapper {
     gap: 10px;

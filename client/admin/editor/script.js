@@ -123,7 +123,7 @@ cancelBtnCategory.addEventListener('click', () => {
         field.value = ""
     })
 
-  
+
     addCategoryBlock.classList.remove('active')
     addCategoryBtn.classList.add('active')
 })
@@ -160,9 +160,19 @@ itemBlocks.forEach(itemBlock => {
 
         itemBlock.classList.add('active')
 
-
+        addItemContainer.classList.add("hidden")
         itemEditorContainer.classList.remove('hidden')
     })
+})
+
+// открыть окно добавления блюда 
+
+let openAddItem = document.querySelector('.add-item-btn')
+let addItemContainer = document.querySelector('.add-item-main-container')
+
+openAddItem.addEventListener('click', () => {
+    exitBtnItemEditor.click()
+    addItemContainer.classList.remove("hidden")
 })
 
 
