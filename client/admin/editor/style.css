@@ -186,12 +186,26 @@ body {
 
 
 .add-category-container,
-.add-option-container {
+.add-option-container,
+.add-option-name-container {
     margin-top: 20px;
 }
 
+.add-category-block-edit,
+.add-option-block-edit,
+.item-editor-block,
+.option-data,
+.add-option-name-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    font-size: 12px;
+}
+
 .add-category-btn,
-.add-option-btn {
+.add-option-btn,
+.add-option-name-btn {
     text-decoration: underline;
     cursor: pointer;
     font-size: 17px;
@@ -199,7 +213,8 @@ body {
 }
 
 .add-category-btn.active,
-.add-option-btn.active {
+.add-option-btn.active,
+.add-option-name-btn.active {
     display: block;
 }
 
@@ -215,14 +230,7 @@ body {
     display: block;
 }
 
-.add-category-block-edit,
-.add-option-block-edit {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
 
-    font-size: 12px;
-}
 
 
 
@@ -265,13 +273,7 @@ body {
     resize: vertical;
 }
 
-.item-editor-block,
-.option-data {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 12px;
-}
+
 
 .item-editor-block-name {
     font-size: 17px;
@@ -288,6 +290,8 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 
 
