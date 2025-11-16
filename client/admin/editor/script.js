@@ -179,6 +179,12 @@ addSaveBtnOption.addEventListener('click', () => {
 
 
     if (valid) {
+        let allFields = addOptionBlock.querySelectorAll('input')
+        allFields.forEach(field => {
+            field.value = ""
+        })
+        addOptionNameBtn.textContent = "Add option name"
+
         addOptionBlock.classList.remove('active')
         addOptionBtn.classList.add('active')
     }
@@ -266,7 +272,7 @@ saveBtnItemEditor.addEventListener('click', () => {
     let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
 
     for (const field of allEditorFields) {
-        if (!field.value.trim() && field.id !== ("en-option" || "ru-option" || "ko-option" || "ar-option")) {
+        if (!field.value.trim() && !field.closest('.add-option-block')) {
             alert('Not all fields are filled in')
             valid = false
             return
