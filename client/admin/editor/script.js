@@ -184,7 +184,7 @@ let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
 saveBtnsOption.forEach(saveBtnOption => {
     saveBtnOption.addEventListener('click', () => {
 
-        let categoryBlockEdit = saveBtnsOption.closest('.category-block-edit')
+        let categoryBlockEdit = saveBtnOption.closest('.category-block-edit')
         let fields = categoryBlockEdit.querySelectorAll('input')
 
         let valid = true
