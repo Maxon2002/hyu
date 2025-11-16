@@ -194,8 +194,7 @@ body {
 .add-category-block-edit,
 .add-option-block-edit,
 .item-editor-block,
-.option-data,
-.add-option-name-block {
+.option-data {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -230,7 +229,13 @@ body {
     display: block;
 }
 
+.add-option-name-block.active {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 
+    font-size: 12px;
+}
 
 
 
