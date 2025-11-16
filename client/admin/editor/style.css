@@ -190,7 +190,8 @@ body {
     margin-top: 20px;
 }
 
-.add-category-btn {
+.add-category-btn,
+.add-option-btn {
     text-decoration: underline;
     cursor: pointer;
     font-size: 17px;
@@ -261,6 +262,14 @@ body {
 
 .item-editor-wrapper textarea {
     resize: vertical;
+}
+
+.item-editor-block,
+.option-data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
 }
 
 .item-editor-block-name {
