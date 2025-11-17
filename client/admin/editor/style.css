@@ -181,6 +181,7 @@ input, textarea {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 15px;
 }
 
 .change-buttons {
@@ -308,7 +309,9 @@ input, textarea {
 
 
 
-
+.item-img {
+    width: 100%;
+}
 
 
 
