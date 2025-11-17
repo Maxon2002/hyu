@@ -238,7 +238,7 @@ input, textarea {
 .add-category-btn.active,
 .add-option-btn.active,
 .add-option-name-btn.active,
-.change-img {
+.change-img.active {
     display: block;
 }
 
