@@ -332,11 +332,15 @@ cancelBtnsOption.forEach(cancelBtnOption => {
             field.value = ""
         })
 
-        addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+        let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn')
+        addOptionNameBtn.textContent = "Add option name"
+        
 
         addOptionContainer.querySelectorAll('.add-block').forEach(block => {
             block.classList.remove('active')
         })
+
+        addOptionNameBtn.classList.add('active')
 
         addOptionContainer.querySelector('.add-option-btn').classList.add('active')
     })
