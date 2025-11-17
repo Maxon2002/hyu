@@ -34,7 +34,7 @@ let editBtnsCategory = document.querySelectorAll('.edit-btn-category')
 editBtnsCategory.forEach(editBtnCategory => {
     editBtnCategory.addEventListener('click', () => {
         let categoryBlock = editBtnCategory.closest('.category-block')
-        let categoryBlockEdit = categoryBlock.querySelector('.category-block-edit')
+        let categoryBlockEdit = categoryBlock.querySelector('.add-block')
 
 
 
@@ -47,7 +47,7 @@ let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
 
 saveBtnsCategory.forEach(saveBtnCategory => {
     saveBtnCategory.addEventListener('click', () => {
-        let categoryBlockEdit = saveBtnCategory.closest('.category-block-edit')
+        let categoryBlockEdit = saveBtnCategory.closest('.add-block')
         let fields = categoryBlockEdit.querySelectorAll('input')
 
         let valid = true
@@ -68,7 +68,7 @@ saveBtnsCategory.forEach(saveBtnCategory => {
 exitBtnsCategory.forEach(exitBtnCategory => {
     exitBtnCategory.addEventListener('click', () => {
 
-        exitBtnCategory.closest('.category-block-edit').classList.toggle('active')
+        exitBtnCategory.closest('.add-block').classList.toggle('active')
     })
 })
 
@@ -224,7 +224,7 @@ let editBtnsOption = document.querySelectorAll('.edit-btn-option')
 editBtnsOption.forEach(editBtnOption => {
     editBtnOption.addEventListener('click', () => {
         let optionContainer = editBtnOption.closest('.option-container')
-        let optionBlockEdit = optionContainer.querySelector('.category-block-edit')
+        let optionBlockEdit = optionContainer.querySelector('.add-block')
 
         optionBlockEdit.classList.toggle('active')
     })
@@ -236,8 +236,8 @@ let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
 saveBtnsOption.forEach(saveBtnOption => {
     saveBtnOption.addEventListener('click', () => {
 
-        let categoryBlockEdit = saveBtnOption.closest('.category-block-edit')
-        let fields = categoryBlockEdit.querySelectorAll('input')
+        let optionBlockEdit = saveBtnOption.closest('.add-block')
+        let fields = optionBlockEdit.querySelectorAll('input')
 
         let valid = true
         for (const field of fields) {
@@ -249,7 +249,7 @@ saveBtnsOption.forEach(saveBtnOption => {
         }
 
         if (valid) {
-            categoryBlockEdit.classList.toggle('active')
+            optionBlockEdit.classList.toggle('active')
         }
 
     })
@@ -260,7 +260,7 @@ exitBtnsOption.forEach(exitBtnOption => {
 
 
 
-        exitBtnOption.closest('.category-block-edit').classList.toggle('active')
+        exitBtnOption.closest('.add-block').classList.toggle('active')
     })
 })
 
