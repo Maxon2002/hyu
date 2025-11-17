@@ -91,6 +91,22 @@ body {
     gap: 150px;
 }
 
+
+input, textarea {
+    padding: 10px 8px;
+    /* font-size: 14px; */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+/* textarea {
+    padding: 10px 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+
+} */
+
 /* таблица категорий */
 
 .categories-main-container,
@@ -164,12 +180,13 @@ body {
 .change-buttons-container {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 15px;
 }
 
 .change-buttons {
     display: flex;
     gap: 7px;
+    margin-top: 15px;
 }
 
 .act-btn {
