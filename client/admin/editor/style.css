@@ -135,7 +135,6 @@ body {
     color: #FFFCED;
 }
 
-.category-name,
 .item-name {
     font-size: 18px;
 }
@@ -195,16 +194,12 @@ body {
 }
 
 
-.add-category-container,
-.add-option-container,
-.add-option-name-container {
+.add-container {
     margin-top: 20px;
 }
 
-.add-category-block-edit,
-.add-option-block-edit,
-.item-editor-block,
-.option-data {
+.block-edit,
+.item-editor-block {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -227,24 +222,12 @@ body {
     display: block;
 }
 
-.add-category-block,
-.add-option-block,
-.add-option-name-block {
+.add-block {
     display: none;
 }
 
-.add-category-block.active,
-.add-option-block.active,
-.add-option-name-block.active {
+.add-block.active {
     display: block;
-}
-
-.add-option-name-block.active {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-    font-size: 12px;
 }
 
 

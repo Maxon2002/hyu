@@ -80,7 +80,7 @@ addCategoryBtn.addEventListener('click', () => {
 
 
     addCategoryBtn.classList.remove('active')
-    addCategoryBtn.closest('.add-category-container').querySelector('.add-category-block').classList.add('active')
+    addCategoryBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
 })
 
 
@@ -90,7 +90,7 @@ let cancelBtnCategory = document.querySelector('.cancel-btn-category')
 
 addSaveBtnCategory.addEventListener('click', () => {
 
-    let addCategoryBlock = addSaveBtnCategory.closest('.add-category-block')
+    let addCategoryBlock = addSaveBtnCategory.closest('.add-block')
     let fields = addCategoryBlock.querySelectorAll('input')
 
     let valid = true
@@ -117,7 +117,7 @@ addSaveBtnCategory.addEventListener('click', () => {
 
 cancelBtnCategory.addEventListener('click', () => {
 
-    let addCategoryBlock = addSaveBtnCategory.closest('.add-category-block')
+    let addCategoryBlock = addSaveBtnCategory.closest('.add-block')
     let fields = addCategoryBlock.querySelectorAll('input')
     fields.forEach(field => {
         field.value = ""
@@ -165,6 +165,7 @@ itemBlocks.forEach(itemBlock => {
     })
 })
 
+
 // открыть окно добавления блюда 
 
 let openAddItem = document.querySelector('.add-item-btn')
@@ -175,16 +176,46 @@ openAddItem.addEventListener('click', () => {
     addItemContainer.classList.remove("hidden")
 })
 
-let cancelAddItem = document.querySelector('.exit-btn-add-item')
 
-cancelAddItem.addEventListener('click', () => {
-    
-    addItemContainer.classList.remove("hidden")
+// добавить новое блюдо/отменить
+let addItemBtn = document.querySelector('.save-btn-add-item')
+let cancelAddItemBtn = document.querySelector('.exit-btn-add-item')
+
+
+
+addItemBtn.addEventListener('click', () => {
+    let valid = true
+    let allEditorFields = addItemContainer.querySelectorAll('input, textarea')
+
+    for (const field of allEditorFields) {
+        if (!field.value.trim() && !field.closest('.add-block')) {
+            alert('Not all fields are filled in')
+            valid = false
+            return
+        }
+    }
+
+
+
+
+    if (valid) {
+        alert('New item have been successfully added.')
+    }
+})
+
+
+
+cancelAddItemBtn.addEventListener('click', () => {
+
+    addItemContainer.classList.add("hidden")
 
     addItemContainer.querySelectorAll('input, textarea').forEach(field => {
         field.value = ""
     })
 })
+
+
+
 
 
 // изменить название/позицию опции блюда
@@ -237,119 +268,149 @@ exitBtnsOption.forEach(exitBtnOption => {
 
 
 // добавить опцию блюда 
-let addOptionBtn = document.querySelector('.add-option-btn')
+let addOptionBtns = document.querySelectorAll('.add-option-btn')
 
-addOptionBtn.addEventListener('click', () => {
+addOptionBtns.forEach(addOptionBtn => {
+    addOptionBtn.addEventListener('click', () => {
 
 
-    addOptionBtn.classList.remove('active')
-    addOptionBtn.closest('.add-option-container').querySelector('.add-option-block').classList.add('active')
+        addOptionBtn.classList.remove('active')
+        addOptionBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
 
+    })
 })
 
 
 
-let addSaveBtnOption = document.querySelector('.add-btn-option')
-let cancelBtnOption = document.querySelector('.cancel-btn-option')
 
-addSaveBtnOption.addEventListener('click', () => {
+// сохранить добавленную опцию блюда/отменить
+let addSaveBtnsOption = document.querySelectorAll('.add-btn-option')
+let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
 
-    let addOptionBlock = addSaveBtnOption.closest('.add-option-block')
-    let fields = addOptionBlock.querySelectorAll('#position, #price')
+addSaveBtnsOption.forEach(addSaveBtnOption => {
 
-    let valid = true
-    for (const field of fields) {
-        if (!field.value.trim()) {
-            alert('Position and price of option are required');
-            valid = false
-            return;
+
+    addSaveBtnOption.addEventListener('click', () => {
+
+        let addOptionContainer = addSaveBtnOption.closest('.add-container')
+        let fields = addOptionContainer.querySelectorAll('#position, #price')
+
+        let valid = true
+        for (const field of fields) {
+            if (!field.value.trim()) {
+                alert('Position and price of option are required');
+                valid = false
+                return;
+            }
         }
-    }
 
 
-    if (valid) {
-        let allFields = addOptionBlock.querySelectorAll('input')
-        allFields.forEach(field => {
+        if (valid) {
+            let allFields = addOptionContainer.querySelectorAll('input')
+            allFields.forEach(field => {
+                field.value = ""
+            })
+
+            addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+
+            addOptionContainer.querySelector('.add-block').classList.remove('active')
+
+            addOptionContainer.querySelector('.add-option-btn').classList.add('active')
+        }
+    })
+})
+
+cancelBtnsOption.forEach(cancelBtnOption => {
+
+
+    cancelBtnOption.addEventListener('click', () => {
+        let addOptionContainer = cancelBtnOption.closest('.add-container')
+        let fields = addOptionContainer.querySelectorAll('input')
+        fields.forEach(field => {
             field.value = ""
         })
-        addOptionNameBtn.textContent = "Add option name"
 
-        addOptionBlock.classList.remove('active')
-        addOptionBtn.classList.add('active')
-    }
-})
+        addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
 
-cancelBtnOption.addEventListener('click', () => {
-    let addOptionBlock = cancelBtnOption.closest('.add-option-block')
-    let fields = addOptionBlock.querySelectorAll('input')
-    fields.forEach(field => {
-        field.value = ""
+        addOptionContainer.querySelector('.add-block').classList.remove('active')
+
+        addOptionContainer.querySelector('.add-option-btn').classList.add('active')
     })
-
-    addOptionNameBtn.textContent = "Add option name"
-
-    addOptionBlock.classList.remove('active')
-
-    addOptionBtn.classList.add('active')
 })
 
 
 
 // добавить имя опции блюда 
-let addOptionNameBtn = document.querySelector('.add-option-name-btn')
-let addOptionNameContainer = document.querySelector('.add-option-name-container')
+let addOptionNameBtns = document.querySelectorAll('.add-option-name-btn')
 
-addOptionNameBtn.addEventListener('click', () => {
-    addOptionNameBtn.classList.remove('active')
-    addOptionNameContainer.querySelector('.add-option-name-block').classList.add('active')
+
+addOptionNameBtns.forEach(addOptionNameBtn => {
+    addOptionNameBtn.addEventListener('click', () => {
+        addOptionNameBtn.classList.remove('active')
+        addOptionNameBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
+    })
 })
 
 
 
-let saveBtnOptionName = document.querySelector('.save-btn-option-name')
-let cancelBtnOptionName = document.querySelector('.cancel-btn-option-name')
-let optionNameFields = addOptionNameContainer.querySelectorAll('input')
+// сохранить добавленное имя опции блюда/отменить
+let saveBtnsOptionName = document.querySelectorAll('.save-btn-option-name')
+let cancelBtnsOptionName = document.querySelectorAll('.cancel-btn-option-name')
 
-saveBtnOptionName.addEventListener('click', () => {
-
-
-    let valid = true
-    for (const field of optionNameFields) {
-        if (!field.value.trim()) {
-            alert('Not all fields for option name are filled in');
-            valid = false
-            return;
-        }
-    }
+saveBtnsOptionName.forEach(saveBtnOptionName => {
 
 
+    saveBtnOptionName.addEventListener('click', () => {
 
-    if (valid) {
-        optionNameFields.forEach(field => {
-            if (field.id === "en-option") {
-                addOptionNameBtn.textContent = field.value.trim()
+        let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
+        let fields = addOptionNameContainer.querySelectorAll('input')
 
+        let valid = true
+        for (const field of fields) {
+            if (!field.value.trim()) {
+                alert('Not all fields for option name are filled in');
+                valid = false
+                return;
             }
+        }
+
+
+
+        if (valid) {
+            fields.forEach(field => {
+                if (field.id === "en-option") {
+                    addOptionNameContainer.querySelector('.add-option-name-btn').textContent = field.value.trim()
+                }
+            })
+
+            saveBtnOptionName.closest('.add-block').classList.remove('active')
+            document.querySelectorAll('.add-option-name-btn').forEach(btn => {
+                btn.classList.add('active')
+            })
+        }
+    })
+})
+
+cancelBtnsOptionName.forEach(cancelBtnOptionName => {
+
+
+    cancelBtnOptionName.addEventListener('click', () => {
+        let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
+        let fields = addOptionNameContainer.querySelectorAll('input')
+
+        fields.forEach(field => {
+            field.value = ""
+            addOptionNameContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
         })
 
-        saveBtnOptionName.closest('.add-option-name-block').classList.remove('active')
-        addOptionNameBtn.classList.add('active')
-    }
-})
 
-cancelBtnOptionName.addEventListener('click', () => {
+        cancelBtnOptionName.closest('.add-block').classList.remove('active')
 
-    optionNameFields.forEach(field => {
-        field.value = ""
-        addOptionNameBtn.textContent = "Add option name"
+        document.querySelectorAll('.add-option-name-btn').forEach(btn => {
+            btn.classList.add('active')
+        })
     })
-
-
-    cancelBtnOptionName.closest('.add-option-name-block').classList.remove('active')
-
-    addOptionNameBtn.classList.add('active')
 })
-
 
 // сохрание всех изменений блюда
 
@@ -361,7 +422,7 @@ saveBtnItemEditor.addEventListener('click', () => {
     let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
 
     for (const field of allEditorFields) {
-        if (!field.value.trim() && !field.closest('.add-option-block')) {
+        if (!field.value.trim() && !field.closest('.add-block')) {
             alert('Not all fields are filled in')
             valid = false
             return
