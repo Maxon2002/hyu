@@ -175,6 +175,17 @@ openAddItem.addEventListener('click', () => {
     addItemContainer.classList.remove("hidden")
 })
 
+let cancelAddItem = document.querySelector('.exit-btn-add-item')
+
+cancelAddItem.addEventListener('click', () => {
+    
+    addItemContainer.classList.remove("hidden")
+
+    addItemContainer.querySelectorAll('input, textarea').forEach(field => {
+        field.value = ""
+    })
+})
+
 
 // изменить название/позицию опции блюда
 let editBtnsOption = document.querySelectorAll('.edit-btn-option')

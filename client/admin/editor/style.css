@@ -97,21 +97,18 @@ body {
 .items-main-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     /* align-self: flex-start; */
 }
 
 .subtitle {
-    font-size: 20px;
+    font-size: 25px;
 }
 
-.categories-wrapper,
-.items-wrapper,
-.item-editor-wrapper,
-.add-item-wrapper {
+.block-wrapper {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 270px;
 }
 
 .category-block {
