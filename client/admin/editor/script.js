@@ -334,7 +334,7 @@ cancelBtnsOption.forEach(cancelBtnOption => {
 
         let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn')
         addOptionNameBtn.textContent = "Add option name"
-        
+
 
         addOptionContainer.querySelectorAll('.add-block').forEach(block => {
             block.classList.remove('active')
@@ -456,4 +456,44 @@ exitBtnItemEditor.addEventListener('click', () => {
     itemBlocks.forEach(itemBlock => {
         itemBlock.classList.remove('active')
     })
+})
+
+// изменить изображение
+let changeImg = document.querySelector('.change-img')
+
+changeImg.addEventListener('click', () => {
+    changeImg.classList.remove('active')
+    changeImg.closest('.item-editor-block').querySelector('.add-block').classList.add('active')
+})
+
+
+// подвердить/отменить изменение изображения
+
+let confirmImgChange = document.querySelector('.confirm-img-btn')
+let cancelImgChange = document.querySelector('.cancel-img-btn')
+
+confirmImgChange.addEventListener('click', () => {
+
+    let changeImgBlock = confirmImgChange.closest('.item-editor-block')
+    let valid = true
+
+    if (!changeImgBlock.querySelector('input').value.trim()) {
+        valid = false
+        alert('Image is required')
+    }
+
+    if (valid) {
+        changeImgBlock.querySelector('.add-block').classList.remove('active')
+        changeImgBlock.querySelector('.change-img').classList.add('active')
+    }
+})
+
+
+cancelImgChange.addEventListener('click', () => {
+    let changeImgBlock = cancelImgChange.closest('.item-editor-block')
+
+    changeImgBlock.querySelector('.add-block').classList.remove('active')
+    changeImgBlock.querySelector('.change-img').classList.add('active')
+
+
 })

@@ -227,7 +227,8 @@ input, textarea {
 
 .add-category-btn,
 .add-option-btn,
-.add-option-name-btn {
+.add-option-name-btn,
+.change-img {
     text-decoration: underline;
     cursor: pointer;
     font-size: 17px;
@@ -236,7 +237,8 @@ input, textarea {
 
 .add-category-btn.active,
 .add-option-btn.active,
-.add-option-name-btn.active {
+.add-option-name-btn.active,
+.change-img {
     display: block;
 }
 
