@@ -313,7 +313,9 @@ addSaveBtnsOption.forEach(addSaveBtnOption => {
 
             addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
 
-            addOptionContainer.querySelector('.add-block').classList.remove('active')
+            addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+                block.classList.remove('active')
+            })
 
             addOptionContainer.querySelector('.add-option-btn').classList.add('active')
         }
@@ -332,7 +334,9 @@ cancelBtnsOption.forEach(cancelBtnOption => {
 
         addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
 
-        addOptionContainer.querySelector('.add-block').classList.remove('active')
+        addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+            block.classList.remove('active')
+        })
 
         addOptionContainer.querySelector('.add-option-btn').classList.add('active')
     })
