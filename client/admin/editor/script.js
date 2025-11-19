@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="add-block">
             <div class="block-edit">
                 <label>Position</label>
-                <input type="number" value="${cat.position}" data-field="position">
+                <input type="number" min="1" value="${cat.position + 1}" data-field="position">
 
                 <label>en</label>
                 <input type="text" value="${tr.en || ""}" data-lang="en">
