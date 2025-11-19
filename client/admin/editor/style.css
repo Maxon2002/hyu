@@ -127,6 +127,11 @@ input, textarea {
     width: 270px;
 }
 
+#categoriesWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
 .category-block {
     display: flex;
     flex-direction: column;
