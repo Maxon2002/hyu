@@ -114,9 +114,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function rerenderCategoriesUI() {
         wrapper.innerHTML = "";
+        
         categoriesArr
             .sort((a, b) => a.position - b.position)
             .forEach(c => wrapper.appendChild(renderCategory(c)));
+
+        addListenerEditCategory()
     }
 
 
