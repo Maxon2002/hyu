@@ -112,15 +112,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    function rerenderCategoriesUI() {
-        wrapper.innerHTML = "";
-        
-        categoriesArr
-            .sort((a, b) => a.position - b.position)
-            .forEach(c => wrapper.appendChild(renderCategory(c)));
+    // function rerenderCategoriesUI() {
+    //     wrapper.innerHTML = "";
 
-        addListenerEditCategory()
-    }
+    //     categoriesArr
+    //         .sort((a, b) => a.position - b.position)
+    //         .forEach(c => wrapper.appendChild(renderCategory(c)));
+
+    //     addListenerEditCategory()
+    // }
 
 
 
@@ -244,12 +244,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                         return;
                     }
 
-                    // обновляем локальный массив
-                    const idx = categoriesArr.findIndex(c => c.id === categoryId);
-                    categoriesArr[idx] = data.category;
+                    // // обновляем локальный массив
+                    // const idx = categoriesArr.findIndex(c => c.id === categoryId);
+                    // categoriesArr[idx] = data.category;
 
-                    // перерендерить UI
-                    rerenderCategoriesUI();
+                    // // перерендерить UI
+                    // rerenderCategoriesUI();
+
+                    await loadCategories()
+
+                    alert('Categories have been successfully updated.')
 
                 } catch (err) {
                     console.error(err);
