@@ -137,6 +137,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // position
                     block.querySelector('input[data-field="position"]').value = category.position + 1;
 
+                    console.log(category.translations.en)
+
                     // translations
                     block.querySelector('input[data-lang="en"]').value = category.translations.en || "";
                     block.querySelector('input[data-lang="ru"]').value = category.translations.ru || "";
