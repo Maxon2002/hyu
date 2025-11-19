@@ -134,16 +134,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // 🔄 ПЕРЕД ОТКРЫТИЕМ — снова заполняем поля актуальными данными
                 function fillCategoryEditForm(block, category) {
+                    const tr = {};
+                    category.translations.forEach(t => tr[t.language] = t.title || "");
                     // position
                     block.querySelector('input[data-field="position"]').value = category.position + 1;
-
-                    console.log(category.translations.en)
-
                     // translations
-                    block.querySelector('input[data-lang="en"]').value = category.translations.en || "";
-                    block.querySelector('input[data-lang="ru"]').value = category.translations.ru || "";
-                    block.querySelector('input[data-lang="ko"]').value = category.translations.ko || "";
-                    block.querySelector('input[data-lang="ar"]').value = category.translations.ar || "";
+                    block.querySelector('input[data-lang="en"]').value = tr.en || "";
+                    block.querySelector('input[data-lang="ru"]').value = tr.ru || "";
+                    block.querySelector('input[data-lang="ko"]').value = tr.ko || "";
+                    block.querySelector('input[data-lang="ar"]').value = tr.ar || "";
                 }
                 fillCategoryEditForm(blockEdit, category);
 
