@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 wrapper.appendChild(renderCategory(category));
             });
 
+            addListenerEditCategory()
+
         } catch (err) {
             console.error(err);
             alert("Error loading categories");
@@ -113,49 +115,50 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     // изменить название/позицию категории
-    let editBtnsCategory = document.querySelectorAll('.edit-btn-category')
+    function addListenerEditCategory() {
+        let editBtnsCategory = document.querySelectorAll('.edit-btn-category')
 
-    editBtnsCategory.forEach(editBtnCategory => {
-        editBtnCategory.addEventListener('click', () => {
-            let categoryBlock = editBtnCategory.closest('.category-block')
-            let categoryBlockEdit = categoryBlock.querySelector('.add-block')
+        editBtnsCategory.forEach(editBtnCategory => {
+            editBtnCategory.addEventListener('click', () => {
+                let categoryBlock = editBtnCategory.closest('.category-block')
+                let categoryBlockEdit = categoryBlock.querySelector('.add-block')
 
 
 
-            categoryBlockEdit.classList.toggle('active')
-        })
-    })
-
-    let saveBtnsCategory = document.querySelectorAll('.save-btn-category')
-    let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
-
-    saveBtnsCategory.forEach(saveBtnCategory => {
-        saveBtnCategory.addEventListener('click', () => {
-            let categoryBlockEdit = saveBtnCategory.closest('.add-block')
-            let fields = categoryBlockEdit.querySelectorAll('input')
-
-            let valid = true
-            for (const field of fields) {
-                if (!field.value.trim()) {
-                    alert('Position and names are required');
-                    valid = false
-                    return;
-                }
-            }
-
-            if (valid) {
                 categoryBlockEdit.classList.toggle('active')
-            }
+            })
         })
-    })
 
-    exitBtnsCategory.forEach(exitBtnCategory => {
-        exitBtnCategory.addEventListener('click', () => {
+        let saveBtnsCategory = document.querySelectorAll('.save-btn-category')
+        let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
 
-            exitBtnCategory.closest('.add-block').classList.toggle('active')
+        saveBtnsCategory.forEach(saveBtnCategory => {
+            saveBtnCategory.addEventListener('click', () => {
+                let categoryBlockEdit = saveBtnCategory.closest('.add-block')
+                let fields = categoryBlockEdit.querySelectorAll('input')
+
+                let valid = true
+                for (const field of fields) {
+                    if (!field.value.trim()) {
+                        alert('Position and names are required');
+                        valid = false
+                        return;
+                    }
+                }
+
+                if (valid) {
+                    categoryBlockEdit.classList.toggle('active')
+                }
+            })
         })
-    })
 
+        exitBtnsCategory.forEach(exitBtnCategory => {
+            exitBtnCategory.addEventListener('click', () => {
+
+                exitBtnCategory.closest('.add-block').classList.toggle('active')
+            })
+        })
+    }
 
     // добавить категорию 
     let addCategoryBtn = document.querySelector('.add-category-btn')
