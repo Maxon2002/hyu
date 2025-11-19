@@ -11,38 +11,6 @@ const router = express.Router();
 
 
 router.get("/categories", async (req, res) => {
-  try {
-    const categories = await prisma.menuCategory.findMany({
-      orderBy: { position: "asc" },
-      include: {
-        translations: true
-      }
-    });
-
-    const formatted = categories.map(cat => {
-      const t = {};
-      cat.translations.forEach(tr => {
-        t[tr.language] = tr.title;
-      });
-
-      return {
-        id: cat.id,
-        slug: cat.slug,
-        position: cat.position,
-        translations: t
-      };
-    });
-
-    res.json(formatted);
-  } catch (err) {
-    console.error("Error loading categories:", err);
-    res.status(500).json({ error: "Failed to load categories" });
-  }
-});
-
-
-
-router.get("/categories", async (req, res) => {
     try {
         const categories = await prisma.menuCategory.findMany({
             orderBy: { position: "asc" },
