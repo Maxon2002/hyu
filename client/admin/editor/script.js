@@ -25,6 +25,90 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.removeItem("adminToken");
         window.location.href = "/admin/sign-in/";
     }
+
+
+
+
+
+
+    async function loadCategories() {
+        try {
+            const res = await fetch("/api/menuManager/categories");
+            const data = await res.json();
+
+            if (!data.success) return alert("Failed to load categories");
+
+            const wrapper = document.getElementById("categoriesWrapper");
+            wrapper.innerHTML = ""; // очистить старые данные
+
+            data.categories.forEach(category => {
+                wrapper.appendChild(renderCategory(category));
+            });
+
+        } catch (err) {
+            console.error(err);
+            alert("Error loading categories");
+        }
+    }
+
+    loadCategories()
+
+
+    function renderCategory(cat) {
+        const block = document.createElement("div");
+        block.classList.add("category-block");
+
+        // получаем переводы
+        const tr = {};
+        cat.translations.forEach(t => tr[t.language] = t.title || "");
+
+        block.innerHTML = `
+        <div class="category-block-info-wrapper">
+            <div class="category-block-info" id="${cat.slug}">
+                <div class="item-name">${tr.en || ""}</div>
+            </div>
+            <img src="../../images/edit-btn.svg" class="edit-btn edit-btn-category" />
+        </div>
+
+        <div class="add-block">
+            <div class="block-edit">
+                <label>Position</label>
+                <input type="number" value="${cat.position}" data-field="position">
+
+                <label>en</label>
+                <input type="text" value="${tr.en || ""}" data-lang="en">
+
+                <label>ru</label>
+                <input type="text" value="${tr.ru || ""}" data-lang="ru">
+
+                <label>ko</label>
+                <input type="text" value="${tr.ko || ""}" data-lang="ko">
+
+                <label>ar</label>
+                <input type="text" value="${tr.ar || ""}" data-lang="ar">
+
+                <div class="change-buttons-container">
+                    <div class="change-buttons">
+                        <button class="act-btn save-btn-category" data-id="${cat.id}">Save</button>
+                        <button class="act-btn exit-btn-category">Exit</button>
+                    </div>
+                    <button class="act-btn delete-btn delete-btn-category" data-id="${cat.id}">
+                        Delete category
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+        return block;
+    }
+
+
+
+
+
+
+
 });
 
 
@@ -184,21 +268,27 @@ let cancelAddItemBtn = document.querySelector('.exit-btn-add-item')
 
 
 addItemBtn.addEventListener('click', () => {
-    let valid = true
+    let validFirst = true
+    let validSecond = true
     let allEditorFields = addItemContainer.querySelectorAll('input, textarea')
 
     for (const field of allEditorFields) {
         if (!field.value.trim() && !field.closest('.add-block')) {
             alert('Not all fields are filled in')
-            valid = false
+            validFirst = false
             return
         }
+    }
+
+    if (!addItemContainer.querySelector('.option-container')) {
+        alert('At least one option is requeried')
+        validSecond = false
     }
 
 
 
 
-    if (valid) {
+    if (validFirst && validSecond) {
         alert('New item have been successfully added.')
     }
 })

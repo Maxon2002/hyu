@@ -7,6 +7,7 @@ import menuRoutes from "./routes/menu.js";
 import bookingRoutes from "./routes/booking.js";
 import authRoutes from "./routes/auth.js";
 import adminRoutes from "./routes/admin.js";
+import menuManager from "./routes/menu-manager.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/", menuRoutes);
 app.use("/api/reservation", bookingRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/menuManager", menuManager);
 
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
