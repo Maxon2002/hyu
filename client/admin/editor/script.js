@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
+    let categoriesArr = []
 
     async function loadCategories() {
         try {
@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             wrapper.innerHTML = ""; // очистить старые данные
 
             data.categories.forEach(category => {
+                categoriesArr.push(category)
                 wrapper.appendChild(renderCategory(category));
             });
 
@@ -59,6 +60,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderCategory(cat) {
         const block = document.createElement("div");
         block.classList.add("category-block");
+
+        block.dataset.id = cat.id
+        block.dataset.slug = cat.slug;
+        block.dataset.position = cat.position;
 
         // получаем переводы
         const tr = {};
@@ -120,12 +125,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         editBtnsCategory.forEach(editBtnCategory => {
             editBtnCategory.addEventListener('click', () => {
-                let categoryBlock = editBtnCategory.closest('.category-block')
-                let categoryBlockEdit = categoryBlock.querySelector('.add-block')
+                const categoryBlock = editBtnCategory.closest('.category-block');
+                const categoryId = categoryBlock.dataset.id;
 
+                const category = categoriesArr.find(c => c.id === categoryId);
 
+                const blockEdit = categoryBlock.querySelector('.add-block');
 
-                categoryBlockEdit.classList.toggle('active')
+                // 🔄 ПЕРЕД ОТКРЫТИЕМ — снова заполняем поля актуальными данными
+                function fillCategoryEditForm(block, category) {
+                    block.querySelector('input[data-field="position"]').value = category.position + 1;
+
+                    block.querySelector('input[data-field="en"]').value = category.translations.en || '';
+                    block.querySelector('input[data-field="ru"]').value = category.translations.ru || '';
+                    block.querySelector('input[data-field="ko"]').value = category.translations.ko || '';
+                    block.querySelector('input[data-field="ar"]').value = category.translations.ar || '';
+                }
+                fillCategoryEditForm(blockEdit, category);
+
+                // Показать/скрыть блок
+                blockEdit.classList.toggle('active');
             })
         })
 
