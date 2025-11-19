@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
+    const wrapper = document.getElementById("categoriesWrapper");
     let categoriesArr = []
 
     async function loadCategories() {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!data.success) return alert("Failed to load categories");
 
-            const wrapper = document.getElementById("categoriesWrapper");
+
             wrapper.innerHTML = ""; // очистить старые данные
 
             data.categories.forEach(category => {
@@ -112,7 +112,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
+    function rerenderCategoriesUI() {
+        wrapper.innerHTML = "";
+        categoriesArr
+            .sort((a, b) => a.position - b.position)
+            .forEach(c => wrapper.appendChild(renderCategory(c)));
+    }
 
 
 
@@ -154,25 +159,108 @@ document.addEventListener("DOMContentLoaded", async () => {
         let saveBtnsCategory = document.querySelectorAll('.save-btn-category')
         let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
 
-        saveBtnsCategory.forEach(saveBtnCategory => {
-            saveBtnCategory.addEventListener('click', () => {
-                let categoryBlockEdit = saveBtnCategory.closest('.add-block')
-                let fields = categoryBlockEdit.querySelectorAll('input')
+        // saveBtnsCategory.forEach(saveBtnCategory => {
+        //     saveBtnCategory.addEventListener('click', () => {
+        //         let categoryBlockEdit = saveBtnCategory.closest('.add-block')
+        //         let fields = categoryBlockEdit.querySelectorAll('input')
 
-                let valid = true
-                for (const field of fields) {
-                    if (!field.value.trim()) {
-                        alert('Position and names are required');
-                        valid = false
+        //         let validFirst = true
+        //         let validSecond = true
+        //         for (const field of fields) {
+        //             if (!field.value.trim()) {
+        //                 alert('Position and names are required');
+        //                 validFirst = false
+        //                 return;
+        //             }
+        //         }
+
+        //         if (categoryBlockEdit.querySelector('input[data-field="position"]').value <= 0) {
+        //             alert('Position have to at least 1');
+        //             validSecond = false
+        //         }
+
+        //         if (validFirst && validSecond) {
+        //             categoryBlockEdit.classList.toggle('active')
+
+        //         }
+        //     })
+        // })
+
+        saveBtnsCategory.forEach(saveBtn => {
+            saveBtn.addEventListener("click", async () => {
+
+                const blockEdit = saveBtn.closest(".add-block");
+                const categoryBlock = saveBtn.closest(".category-block");
+                const categoryId = categoryBlock.dataset.id;
+                const fields = blockEdit.querySelectorAll("input");
+
+                // ---- Валидация ----
+                let valid = true;
+
+                fields.forEach(f => {
+                    if (!f.value.trim()) valid = false;
+                });
+
+                if (!valid) {
+                    alert("Position and names are required");
+                    return;
+                }
+
+                const newPosition = Number(blockEdit.querySelector('input[data-field="position"]').value);
+                if (newPosition <= 0) {
+                    alert("Position must be at least 1");
+                    return;
+                }
+
+                // ---- Формирование данных ----
+                const translations = {
+                    en: blockEdit.querySelector('input[data-lang="en"]').value,
+                    ru: blockEdit.querySelector('input[data-lang="ru"]').value,
+                    ko: blockEdit.querySelector('input[data-lang="ko"]').value,
+                    ar: blockEdit.querySelector('input[data-lang="ar"]').value
+                };
+
+                const payload = {
+                    id: categoryId,
+                    position: newPosition - 1,     // UI → DB (минус 1)
+                    translations
+                };
+
+                // ---- Отправляем на сервер ----
+                try {
+                    const res = await fetch("/api/menuManager/category/update", {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await res.json();
+
+                    if (!res.ok) {
+                        alert(data.error || "Error updating category");
                         return;
                     }
-                }
 
-                if (valid) {
-                    categoryBlockEdit.classList.toggle('active')
+                    // обновляем локальный массив
+                    const idx = categoriesArr.findIndex(c => c.id === categoryId);
+                    categoriesArr[idx] = data.category;
+
+                    // перерендерить UI
+                    rerenderCategoriesUI();
+
+                } catch (err) {
+                    console.error(err);
+                    alert("Server error");
                 }
-            })
-        })
+            });
+        });
+
+
+
+
+
+
+
 
         exitBtnsCategory.forEach(exitBtnCategory => {
             exitBtnCategory.addEventListener('click', () => {
