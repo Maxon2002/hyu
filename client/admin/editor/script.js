@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
 
         <div class="block-edit">
-            <label>Image</label>
+            <div class="block-edit-name">Image</div>
             <img src="/images/food/${item.imageSmall || "/images/no-image.webp"}" class="item-img">
 
             <div class="change-img active">Change image</div>
@@ -665,10 +665,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         return `
         <div class="option-container" data-id="${option.id}">
             <div class="option-block">
-                <div class="block-edit">
-                    <label>${tr.en || "Standard"}</label>
-                    <input type="number" class="option-price" value="${option.price}">
-                </div>
+                <div>${tr.en || "Standard"} / ${option.price}</div>
+                
                 <img src="../../images/edit-btn.svg" class="edit-btn edit-btn-option">
             </div>
 
@@ -677,11 +675,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <label>Position</label>
                     <input type="number" class="option-position" value="${option.position + 1}">
 
+                    <label for="price">Price</label>
+                    <input type="number" id="price" name="price" value="${option.price}>
+
                     ${renderEditOptionVariants(tr)}
 
                     <div class="change-buttons-container">
                         <div class="change-buttons">
-                            <button type="button" class="act-btn save-btn-option">Save</button>
+                            <button type="button" class="act-btn save-btn-option">Save option changes</button>
                             <button type="button" class="act-btn exit-btn-option">Exit</button>
                         </div>
                         <button type="button" class="act-btn delete-btn delete-btn-option">Delete option</button>

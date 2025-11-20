@@ -229,10 +229,12 @@ input, textarea {
     gap: 7px;
 
     font-size: 15px;
+    margin-bottom: 15px;
 }
 
 .block-edit-name {
     margin-top: 5px;
+    font-size: 18px;
 }
 
 .add-category-btn,
@@ -241,7 +243,7 @@ input, textarea {
 .change-img {
     text-decoration: underline;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 16px;
     display: none;
 }
 
