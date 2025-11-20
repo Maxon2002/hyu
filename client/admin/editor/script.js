@@ -217,10 +217,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // ---- Формирование данных ----
                 const translations = {
-                    en: blockEdit.querySelector('input[data-lang="en"]').value,
-                    ru: blockEdit.querySelector('input[data-lang="ru"]').value,
-                    ko: blockEdit.querySelector('input[data-lang="ko"]').value,
-                    ar: blockEdit.querySelector('input[data-lang="ar"]').value
+                    en: blockEdit.querySelector('input[data-lang="en"]').value.trim(),
+                    ru: blockEdit.querySelector('input[data-lang="ru"]').value.trim(),
+                    ko: blockEdit.querySelector('input[data-lang="ko"]').value.trim(),
+                    ar: blockEdit.querySelector('input[data-lang="ar"]').value.trim()
                 };
 
                 const payload = {
@@ -281,10 +281,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     let addCategoryBtn = document.querySelector('.add-category-btn')
 
     addCategoryBtn.addEventListener('click', () => {
+        let addCategoryContainer = addCategoryBtn.closest('.add-container')
+
+        addCategoryContainer.querySelector('input[id="position"]').value = categoriesArr.length + 1
 
 
         addCategoryBtn.classList.remove('active')
-        addCategoryBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
+        addCategoryContainer.querySelector('.add-block').classList.add('active')
     })
 
 
@@ -292,30 +295,72 @@ document.addEventListener("DOMContentLoaded", async () => {
     let addSaveBtnCategory = document.querySelector('.add-btn-category')
     let cancelBtnCategory = document.querySelector('.cancel-btn-category')
 
-    addSaveBtnCategory.addEventListener('click', () => {
+    addSaveBtnCategory.addEventListener('click', async () => {
 
         let addCategoryBlock = addSaveBtnCategory.closest('.add-block')
         let fields = addCategoryBlock.querySelectorAll('input')
 
         let valid = true
-        for (const field of fields) {
-            if (!field.value.trim()) {
-                alert('Position and names of category are required');
-                valid = false
+
+        fields.forEach(f => {
+            if (!f.value.trim()) valid = false;
+        });
+
+        if (!valid) {
+            alert("Position and names are required");
+            return;
+        }
+
+        const position = Number(addCategoryBlock.querySelector('input[id="position"]').value);
+        if (position <= 0) {
+            alert("Position must be at least 1");
+            return;
+        }
+
+
+        // --- формируем данные для сервера ---
+        const data = {
+            position: position - 1,   // важно!
+            translations: {
+                en: addCategoryBlock.querySelector('#en-category').value.trim(),
+                ru: addCategoryBlock.querySelector('#ru-category').value.trim(),
+                ko: addCategoryBlock.querySelector('#ko-category').value.trim(),
+                ar: addCategoryBlock.querySelector('#ar-category').value.trim(),
+            }
+        };
+
+        try {
+            const response = await fetch("/api/menuManager/category/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+                alert(result.error || "Error");
                 return;
             }
+
+            // Успех
+            alert("Category added successfully!");
+
+            // закрываем блок
+            addCategoryBlock.classList.remove('active');
+            addCategoryBtn.classList.add('active');
+
+            // Очищаем поля
+            fields.forEach(field => field.value = "");
+
+            // Перезагружаем категории
+            await loadCategories();
+
+        } catch (error) {
+            console.error(error);
+            alert("Server error");
         }
 
-
-        if (valid) {
-            fields.forEach(field => {
-                field.value = ""
-            })
-
-            addCategoryBlock.classList.remove('active')
-
-            addCategoryBtn.classList.add('active')
-        }
 
     })
 

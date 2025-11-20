@@ -123,6 +123,72 @@ router.put("/category/update", async (req, res) => {
 });
 
 
+router.post("/category/add", async (req, res) => {
+    try {
+        const { position, translations } = req.body;
+
+        if (position === undefined || !translations)
+            return res.status(400).json({ error: "Missing data" });
+
+
+        // 2. Получаем общее количество категорий
+        const total = await prisma.menuCategory.count();
+
+        if (position < 0 || position > total) {
+            return res.status(400).json({ error: "Invalid position" });
+        }
+
+        const oldPosition = total;
+
+        // --------------------------------------------
+        //       ЛОГИКА СМЕЩЕНИЯ ДРУГИХ КАТЕГОРИЙ
+        // --------------------------------------------
+
+        if (position !== oldPosition) {
+
+            // сдвиг вниз → позиции new..old-1 увеличить на 1
+            await prisma.menuCategory.updateMany({
+                where: {
+                    position: {
+                        gte: position,
+                        lt: oldPosition
+                    }
+                },
+                data: { position: { increment: 1 } }
+            });
+
+        }
+
+
+        // 3. Добавляем саму категорию
+        // вычисляем slug из английского названия
+        const newSlug = makeSlug(translations.en);
+
+
+        const category = await prisma.menuCategory.create({
+            data: {
+                slug: newSlug,
+                position, // уже приходит position - 1
+                translations: {
+                    create: Object.entries(translations).map(([language, title]) => ({
+                        language,
+                        title
+                    }))
+                }
+            }
+        });
+
+
+
+        res.json({ success: true, category });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
 
 
 
