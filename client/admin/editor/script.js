@@ -1207,7 +1207,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 let addOptionContainer = addOptionBtn.closest('.add-container')
 
-                addOptionContainer.querySelector('input[id="position"]').value = optionsArr.length + 1
+                addOptionContainer.querySelector('input[class="option-position"]').value = optionsArr.length + 1
 
 
                 addOptionBtn.classList.remove('active')
