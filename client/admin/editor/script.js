@@ -976,6 +976,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Скрываем блок выбора 
                 blockEdit.classList.remove("active");
+                changeImg.classList.add('active')
+
 
             } catch (err) {
                 console.error(err);

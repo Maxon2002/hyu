@@ -575,9 +575,6 @@ router.post(
             const mediumPath = path.join(folder, mediumName);
             const largePath = path.join(folder, largeName);
 
-            console.log("Saving file to:", smallPath);
-            console.log("Saving file to:", mediumPath);
-            console.log("Saving file to:", largePath);
 
             // --- Конвертация и ресайз ---
             await sharp(file.path)
