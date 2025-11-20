@@ -456,6 +456,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!data.success) return alert("Failed to load item editor");
 
+            optionsArr = [];
+            data.item.variants(variant => {
+                optionsArr.push(variant)
+            });
+
 
             wrapperItemEditor.innerHTML = ""; // очистить старые данные
 
@@ -670,8 +675,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function renderOption(option) {
 
-        optionsArr = [];
-        optionsArr.push(option)
+
 
 
         const tr = {};
@@ -1020,6 +1024,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const optionId = optionBlock.dataset.id;
 
                 const option = optionsArr.find(c => c.id === optionId);
+                console.log(optionsArr)
 
                 const blockEdit = optionBlock.querySelector('.add-block');
 
@@ -1127,8 +1132,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
 
 
-                    wrapperItemOption.innerHTML = ""
+                    optionsArr = [];
+                    data.item.variants(variant => {
+                        optionsArr.push(variant)
+                    });
 
+
+                    wrapperItemOption.innerHTML = ""
                     wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
 
                     initOptionEditors()
