@@ -1298,7 +1298,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 if (valid) {
                     fields.forEach(field => {
-                        if (field.id === "en-option") {
+                        if (field.classList.contains('option-name-en')) {
                             addOptionNameContainer.querySelector('.add-option-name-btn').textContent = field.value.trim()
                         }
                     })
