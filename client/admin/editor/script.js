@@ -457,7 +457,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (!data.success) return alert("Failed to load item editor");
 
             optionsArr = [];
-            data.item.variants(variant => {
+            data.item.variants.forEach(variant => {
                 optionsArr.push(variant)
             });
 
@@ -1133,7 +1133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
                     optionsArr = [];
-                    data.item.variants(variant => {
+                    data.item.variants.forEach(variant => {
                         optionsArr.push(variant)
                     });
 
