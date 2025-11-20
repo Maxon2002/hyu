@@ -274,7 +274,7 @@ router.delete("/category/delete/:id", async (req, res) => {
 
 
 // октрытие блюд категории
-router.get("/items/:categoryId", async (req, res) => {
+router.get("/category/items/:categoryId", async (req, res) => {
     try {
         const { categoryId } = req.params;
 
@@ -303,6 +303,36 @@ router.get("/items/:categoryId", async (req, res) => {
     }
 });
 
+
+// открыть эдитор блюда 
+router.get("/item/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const item = await prisma.menuItem.findUnique({
+            where: { id },
+            include: {
+                translations: true,
+                variants: {
+                    include: {
+                        translations: true
+                    },
+                    orderBy: { position: "asc" }
+                }
+            }
+        });
+
+        if (!item) {
+            return res.json({ success: false, error: "Item not found" });
+        }
+
+        res.json({ success: true, item });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, error: "Server error" });
+    }
+});
 
 
 

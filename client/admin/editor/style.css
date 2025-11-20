@@ -128,7 +128,8 @@ input, textarea {
 }
 
 #categoriesWrapper,
-#itemsWrapper {
+#itemsWrapper,
+#itemEditorWrapper {
     display: flex;
     flex-direction: column;
 }
@@ -222,8 +223,7 @@ input, textarea {
     margin-top: 20px;
 }
 
-.block-edit,
-.item-editor-block {
+.block-edit {
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -289,11 +289,11 @@ input, textarea {
 
  
 
-.item-editor-wrapper {
+.item-editor-block {
     gap: 10px;
 }
 
-.item-editor-wrapper textarea {
+.item-editor-block textarea {
     resize: vertical;
 }
 

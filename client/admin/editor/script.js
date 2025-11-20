@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const wrapperCategory = document.getElementById("categoriesWrapper");
     const wrapperItem = document.getElementById("itemsWrapper");
+    const wrapperItemEditor = document.getElementById("itemEditorWrapper");
     let categoriesArr = []
     let itemsArr = []
 
@@ -209,12 +210,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                         return;
                     }
 
-                    // // обновляем локальный массив
-                    // const idx = categoriesArr.findIndex(c => c.id === categoryId);
-                    // categoriesArr[idx] = data.category;
-
-                    // // перерендерить UI
-                    // rerenderCategoriesUI();
 
                     await loadCategories()
 
@@ -399,10 +394,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
+    // рендер таблицы блюд
     async function loadItems(categoryId) {
         try {
-            const res = await fetch(`/api/menuManager/items/${categoryId}`);
+            const res = await fetch(`/api/menuManager/category/items/${categoryId}`);
             const data = await res.json();
 
             if (!data.success) return alert("Failed to load items");
@@ -444,14 +439,228 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
+
+    // рендер эдитора блюда
+
+    async function loadItemEditor(itemId) {
+        try {
+            const res = await fetch(`/api/menuManager/item/${itemId}`);
+            const data = await res.json();
+
+            if (!data.success) return alert("Failed to load item editor");
+
+
+            wrapperItemEditor.innerHTML = ""; // очистить старые данные
+
+
+            wrapperItemEditor.appendChild(renderItemEditor(data.item));
+
+
+            initOptionEditors()
+            initImageUpload();
+            initItemSave();
+
+        } catch (err) {
+            console.error(err);
+            alert("Error loading items");
+        }
+
+    }
+
+    function renderItemEditor(item) {
+        const block = document.createElement("div");
+        block.classList.add("item-editor-block");
+
+        block.dataset.id = item.id
+
+        // получаем переводы
+        const tr = {};
+        item.translations.forEach(t => {
+            tr[t.language] = {
+                title: t.title || "",
+                description: t.description || ""
+            };
+        });
+
+
+        block.innerHTML = `
+        <div class="block-edit">
+            <label for="position">Position</label>
+            <input type="number" id="item-position" value="${item.position + 1}">
+        </div>
+
+        <div class="block-edit">
+            <div class="block-edit-name">Name</div>
+
+            <label>en</label>
+            <input type="text" id="en-item-name" value="${tr.en?.title || ""}">
+            <label>ru</label>
+            <input type="text" id="ru-item-name" value="${tr.ru?.title || ""}">
+            <label>ko</label>
+            <input type="text" id="ko-item-name" value="${tr.ko?.title || ""}">
+            <label>ar</label>
+            <input type="text" id="ar-item-name" value="${tr.ar?.title || ""}">
+        </div>
+
+        <div class="block-edit">
+            <div class="block-edit-name">Description</div>
+
+            <label>en</label>
+            <textarea id="en-item-description">${tr.en?.description || ""}</textarea>
+            <label>ru</label>
+            <textarea id="ru-item-description">${tr.ru?.description || ""}</textarea>
+            <label>ko</label>
+            <textarea id="ko-item-description">${tr.ko?.description || ""}</textarea>
+            <label>ar</label>
+            <textarea id="ar-item-description">${tr.ar?.description || ""}</textarea>
+        </div>
+
+        <div class="block-edit">
+            <label>Image</label>
+            <img src="/images/food/${item.imageSmall || "/images/no-image.webp"}" class="item-img">
+
+            <div class="change-img active">Change image</div>
+
+            <div class="add-block">
+                <div class="block-edit">
+                    <input type="file" accept="image/*" id="item-image-file">
+                    <div class="change-buttons">
+                        <button type="button" class="act-btn confirm-img-btn">Confirm</button>
+                        <button type="button" class="act-btn cancel-img-btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-edit">
+            <div class="block-edit-name">Price</div>
+
+            ${item.variants.map(renderOption).join("")}
+
+            <div class="add-container">
+                                        <div class="add-option-btn active">Add option</div>
+
+                                        <div class="add-block">
+                                            <div class="block-edit">
+                                                <div class="item-name">New option</div>
+
+                                                <label for="position">Position</label>
+                                                <input type="number" id="position" name="position">
+
+                                                <label for="price">Price</label>
+                                                <input type="number" id="price" name="price">
+
+                                                <div class="add-container">
+                                                    <div class="add-option-name-btn active">Add option name</div>
+
+                                                    <div class="add-block">
+                                                        <div class="block-edit">
+                                                            <label for="en-option">en</label>
+                                                            <input type="text" id="en-option" name="en-option">
+
+                                                            <label for="ru-option">ru</label>
+                                                            <input type="text" id="ru-option" name="ru-option">
+
+                                                            <label for="ko-option">ko</label>
+                                                            <input type="text" id="ko-option" name="ko-option">
+
+                                                            <label for="ar-option">ar</label>
+                                                            <input type="text" id="ar-option" name="ar-option">
+
+                                                            <div class="change-buttons">
+                                                                <button type="button"
+                                                                    class="act-btn save-btn-option-name">Save
+                                                                    name</button>
+                                                                <button type="button"
+                                                                    class="act-btn cancel-btn-option-name">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="change-buttons">
+                                                    <button type="button" class="act-btn add-btn-option">Add
+                                                        option</button>
+                                                    <button type="button"
+                                                        class="act-btn cancel-btn-option">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+        </div>
+
+        <div class="change-buttons-container">
+            <div class="change-buttons">
+                <button type="button" class="act-btn save-btn-item-editor">Save changes</button>
+                <button type="button" class="act-btn exit-btn-item-editor">Exit editor</button>
+            </div>
+            <button type="button" class="act-btn delete-btn delete-btn-item-editor">Delete item</button>
+        </div>
+    `;
+
+        return block;
+    }
+
+    function renderOption(option) {
+        const tr = {};
+        option.translations.forEach(t => tr[t.language] = t.name || "");
+
+        return `
+        <div class="option-container" data-id="${option.id}">
+            <div class="option-block">
+                <div class="block-edit">
+                    <label>${tr.en || "Standard"}</label>
+                    <input type="number" class="option-price" value="${option.price}">
+                </div>
+                <img src="../../images/edit-btn.svg" class="edit-btn edit-btn-option">
+            </div>
+
+            <div class="add-block">
+                <div class="block-edit">
+                    <label>Position</label>
+                    <input type="number" class="option-position" value="${option.position + 1}">
+
+                    <label>en</label>
+                    <input type="text" class="option-name-en" value="${tr.en || ""}">
+                    <label>ru</label>
+                    <input type="text" class="option-name-ru" value="${tr.ru || ""}">
+                    <label>ko</label>
+                    <input type="text" class="option-name-ko" value="${tr.ko || ""}">
+                    <label>ar</label>
+                    <input type="text" class="option-name-ar" value="${tr.ar || ""}">
+
+                    <div class="change-buttons-container">
+                        <div class="change-buttons">
+                            <button type="button" class="act-btn save-btn-option">Save</button>
+                            <button type="button" class="act-btn exit-btn-option">Exit</button>
+                        </div>
+                        <button type="button" class="act-btn delete-btn delete-btn-option">Delete option</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    }
+
+
+
+
+
     // открыть editor блюда
     let itemEditorContainer = document.querySelector('.item-editor-main-container')
     function addListenerEditItem() {
         let itemBlocks = document.querySelectorAll('.item-block')
-        
+
 
         itemBlocks.forEach(itemBlock => {
-            itemBlock.addEventListener('click', () => {
+            itemBlock.addEventListener('click', async () => {
+
+                let itemId = itemBlock.dataset.id
+
+                await loadItemEditor(itemId);
+
 
                 itemBlocks.forEach(itemBlock => {
                     itemBlock.classList.remove('active')
@@ -524,284 +733,294 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     // изменить название/позицию опции блюда
-    let editBtnsOption = document.querySelectorAll('.edit-btn-option')
+    function initOptionEditors() {
 
-    editBtnsOption.forEach(editBtnOption => {
-        editBtnOption.addEventListener('click', () => {
-            let optionContainer = editBtnOption.closest('.option-container')
-            let optionBlockEdit = optionContainer.querySelector('.add-block')
 
-            optionBlockEdit.classList.toggle('active')
-        })
-    })
+        let editBtnsOption = document.querySelectorAll('.edit-btn-option')
 
-    let saveBtnsOption = document.querySelectorAll('.save-btn-option')
-    let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
+        editBtnsOption.forEach(editBtnOption => {
+            editBtnOption.addEventListener('click', () => {
+                let optionContainer = editBtnOption.closest('.option-container')
+                let optionBlockEdit = optionContainer.querySelector('.add-block')
 
-    saveBtnsOption.forEach(saveBtnOption => {
-        saveBtnOption.addEventListener('click', () => {
-
-            let optionBlockEdit = saveBtnOption.closest('.add-block')
-            let fields = optionBlockEdit.querySelectorAll('input')
-
-            let valid = true
-            for (const field of fields) {
-                if (!field.value.trim()) {
-                    alert('Position and names of option are required');
-                    valid = false
-                    return;
-                }
-            }
-
-            if (valid) {
                 optionBlockEdit.classList.toggle('active')
-            }
-
+            })
         })
-    })
 
-    exitBtnsOption.forEach(exitBtnOption => {
-        exitBtnOption.addEventListener('click', () => {
+        let saveBtnsOption = document.querySelectorAll('.save-btn-option')
+        let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
 
+        saveBtnsOption.forEach(saveBtnOption => {
+            saveBtnOption.addEventListener('click', () => {
 
+                let optionBlockEdit = saveBtnOption.closest('.add-block')
+                let fields = optionBlockEdit.querySelectorAll('input')
 
-            exitBtnOption.closest('.add-block').classList.toggle('active')
-        })
-    })
-
-
-
-
-    // добавить опцию блюда 
-    let addOptionBtns = document.querySelectorAll('.add-option-btn')
-
-    addOptionBtns.forEach(addOptionBtn => {
-        addOptionBtn.addEventListener('click', () => {
-
-
-            addOptionBtn.classList.remove('active')
-            addOptionBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
-
-        })
-    })
-
-
-
-
-    // сохранить добавленную опцию блюда/отменить
-    let addSaveBtnsOption = document.querySelectorAll('.add-btn-option')
-    let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
-
-    addSaveBtnsOption.forEach(addSaveBtnOption => {
-
-
-        addSaveBtnOption.addEventListener('click', () => {
-
-            let addOptionContainer = addSaveBtnOption.closest('.add-container')
-            let fields = addOptionContainer.querySelectorAll('#position, #price')
-
-            let valid = true
-            for (const field of fields) {
-                if (!field.value.trim()) {
-                    alert('Position and price of option are required');
-                    valid = false
-                    return;
+                let valid = true
+                for (const field of fields) {
+                    if (!field.value.trim()) {
+                        alert('Position and names of option are required');
+                        valid = false
+                        return;
+                    }
                 }
-            }
+
+                if (valid) {
+                    optionBlockEdit.classList.toggle('active')
+                }
+
+            })
+        })
+
+        exitBtnsOption.forEach(exitBtnOption => {
+            exitBtnOption.addEventListener('click', () => {
 
 
-            if (valid) {
-                let allFields = addOptionContainer.querySelectorAll('input')
-                allFields.forEach(field => {
+
+                exitBtnOption.closest('.add-block').classList.toggle('active')
+            })
+        })
+
+
+
+
+        // добавить опцию блюда 
+        let addOptionBtns = document.querySelectorAll('.add-option-btn')
+
+        addOptionBtns.forEach(addOptionBtn => {
+            addOptionBtn.addEventListener('click', () => {
+
+
+                addOptionBtn.classList.remove('active')
+                addOptionBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
+
+            })
+        })
+
+
+
+
+        // сохранить добавленную опцию блюда/отменить
+        let addSaveBtnsOption = document.querySelectorAll('.add-btn-option')
+        let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
+
+        addSaveBtnsOption.forEach(addSaveBtnOption => {
+
+
+            addSaveBtnOption.addEventListener('click', () => {
+
+                let addOptionContainer = addSaveBtnOption.closest('.add-container')
+                let fields = addOptionContainer.querySelectorAll('#position, #price')
+
+                let valid = true
+                for (const field of fields) {
+                    if (!field.value.trim()) {
+                        alert('Position and price of option are required');
+                        valid = false
+                        return;
+                    }
+                }
+
+
+                if (valid) {
+                    let allFields = addOptionContainer.querySelectorAll('input')
+                    allFields.forEach(field => {
+                        field.value = ""
+                    })
+
+                    addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+
+                    addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+                        block.classList.remove('active')
+                    })
+
+                    addOptionContainer.querySelector('.add-option-btn').classList.add('active')
+                }
+            })
+        })
+
+        cancelBtnsOption.forEach(cancelBtnOption => {
+
+
+            cancelBtnOption.addEventListener('click', () => {
+                let addOptionContainer = cancelBtnOption.closest('.add-container')
+                let fields = addOptionContainer.querySelectorAll('input')
+                fields.forEach(field => {
                     field.value = ""
                 })
 
-                addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+                let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn')
+                addOptionNameBtn.textContent = "Add option name"
+
 
                 addOptionContainer.querySelectorAll('.add-block').forEach(block => {
                     block.classList.remove('active')
                 })
 
+                addOptionNameBtn.classList.add('active')
+
                 addOptionContainer.querySelector('.add-option-btn').classList.add('active')
-            }
-        })
-    })
-
-    cancelBtnsOption.forEach(cancelBtnOption => {
-
-
-        cancelBtnOption.addEventListener('click', () => {
-            let addOptionContainer = cancelBtnOption.closest('.add-container')
-            let fields = addOptionContainer.querySelectorAll('input')
-            fields.forEach(field => {
-                field.value = ""
             })
-
-            let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn')
-            addOptionNameBtn.textContent = "Add option name"
+        })
 
 
-            addOptionContainer.querySelectorAll('.add-block').forEach(block => {
-                block.classList.remove('active')
+
+        // добавить имя опции блюда 
+        let addOptionNameBtns = document.querySelectorAll('.add-option-name-btn')
+
+
+        addOptionNameBtns.forEach(addOptionNameBtn => {
+            addOptionNameBtn.addEventListener('click', () => {
+                addOptionNameBtn.classList.remove('active')
+                addOptionNameBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
             })
-
-            addOptionNameBtn.classList.add('active')
-
-            addOptionContainer.querySelector('.add-option-btn').classList.add('active')
         })
-    })
 
 
 
-    // добавить имя опции блюда 
-    let addOptionNameBtns = document.querySelectorAll('.add-option-name-btn')
+        // сохранить добавленное имя опции блюда/отменить
+        let saveBtnsOptionName = document.querySelectorAll('.save-btn-option-name')
+        let cancelBtnsOptionName = document.querySelectorAll('.cancel-btn-option-name')
+
+        saveBtnsOptionName.forEach(saveBtnOptionName => {
 
 
-    addOptionNameBtns.forEach(addOptionNameBtn => {
-        addOptionNameBtn.addEventListener('click', () => {
-            addOptionNameBtn.classList.remove('active')
-            addOptionNameBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
+            saveBtnOptionName.addEventListener('click', () => {
+
+                let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
+                let fields = addOptionNameContainer.querySelectorAll('input')
+
+                let valid = true
+                for (const field of fields) {
+                    if (!field.value.trim()) {
+                        alert('Not all fields for option name are filled in');
+                        valid = false
+                        return;
+                    }
+                }
+
+
+
+                if (valid) {
+                    fields.forEach(field => {
+                        if (field.id === "en-option") {
+                            addOptionNameContainer.querySelector('.add-option-name-btn').textContent = field.value.trim()
+                        }
+                    })
+
+                    saveBtnOptionName.closest('.add-block').classList.remove('active')
+                    document.querySelectorAll('.add-option-name-btn').forEach(btn => {
+                        btn.classList.add('active')
+                    })
+                }
+            })
         })
-    })
+
+        cancelBtnsOptionName.forEach(cancelBtnOptionName => {
 
 
+            cancelBtnOptionName.addEventListener('click', () => {
+                let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
+                let fields = addOptionNameContainer.querySelectorAll('input')
 
-    // сохранить добавленное имя опции блюда/отменить
-    let saveBtnsOptionName = document.querySelectorAll('.save-btn-option-name')
-    let cancelBtnsOptionName = document.querySelectorAll('.cancel-btn-option-name')
+                fields.forEach(field => {
+                    field.value = ""
+                    addOptionNameContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+                })
 
-    saveBtnsOptionName.forEach(saveBtnOptionName => {
+
+                cancelBtnOptionName.closest('.add-block').classList.remove('active')
+
+                document.querySelectorAll('.add-option-name-btn').forEach(btn => {
+                    btn.classList.add('active')
+                })
+            })
+        })
+    }
 
 
-        saveBtnOptionName.addEventListener('click', () => {
+    // сохрание всех изменений блюда
 
-            let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
-            let fields = addOptionNameContainer.querySelectorAll('input')
+    function initItemSave() {
+        let saveBtnItemEditor = document.querySelector('.save-btn-item-editor')
+        let exitBtnItemEditor = document.querySelector('.exit-btn-item-editor')
 
+        saveBtnItemEditor.addEventListener('click', () => {
             let valid = true
-            for (const field of fields) {
-                if (!field.value.trim()) {
-                    alert('Not all fields for option name are filled in');
+            let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
+
+            for (const field of allEditorFields) {
+                if (!field.value.trim() && !field.closest('.add-block')) {
+                    alert('Not all fields are filled in')
                     valid = false
-                    return;
+                    return
                 }
             }
 
 
 
+
             if (valid) {
-                fields.forEach(field => {
-                    if (field.id === "en-option") {
-                        addOptionNameContainer.querySelector('.add-option-name-btn').textContent = field.value.trim()
-                    }
-                })
-
-                saveBtnOptionName.closest('.add-block').classList.remove('active')
-                document.querySelectorAll('.add-option-name-btn').forEach(btn => {
-                    btn.classList.add('active')
-                })
+                alert('Changes have been successfully applied.')
             }
         })
-    })
-
-    cancelBtnsOptionName.forEach(cancelBtnOptionName => {
 
 
-        cancelBtnOptionName.addEventListener('click', () => {
-            let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
-            let fields = addOptionNameContainer.querySelectorAll('input')
-
-            fields.forEach(field => {
-                field.value = ""
-                addOptionNameContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
-            })
+        exitBtnItemEditor.addEventListener('click', () => {
 
 
-            cancelBtnOptionName.closest('.add-block').classList.remove('active')
 
-            document.querySelectorAll('.add-option-name-btn').forEach(btn => {
-                btn.classList.add('active')
+
+            itemEditorContainer.classList.add('hidden')
+
+            itemBlocks.forEach(itemBlock => {
+                itemBlock.classList.remove('active')
             })
         })
-    })
-
-    // сохрание всех изменений блюда
-
-    let saveBtnItemEditor = document.querySelector('.save-btn-item-editor')
-    let exitBtnItemEditor = document.querySelector('.exit-btn-item-editor')
-
-    saveBtnItemEditor.addEventListener('click', () => {
-        let valid = true
-        let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
-
-        for (const field of allEditorFields) {
-            if (!field.value.trim() && !field.closest('.add-block')) {
-                alert('Not all fields are filled in')
-                valid = false
-                return
-            }
-        }
+    }
 
 
-
-
-        if (valid) {
-            alert('Changes have been successfully applied.')
-        }
-    })
-
-
-    exitBtnItemEditor.addEventListener('click', () => {
-
-
-
-
-        itemEditorContainer.classList.add('hidden')
-
-        itemBlocks.forEach(itemBlock => {
-            itemBlock.classList.remove('active')
-        })
-    })
 
     // изменить изображение
-    let changeImg = document.querySelector('.change-img')
+    function initImageUpload() {
+        let changeImg = document.querySelector('.change-img')
 
-    changeImg.addEventListener('click', () => {
-        changeImg.classList.remove('active')
-        changeImg.closest('.item-editor-block').querySelector('.add-block').classList.add('active')
-    })
+        changeImg.addEventListener('click', () => {
+            changeImg.classList.remove('active')
+            changeImg.closest('.block-edit').querySelector('.add-block').classList.add('active')
+        })
 
 
-    // подвердить/отменить изменение изображения
+        // подвердить/отменить изменение изображения
 
-    let confirmImgChange = document.querySelector('.confirm-img-btn')
-    let cancelImgChange = document.querySelector('.cancel-img-btn')
+        let confirmImgChange = document.querySelector('.confirm-img-btn')
+        let cancelImgChange = document.querySelector('.cancel-img-btn')
 
-    confirmImgChange.addEventListener('click', () => {
+        confirmImgChange.addEventListener('click', () => {
 
-        let changeImgBlock = confirmImgChange.closest('.item-editor-block')
-        let valid = true
+            let changeImgBlock = confirmImgChange.closest('.block-edit')
+            let valid = true
 
-        if (!changeImgBlock.querySelector('input').value.trim()) {
-            valid = false
-            alert('Image is required')
-        }
+            if (!changeImgBlock.querySelector('input').value.trim()) {
+                valid = false
+                alert('Image is required')
+            }
 
-        if (valid) {
+            if (valid) {
+                changeImgBlock.querySelector('.add-block').classList.remove('active')
+                changeImgBlock.querySelector('.change-img').classList.add('active')
+            }
+        })
+
+
+        cancelImgChange.addEventListener('click', () => {
+            let changeImgBlock = cancelImgChange.closest('.block-edit')
+
             changeImgBlock.querySelector('.add-block').classList.remove('active')
             changeImgBlock.querySelector('.change-img').classList.add('active')
-        }
-    })
 
 
-    cancelImgChange.addEventListener('click', () => {
-        let changeImgBlock = cancelImgChange.closest('.item-editor-block')
-
-        changeImgBlock.querySelector('.add-block').classList.remove('active')
-        changeImgBlock.querySelector('.change-img').classList.add('active')
-
-
-    })
-
+        })
+    }
 
 });
