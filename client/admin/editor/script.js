@@ -445,9 +445,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     // открыть editor блюда
+    let itemEditorContainer = document.querySelector('.item-editor-main-container')
     function addListenerEditItem() {
         let itemBlocks = document.querySelectorAll('.item-block')
-        let itemEditorContainer = document.querySelector('.item-editor-main-container')
+        
 
         itemBlocks.forEach(itemBlock => {
             itemBlock.addEventListener('click', () => {
