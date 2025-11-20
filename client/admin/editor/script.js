@@ -176,9 +176,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 const newPosition = Number(blockEdit.querySelector('input[data-field="position"]').value);
-                if (newPosition <= 0) {
-                    alert("Position must be at least 1");
-                    return;
+                
+
+                if (isNaN(newPosition) || newPosition <= 0) {
+                    return alert('Position must be a valid positive number');
+                }
+
+                if (newPosition > categoriesArr.length) {
+                    return alert('Position should not exceed the number of categories');
                 }
 
                 // ---- Формирование данных ----
@@ -455,10 +460,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             wrapperItemEditor.appendChild(renderItemEditor(data.item));
 
-
+            initMainChangesItem()
             initOptionEditors()
             initImageUpload();
             initItemSave();
+
 
         } catch (err) {
             console.error(err);
@@ -590,8 +596,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
                                                 <div class="change-buttons">
-                                                    <button type="button" class="act-btn add-btn-option">Save
-                                                        option</button>
+                                                    <button type="button" class="act-btn add-btn-option">Save new option</button>
                                                     <button type="button"
                                                         class="act-btn cancel-btn-option">Cancel</button>
                                                 </div>
@@ -723,62 +728,62 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
     }
 
-    // открыть окно добавления блюда 
 
-    let openAddItem = document.querySelector('.add-item-btn')
-    let addItemContainer = document.querySelector('.add-item-main-container')
-
-    openAddItem.addEventListener('click', () => {
-        exitBtnItemEditor.click()
-        addItemContainer.classList.remove("hidden")
-    })
+    function initMainChangesItem() {
 
 
-    // добавить новое блюдо/отменить
-    let addItemBtn = document.querySelector('.save-btn-add-item')
-    let cancelAddItemBtn = document.querySelector('.exit-btn-add-item')
+        // сохранить изменение позиции блюда
+        let saveChangeItemPosition = document.querySelector('.save-item-position-btn')
 
+        saveChangeItemPosition.addEventListener('click', async () => {
+            let itemEditorBlock = saveChangeItemPosition.closest('.item-editor-block')
+            let itemId = itemEditorBlock.dataset.id
+            let newPosition = Number(saveChangeItemPosition.closest('.block-edit').querySelector('input[id=item-position]').value)
 
-
-    addItemBtn.addEventListener('click', () => {
-        let validFirst = true
-        let validSecond = true
-        let allEditorFields = addItemContainer.querySelectorAll('input, textarea')
-
-        for (const field of allEditorFields) {
-            if (!field.value.trim() && !field.closest('.add-block')) {
-                alert('Not all fields are filled in')
-                validFirst = false
-                return
+            if (isNaN(newPosition) || newPosition < 0) {
+                return alert('Position must be a valid positive number');
             }
-        }
 
-        if (!addItemContainer.querySelector('.option-container')) {
-            alert('At least one option is requeried')
-            validSecond = false
-        }
+            if (newPosition > itemsArr.length) {
+                return alert('Position should not exceed the number of dishes in the category');
+            }
 
+            try {
+                const response = await fetch('/api/menuManager/item/update/position', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        itemId,
+                        position: newPosition - 1
+                    })
+                });
 
+                const data = await response.json();
 
+                if (!response.ok) {
+                    alert(data.message || 'Error updating position');
+                    return;
+                }
 
-        if (validFirst && validSecond) {
-            alert('New item have been successfully added.')
-        }
-    })
+                alert('Position updated successfully');
 
+                await loadItems(data.item.categoryId)
 
+                document.querySelectorAll('.item-block').forEach(itemBlock => {
+                    if (itemBlock.dataset.id === data.item.id) {
+                        itemBlock.classList.add('active')
+                    }
+                })
 
-    cancelAddItemBtn.addEventListener('click', () => {
+            } catch (err) {
+                console.error(err);
+                alert('Server error');
+            }
 
-        addItemContainer.classList.add("hidden")
-
-        addItemContainer.querySelectorAll('input, textarea').forEach(field => {
-            field.value = ""
         })
-    })
-
-
-
+    }
 
 
     // изменить название/позицию опции блюда
@@ -1000,26 +1005,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         // let saveBtnItemEditor = document.querySelector('.save-btn-item-editor')
         let exitBtnItemEditor = document.querySelector('.exit-btn-item-editor')
 
-        // saveBtnItemEditor.addEventListener('click', () => {
-        //     let valid = true
-        //     let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
-
-        //     for (const field of allEditorFields) {
-        //         if (!field.value.trim() && !field.closest('.add-block')) {
-        //             alert('Not all fields are filled in')
-        //             valid = false
-        //             return
-        //         }
-        //     }
-
-
-
-
-        //     if (valid) {
-        //         alert('Changes have been successfully applied.')
-        //     }
-        // })
-
 
         exitBtnItemEditor.addEventListener('click', () => {
 
@@ -1077,5 +1062,68 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         })
     }
+
+
+
+
+
+
+
+
+    // открыть окно добавления блюда 
+
+    let openAddItem = document.querySelector('.add-item-btn')
+    let addItemContainer = document.querySelector('.add-item-main-container')
+
+    openAddItem.addEventListener('click', () => {
+        exitBtnItemEditor.click()
+        addItemContainer.classList.remove("hidden")
+    })
+
+
+    // добавить новое блюдо/отменить
+    let addItemBtn = document.querySelector('.save-btn-add-item')
+    let cancelAddItemBtn = document.querySelector('.exit-btn-add-item')
+
+
+
+    addItemBtn.addEventListener('click', () => {
+        let validFirst = true
+        let validSecond = true
+        let allEditorFields = addItemContainer.querySelectorAll('input, textarea')
+
+        for (const field of allEditorFields) {
+            if (!field.value.trim() && !field.closest('.add-block')) {
+                alert('Not all fields are filled in')
+                validFirst = false
+                return
+            }
+        }
+
+        if (!addItemContainer.querySelector('.option-container')) {
+            alert('At least one option is requeried')
+            validSecond = false
+        }
+
+
+
+
+        if (validFirst && validSecond) {
+            alert('New item have been successfully added.')
+        }
+    })
+
+
+
+    cancelAddItemBtn.addEventListener('click', () => {
+
+        addItemContainer.classList.add("hidden")
+
+        addItemContainer.querySelectorAll('input, textarea').forEach(field => {
+            field.value = ""
+        })
+    })
+
+
 
 });

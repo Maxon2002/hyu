@@ -336,6 +336,86 @@ router.get("/item/:id", async (req, res) => {
 
 
 
+// изменить позицию блюда
+
+router.post('/updateItemPosition', async (req, res) => {
+    try {
+        const { itemId, position } = req.body;
+
+        if (!itemId || position === undefined) {
+            return res.status(400).json({ message: "itemId and position are required" });
+        }
+
+        const item = await prisma.menuItem.findUnique({
+            where: { id: itemId }
+        });
+
+        if (!item) {
+            return res.status(404).json({ message: "Item not found" });
+        }
+
+        const categoryId = item.categoryId;
+        const oldPosition = item.position;
+        const newPosition = position;
+
+        if (oldPosition === newPosition) {
+            return res.json({ success: true, message: "No change needed" });
+        }
+
+        // CASE 1: Moving UP (newPosition < oldPosition)
+        if (newPosition < oldPosition) {
+            await prisma.menuItem.updateMany({
+                where: {
+                    categoryId,
+                    position: {
+                        gte: newPosition,
+                        lt: oldPosition
+                    }
+                },
+                data: {
+                    position: {
+                        increment: 1
+                    }
+                }
+            });
+        }
+
+        // CASE 2: Moving DOWN (newPosition > oldPosition)
+        if (newPosition > oldPosition) {
+            await prisma.menuItem.updateMany({
+                where: {
+                    categoryId,
+                    position: {
+                        gt: oldPosition,
+                        lte: newPosition
+                    }
+                },
+                data: {
+                    position: {
+                        decrement: 1
+                    }
+                }
+            });
+        }
+
+        // Finally update the current item's position
+        const updatedItem = await prisma.menuItem.update({
+            where: { id: itemId },
+            data: { position: newPosition }
+        });
+
+        res.json({
+            success: true,
+            item: updatedItem
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+
 
 
 
