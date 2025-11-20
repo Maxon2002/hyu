@@ -877,10 +877,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // ---- Формирование данных ----
             const translations = {
-                en: blockEdit.querySelector('input[id="en-item-description"]').value.trim(),
-                ru: blockEdit.querySelector('input[id="ru-item-description"]').value.trim(),
-                ko: blockEdit.querySelector('input[id="ko-item-description"]').value.trim(),
-                ar: blockEdit.querySelector('input[id="ar-item-description"]').value.trim()
+                en: blockEdit.querySelector('textarea[id="en-item-description"]').value.trim(),
+                ru: blockEdit.querySelector('textarea[id="ru-item-description"]').value.trim(),
+                ko: blockEdit.querySelector('textarea[id="ko-item-description"]').value.trim(),
+                ar: blockEdit.querySelector('textarea[id="ar-item-description"]').value.trim()
             };
 
 
