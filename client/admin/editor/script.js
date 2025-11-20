@@ -487,9 +487,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="block-edit">
             <label for="position">Position</label>
             <input type="number" id="item-position" value="${item.position + 1}">
-        </div>
-
-        <div class="block-edit">
+        
             <div class="block-edit-name">Name</div>
 
             <label>en</label>
@@ -500,9 +498,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <input type="text" id="ko-item-name" value="${tr.ko?.title || ""}">
             <label>ar</label>
             <input type="text" id="ar-item-name" value="${tr.ar?.title || ""}">
-        </div>
-
-        <div class="block-edit">
+        
             <div class="block-edit-name">Description</div>
 
             <label>en</label>
@@ -513,6 +509,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             <textarea id="ko-item-description">${tr.ko?.description || ""}</textarea>
             <label>ar</label>
             <textarea id="ar-item-description">${tr.ar?.description || ""}</textarea>
+
+            <div class="change-buttons">
+                                        <button type="button" class="act-btn save-item-info-btn">Save</button>
+                                    </div>
         </div>
 
         <div class="block-edit">
@@ -593,7 +593,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         <div class="change-buttons-container">
             <div class="change-buttons">
-                <button type="button" class="act-btn save-btn-item-editor">Save changes</button>
+                
                 <button type="button" class="act-btn exit-btn-item-editor">Exit editor</button>
             </div>
             <button type="button" class="act-btn delete-btn delete-btn-item-editor">Delete item</button>

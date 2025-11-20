@@ -231,6 +231,10 @@ input, textarea {
     font-size: 15px;
 }
 
+.block-edit-name {
+    margin-top: 5px;
+}
+
 .add-category-btn,
 .add-option-btn,
 .add-option-name-btn,
