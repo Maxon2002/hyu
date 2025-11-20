@@ -742,4 +742,100 @@ router.put("/itemOption/update", async (req, res) => {
 });
 
 
+
+// добавление опции блюда
+router.put("/itemOption/add", async (req, res) => {
+    try {
+        const { itemId, position, price, translations } = req.body;
+
+        if (position === undefined || price === undefined) {
+            return res.status(400).json({ error: "Missing data" });
+        }
+
+        const total = await prisma.menuItemVariant.count({
+            where: { itemId }
+        });;
+
+        if (position < 0 || position > total) {
+            return res.status(400).json({ error: "Invalid position" });
+        }
+
+        const oldPosition = total;
+        const newPosition = position;
+
+        if (newPosition !== oldPosition) {
+
+            if (newPosition < oldPosition) {
+                await prisma.menuItemVariant.updateMany({
+                    where: {
+                        itemId,
+                        position: {
+                            gte: newPosition,
+                            lt: oldPosition
+                        }
+                    },
+                    data: {
+                        position: { increment: 1 }
+                    }
+                });
+            }
+        }
+
+
+        let showLabel = true
+        let translationData = translations;
+        if (!translations) {
+            showLabel = false
+            translationData = {
+                en: "Standard",
+                ru: "Стандарт",
+                ko: "기본",
+                ar: "عادي"
+            }
+        }
+
+        // --- 3. Создаём саму опцию ---
+        const createdOption = await prisma.menuItemVariant.create({
+            data: {
+                itemId,
+                position: newPosition,
+                price: Number(price),
+                showLabel
+            }
+        });
+
+
+        // перебор
+        for (const [language, name] of Object.entries(translationData)) {
+            await prisma.menuItemVariantTranslation.create({
+                data: {
+                    variantId: createdOption.id,
+                    language,
+                    name
+                }
+            });
+        }
+
+        // --- 5. Возвращаем обновлённое блюдо со всеми опциями ---
+        const updatedItem = await prisma.menuItem.findUnique({
+            where: { id: itemId },
+            include: {
+                variants: {
+                    orderBy: { position: "asc" },
+                    include: { translations: true }
+                }
+            }
+        });
+
+        return res.json({
+            success: true,
+            item: updatedItem
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
 export default router;

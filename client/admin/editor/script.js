@@ -558,7 +558,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
 
         <div class="block-edit">
-            <div class="block-edit-name">Price</div>
+            <div class="block-edit-name">Option / Price</div>
 
             <div id="itemOptionWrapper">
                 ${item.variants.map(renderOption).join("")}
@@ -571,10 +571,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                 <div class="item-name">New option</div>
 
                                                 <label for="position">Position</label>
-                                                <input type="number" id="position" name="position">
+                                                <input type="number" id="position" name="position" required>
 
                                                 <label for="price">Price</label>
-                                                <input type="number" id="price" name="price">
+                                                <input type="number" id="price" name="price" required>
 
                                                 <div class="add-container">
                                                     <div class="add-option-name-btn active">Add option name</div>
@@ -582,16 +582,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                     <div class="add-block">
                                                         <div class="block-edit">
                                                             <label for="en-option">en</label>
-                                                            <input type="text" id="en-option" name="en-option">
+                                                            <input type="text" class="option-name-en" name="en-option">
 
                                                             <label for="ru-option">ru</label>
-                                                            <input type="text" id="ru-option" name="ru-option">
+                                                            <input type="text" class="option-name-ru" name="ru-option">
 
                                                             <label for="ko-option">ko</label>
-                                                            <input type="text" id="ko-option" name="ko-option">
+                                                            <input type="text" class="option-name-ko" name="ko-option">
 
                                                             <label for="ar-option">ar</label>
-                                                            <input type="text" id="ar-option" name="ar-option">
+                                                            <input type="text" class="option-name-ar" name="ar-option">
 
                                                             <div class="change-buttons">
                                                                 <button type="button"
@@ -1083,7 +1083,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
 
                 if (!valid) {
-                    alert("All fields are required");
+                    alert("Position and price are required");
                     return;
                 }
 
@@ -1158,6 +1158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
 
                     initOptionEditors()
+                    initAddOption()
 
                     alert('Option has been successfully updated.')
 
@@ -1198,15 +1199,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-        // добавить опцию блюда 
+        // открыть добавление опции блюда
         let addOptionBtns = document.querySelectorAll('.add-option-btn')
 
         addOptionBtns.forEach(addOptionBtn => {
             addOptionBtn.addEventListener('click', () => {
 
+                let addOptionContainer = addOptionBtn.closest('.add-container')
+
+                addOptionContainer.querySelector('input[id="position"]').value = optionsArr.length + 1
+
 
                 addOptionBtn.classList.remove('active')
-                addOptionBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
+                addOptionContainer.querySelector('.add-block').classList.add('active')
+
 
             })
         })
@@ -1219,36 +1225,114 @@ document.addEventListener("DOMContentLoaded", async () => {
         let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
 
         addSaveBtnsOption.forEach(addSaveBtnOption => {
+            addSaveBtnOption.addEventListener('click', async () => {
 
-
-            addSaveBtnOption.addEventListener('click', () => {
 
                 let addOptionContainer = addSaveBtnOption.closest('.add-container')
-                let fields = addOptionContainer.querySelectorAll('#position, #price')
+                let blockEdit = addOptionContainer.querySelectorAll('.add-block')
+                let fields = blockEdit.querySelectorAll('input')
 
                 let valid = true
-                for (const field of fields) {
-                    if (!field.value.trim()) {
-                        alert('Position and price of option are required');
-                        valid = false
-                        return;
+
+                fields.forEach(f => {
+                    if (!f.value.trim() && f.hasAttribute('required')) valid = false;
+                });
+
+                if (!valid) {
+                    alert("Position and price are required");
+                    return;
+                }
+
+                const newPosition = Number(blockEdit.querySelector('input[class="option-position"]').value);
+
+
+                if (isNaN(newPosition) || newPosition <= 0) {
+                    return alert('Position must be a valid positive number');
+                }
+
+                if (newPosition > optionsArr.length + 1) {
+                    return alert(`Position should not exceed ${optionsArr.length + 1}`);
+                }
+
+                const price = blockEdit.querySelector('input[id="price"]').value.trim()
+
+                // ---- Формирование данных ----
+
+                let translations
+                let trCheck = true
+
+                fields.forEach(f => {
+                    if (!f.value.trim() && !f.hasAttribute('required')) {
+
+                        translations = null
+                        trCheck = false
                     }
+                });
+
+                if (trCheck) {
+                    translations = {
+                        en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
+                        ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
+                        ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
+                        ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
+                    };
                 }
 
 
-                if (valid) {
-                    let allFields = addOptionContainer.querySelectorAll('input')
-                    allFields.forEach(field => {
+
+                const payload = {
+                    itemId,
+                    position: newPosition - 1,
+                    price,
+                    translations
+                };
+
+                try {
+                    const res = await fetch("/api/menuManager/itemOption/add", {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await res.json();
+
+                    if (!res.ok) {
+                        alert(data.error || "Error adding option");
+                        return;
+                    }
+
+
+                    optionsArr = [];
+                    data.item.variants.forEach(variant => {
+                        optionsArr.push(variant)
+                    });
+
+
+                    fields.forEach(field => {
                         field.value = ""
                     })
 
                     addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
 
-                    addOptionContainer.querySelectorAll('.add-block').forEach(block => {
-                        block.classList.remove('active')
-                    })
+                    // addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+                    //     block.classList.remove('active')
+                    // })
+                    blockEdit.classList.remove('active')
 
                     addOptionContainer.querySelector('.add-option-btn').classList.add('active')
+
+
+                    wrapperItemOption.innerHTML = ""
+                    wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
+
+                    initOptionEditors()
+                    initAddOption()
+
+                    alert('Option has been successfully added.')
+
+                } catch (error) {
+                    console.error(error);
+                    alert("Server error");
                 }
             })
         })
