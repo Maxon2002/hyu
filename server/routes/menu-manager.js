@@ -8,6 +8,15 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 
+const multer = require("multer");
+const sharp = require("sharp");
+const fs = require("fs-extra");
+const path = require("path");
+
+// Куда сохраняем оригинальные загруженные временные файлы
+const upload = multer({ dest: "uploads/" });
+
+
 
 // получить все категории
 router.get("/categories", async (req, res) => {
@@ -518,7 +527,93 @@ router.put("/item/update/description", async (req, res) => {
 });
 
 
+router.put(
+    "/item/update/image",
+    upload.single("image"),
+    async (req, res) => {
+        try {
+            const { itemId } = req.body;
+            const file = req.file;
 
+            if (!itemId || !file) {
+                return res.status(400).json({ error: "Missing itemId or image" });
+            }
+
+            // Загружаем блюдо
+            const item = await prisma.menuItem.findUnique({
+                where: { id: itemId }
+            });
+
+            if (!item) {
+                return res.status(404).json({ error: "Item not found" });
+            }
+
+            // --- Папка для изображений ---
+            const folder = path.join(__dirname, "client/images/food");
+            await fs.ensureDir(folder);
+
+            // --- Удаляем старые файлы ---
+            if (item.imageSmall) await fs.remove(path.join(folder, item.imageSmall));
+            if (item.imageMedium) await fs.remove(path.join(folder, item.imageMedium));
+            if (item.imageLarge) await fs.remove(path.join(folder, item.imageLarge));
+
+            // --- Генерируем новые названия файлов ---
+            const baseName = `${itemId}-${Date.now()}`;
+
+            const smallName = `${baseName}-350.webp`;
+            const mediumName = `${baseName}-500.webp`;
+            const largeName = `${baseName}-800.webp`;
+
+            // --- Пути сохранения ---
+            const smallPath = path.join(folder, smallName);
+            const mediumPath = path.join(folder, mediumName);
+            const largePath = path.join(folder, largeName);
+
+            // --- Конвертация и ресайз ---
+            await sharp(file.path)
+                .resize({ width: 350 })
+                .webp({ quality: 80 })
+                .toFile(smallPath);
+
+            await sharp(file.path)
+                .resize({ width: 500 })
+                .webp({ quality: 80 })
+                .toFile(mediumPath);
+
+            await sharp(file.path)
+                .resize({ width: 800 })
+                .webp({ quality: 80 })
+                .toFile(largePath);
+
+            // --- Удаляем оригинальный временный файл ---
+            await fs.remove(file.path);
+
+            // --- Сохраняем названия файлов в БД ---
+            const updated = await prisma.menuItem.update({
+                where: { id: itemId },
+                data: {
+                    imageSmall: smallName,
+                    imageMedium: mediumName,
+                    imageLarge: largeName
+                }
+            });
+
+            return res.json({
+                success: true,
+                images: {
+                    small: smallName,
+                    medium: mediumName,
+                    large: largeName
+                },
+                item: updated
+            });
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Server error" });
+        }
+    }
+);
 
 
 export default router;

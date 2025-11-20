@@ -915,6 +915,86 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
+
+    // изменить изображение
+    function initImageUpload() {
+        let changeImg = document.querySelector('.change-img')
+
+        changeImg.addEventListener('click', () => {
+            changeImg.classList.remove('active')
+            changeImg.closest('.block-edit').querySelector('.add-block').classList.add('active')
+        })
+
+
+        // подвердить/отменить изменение изображения
+
+        let confirmImgChange = document.querySelector('.confirm-img-btn')
+        let cancelImgChange = document.querySelector('.cancel-img-btn')
+
+        confirmImgChange.addEventListener('click', async () => {
+            // Находим блок блюда, чтобы получить itemId
+            let itemEditorBlock = confirmImgChange.closest('.item-editor-block');
+            let itemId = itemEditorBlock.dataset.id;
+
+            let blockEdit = saveChangeItemDescription.closest('.add-block')
+
+            let imageInput = blockEdit.getElementById('item-image-file')
+            
+
+            if (imageInput.files.length === 0) {
+                alert("Please select an image");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("image", imageInput.files[0]);
+            formData.append("itemId", itemId);
+
+            try {
+                const res = await fetch("/api/menuManager/item/update/image", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.error || "Error updating image");
+                    return;
+                }
+
+                alert("Image successfully updated");
+
+                // Мгновенно обновляем изображение в UI
+                const imgEl = itemEditorBlock.querySelector(".item-img");
+
+                imgEl.src = `/images/food/${data.images.small}?t=${Date.now()}`;
+                // cache-busting через ?t=timestamp
+
+                // Очищаем input
+                imageInput.value = "";
+
+                // Скрываем блок выбора 
+                blockEdit.classList.remove("active");
+
+            } catch (err) {
+                console.error(err);
+                alert("Server error");
+            }
+        });
+
+
+        cancelImgChange.addEventListener('click', () => {
+            let changeImgBlock = cancelImgChange.closest('.add-block')
+
+            changeImgBlock.classList.remove('active')
+            changeImgBlock.closest('.block-edit').querySelector('.change-img').classList.add('active')
+
+
+        })
+    }
+
+
     // изменить название/позицию опции блюда
     function initOptionEditors() {
 
@@ -1150,47 +1230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    // изменить изображение
-    function initImageUpload() {
-        let changeImg = document.querySelector('.change-img')
 
-        changeImg.addEventListener('click', () => {
-            changeImg.classList.remove('active')
-            changeImg.closest('.block-edit').querySelector('.add-block').classList.add('active')
-        })
-
-
-        // подвердить/отменить изменение изображения
-
-        let confirmImgChange = document.querySelector('.confirm-img-btn')
-        let cancelImgChange = document.querySelector('.cancel-img-btn')
-
-        confirmImgChange.addEventListener('click', () => {
-
-            let changeImgBlock = confirmImgChange.closest('.block-edit')
-            let valid = true
-
-            if (!changeImgBlock.querySelector('input').value.trim()) {
-                valid = false
-                alert('Image is required')
-            }
-
-            if (valid) {
-                changeImgBlock.querySelector('.add-block').classList.remove('active')
-                changeImgBlock.querySelector('.change-img').classList.add('active')
-            }
-        })
-
-
-        cancelImgChange.addEventListener('click', () => {
-            let changeImgBlock = cancelImgChange.closest('.add-block')
-
-            changeImgBlock.classList.remove('active')
-            changeImgBlock.closest('.block-edit').querySelector('.change-img').classList.add('active')
-
-
-        })
-    }
 
 
 
