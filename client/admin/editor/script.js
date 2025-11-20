@@ -1016,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         cancelImgChange.addEventListener('click', () => {
             let changeImgBlock = cancelImgChange.closest('.add-block')
 
-            changeImgBlock.querySelector('.add-block').classList.remove('active')
+            changeImgBlock.classList.remove('active')
             changeImgBlock.closest('.block-edit').querySelector('.change-img').classList.add('active')
 
 
