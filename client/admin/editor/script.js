@@ -571,7 +571,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                 <div class="item-name">New option</div>
 
                                                 <label for="position">Position</label>
-                                                <input type="number" id="position" name="position" required>
+                                                <input type="number" class="option-position" name="position" required>
 
                                                 <label for="price">Price</label>
                                                 <input type="number" id="price" name="price" required>
