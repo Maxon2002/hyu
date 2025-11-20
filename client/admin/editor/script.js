@@ -835,9 +835,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     return;
                 }
 
-
-                await loadCategories()
-
                 alert('Item name has been successfully updated.')
 
                 document.querySelectorAll('.item-block').forEach(itemBlock => {

@@ -427,27 +427,32 @@ router.put("/item/update/name", async (req, res) => {
             return res.status(400).json({ error: "Missing data" });
         }
 
-
         const item = await prisma.menuItem.findUnique({
-            where: { id: itemId }
+            where: { id: itemId },
+            include: { translations: true }
         });
 
         if (!item) {
-            return res.status(404).json({ message: "Item not found" });
+            return res.status(404).json({ error: "Item not found" });
         }
 
-        const updatedItem = await prisma.menuItem.update({
-            where: { id: itemId },
-            data: {
-                translations: {
-                    deleteMany: {},
+        // --- Обновляем каждый язык ---
+        for (const [language, title] of Object.entries(translations)) {
 
-                    create: Object.entries(translations).map(([language, title]) => ({
-                        language,
-                        title
-                    }))
+            await prisma.menuItemTranslation.updateMany({
+                where: {
+                    itemId: itemId,
+                    language: language
+                },
+                data: {
+                    title: title
                 }
-            },
+            });
+        }
+
+        // Загружаем обновлённые данные
+        const updatedItem = await prisma.menuItem.findUnique({
+            where: { id: itemId },
             include: { translations: true }
         });
 
