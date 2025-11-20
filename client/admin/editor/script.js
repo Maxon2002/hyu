@@ -1024,7 +1024,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const optionId = optionBlock.dataset.id;
 
                 const option = optionsArr.find(c => c.id === optionId);
-                console.log(optionsArr)
 
                 const blockEdit = optionBlock.querySelector('.add-block');
 
@@ -1161,9 +1160,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         exitBtnsOption.forEach(exitBtnOption => {
             exitBtnOption.addEventListener('click', () => {
 
+                let addBlock = exitBtnOption.closest('.add-block')
 
+                addBlock.classList.remove('active')
 
-                exitBtnOption.closest('.add-block').classList.toggle('active')
+                addBlock.querySelector('.add-container')?.querySelector('.add-block').classList.remove('active')
             })
         })
 
