@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 const newPosition = Number(blockEdit.querySelector('input[data-field="position"]').value);
-                
+
 
                 if (isNaN(newPosition) || newPosition <= 0) {
                     return alert('Position must be a valid positive number');
@@ -740,7 +740,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             let itemId = itemEditorBlock.dataset.id
             let newPosition = Number(saveChangeItemPosition.closest('.block-edit').querySelector('input[id=item-position]').value)
 
-            if (isNaN(newPosition) || newPosition < 0) {
+            if (isNaN(newPosition) || newPosition <= 0) {
                 return alert('Position must be a valid positive number');
             }
 
@@ -783,6 +783,76 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
         })
+
+
+        // сохранить изменения названия блюда
+        let saveChangeItemName = document.querySelector('.save-item-name-btn')
+
+        saveChangeItemName.addEventListener('click', async () => {
+            let itemEditorBlock = saveChangeItemName.closest('.item-editor-block')
+            let itemId = itemEditorBlock.dataset.id
+
+            let blockEdit = saveChangeItemName.closest('.block-edit')
+
+            const fields = blockEdit.querySelectorAll("input");
+
+            // ---- Валидация ----
+            let valid = true;
+
+            fields.forEach(f => {
+                if (!f.value.trim()) valid = false;
+            });
+
+            if (!valid) {
+                alert("All name fields are required");
+                return;
+            }
+
+            // ---- Формирование данных ----
+            const translations = {
+                en: blockEdit.querySelector('input[id="en-item-name"]').value.trim(),
+                ru: blockEdit.querySelector('input[id="ru-item-name"]').value.trim(),
+                ko: blockEdit.querySelector('input[id="ko-item-name"]').value.trim(),
+                ar: blockEdit.querySelector('input[id="ar-item-name"]').value.trim()
+            };
+
+
+            // ---- Отправляем на сервер ----
+            try {
+                const res = await fetch("/api/menuManager/item/update/name", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        itemId,
+                        translations
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.error || "Error updating item name");
+                    return;
+                }
+
+
+                await loadCategories()
+
+                alert('Item name has been successfully updated.')
+
+                document.querySelectorAll('.item-block').forEach(itemBlock => {
+                    if (itemBlock.dataset.id === data.item.id) {
+                        itemBlock.querySelector('.item-name').innerHTML = translations.en
+                    }
+                })
+
+            } catch (err) {
+                console.error(err);
+                alert("Server error");
+            }
+
+        })
+
     }
 
 
