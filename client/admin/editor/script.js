@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const wrapperItemEditor = document.getElementById("itemEditorWrapper");
     let categoriesArr = []
     let itemsArr = []
+    let optionsArr = []
 
     async function loadCategories() {
         try {
@@ -457,8 +458,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             wrapperItemEditor.innerHTML = ""; // очистить старые данные
 
-
             wrapperItemEditor.appendChild(renderItemEditor(data.item));
+            optionsArr = [];
+
+            data.item.variants.forEach(variant => {
+                optionsArr.push(variant)
+            });
 
             initMainChangesItem()
             initOptionEditors()
@@ -939,7 +944,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             let blockEdit = confirmImgChange.closest('.add-block')
 
             let imageInput = blockEdit.querySelector('#item-image-file')
-            
+
 
             if (imageInput.files.length === 0) {
                 alert("Please select an image");
@@ -997,24 +1002,49 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // изменить название/позицию опции блюда
+
     function initOptionEditors() {
 
-
+        // открыть редактор опции
         let editBtnsOption = document.querySelectorAll('.edit-btn-option')
 
         editBtnsOption.forEach(editBtnOption => {
             editBtnOption.addEventListener('click', () => {
-                let optionContainer = editBtnOption.closest('.option-container')
-                let optionBlockEdit = optionContainer.querySelector('.add-block')
 
-                optionBlockEdit.classList.toggle('active')
+                const optionBlock = editBtnOption.closest('.option-container');
+                const optionId = optionBlock.dataset.id;
+
+                const option = optionsArr.find(c => c.id === optionId);
+
+                const blockEdit = optionBlock.querySelector('.add-block');
+
+                // 🔄 ПЕРЕД ОТКРЫТИЕМ — снова заполняем поля актуальными данными
+                function fillOptinEditForm(block, option) {
+                    const tr = {};
+                    option.translations.forEach(t => tr[t.language] = t.name || "");
+                    // position
+                    block.querySelector('input[class="option-position"]').value = option.position + 1;
+                    block.querySelector('input[id="price"]').value = option.price
+                    // translations
+                    block.querySelector('input[class="option-name-en"]').value = tr.en || "";
+                    block.querySelector('input[class="option-name-ru"]').value = tr.ru || "";
+                    block.querySelector('input[class="option-name-ko"]').value = tr.ko || "";
+                    block.querySelector('input[class="option-name-ar"]').value = tr.ar || "";
+                }
+                fillOptinEditForm(blockEdit, option);
+
+                // Показать/скрыть блок
+                blockEdit.classList.toggle('active');
+
+                
             })
         })
 
-        let saveBtnsOption = document.querySelectorAll('.save-btn-option')
-        let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
 
+        // сохранить изменеия опции
+
+        let saveBtnsOption = document.querySelectorAll('.save-btn-option')
+        
         saveBtnsOption.forEach(saveBtnOption => {
             saveBtnOption.addEventListener('click', () => {
 
@@ -1036,6 +1066,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             })
         })
+
+
+
+        let exitBtnsOption = document.querySelectorAll('.exit-btn-option')
 
         exitBtnsOption.forEach(exitBtnOption => {
             exitBtnOption.addEventListener('click', () => {
