@@ -850,6 +850,68 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         })
 
+
+
+        // сохранить изменения описания блюда
+        let saveChangeItemDescription = document.querySelector('.save-item-description-btn')
+
+        saveChangeItemDescription.addEventListener('click', async () => {
+            let itemEditorBlock = saveChangeItemDescription.closest('.item-editor-block')
+            let itemId = itemEditorBlock.dataset.id
+
+            let blockEdit = saveChangeItemDescription.closest('.block-edit')
+
+            const fields = blockEdit.querySelectorAll("textarea");
+
+            // ---- Валидация ----
+            let valid = true;
+
+            fields.forEach(f => {
+                if (!f.value.trim()) valid = false;
+            });
+
+            if (!valid) {
+                alert("All description fields are required");
+                return;
+            }
+
+            // ---- Формирование данных ----
+            const translations = {
+                en: blockEdit.querySelector('input[id="en-item-description"]').value.trim(),
+                ru: blockEdit.querySelector('input[id="ru-item-description"]').value.trim(),
+                ko: blockEdit.querySelector('input[id="ko-item-description"]').value.trim(),
+                ar: blockEdit.querySelector('input[id="ar-item-description"]').value.trim()
+            };
+
+
+            // ---- Отправляем на сервер ----
+            try {
+                const res = await fetch("/api/menuManager/item/update/description", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        itemId,
+                        translations
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.error || "Error updating item name");
+                    return;
+                }
+
+                alert('Item description has been successfully updated.')
+
+
+            } catch (err) {
+                console.error(err);
+                alert("Server error");
+            }
+
+        })
+
     }
 
 
