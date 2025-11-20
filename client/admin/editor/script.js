@@ -987,28 +987,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     // сохрание всех изменений блюда
 
     function initItemSave() {
-        let saveBtnItemEditor = document.querySelector('.save-btn-item-editor')
+        // let saveBtnItemEditor = document.querySelector('.save-btn-item-editor')
         let exitBtnItemEditor = document.querySelector('.exit-btn-item-editor')
 
-        saveBtnItemEditor.addEventListener('click', () => {
-            let valid = true
-            let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
+        // saveBtnItemEditor.addEventListener('click', () => {
+        //     let valid = true
+        //     let allEditorFields = itemEditorContainer.querySelectorAll('input, textarea')
 
-            for (const field of allEditorFields) {
-                if (!field.value.trim() && !field.closest('.add-block')) {
-                    alert('Not all fields are filled in')
-                    valid = false
-                    return
-                }
-            }
-
-
+        //     for (const field of allEditorFields) {
+        //         if (!field.value.trim() && !field.closest('.add-block')) {
+        //             alert('Not all fields are filled in')
+        //             valid = false
+        //             return
+        //         }
+        //     }
 
 
-            if (valid) {
-                alert('Changes have been successfully applied.')
-            }
-        })
+
+
+        //     if (valid) {
+        //         alert('Changes have been successfully applied.')
+        //     }
+        // })
 
 
         exitBtnItemEditor.addEventListener('click', () => {
