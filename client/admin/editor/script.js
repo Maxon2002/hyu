@@ -1069,7 +1069,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const optionId = optionBlock.dataset.id;
                 const fields = blockEdit.querySelectorAll("input");
 
-                let itemEditorBlock = saveBtnsOption.closest('.item-editor-block');
+                let itemEditorBlock = saveBtnOption.closest('.item-editor-block');
                 let itemId = itemEditorBlock.dataset.id;
 
                 // ---- Валидация ----
