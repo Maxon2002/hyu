@@ -662,13 +662,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         } else {
             return `
             <label>en</label>
-                    <input type="text" class="option-name-en" value="${tr.en || ""}">
+                    <input type="text" class="option-name-en" value="${tr.en || ""}" required>
                     <label>ru</label>
-                    <input type="text" class="option-name-ru" value="${tr.ru || ""}">
+                    <input type="text" class="option-name-ru" value="${tr.ru || ""}" required>
                     <label>ko</label>
-                    <input type="text" class="option-name-ko" value="${tr.ko || ""}">
+                    <input type="text" class="option-name-ko" value="${tr.ko || ""}" required>
                     <label>ar</label>
-                    <input type="text" class="option-name-ar" value="${tr.ar || ""}">
+                    <input type="text" class="option-name-ar" value="${tr.ar || ""}" required>
             `
         }
     }
@@ -692,10 +692,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="add-block">
                 <div class="block-edit">
                     <label>Position</label>
-                    <input type="number" class="option-position" value="${option.position + 1}">
+                    <input type="number" class="option-position" value="${option.position + 1}" required>
 
                     <label for="price">Price</label>
-                    <input type="number" id="price" name="price" value="${option.price}">
+                    <input type="number" id="price" name="price" value="${option.price}" required>
 
                     ${renderEditOptionVariants(tr)}
 
@@ -1076,7 +1076,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 let valid = true;
 
                 fields.forEach(f => {
-                    if (!f.value.trim()) valid = false;
+                    if (!f.value.trim() && f.hasAttribute('required')) {
+
+                        valid = false;
+                    }
                 });
 
                 if (!valid) {
@@ -1098,12 +1101,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const price = blockEdit.querySelector('input[id="price"]').value.trim()
 
                 // ---- Формирование данных ----
-                const translations = {
-                    en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
-                    ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
-                    ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
-                    ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
-                };
+
+                let translations
+                let trCheck = true
+
+                fields.forEach(f => {
+                    if (!f.value.trim() && !f.hasAttribute('required')) {
+
+                        translations = null
+                        trCheck = false
+                    }
+                });
+
+                if (trCheck) {
+                    translations = {
+                        en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
+                        ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
+                        ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
+                        ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
+                    };
+                }
 
 
 
@@ -1164,10 +1181,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 addBlock.classList.remove('active')
 
-                if(addBlock.querySelector('.add-container')) {
+                if (addBlock.querySelector('.add-container')) {
                     let addContainer = addBlock.querySelector('.add-container')
                     addContainer.querySelector('.add-block').classList.remove('active')
                     addContainer.querySelector('.add-option-name-btn').classList.add('active')
+
+                    addContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
                 }
 
             })

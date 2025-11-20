@@ -533,6 +533,7 @@ router.put("/item/update/description", async (req, res) => {
 });
 
 
+// обновление фото
 router.post(
     "/item/update/image",
     upload.single("image"),
@@ -621,6 +622,124 @@ router.post(
         }
     }
 );
+
+
+// изменение опции блюда
+router.put("/itemOption/update", async (req, res) => {
+    try {
+        const { optionId, itemId, position, price, translations } = req.body;
+
+        if (!optionId || !itemId) {
+            return res.status(400).json({ error: "Missing optionId or itemId" });
+        }
+
+        const variant = await prisma.menuItemVariant.findUnique({
+            where: { id: optionId }
+        });
+
+        if (!variant) {
+            return res.status(404).json({ error: "Option not found" });
+        }
+
+        // ======================================================
+        // 1. Обновление позиции варианта
+        // ======================================================
+        const oldPosition = variant.position;
+        const newPosition = position;
+
+
+
+        if (newPosition !== oldPosition) {
+            // CASE 1: Moving UP (новая позиция меньше старой)
+            if (newPosition < oldPosition) {
+                await prisma.menuItemVariant.updateMany({
+                    where: {
+                        itemId,
+                        position: {
+                            gte: newPosition,
+                            lt: oldPosition
+                        }
+                    },
+                    data: {
+                        position: { increment: 1 }
+                    }
+                });
+            }
+
+            // CASE 2: Moving DOWN (новая позиция больше старой)
+            if (newPosition > oldPosition) {
+                await prisma.menuItemVariant.updateMany({
+                    where: {
+                        itemId,
+                        position: {
+                            gt: oldPosition,
+                            lte: newPosition
+                        }
+                    },
+                    data: {
+                        position: { decrement: 1 }
+                    }
+                });
+            }
+
+            // Обновляем сам вариант
+            await prisma.menuItemVariant.update({
+                where: { id: optionId },
+                data: { position: newPosition }
+            });
+        }
+
+
+        // ======================================================
+        // 2. Обновление цены
+        // ======================================================
+        if (price !== undefined) {
+            await prisma.menuItemVariant.update({
+                where: { id: optionId },
+                data: { price: Number(price) }
+            });
+        }
+
+        // ======================================================
+        // 3. Обновление переводов (если translations != null)
+        // ======================================================
+        if (translations !== null) {
+            for (const [language, name] of Object.entries(translations)) {
+                await prisma.menuItemVariantTranslation.updateMany({
+                    where: {
+                        variantId: optionId,
+                        language
+                    },
+                    data: {
+                        name: name
+                    }
+                });
+            }
+        }
+
+        // ======================================================
+        // 4. Возвращаем обновлённое блюдо с вариантами
+        // ======================================================
+        const updatedItem = await prisma.menuItem.findUnique({
+            where: { id: itemId },
+            include: {
+                variants: {
+                    orderBy: { position: "asc" },
+                    include: { translations: true }
+                }
+            }
+        });
+
+        return res.json({
+            success: true,
+            item: updatedItem
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
 
 
 export default router;
