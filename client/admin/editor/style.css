@@ -127,7 +127,8 @@ input, textarea {
     width: 270px;
 }
 
-#categoriesWrapper {
+#categoriesWrapper,
+#itemsWrapper {
     display: flex;
     flex-direction: column;
 }

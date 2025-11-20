@@ -28,8 +28,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    const wrapper = document.getElementById("categoriesWrapper");
+    const wrapperCategory = document.getElementById("categoriesWrapper");
+    const wrapperItem = document.getElementById("itemsWrapper");
     let categoriesArr = []
+    let itemsArr = []
 
     async function loadCategories() {
         try {
@@ -39,11 +41,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (!data.success) return alert("Failed to load categories");
 
 
-            wrapper.innerHTML = ""; // очистить старые данные
+            wrapperCategory.innerHTML = ""; // очистить старые данные
 
             data.categories.forEach(category => {
                 categoriesArr.push(category)
-                wrapper.appendChild(renderCategory(category));
+                wrapperCategory.appendChild(renderCategory(category));
             });
 
             addListenerEditCategory()
@@ -110,17 +112,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return block;
     }
 
-
-
-    // function rerenderCategoriesUI() {
-    //     wrapper.innerHTML = "";
-
-    //     categoriesArr
-    //         .sort((a, b) => a.position - b.position)
-    //         .forEach(c => wrapper.appendChild(renderCategory(c)));
-
-    //     addListenerEditCategory()
-    // }
 
 
 
@@ -281,6 +272,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             })
         })
+
+        // открыть блюда категории
+        let categoryBlocksInfo = document.querySelectorAll('.category-block-info')
+        let itemsContainer = document.querySelector('.items-main-container')
+
+        categoryBlocksInfo.forEach(catBlockInfo => {
+            catBlockInfo.addEventListener('click', async () => {
+                const categoryBlock = catBlockInfo.closest(".category-block");
+                const categoryId = categoryBlock.dataset.id;
+
+                await loadItems(categoryId)
+
+                categoryBlocksInfo.forEach(catBlockInfo => {
+                    catBlockInfo.classList.remove('active')
+                })
+                catBlockInfo.classList.add('active')
+                itemsContainer.classList.remove('hidden')
+            })
+        })
+
     }
 
     // добавить категорию 
@@ -384,42 +395,74 @@ document.addEventListener("DOMContentLoaded", async () => {
     })
 
 
-    // открыть блюда категории
-    let categoryBlocks = document.querySelectorAll('.category-block-info')
-    let itemsContainer = document.querySelector('.items-main-container')
-
-    categoryBlocks.forEach(categoryBlock => {
-        categoryBlock.addEventListener('click', () => {
-
-            categoryBlocks.forEach(categoryBlock => {
-                categoryBlock.classList.remove('active')
-            })
-
-            categoryBlock.classList.add('active')
 
 
-            itemsContainer.classList.remove('hidden')
-        })
-    })
+
+
+
+    async function loadItems(categoryId) {
+        try {
+            const res = await fetch("/api/menuManager/items/${categoryId}");
+            const data = await res.json();
+
+            if (!data.success) return alert("Failed to load items");
+
+
+            wrapperItem.innerHTML = ""; // очистить старые данные
+            itemsArr = [];
+
+            data.items.forEach(item => {
+                itemsArr.push(item)
+                wrapperItem.appendChild(renderItem(item));
+            });
+
+            addListenerEditItem()
+
+        } catch (err) {
+            console.error(err);
+            alert("Error loading items");
+        }
+    }
+
+
+    function renderItem(item) {
+        const block = document.createElement("div");
+        block.classList.add("item-block");
+
+        block.dataset.id = item.id
+
+        // получаем переводы
+        const tr = {};
+        item.translations.forEach(t => tr[t.language] = t.title || "");
+
+        block.innerHTML = `
+        <div class="item-name">${tr.en || ""}</div>
+        `;
+
+        return block;
+    }
+
+
 
     // открыть editor блюда
-    let itemBlocks = document.querySelectorAll('.item-block')
-    let itemEditorContainer = document.querySelector('.item-editor-main-container')
+    function addListenerEditItem() {
+        let itemBlocks = document.querySelectorAll('.item-block')
+        let itemEditorContainer = document.querySelector('.item-editor-main-container')
 
-    itemBlocks.forEach(itemBlock => {
-        itemBlock.addEventListener('click', () => {
+        itemBlocks.forEach(itemBlock => {
+            itemBlock.addEventListener('click', () => {
 
-            itemBlocks.forEach(itemBlock => {
-                itemBlock.classList.remove('active')
+                itemBlocks.forEach(itemBlock => {
+                    itemBlock.classList.remove('active')
+                })
+
+                itemBlock.classList.add('active')
+
+                addItemContainer.classList.add("hidden")
+                itemEditorContainer.classList.remove('hidden')
             })
-
-            itemBlock.classList.add('active')
-
-            addItemContainer.classList.add("hidden")
-            itemEditorContainer.classList.remove('hidden')
         })
-    })
-
+    }
 
     // открыть окно добавления блюда 
 
