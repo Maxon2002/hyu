@@ -555,7 +555,7 @@ router.post(
             }
 
             // --- Папка для изображений ---
-            const folder = path.join(__dirname, "client/images/food");
+            const folder = join(__dirname, "../../client/images/food"); // поднимаемся на 2 уровня вверх
             await fs.ensureDir(folder);
 
             // --- Удаляем старые файлы ---
