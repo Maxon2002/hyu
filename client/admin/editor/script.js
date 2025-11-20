@@ -948,9 +948,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     })
 
                     saveBtnOptionName.closest('.add-block').classList.remove('active')
-                    document.querySelectorAll('.add-option-name-btn').forEach(btn => {
-                        btn.classList.add('active')
-                    })
+
+
+                    addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
+
+                    // document.querySelectorAll('.add-option-name-btn').forEach(btn => {
+                    //     btn.classList.add('active')
+                    // })
                 }
             })
         })
@@ -970,9 +974,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 cancelBtnOptionName.closest('.add-block').classList.remove('active')
 
-                document.querySelectorAll('.add-option-name-btn').forEach(btn => {
-                    btn.classList.add('active')
-                })
+                // while (addOptionNameContainer.parentElement && addOptionNameContainer.parentElement.classList.contains('.add-container')) {
+                //     addOptionNameContainer.parentElement.querySelector('.add-option-name-btn').classList.add('active')
+                // }
+
+                addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
             })
         })
     }
