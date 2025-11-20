@@ -938,7 +938,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             let blockEdit = confirmImgChange.closest('.add-block')
 
-            let imageInput = blockEdit.getElementById('item-image-file')
+            let imageInput = blockEdit.querySelector('#item-image-file')
             
 
             if (imageInput.files.length === 0) {
