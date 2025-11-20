@@ -936,7 +936,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             let itemEditorBlock = confirmImgChange.closest('.item-editor-block');
             let itemId = itemEditorBlock.dataset.id;
 
-            let blockEdit = saveChangeItemDescription.closest('.add-block')
+            let blockEdit = confirmImgChange.closest('.add-block')
 
             let imageInput = blockEdit.getElementById('item-image-file')
             
