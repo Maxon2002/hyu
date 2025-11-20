@@ -8,13 +8,19 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 
-const multer = require("multer");
-const sharp = require("sharp");
-const fs = require("fs-extra");
-const path = require("path");
+import multer from "multer";
+import sharp from "sharp";
+import fs from "fs-extra";
+import path from "path";
+
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Куда сохраняем оригинальные загруженные временные файлы
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: join(__dirname, "uploads") });
 
 
 
