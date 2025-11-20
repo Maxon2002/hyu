@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const wrapperCategory = document.getElementById("categoriesWrapper");
     const wrapperItem = document.getElementById("itemsWrapper");
     const wrapperItemEditor = document.getElementById("itemEditorWrapper");
+    let wrapperItemOption
     let categoriesArr = []
     let itemsArr = []
     let optionsArr = []
@@ -459,14 +460,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             wrapperItemEditor.innerHTML = ""; // очистить старые данные
 
             wrapperItemEditor.appendChild(renderItemEditor(data.item));
-            optionsArr = [];
 
-            data.item.variants.forEach(variant => {
-                optionsArr.push(variant)
-            });
+            wrapperItemOption = document.getElementById('itemOptionWrapper')
 
             initMainChangesItem()
             initOptionEditors()
+            initAddOption()
             initImageUpload();
             initItemSave();
 
@@ -556,8 +555,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="block-edit">
             <div class="block-edit-name">Price</div>
 
-            ${item.variants.map(renderOption).join("")}
-
+            <div id="itemOptionWrapper">
+                ${item.variants.map(renderOption).join("")}
+            </div>
             <div class="add-container">
                                         <div class="add-option-btn active">Add option</div>
 
@@ -631,16 +631,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                     <div class="add-block">
                                                         <div class="block-edit">
                                                             <label for="en-option">en</label>
-                                                            <input type="text" id="en-option" name="en-option">
+                                                            <input type="text" class="option-name-en" name="en-option">
 
                                                             <label for="ru-option">ru</label>
-                                                            <input type="text" id="ru-option" name="ru-option">
+                                                            <input type="text" class="option-name-ru" name="ru-option">
 
                                                             <label for="ko-option">ko</label>
-                                                            <input type="text" id="ko-option" name="ko-option">
+                                                            <input type="text" class="option-name-ko" name="ko-option">
 
                                                             <label for="ar-option">ar</label>
-                                                            <input type="text" id="ar-option" name="ar-option">
+                                                            <input type="text" class="option-name-ar" name="ar-option">
 
                                                             <div class="change-buttons">
                                                                 <button type="button"
@@ -669,6 +669,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function renderOption(option) {
+
+        optionsArr = [];
+        optionsArr.push(option)
+
+
         const tr = {};
         option.translations.forEach(t => tr[t.language] = t.name || "");
 
@@ -1026,17 +1031,24 @@ document.addEventListener("DOMContentLoaded", async () => {
                     block.querySelector('input[class="option-position"]').value = option.position + 1;
                     block.querySelector('input[id="price"]').value = option.price
                     // translations
-                    block.querySelector('input[class="option-name-en"]').value = tr.en || "";
-                    block.querySelector('input[class="option-name-ru"]').value = tr.ru || "";
-                    block.querySelector('input[class="option-name-ko"]').value = tr.ko || "";
-                    block.querySelector('input[class="option-name-ar"]').value = tr.ar || "";
+                    if (tr.en === "Standard") {
+                        block.querySelector('input[class="option-name-en"]').value = "";
+                        block.querySelector('input[class="option-name-ru"]').value = "";
+                        block.querySelector('input[class="option-name-ko"]').value = "";
+                        block.querySelector('input[class="option-name-ar"]').value = "";
+                    } else {
+                        block.querySelector('input[class="option-name-en"]').value = tr.en || "";
+                        block.querySelector('input[class="option-name-ru"]').value = tr.ru || "";
+                        block.querySelector('input[class="option-name-ko"]').value = tr.ko || "";
+                        block.querySelector('input[class="option-name-ar"]').value = tr.ar || "";
+                    }
                 }
                 fillOptinEditForm(blockEdit, option);
 
                 // Показать/скрыть блок
                 blockEdit.classList.toggle('active');
 
-                
+
             })
         })
 
@@ -1044,25 +1056,90 @@ document.addEventListener("DOMContentLoaded", async () => {
         // сохранить изменеия опции
 
         let saveBtnsOption = document.querySelectorAll('.save-btn-option')
-        
+
         saveBtnsOption.forEach(saveBtnOption => {
-            saveBtnOption.addEventListener('click', () => {
+            saveBtnOption.addEventListener('click', async () => {
 
-                let optionBlockEdit = saveBtnOption.closest('.add-block')
-                let fields = optionBlockEdit.querySelectorAll('input')
+                const blockEdit = saveBtnOption.closest(".add-block");
+                const optionBlock = saveBtnOption.closest(".option-container");
+                const optionId = optionBlock.dataset.id;
+                const fields = blockEdit.querySelectorAll("input");
 
-                let valid = true
-                for (const field of fields) {
-                    if (!field.value.trim()) {
-                        alert('Position and names of option are required');
-                        valid = false
+                let itemEditorBlock = saveBtnsOption.closest('.item-editor-block');
+                let itemId = itemEditorBlock.dataset.id;
+
+                // ---- Валидация ----
+                let valid = true;
+
+                fields.forEach(f => {
+                    if (!f.value.trim()) valid = false;
+                });
+
+                if (!valid) {
+                    alert("All fields are required");
+                    return;
+                }
+
+                const newPosition = Number(blockEdit.querySelector('input[class="option-position"]').value);
+
+
+                if (isNaN(newPosition) || newPosition <= 0) {
+                    return alert('Position must be a valid positive number');
+                }
+
+                if (newPosition > optionsArr.length) {
+                    return alert('Position should not exceed the number of options');
+                }
+
+                const price = blockEdit.querySelector('input[id="price"]').value.trim()
+
+                // ---- Формирование данных ----
+                const translations = {
+                    en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
+                    ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
+                    ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
+                    ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
+                };
+
+
+
+                const payload = {
+                    optionId,
+                    itemId,
+                    position: newPosition - 1,
+                    price,
+                    translations
+                };
+
+                // ---- Отправляем на сервер ----
+                try {
+                    const res = await fetch("/api/menuManager/itemOption/update", {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await res.json();
+
+                    if (!res.ok) {
+                        alert(data.error || "Error updating option");
                         return;
                     }
+
+
+                    wrapperItemOption.innerHTML = ""
+
+                    wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
+
+                    initOptionEditors()
+
+                    alert('Option has been successfully updated.')
+
+                } catch (err) {
+                    console.error(err);
+                    alert("Server error");
                 }
 
-                if (valid) {
-                    optionBlockEdit.classList.toggle('active')
-                }
 
             })
         })
@@ -1080,6 +1157,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
         })
 
+    }
+
+    function initAddOption() {
 
 
 
@@ -1242,6 +1322,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
         })
     }
+
 
 
     // сохрание всех изменений блюда
