@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function loadItems(categoryId) {
         try {
-            const res = await fetch("/api/menuManager/items/${categoryId}");
+            const res = await fetch(`/api/menuManager/items/${categoryId}`);
             const data = await res.json();
 
             if (!data.success) return alert("Failed to load items");
