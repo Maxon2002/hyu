@@ -603,6 +603,52 @@ document.addEventListener("DOMContentLoaded", async () => {
         return block;
     }
 
+    function renderEditOptionVariants(tr) {
+        if (tr.en === "Standard") {
+            return `
+                <div class="add-container">
+                                                    <div class="add-option-name-btn active">Add option name</div>
+
+                                                    <div class="add-block">
+                                                        <div class="block-edit">
+                                                            <label for="en-option">en</label>
+                                                            <input type="text" id="en-option" name="en-option">
+
+                                                            <label for="ru-option">ru</label>
+                                                            <input type="text" id="ru-option" name="ru-option">
+
+                                                            <label for="ko-option">ko</label>
+                                                            <input type="text" id="ko-option" name="ko-option">
+
+                                                            <label for="ar-option">ar</label>
+                                                            <input type="text" id="ar-option" name="ar-option">
+
+                                                            <div class="change-buttons">
+                                                                <button type="button"
+                                                                    class="act-btn save-btn-option-name">Save
+                                                                    name</button>
+                                                                <button type="button"
+                                                                    class="act-btn cancel-btn-option-name">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+            `
+        } else {
+            return `
+            <label>en</label>
+                    <input type="text" class="option-name-en" value="${tr.en || ""}">
+                    <label>ru</label>
+                    <input type="text" class="option-name-ru" value="${tr.ru || ""}">
+                    <label>ko</label>
+                    <input type="text" class="option-name-ko" value="${tr.ko || ""}">
+                    <label>ar</label>
+                    <input type="text" class="option-name-ar" value="${tr.ar || ""}">
+            `
+        }
+    }
+
     function renderOption(option) {
         const tr = {};
         option.translations.forEach(t => tr[t.language] = t.name || "");
@@ -622,14 +668,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <label>Position</label>
                     <input type="number" class="option-position" value="${option.position + 1}">
 
-                    <label>en</label>
-                    <input type="text" class="option-name-en" value="${tr.en || ""}">
-                    <label>ru</label>
-                    <input type="text" class="option-name-ru" value="${tr.ru || ""}">
-                    <label>ko</label>
-                    <input type="text" class="option-name-ko" value="${tr.ko || ""}">
-                    <label>ar</label>
-                    <input type="text" class="option-name-ar" value="${tr.ar || ""}">
+                    ${renderEditOptionVariants(tr)}
 
                     <div class="change-buttons-container">
                         <div class="change-buttons">
