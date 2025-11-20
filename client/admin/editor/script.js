@@ -1207,14 +1207,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
                 try {
-                    const response = await fetch(`/api/menuManager/itemOption/delete/${optionId}`, {
+                    const res = await fetch(`/api/menuManager/itemOption/delete/${optionId}`, {
                         method: "DELETE"
                     });
 
-                    const result = await response.json();
+                    const data = await res.json();
 
-                    if (!result.success) {
-                        alert(result.error || "Delete error");
+                    if (!res.ok) {
+                        alert(data.error || "Error updating option");
                         return;
                     }
 
