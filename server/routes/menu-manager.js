@@ -533,7 +533,7 @@ router.put("/item/update/description", async (req, res) => {
 });
 
 
-router.put(
+router.post(
     "/item/update/image",
     upload.single("image"),
     async (req, res) => {
