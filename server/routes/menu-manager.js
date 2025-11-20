@@ -338,7 +338,7 @@ router.get("/item/:id", async (req, res) => {
 
 // изменить позицию блюда
 
-router.post('/updateItemPosition', async (req, res) => {
+router.post('/item/update/position', async (req, res) => {
     try {
         const { itemId, position } = req.body;
 
