@@ -1164,7 +1164,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 addBlock.classList.remove('active')
 
-                addBlock.querySelector('.add-container')?.querySelector('.add-block').classList.remove('active')
+                if(addBlock.querySelector('.add-container')) {
+                    let addContainer = addBlock.querySelector('.add-container')
+                    addContainer.querySelector('.add-block').classList.remove('active')
+                    addContainer.querySelector('.add-option-name-btn').classList.add('active')
+                }
+
             })
         })
 
