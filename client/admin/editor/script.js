@@ -676,13 +676,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <input type="number" class="option-position" value="${option.position + 1}">
 
                     <label for="price">Price</label>
-                    <input type="number" id="price" name="price" value="${option.price}>
+                    <input type="number" id="price" name="price" value="${option.price}">
 
                     ${renderEditOptionVariants(tr)}
 
                     <div class="change-buttons-container">
                         <div class="change-buttons">
-                            <button type="button" class="act-btn save-btn-option">Save option changes</button>
+                            <button type="button" class="act-btn save-btn-option">Save option</button>
                             <button type="button" class="act-btn exit-btn-option">Exit</button>
                         </div>
                         <button type="button" class="act-btn delete-btn delete-btn-option">Delete option</button>
