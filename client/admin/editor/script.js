@@ -1232,6 +1232,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 let blockEdit = addOptionContainer.querySelector('.add-block')
                 let fields = blockEdit.querySelectorAll('input')
 
+                let itemEditorBlock = addSaveBtnOption.closest('.item-editor-block');
+                let itemId = itemEditorBlock.dataset.id;
+
                 let valid = true
 
                 fields.forEach(f => {
