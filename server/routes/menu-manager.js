@@ -838,4 +838,69 @@ router.put("/itemOption/add", async (req, res) => {
 });
 
 
+// удалить опцию 
+router.delete("/itemOption/delete/:optionId", async (req, res) => {
+    try {
+        const { optionId } = req.params;
+
+        // --- 1. Получаем удаляемую опцию ---
+        const option = await prisma.menuItemVariant.findUnique({
+            where: { id: optionId }
+        });
+
+        if (!option) {
+            return res.status(404).json({ error: "Option not found" });
+        }
+
+        const { itemId, position: deletedPosition } = option;
+
+
+        // --- 2. Удаляем переводы ---
+        await prisma.menuItemVariantTranslation.deleteMany({
+            where: { variantId: optionId }
+        });
+
+
+        // --- 3. Удаляем саму опцию ---
+        await prisma.menuItemVariant.delete({
+            where: { id: optionId }
+        });
+
+
+        // --- 4. Сдвигаем позиции остальных ---
+        await prisma.menuItemVariant.updateMany({
+            where: {
+                itemId,
+                position: {
+                    gt: deletedPosition
+                }
+            },
+            data: {
+                position: { decrement: 1 }
+            }
+        });
+
+
+        // --- 5. Возвращаем обновлённое блюдо ---
+        const updatedItem = await prisma.menuItem.findUnique({
+            where: { id: itemId },
+            include: {
+                variants: {
+                    orderBy: { position: "asc" },
+                    include: { translations: true }
+                }
+            }
+        });
+
+        return res.json({
+            success: true,
+            item: updatedItem
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
 export default router;

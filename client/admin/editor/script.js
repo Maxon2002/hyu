@@ -1193,6 +1193,55 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
         })
 
+
+        let deleteBtnsOption = document.querySelectorAll('.delete-btn-option')
+
+        deleteBtnsOption.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', async () => {
+
+                const optionContainer = deleteBtn.closest(".option-container");
+                const optionId = optionContainer.dataset.id;
+
+
+                if (!confirm("Are you sure you want to delete this option?")) return;
+
+
+                try {
+                    const response = await fetch(`/api/menuManager/itemOption/delete/${optionId}`, {
+                        method: "DELETE"
+                    });
+
+                    const result = await response.json();
+
+                    if (!result.success) {
+                        alert(result.error || "Delete error");
+                        return;
+                    }
+
+
+                    optionsArr = [];
+                    data.item.variants.forEach(variant => {
+                        optionsArr.push(variant)
+                    });
+
+
+                    wrapperItemOption.innerHTML = ""
+                    wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
+
+                    initOptionEditors()
+                    initAddOption()
+
+
+                    alert("Option deleted");
+
+
+                } catch (err) {
+                    console.error(err);
+                    alert("Server error");
+                }
+
+            })
+        })
     }
 
     function initAddOption() {
