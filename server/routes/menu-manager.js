@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 
-
+// получить все категории
 router.get("/categories", async (req, res) => {
     try {
         const categories = await prisma.menuCategory.findMany({
@@ -35,6 +35,7 @@ function makeSlug(str) {
         .replace(/^-+|-+$/g, "");
 }
 
+// обновить категорию
 router.put("/category/update", async (req, res) => {
     const { id, position, translations } = req.body;
 
@@ -122,7 +123,7 @@ router.put("/category/update", async (req, res) => {
     }
 });
 
-
+// добавить категорию
 router.post("/category/add", async (req, res) => {
     try {
         const { position, translations } = req.body;
@@ -188,6 +189,87 @@ router.post("/category/add", async (req, res) => {
     }
 });
 
+
+// удалить категорию
+router.delete("/category/delete/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // 1. Находим категорию и её позицию
+        const category = await prisma.menuCategory.findUnique({
+            where: { id },
+            select: { id: true, position: true }
+        });
+
+        if (!category) {
+            return res.status(404).json({ error: "Category not found" });
+        }
+
+        const deletedPosition = category.position;
+
+        // --------------------------------------------
+        //       2. УДАЛЯЕМ ВСЕ СВЯЗАННЫЕ ДАННЫЕ
+        // --------------------------------------------
+
+        // Сначала получаем все items категории, чтобы удалить variants
+        const items = await prisma.menuItem.findMany({
+            where: { categoryId: id },
+            select: { id: true }
+        });
+
+        const itemIds = items.map(i => i.id);
+
+        if (itemIds.length > 0) {
+            // Удаляем переводы вариантов
+            await prisma.menuItemVariantTranslation.deleteMany({
+                where: { variant: { itemId: { in: itemIds } } }
+            });
+
+            // Удаляем варианты
+            await prisma.menuItemVariant.deleteMany({
+                where: { itemId: { in: itemIds } }
+            });
+
+            // Удаляем переводы items
+            await prisma.menuItemTranslation.deleteMany({
+                where: { itemId: { in: itemIds } }
+            });
+
+            // Удаляем сами items
+            await prisma.menuItem.deleteMany({
+                where: { id: { in: itemIds } }
+            });
+        }
+
+        // Удаляем переводы категории
+        await prisma.menuCategoryTranslation.deleteMany({
+            where: { categoryId: id }
+        });
+
+        // Удаляем категорию
+        await prisma.menuCategory.delete({
+            where: { id }
+        });
+
+        // --------------------------------------------
+        //     3. РЕОРГАНИЗУЕМ ПОЗИЦИИ (смещаем вверх)
+        // --------------------------------------------
+        await prisma.menuCategory.updateMany({
+            where: {
+                position: { gt: deletedPosition }
+            },
+            data: {
+                position: { decrement: 1 }
+            }
+        });
+
+        res.json({ success: true });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
 
 
 

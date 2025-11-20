@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    // изменить название/позицию категории
+    // изменить название/позицию категории и удалить категорию
     function addListenerEditCategory() {
         let editBtnsCategory = document.querySelectorAll('.edit-btn-category')
 
@@ -162,32 +162,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         let saveBtnsCategory = document.querySelectorAll('.save-btn-category')
         let exitBtnsCategory = document.querySelectorAll('.exit-btn-category')
 
-        // saveBtnsCategory.forEach(saveBtnCategory => {
-        //     saveBtnCategory.addEventListener('click', () => {
-        //         let categoryBlockEdit = saveBtnCategory.closest('.add-block')
-        //         let fields = categoryBlockEdit.querySelectorAll('input')
-
-        //         let validFirst = true
-        //         let validSecond = true
-        //         for (const field of fields) {
-        //             if (!field.value.trim()) {
-        //                 alert('Position and names are required');
-        //                 validFirst = false
-        //                 return;
-        //             }
-        //         }
-
-        //         if (categoryBlockEdit.querySelector('input[data-field="position"]').value <= 0) {
-        //             alert('Position have to at least 1');
-        //             validSecond = false
-        //         }
-
-        //         if (validFirst && validSecond) {
-        //             categoryBlockEdit.classList.toggle('active')
-
-        //         }
-        //     })
-        // })
 
         saveBtnsCategory.forEach(saveBtn => {
             saveBtn.addEventListener("click", async () => {
@@ -264,15 +238,47 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
-
-
-
-
         exitBtnsCategory.forEach(exitBtnCategory => {
             exitBtnCategory.addEventListener('click', () => {
 
                 exitBtnCategory.closest('.add-block').classList.toggle('active')
+            })
+        })
+
+
+        let deleteBtnsCategory = document.querySelectorAll('.delete-btn-category')
+
+        deleteBtnsCategory.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', async () => {
+
+                const categoryBlock = deleteBtn.closest(".category-block");
+                const categoryId = categoryBlock.dataset.id;
+
+
+                if (!confirm("Are you sure you want to delete this category?")) return;
+
+
+                try {
+                    const response = await fetch(`/api/menuManager/category/delete/${categoryId}`, {
+                        method: "DELETE"
+                    });
+
+                    const result = await response.json();
+
+                    if (!result.success) {
+                        alert(result.error || "Delete error");
+                        return;
+                    }
+
+                    alert("Category deleted");
+
+                    // Перезагрузить категории
+                    await loadCategories();
+
+                } catch (err) {
+                    console.error(err);
+                    alert("Server error");
+                }
             })
         })
     }
