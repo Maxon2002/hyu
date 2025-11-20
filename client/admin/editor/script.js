@@ -487,7 +487,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="block-edit">
             <label for="position">Position</label>
             <input type="number" id="item-position" value="${item.position + 1}">
-        
+
+            <div class="change-buttons">
+                <button type="button" class="act-btn save-item-position-btn">Save position</button>
+            </div>
+        </div>
+        <div class="block-edit">
             <div class="block-edit-name">Name</div>
 
             <label>en</label>
@@ -498,7 +503,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             <input type="text" id="ko-item-name" value="${tr.ko?.title || ""}">
             <label>ar</label>
             <input type="text" id="ar-item-name" value="${tr.ar?.title || ""}">
-        
+
+            <div class="change-buttons">
+                <button type="button" class="act-btn save-item-name-btn">Save name</button>
+            </div>
+        </div>
+        <div class="block-edit">
             <div class="block-edit-name">Description</div>
 
             <label>en</label>
@@ -511,8 +521,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <textarea id="ar-item-description">${tr.ar?.description || ""}</textarea>
 
             <div class="change-buttons">
-                                        <button type="button" class="act-btn save-item-info-btn">Save</button>
-                                    </div>
+                <button type="button" class="act-btn save-item-description-btn">Save description</button>
+            </div>
         </div>
 
         <div class="block-edit">
@@ -569,8 +579,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                                                             <div class="change-buttons">
                                                                 <button type="button"
-                                                                    class="act-btn save-btn-option-name">Save
-                                                                    name</button>
+                                                                    class="act-btn save-btn-option-name">Save option name</button>
                                                                 <button type="button"
                                                                     class="act-btn cancel-btn-option-name">Cancel</button>
                                                             </div>
@@ -581,7 +590,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
                                                 <div class="change-buttons">
-                                                    <button type="button" class="act-btn add-btn-option">Add
+                                                    <button type="button" class="act-btn add-btn-option">Save
                                                         option</button>
                                                     <button type="button"
                                                         class="act-btn cancel-btn-option">Cancel</button>
