@@ -677,9 +677,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function renderOption(option) {
 
-
-
-
         const tr = {};
         option.translations.forEach(t => tr[t.language] = t.name || "");
 
@@ -1566,8 +1563,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     })
 
+
+
+
+    function renderTempOption(option) {
+
+        return `
+        
+            <div class="option-block" id="${option.position}">
+                <div>${option.translations.en} / ${option.price}</div>
+                
+                <img src="../../images/delete-icon.svg" class="edit-btn delete-icon-btn-option">
+            </div>
+
+            `;
+    }
+
+
     let saveOptionBtnAdder = document.querySelector('.add-btn-option-adder')
     let tempOptionsArr = []
+
 
     saveOptionBtnAdder.addEventListener('click', () => {
 
@@ -1587,7 +1602,81 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        
+        const newPosition = Number(blockEdit.querySelector('input[class="option-position"]').value);
+
+
+        if (isNaN(newPosition) || newPosition <= 0) {
+            return alert('Position must be a valid positive number');
+        }
+
+        if (newPosition > tempOptionsArr.length + 1) {
+            return alert(`Position should not exceed ${tempOptionsArr.length + 1}`);
+        }
+
+        const price = blockEdit.querySelector('input[id="price"]').value.trim()
+
+
+        let translations
+        let trCheck = true
+
+        fields.forEach(f => {
+            if (!f.value.trim() && !f.hasAttribute('required')) {
+
+                trCheck = false
+            }
+        });
+
+        if (trCheck) {
+            translations = {
+                en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
+                ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
+                ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
+                ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
+            };
+        } else {
+            translations = {
+                en: "Standard",
+                ru: "Стандарт",
+                ko: "기본",
+                ar: "عادي"
+            };
+        }
+
+
+        // 1. Сдвигаем позиции существующих опций
+        tempOptionsArr = tempOptionsArr.map(opt => {
+            if (opt.position >= newPosition) {
+                return { ...opt, position: opt.position + 1 }
+            }
+            return opt
+        })
+
+        // 2. Создаём новый объект
+        let optionObj = {
+            position: newPosition,
+            price,
+            showLabel: trCheck,
+            translations
+        }
+
+        // 3. Добавляем новую опцию
+        tempOptionsArr.push(optionObj)
+
+        // 4. Сортируем по position
+        tempOptionsArr.sort((a, b) => a.position - b.position)
+
+
+
+
+        wrapperItemOptionAdder.innerHTML = ""
+
+        tempOptionsArr.forEach(option => {
+            wrapperItemOptionAdder.appendChild(renderTempOption(option));
+        });
+
+
+        initDeleteIconBtn()
+
 
 
         fields.forEach(field => {
@@ -1596,12 +1685,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
 
-    
+
         blockEdit.classList.remove('active')
 
         addOptionContainer.querySelector('.add-option-btn-adder').classList.add('active')
     })
 
+
+    function initDeleteIconBtn() {
+        let deleteIcons = document.querySelectorAll('.delete-icon-btn-option')
+
+        deleteIcons.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', () => {
+                let optionBlock = deleteBtn.closest('.option-block')
+                let optionPosition = Number(optionBlock.id)
+
+                // 1. Удаляем элемент с этой позицией
+                tempOptionsArr = tempOptionsArr.filter(opt => opt.position !== optionPosition)
+
+                // 2. Сдвигаем позиции у оставшихся
+                tempOptionsArr = tempOptionsArr.map(opt => {
+                    if (opt.position > optionPosition) {
+                        return { ...opt, position: opt.position - 1 }
+                    }
+                    return opt
+                })
+
+                wrapperItemOptionAdder.innerHTML = ""
+
+                tempOptionsArr.forEach(option => {
+                    wrapperItemOptionAdder.appendChild(renderTempOption(option));
+                });
+
+
+                initDeleteIconBtn()
+
+
+            })
+        })
+    }
 
 
 
@@ -1629,7 +1751,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             alert('Not all fields are filled in')
         }
 
-        if (!addItemContainer.querySelector('.option-container')) {
+        if (!addItemContainer.querySelector('.option-block')) {
             alert('At least one option is requeried')
             return
         }
@@ -1640,6 +1762,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (validFirst && validSecond) {
             alert('New item have been successfully added.')
         }
+
+        tempOptionsArr = []
     })
 
 
@@ -1651,6 +1775,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         addItemContainer.querySelectorAll('input, textarea').forEach(field => {
             field.value = ""
         })
+
+        tempOptionsArr = []
     })
 
 
