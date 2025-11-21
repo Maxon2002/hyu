@@ -1526,7 +1526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
+    initAddOption()
 
 
     // открыть окно добавления блюда 
