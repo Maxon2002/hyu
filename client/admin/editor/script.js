@@ -1846,11 +1846,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         formData.append("options", JSON.stringify(tempOptionsArr));
 
 
-
-
-
-
-
         try {
             const res = await fetch("/api/menuManager/item/add", {
                 method: "PUT",

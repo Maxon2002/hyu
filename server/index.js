@@ -18,6 +18,9 @@ const __dirname = path.resolve();
 
 // middleware
 app.use(cors());
+
+app.use("/api/menuManager", menuManager);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,7 +32,7 @@ app.use("/", menuRoutes);
 app.use("/api/reservation", bookingRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
-app.use("/api/menuManager", menuManager);
+
 
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
