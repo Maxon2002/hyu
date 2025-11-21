@@ -18,11 +18,17 @@ const __dirname = path.resolve();
 
 // middleware
 app.use(cors());
-
-app.use("/api/menuManager", menuManager);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// --- Пропускаем json/urlencoded для multipart/form-data ---
+app.use((req, res, next) => {
+    if (req.is('multipart/form-data')) {
+        return next(); // не парсим тело, пусть Multer делает это
+    }
+    express.json()(req, res, () => {
+        express.urlencoded({ extended: true })(req, res, next);
+    });
+});
 
 // отдаём статику (фронтенд папка "client")
 app.use(express.static(path.join(process.cwd(), "client")));
@@ -32,11 +38,9 @@ app.use("/", menuRoutes);
 app.use("/api/reservation", bookingRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/menuManager", menuManager);
 
 
-app.listen(port, () => {
-  console.log(`✅ Server running on port ${port}`);
-});
 
 
 // Указываем папку для EJS-шаблонов
@@ -48,3 +52,7 @@ app.set("view engine", "ejs");
 app.use("/images", express.static(path.join(__dirname, "client/images"))); 
 app.use('/css', express.static(path.join(__dirname, 'client/css')));
 app.use('/js', express.static(path.join(__dirname, 'client/js')));
+
+app.listen(port, () => {
+  console.log(`✅ Server running on port ${port}`);
+});
