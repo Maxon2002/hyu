@@ -1410,7 +1410,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 addOptionNameBtn.classList.add('active')
 
-                addOptionContainer.querySelector('.add-option-btn').classList.add('active')
+                addOptionContainer.querySelector('.add-option-btn')?.classList.add('active')
                 addOptionContainer.querySelector('.add-option-btn-adder')?.classList.add('active')
             })
         })
