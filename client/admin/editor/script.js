@@ -1775,7 +1775,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // формируем объект запроса
 
-        const itemPosition = Number(addItemMainContainer.querySelector('input[id="item-position"]').value);
+        let itemPosition = Number(addItemMainContainer.querySelector('input[id="item-position"]').value);
         if (isNaN(itemPosition) || itemPosition <= 0) {
             return alert('Position must be a valid positive number');
         }
