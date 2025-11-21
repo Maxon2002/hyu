@@ -472,6 +472,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             initMainChangesItem()
             initOptionEditors()
             initAddOption()
+            initAddOptionGeneral()
             initImageUpload();
             initItemSave();
 
@@ -1160,6 +1161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     initOptionEditors()
                     initAddOption()
+                    initAddOptionGeneral()
 
                     alert('Option has been successfully updated.')
 
@@ -1231,6 +1233,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     initOptionEditors()
                     initAddOption()
+                    initAddOptionGeneral()
 
 
                     alert("Option deleted");
@@ -1266,14 +1269,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         })
 
-
-
-
-
         // сохранить добавленную опцию блюда/отменить
         let addSaveBtnOption = document.querySelector('.add-btn-option-editor')
-        let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
-
 
         addSaveBtnOption.addEventListener('click', async () => {
 
@@ -1380,6 +1377,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 initOptionEditors()
                 initAddOption()
+                initAddOptionGeneral()
 
                 alert('Option has been successfully added.')
 
@@ -1389,7 +1387,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         })
 
-
+    }
+    function initAddOptionGeneral() {
+        let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
         cancelBtnsOption.forEach(cancelBtnOption => {
 
 
@@ -1526,7 +1526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    initAddOption()
+    initAddOptionGeneral()
 
 
     // открыть окно добавления блюда 
