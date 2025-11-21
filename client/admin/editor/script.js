@@ -1509,6 +1509,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
             itemEditorContainer.classList.add('hidden')
+            let itemBlocks = document.querySelectorAll('.item-block')
 
             itemBlocks.forEach(itemBlock => {
                 itemBlock.classList.remove('active')
@@ -1533,7 +1534,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     let addItemContainer = document.querySelector('.add-item-main-container')
 
     openAddItem.addEventListener('click', () => {
-        exitBtnItemEditor.click()
+
+        itemEditorContainer.classList.add('hidden')
+        let itemBlocks = document.querySelectorAll('.item-block')
+
+        itemBlocks.forEach(itemBlock => {
+            itemBlock.classList.remove('active')
+        })
+        
         addItemContainer.classList.remove("hidden")
     })
 
