@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const wrapperItem = document.getElementById("itemsWrapper");
     const wrapperItemEditor = document.getElementById("itemEditorWrapper");
     let wrapperItemOption
+    const wrapperItemOptionAdder = document.getElementById("itemOptionAdderWrapper");
     let categoriesArr = []
     let itemsArr = []
     let optionsArr = []
@@ -606,7 +607,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
                                                 <div class="change-buttons">
-                                                    <button type="button" class="act-btn add-btn-option">Save new option</button>
+                                                    <button type="button" class="act-btn add-btn-option-editor">Save new option</button>
                                                     <button type="button"
                                                         class="act-btn cancel-btn-option">Cancel</button>
                                                 </div>
@@ -1249,145 +1250,145 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         // открыть добавление опции блюда
-        let addOptionBtns = document.querySelectorAll('.add-option-btn')
-
-        addOptionBtns.forEach(addOptionBtn => {
-            addOptionBtn.addEventListener('click', () => {
-
-                let addOptionContainer = addOptionBtn.closest('.add-container')
-
-                addOptionContainer.querySelector('input[class="option-position"]').value = optionsArr.length + 1
+        let addOptionBtn = document.querySelector('.add-option-btn')
 
 
-                addOptionBtn.classList.remove('active')
-                addOptionContainer.querySelector('.add-block').classList.add('active')
+        addOptionBtn.addEventListener('click', () => {
+
+            let addOptionContainer = addOptionBtn.closest('.add-container')
+
+            addOptionContainer.querySelector('input[class="option-position"]').value = optionsArr.length + 1
 
 
-            })
+            addOptionBtn.classList.remove('active')
+            addOptionContainer.querySelector('.add-block').classList.add('active')
+
+
         })
+
 
 
 
 
         // сохранить добавленную опцию блюда/отменить
-        let addSaveBtnsOption = document.querySelectorAll('.add-btn-option')
+        let addSaveBtnOption = document.querySelector('.add-btn-option-editor')
         let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
 
-        addSaveBtnsOption.forEach(addSaveBtnOption => {
-            addSaveBtnOption.addEventListener('click', async () => {
+
+        addSaveBtnOption.addEventListener('click', async () => {
 
 
-                let addOptionContainer = addSaveBtnOption.closest('.add-container')
-                let blockEdit = addOptionContainer.querySelector('.add-block')
-                let fields = blockEdit.querySelectorAll('input')
+            let addOptionContainer = addSaveBtnOption.closest('.add-container')
+            let blockEdit = addOptionContainer.querySelector('.add-block')
+            let fields = blockEdit.querySelectorAll('input')
 
-                let itemEditorBlock = addSaveBtnOption.closest('.item-editor-block');
-                let itemId = itemEditorBlock.dataset.id;
+            let itemEditorBlock = addSaveBtnOption.closest('.item-editor-block');
+            let itemId = itemEditorBlock.dataset.id;
 
-                let valid = true
+            let valid = true
 
-                fields.forEach(f => {
-                    if (!f.value.trim() && f.hasAttribute('required')) valid = false;
+            fields.forEach(f => {
+                if (!f.value.trim() && f.hasAttribute('required')) valid = false;
+            });
+
+            if (!valid) {
+                alert("Position and price are required");
+                return;
+            }
+
+            const newPosition = Number(blockEdit.querySelector('input[class="option-position"]').value);
+
+
+            if (isNaN(newPosition) || newPosition <= 0) {
+                return alert('Position must be a valid positive number');
+            }
+
+            if (newPosition > optionsArr.length + 1) {
+                return alert(`Position should not exceed ${optionsArr.length + 1}`);
+            }
+
+            const price = blockEdit.querySelector('input[id="price"]').value.trim()
+
+            // ---- Формирование данных ----
+
+            let translations
+            let trCheck = true
+
+            fields.forEach(f => {
+                if (!f.value.trim() && !f.hasAttribute('required')) {
+
+                    translations = null
+                    trCheck = false
+                }
+            });
+
+            if (trCheck) {
+                translations = {
+                    en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
+                    ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
+                    ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
+                    ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
+                };
+            }
+
+
+
+            const payload = {
+                itemId,
+                position: newPosition - 1,
+                price,
+                translations
+            };
+
+            try {
+                const res = await fetch("/api/menuManager/itemOption/add", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
                 });
 
-                if (!valid) {
-                    alert("Position and price are required");
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.error || "Error adding option");
                     return;
                 }
 
-                const newPosition = Number(blockEdit.querySelector('input[class="option-position"]').value);
 
-
-                if (isNaN(newPosition) || newPosition <= 0) {
-                    return alert('Position must be a valid positive number');
-                }
-
-                if (newPosition > optionsArr.length + 1) {
-                    return alert(`Position should not exceed ${optionsArr.length + 1}`);
-                }
-
-                const price = blockEdit.querySelector('input[id="price"]').value.trim()
-
-                // ---- Формирование данных ----
-
-                let translations
-                let trCheck = true
-
-                fields.forEach(f => {
-                    if (!f.value.trim() && !f.hasAttribute('required')) {
-
-                        translations = null
-                        trCheck = false
-                    }
+                optionsArr = [];
+                data.item.variants.forEach(variant => {
+                    optionsArr.push(variant)
                 });
 
-                if (trCheck) {
-                    translations = {
-                        en: blockEdit.querySelector('input[class="option-name-en"]').value.trim(),
-                        ru: blockEdit.querySelector('input[class="option-name-ru"]').value.trim(),
-                        ko: blockEdit.querySelector('input[class="option-name-ko"]').value.trim(),
-                        ar: blockEdit.querySelector('input[class="option-name-ar"]').value.trim()
-                    };
-                }
+
+                fields.forEach(field => {
+                    field.value = ""
+                })
+
+                addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+
+                // addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+                //     block.classList.remove('active')
+                // })
+                blockEdit.classList.remove('active')
+
+                addOptionContainer.querySelector('.add-option-btn').classList.add('active')
 
 
+                wrapperItemOption.innerHTML = ""
+                wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
 
-                const payload = {
-                    itemId,
-                    position: newPosition - 1,
-                    price,
-                    translations
-                };
+                initOptionEditors()
+                initAddOption()
 
-                try {
-                    const res = await fetch("/api/menuManager/itemOption/add", {
-                        method: "PUT",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload)
-                    });
+                alert('Option has been successfully added.')
 
-                    const data = await res.json();
-
-                    if (!res.ok) {
-                        alert(data.error || "Error adding option");
-                        return;
-                    }
-
-
-                    optionsArr = [];
-                    data.item.variants.forEach(variant => {
-                        optionsArr.push(variant)
-                    });
-
-
-                    fields.forEach(field => {
-                        field.value = ""
-                    })
-
-                    addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
-
-                    // addOptionContainer.querySelectorAll('.add-block').forEach(block => {
-                    //     block.classList.remove('active')
-                    // })
-                    blockEdit.classList.remove('active')
-
-                    addOptionContainer.querySelector('.add-option-btn').classList.add('active')
-
-
-                    wrapperItemOption.innerHTML = ""
-                    wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
-
-                    initOptionEditors()
-                    initAddOption()
-
-                    alert('Option has been successfully added.')
-
-                } catch (error) {
-                    console.error(error);
-                    alert("Server error");
-                }
-            })
+            } catch (error) {
+                console.error(error);
+                alert("Server error");
+            }
         })
+
 
         cancelBtnsOption.forEach(cancelBtnOption => {
 
@@ -1541,9 +1542,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         itemBlocks.forEach(itemBlock => {
             itemBlock.classList.remove('active')
         })
-        
+
         addItemContainer.classList.remove("hidden")
     })
+
+
+    // открыть добавление опции блюда
+    let addOptionBtnAdder = document.querySelector('.add-option-btn-adder')
+    let tempOptionsArr = []
+
+
+    addOptionBtnAdder.addEventListener('click', () => {
+
+        let addOptionContainer = addOptionBtnAdder.closest('.add-container')
+
+        addOptionContainer.querySelector('input[class="option-position"]').value = tempOptionsArr.length + 1
+
+
+        addOptionBtnAdder.classList.remove('active')
+        addOptionContainer.querySelector('.add-block').classList.add('active')
+
+
+    })
+
+
 
 
     // добавить новое блюдо/отменить
