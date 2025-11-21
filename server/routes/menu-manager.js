@@ -1044,4 +1044,79 @@ router.post(
     }
 );
 
+
+// удаление блюда
+router.delete(
+    "/item/delete/:itemId",
+    async (req, res) => {
+        try {
+            const { itemId } = req.params;
+
+            // --- Загружаем блюдо ---
+            const item = await prisma.menuItem.findUnique({
+                where: { id: itemId }
+            });
+
+            if (!item) {
+                return res.status(404).json({ error: "Item not found" });
+            }
+
+            const categoryId = item.categoryId;
+            const deletedPosition = item.position;
+
+            // --- Папка с изображениями ---
+            const folder = join(__dirname, "../../client/images/food");
+            await fs.ensureDir(folder);
+
+            // --- Удаляем изображения ---
+            if (item.imageSmall)  await fs.remove(path.join(folder, item.imageSmall));
+            if (item.imageMedium) await fs.remove(path.join(folder, item.imageMedium));
+            if (item.imageLarge)  await fs.remove(path.join(folder, item.imageLarge));
+
+            // --- Удаляем переводы вариантов ---
+            await prisma.menuItemVariantTranslation.deleteMany({
+                where: {
+                    variant: { itemId }
+                }
+            });
+
+            // --- Удаляем сами варианты ---
+            await prisma.menuItemVariant.deleteMany({
+                where: { itemId }
+            });
+
+            // --- Удаляем переводы блюда ---
+            await prisma.menuItemTranslation.deleteMany({
+                where: { itemId }
+            });
+
+            // --- Удаляем сам item ---
+            const deletedItem = await prisma.menuItem.delete({
+                where: { id: itemId }
+            });
+
+            // --- Сдвигаем позиции остальных блюд ---
+            await prisma.menuItem.updateMany({
+                where: {
+                    categoryId,
+                    position: { gt: deletedPosition }
+                },
+                data: {
+                    position: { decrement: 1 }
+                }
+            });
+
+            return res.json({
+                success: true,
+                item: deletedItem
+            });
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Server error" });
+        }
+    }
+);
+
+
 export default router;

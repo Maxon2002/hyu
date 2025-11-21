@@ -925,6 +925,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         })
 
+
+        
+
     }
 
 
@@ -1501,11 +1504,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // let saveBtnItemEditor = document.querySelector('.save-btn-item-editor')
         let exitBtnItemEditor = document.querySelector('.exit-btn-item-editor')
 
-
         exitBtnItemEditor.addEventListener('click', () => {
-
-
-
 
             itemEditorContainer.classList.add('hidden')
             let itemBlocks = document.querySelectorAll('.item-block')
@@ -1513,6 +1512,45 @@ document.addEventListener("DOMContentLoaded", async () => {
             itemBlocks.forEach(itemBlock => {
                 itemBlock.classList.remove('active')
             })
+        })
+
+
+        let deleteItemBtn = document.querySelector('.delete-btn-item-editor')
+
+        deleteItemBtn.addEventListener('click', async () => {
+
+            let itemEditorBlock = saveChangeItemDescription.closest('.item-editor-block')
+            let itemId = itemEditorBlock.dataset.id
+
+            if (!confirm("Are you sure you want to delete this item?")) return;
+
+
+            try {
+                const res = await fetch(`/api/menuManager/item/delete/${itemId}`, {
+                    method: "DELETE"
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(result.error || "Delete error");
+                    return;
+                }
+
+                
+                itemEditorContainer.classList.add('hidden')
+                alert("Item deleted");
+                // Перезагрузить список блюд
+                await loadItems(data.item.categoryId)
+
+                
+
+            } catch (err) {
+                console.error(err);
+                alert("Server error");
+            }
+
+
         })
     }
 
@@ -1808,7 +1846,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         formData.append("options", JSON.stringify(tempOptionsArr));
 
 
-        
+
 
 
 
