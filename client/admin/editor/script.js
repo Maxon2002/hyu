@@ -1567,16 +1567,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     function renderTempOption(option) {
+        const el = document.createElement('div');
+        el.className = 'option-block';
+        el.id = String(option.position);
 
-        return `
-        
-            <div class="option-block" id="${option.position}">
-                <div>${option.translations.en} / ${option.price}</div>
-                
-                <img src="../../images/delete-icon.svg" class="edit-btn delete-icon-btn-option">
-            </div>
-
+        el.innerHTML = `          
+            <div>${option.translations.en} / ${option.price}</div>           
+            <img src="../../images/delete-icon.svg" class="edit-btn delete-icon-btn-option">
             `;
+
+        return el;
     }
 
 
