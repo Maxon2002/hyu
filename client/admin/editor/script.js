@@ -1749,7 +1749,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         let allAdderFields = addItemMainContainer.querySelectorAll('input, textarea')
 
         for (const field of allAdderFields) {
-            if (!field.value.trim() && field.hasAttribute('required')) {
+            if (!field.value.trim() && !field.closest('.add-container')) {
 
                 valid = false
             }
