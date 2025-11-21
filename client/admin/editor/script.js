@@ -1411,6 +1411,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 addOptionNameBtn.classList.add('active')
 
                 addOptionContainer.querySelector('.add-option-btn').classList.add('active')
+                addOptionContainer.querySelector('.add-option-btn-adder')?.classList.add('active')
             })
         })
 
@@ -1585,7 +1586,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             alert("Position and price are required");
             return;
         }
+
+        addOptionContainer.querySelector('.add-option-btn-adder').classList.add('active')
     })
+
+
+
+
+
 
 
     // добавить новое блюдо/отменить
