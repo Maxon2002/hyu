@@ -1534,6 +1534,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     openAddItem.addEventListener('click', () => {
 
+        let addItemMainContainer = addItemBtn.closest('.addItemMainContainer')
+
+        addItemMainContainer.querySelector('input[id="item-position"]').value = itemsArr.length + 1
+
+
+
         itemEditorContainer.classList.add('hidden')
         let itemBlocks = document.querySelectorAll('.item-block')
 
@@ -1645,7 +1651,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // 1. Сдвигаем позиции существующих опций
         tempOptionsArr = tempOptionsArr.map(opt => {
-            if (opt.position >= newPosition) {
+            if (opt.position >= newPosition - 1) {
                 return { ...opt, position: opt.position + 1 }
             }
             return opt
@@ -1653,7 +1659,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // 2. Создаём новый объект
         let optionObj = {
-            position: newPosition,
+            position: newPosition - 1,
             price,
             showLabel: trCheck,
             translations
@@ -1736,9 +1742,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    addItemBtn.addEventListener('click', () => {
+    addItemBtn.addEventListener('click', async () => {
+
+        let categoryId = document.querySelector('.category-block-info.active').closest('.category-block').dataset.id
+
+
         let valid = true
-        let allAdderFields = addItemContainer.querySelectorAll('input, textarea')
+        let addItemMainContainer = addItemBtn.closest('.add-item-main-container')
+        let allAdderFields = addItemMainContainer.querySelectorAll('input, textarea')
 
         for (const field of allAdderFields) {
             if (!field.value.trim() && field.hasAttribute('required')) {
@@ -1749,21 +1760,94 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!valid) {
             alert('Not all fields are filled in')
+            return
         }
 
-        if (!addItemContainer.querySelector('.option-block')) {
+        if (tempOptionsArr.length === 0) {
             alert('At least one option is requeried')
             return
         }
 
+        let imageInput = addItemMainContainer.querySelector('#item-image-file')
 
 
-
-        if (validFirst && validSecond) {
-            alert('New item have been successfully added.')
+        if (imageInput.files.length === 0) {
+            alert("Please select an image");
+            return;
         }
 
-        tempOptionsArr = []
+        // формируем объект запроса
+
+        const itemPosition = Number(addItemMainContainer.querySelector('input[id="item-position"]').value);
+        if (isNaN(itemPosition) || itemPosition <= 0) {
+            return alert('Position must be a valid positive number');
+        }
+        if (itemPosition > itemsArr.length + 1) {
+            return alert(`Position should not exceed ${itemsArr.length + 1}`);
+        }
+
+        let translationsName = {
+            en: addItemMainContainer.querySelector('input[id="en-item-name"]').value.trim(),
+            ru: addItemMainContainer.querySelector('input[id="ru-item-name"]').value.trim(),
+            ko: addItemMainContainer.querySelector('input[id="ko-item-name"]').value.trim(),
+            ar: addItemMainContainer.querySelector('input[id="ar-item-name"]').value.trim()
+        };
+
+        let translationsDescription = {
+            en: addItemMainContainer.querySelector('textarea[id="en-item-description"]').value.trim(),
+            ru: addItemMainContainer.querySelector('textarea[id="ru-item-description"]').value.trim(),
+            ko: addItemMainContainer.querySelector('textarea[id="ko-item-description"]').value.trim(),
+            ar: addItemMainContainer.querySelector('textarea[id="ar-item-description"]').value.trim()
+        };
+
+        itemPosition--
+
+        const formData = new FormData();
+        formData.append("image", imageInput.files[0]);
+        formData.append("categoryId", categoryId);
+        formData.append("itemPosition", itemPosition);
+        formData.append("translationsName", JSON.stringify(translationsName));
+        formData.append("translationsDescription", JSON.stringify(translationsDescription));
+        formData.append("options", JSON.stringify(tempOptionsArr));
+
+
+        
+
+
+
+
+        try {
+            const res = await fetch("/api/menuManager/item/add", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: formData
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.error || "Error updating option");
+                return;
+            }
+
+
+            await loadItems(categoryId)
+
+            alert('Item has been successfully added.')
+
+
+            addItemMainContainer.classList.add("hidden")
+            addItemMainContainer.querySelectorAll('input, textarea').forEach(field => {
+                field.value = ""
+            })
+            tempOptionsArr = []
+
+
+        } catch (err) {
+            console.error(err);
+            alert("Server error");
+        }
+
     })
 
 

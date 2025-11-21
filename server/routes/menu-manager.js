@@ -903,4 +903,145 @@ router.delete("/itemOption/delete/:optionId", async (req, res) => {
     }
 });
 
+
+
+// добавление нового блюда
+
+router.post(
+    "/item/create",
+    upload.single("image"),
+    async (req, res) => {
+        try {
+            const {
+                categoryId,
+                itemPosition,
+                translationsName,
+                translationsDescription,
+                options
+            } = req.body;
+
+            const names = JSON.parse(translationsName);
+            const descriptions = JSON.parse(translationsDescription);
+            const optionsParsed = JSON.parse(options);
+
+            // обработка изображения
+            const file = req.file;
+
+            let smallName = null;
+            let mediumName = null;
+            let largeName = null;
+
+            if (file) {
+                // --- Папка для изображений ---
+                const folder = join(__dirname, "../../client/images/food");
+                await fs.ensureDir(folder);
+
+                // --- Генерируем baseName из оригинального имени ---
+                const originalBase = path.parse(file.originalname).name.replace(/\s+/g, "-");
+                const baseName = `${originalBase}-${Date.now()}`;
+
+                smallName = `${baseName}-350.webp`;
+                mediumName = `${baseName}-500.webp`;
+                largeName = `${baseName}-800.webp`;
+
+                const smallPath = path.join(folder, smallName);
+                const mediumPath = path.join(folder, mediumName);
+                const largePath = path.join(folder, largeName);
+
+                // --- Конвертация и ресайз ---
+                await sharp(file.path)
+                    .resize({ width: 350 })
+                    .webp({ quality: 80 })
+                    .toFile(smallPath);
+
+                await sharp(file.path)
+                    .resize({ width: 500 })
+                    .webp({ quality: 80 })
+                    .toFile(mediumPath);
+
+                await sharp(file.path)
+                    .resize({ width: 800 })
+                    .webp({ quality: 80 })
+                    .toFile(largePath);
+
+                // --- Удаляем временный файл ---
+                await fs.remove(file.path);
+            }
+
+
+            // ---------- СДВИГ ПОЗИЦИЙ ----------
+            await prisma.menuItem.updateMany({
+                where: {
+                    categoryId,
+                    position: { gte: Number(itemPosition) }
+                },
+                data: {
+                    position: { increment: 1 }
+                }
+            });
+
+            // ---------- СОЗДАНИЕ БЛЮДА ----------
+            const item = await prisma.menuItem.create({
+                data: {
+                    categoryId,
+                    position: Number(itemPosition),
+                    imageSmall: smallName,
+                    imageMedium: mediumName,
+                    imageLarge: largeName
+                }
+            });
+
+            // добавляем переводы названия и описания
+            const translationsData = Object.keys(names).map(lang => ({
+                itemId: item.id,
+                language: lang,
+                title: names[lang],
+                description: descriptions[lang] || null
+            }));
+
+            await prisma.menuItemTranslation.createMany({
+                data: translationsData
+            });
+
+
+            // --- Добавляем варианты (опции) ---
+            for (const opt of optionsParsed) {
+
+                // 1. Создаём вариант
+                const variant = await prisma.menuItemVariant.create({
+                    data: {
+                        itemId: item.id,
+                        position: opt.position,
+                        price: opt.price ? parseFloat(opt.price) : 0,
+                        showLabel: opt.showLabel
+                    }
+                });
+
+                // 2. Создаём переводы варианта
+                for (const lang of Object.keys(opt.translations)) {
+                    const text = opt.translations[lang];
+
+                    await prisma.menuItemVariantTranslation.create({
+                        data: {
+                            variantId: variant.id,
+                            language: lang,
+                            name: text || null
+                        }
+                    });
+                }
+            }
+
+
+            return res.json({
+                success: true,
+                item
+            });
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Server error" });
+        }
+    }
+);
+
 export default router;
