@@ -1534,11 +1534,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     openAddItem.addEventListener('click', () => {
 
-        let addItemMainContainer = addItemBtn.closest('.addItemMainContainer')
 
-        addItemMainContainer.querySelector('input[id="item-position"]').value = itemsArr.length + 1
-
-
+        addItemContainer.querySelector('input[id="item-position"]').value = itemsArr.length + 1
 
         itemEditorContainer.classList.add('hidden')
         let itemBlocks = document.querySelectorAll('.item-block')
