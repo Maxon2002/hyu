@@ -1575,21 +1575,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     addItemBtn.addEventListener('click', () => {
-        let validFirst = true
-        let validSecond = true
-        let allEditorFields = addItemContainer.querySelectorAll('input, textarea')
+        let valid = true
+        let allAdderFields = addItemContainer.querySelectorAll('input, textarea')
 
-        for (const field of allEditorFields) {
-            if (!field.value.trim() && !field.closest('.add-block')) {
-                alert('Not all fields are filled in')
-                validFirst = false
-                return
+        for (const field of allAdderFields) {
+            if (!field.value.trim() && field.hasAttribute('required')) {
+                
+                valid = false
             }
+        }
+
+        if(!valid) {
+            alert('Not all fields are filled in')
         }
 
         if (!addItemContainer.querySelector('.option-container')) {
             alert('At least one option is requeried')
-            validSecond = false
+            return
         }
 
 
