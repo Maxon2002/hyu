@@ -1549,7 +1549,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // открыть добавление опции блюда
     let addOptionBtnAdder = document.querySelector('.add-option-btn-adder')
-    let tempOptionsArr = []
+
 
 
     addOptionBtnAdder.addEventListener('click', () => {
@@ -1565,7 +1565,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     })
 
+    let saveOptionBtnAdder = document.querySelector('.add-btn-option-adder')
+    let tempOptionsArr = []
 
+    saveOptionBtnAdder.addEventListener('click', () => {
+
+        let addOptionContainer = addSaveBtnOption.closest('.add-container')
+        let blockEdit = addOptionContainer.querySelector('.add-block')
+        let fields = blockEdit.querySelectorAll('input')
+
+
+        let valid = true
+
+        fields.forEach(f => {
+            if (!f.value.trim() && f.hasAttribute('required')) valid = false;
+        });
+
+        if (!valid) {
+            alert("Position and price are required");
+            return;
+        }
+    })
 
 
     // добавить новое блюдо/отменить
@@ -1580,12 +1600,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         for (const field of allAdderFields) {
             if (!field.value.trim() && field.hasAttribute('required')) {
-                
+
                 valid = false
             }
         }
 
-        if(!valid) {
+        if (!valid) {
             alert('Not all fields are filled in')
         }
 
