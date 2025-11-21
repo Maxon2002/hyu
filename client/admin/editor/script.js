@@ -1570,7 +1570,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     saveOptionBtnAdder.addEventListener('click', () => {
 
-        let addOptionContainer = addSaveBtnOption.closest('.add-container')
+        let addOptionContainer = saveOptionBtnAdder.closest('.add-container')
         let blockEdit = addOptionContainer.querySelector('.add-block')
         let fields = blockEdit.querySelectorAll('input')
 
