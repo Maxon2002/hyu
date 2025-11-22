@@ -715,6 +715,20 @@ router.put("/itemOption/update", async (req, res) => {
                     }
                 });
             }
+
+            // Показыаем label
+            if (translations.en !== "Standard") {
+                await prisma.menuItemVariant.update({
+                    where: { id: optionId },
+                    data: { showLabel: true }
+                });
+            }
+        } else {
+            // Убираем label
+            await prisma.menuItemVariant.update({
+                where: { id: optionId },
+                data: { showLabel: false }
+            });
         }
 
         // ======================================================
@@ -1069,9 +1083,9 @@ router.delete(
             await fs.ensureDir(folder);
 
             // --- Удаляем изображения ---
-            if (item.imageSmall)  await fs.remove(path.join(folder, item.imageSmall));
+            if (item.imageSmall) await fs.remove(path.join(folder, item.imageSmall));
             if (item.imageMedium) await fs.remove(path.join(folder, item.imageMedium));
-            if (item.imageLarge)  await fs.remove(path.join(folder, item.imageLarge));
+            if (item.imageLarge) await fs.remove(path.join(folder, item.imageLarge));
 
             // --- Удаляем переводы вариантов ---
             await prisma.menuItemVariantTranslation.deleteMany({
