@@ -1458,87 +1458,86 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     }
     function initAddOptionGeneral() {
-        let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
-        cancelBtnsOption.forEach(cancelBtnOption => {
-            cancelBtnOption.addEventListener('click', () => {
-                let addOptionContainer = cancelBtnOption.closest('.add-container')
-                let fields = addOptionContainer.querySelectorAll('input')
-                fields.forEach(field => {
-                    field.value = ""
-                })
+        let cancelBtnOption = document.querySelector('.cancel-btn-option')
 
-                let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn')
-                addOptionNameBtn.textContent = "Add option name"
-
-
-                addOptionContainer.querySelectorAll('.add-block').forEach(block => {
-                    block.classList.remove('active')
-                })
-
-                addOptionNameBtn.classList.add('active')
-
-                addOptionContainer.querySelector('.add-option-btn')?.classList.add('active')
-                addOptionContainer.querySelector('.add-option-btn-adder')?.classList.add('active')
+        cancelBtnOption.addEventListener('click', () => {
+            let addOptionContainer = cancelBtnOption.closest('.add-container')
+            let fields = addOptionContainer.querySelectorAll('input')
+            fields.forEach(field => {
+                field.value = ""
             })
+
+            let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn')
+            addOptionNameBtn.textContent = "Add option name"
+
+
+            addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+                block.classList.remove('active')
+            })
+
+            addOptionNameBtn.classList.add('active')
+
+            addOptionContainer.querySelector('.add-option-btn').classList.add('active')
         })
+
 
         // добавить имя опции блюда 
-        let addOptionNameBtns = document.querySelectorAll('.add-option-name-btn')
-        addOptionNameBtns.forEach(addOptionNameBtn => {
-            addOptionNameBtn.addEventListener('click', () => {
-                addOptionNameBtn.classList.remove('active')
-                addOptionNameBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
-            })
+        let addOptionNameBtn = document.querySelector('.add-option-name-btn')
+
+        addOptionNameBtn.addEventListener('click', () => {
+            addOptionNameBtn.classList.remove('active')
+            addOptionNameBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
         })
+
 
         // сохранить добавленное имя опции блюда/отменить
-        let saveBtnsOptionName = document.querySelectorAll('.save-btn-option-name')
-        let cancelBtnsOptionName = document.querySelectorAll('.cancel-btn-option-name')
+        let saveBtnOptionName = document.querySelector('.save-btn-option-name')
+        let cancelBtnOptionName = document.querySelector('.cancel-btn-option-name')
 
-        saveBtnsOptionName.forEach(saveBtnOptionName => {
-            saveBtnOptionName.addEventListener('click', () => {
 
-                let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
-                let fields = addOptionNameContainer.querySelectorAll('input')
+        saveBtnOptionName.addEventListener('click', () => {
 
-                let valid = true
-                for (const field of fields) {
-                    if (!field.value.trim()) {
-                        alert('Not all fields for option name are filled in');
-                        valid = false
-                        return;
-                    }
+            let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
+            let fields = addOptionNameContainer.querySelectorAll('input')
+
+            let valid = true
+            for (const field of fields) {
+                if (!field.value.trim()) {
+                    alert('Not all fields for option name are filled in');
+                    valid = false
+                    return;
                 }
+            }
 
 
-                if (valid) {
-                    fields.forEach(field => {
-                        if (field.classList.contains('option-name-en')) {
-                            addOptionNameContainer.querySelector('.add-option-name-btn').textContent = field.value.trim()
-                        }
-                    })
-
-                    saveBtnOptionName.closest('.add-block').classList.remove('active')
-                    addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
-                }
-            })
-        })
-
-        cancelBtnsOptionName.forEach(cancelBtnOptionName => {
-            cancelBtnOptionName.addEventListener('click', () => {
-                let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
-                let fields = addOptionNameContainer.querySelectorAll('input')
-
+            if (valid) {
                 fields.forEach(field => {
-                    field.value = ""
-                    addOptionNameContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+                    if (field.classList.contains('option-name-en')) {
+                        addOptionNameContainer.querySelector('.add-option-name-btn').textContent = field.value.trim()
+                    }
                 })
 
-                cancelBtnOptionName.closest('.add-block').classList.remove('active')
-
+                saveBtnOptionName.closest('.add-block').classList.remove('active')
                 addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
-            })
+            }
         })
+
+
+
+        cancelBtnOptionName.addEventListener('click', () => {
+            let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
+            let fields = addOptionNameContainer.querySelectorAll('input')
+
+            fields.forEach(field => {
+                field.value = ""
+                addOptionNameContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+            })
+
+            cancelBtnOptionName.closest('.add-block').classList.remove('active')
+
+            addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
+        })
+
     }
 
 
