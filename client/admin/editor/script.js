@@ -636,7 +636,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (tr.en === "Standard") {
             return `
                 <div class="add-container">
-                                                    <div class="add-option-name-btn active">Add option name</div>
+                                                    <div class="add-option-name-btn-option active">Add option name</div>
 
                                                     <div class="add-block">
                                                         <div class="block-edit">
@@ -654,10 +654,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                                                             <div class="change-buttons">
                                                                 <button type="button"
-                                                                    class="act-btn save-btn-option-name">Save
+                                                                    class="act-btn save-btn-option-name-option">Save
                                                                     name</button>
                                                                 <button type="button"
-                                                                    class="act-btn cancel-btn-option-name">Cancel</button>
+                                                                    class="act-btn cancel-btn-option-name-option">Cancel</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1064,6 +1064,70 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
 
 
+
+        // 
+        // добавить имя опции блюда 
+        let addOptionNameBtns = document.querySelectorAll('.add-option-name-btn-option')
+        addOptionNameBtns.forEach(addOptionNameBtn => {
+            addOptionNameBtn.addEventListener('click', () => {
+                addOptionNameBtn.classList.remove('active')
+                addOptionNameBtn.closest('.add-container').querySelector('.add-block').classList.add('active')
+            })
+        })
+
+        // сохранить добавленное имя опции блюда/отменить
+        let saveBtnsOptionName = document.querySelectorAll('.save-btn-option-name-option')
+        let cancelBtnsOptionName = document.querySelectorAll('.cancel-btn-option-name-option')
+
+        saveBtnsOptionName.forEach(saveBtnOptionName => {
+            saveBtnOptionName.addEventListener('click', () => {
+
+                let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
+                let fields = addOptionNameContainer.querySelectorAll('input')
+
+                let valid = true
+                for (const field of fields) {
+                    if (!field.value.trim()) {
+                        alert('Not all fields for option name are filled in');
+                        valid = false
+                        return;
+                    }
+                }
+
+
+                if (valid) {
+                    fields.forEach(field => {
+                        if (field.classList.contains('option-name-en')) {
+                            addOptionNameContainer.querySelector('.add-option-name-btn-option').textContent = field.value.trim()
+                        }
+                    })
+
+                    saveBtnOptionName.closest('.add-block').classList.remove('active')
+                    addOptionNameContainer.querySelector('.add-option-name-btn-option').classList.add('active')
+                }
+            })
+        })
+
+        cancelBtnsOptionName.forEach(cancelBtnOptionName => {
+            cancelBtnOptionName.addEventListener('click', () => {
+                let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
+                let fields = addOptionNameContainer.querySelectorAll('input')
+
+                fields.forEach(field => {
+                    field.value = ""
+                    addOptionNameContainer.querySelector('.add-option-name-btn-option').textContent = "Add option name"
+                })
+
+                cancelBtnOptionName.closest('.add-block').classList.remove('active')
+
+                addOptionNameContainer.querySelector('.add-option-name-btn-option').classList.add('active')
+            })
+        })
+        // 
+
+
+
+
         // сохранить изменеия опции
 
         let saveBtnsOption = document.querySelectorAll('.save-btn-option')
@@ -1193,9 +1257,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (addBlock.querySelector('.add-container')) {
                     let addContainer = addBlock.querySelector('.add-container')
                     addContainer.querySelector('.add-block').classList.remove('active')
-                    addContainer.querySelector('.add-option-name-btn').classList.add('active')
 
-                    addContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+                    addContainer.querySelector('.add-option-name-btn-option').textContent = "Add option name"
+                    addContainer.querySelector('.add-option-name-btn-option').classList.add('active')
                 }
 
             })
