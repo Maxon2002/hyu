@@ -266,6 +266,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     alert("Category deleted");
 
+                    document.querySelector('.item-editor-main-container').classList.add('hidden')
+                    document.querySelector('.items-main-container').classList.add('hidden')
+
                     // Перезагрузить категории
                     await loadCategories();
 
