@@ -1869,6 +1869,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
             addItemMainContainer.classList.add("hidden")
+
+            wrapperItemOptionAdder.innerHTML = ""
+            
             addItemMainContainer.querySelectorAll('input, textarea').forEach(field => {
                 field.value = ""
             })
@@ -1886,7 +1889,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     cancelAddItemBtn.addEventListener('click', () => {
 
+
+
         addItemContainer.classList.add("hidden")
+
+        wrapperItemOptionAdder.innerHTML = ""
 
         addItemContainer.querySelectorAll('input, textarea').forEach(field => {
             field.value = ""
