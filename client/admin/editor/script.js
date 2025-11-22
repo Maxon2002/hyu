@@ -1519,7 +1519,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         deleteItemBtn.addEventListener('click', async () => {
 
-            let itemEditorBlock = saveChangeItemDescription.closest('.item-editor-block')
+            let itemEditorBlock = deleteItemBtn.closest('.item-editor-block')
             let itemId = itemEditorBlock.dataset.id
 
             if (!confirm("Are you sure you want to delete this item?")) return;

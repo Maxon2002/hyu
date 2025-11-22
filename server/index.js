@@ -20,6 +20,7 @@ const __dirname = path.resolve();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // --- Пропускаем json/urlencoded для multipart/form-data ---
 // app.use((req, res, next) => {
 //     if (req.is('multipart/form-data')) {
