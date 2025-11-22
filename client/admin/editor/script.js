@@ -582,6 +582,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                 <input type="number" id="price" name="price" required>
 
                                                 <div class="add-container">
+                                                <div>Name</div>
                                                     <div class="add-option-name-btn active">Add option name</div>
 
                                                     <div class="add-block">
@@ -636,6 +637,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (tr.en === "Standard") {
             return `
                 <div class="add-container">
+                <div>Name</div>
                                                     <div class="add-option-name-btn-option active">Add option name</div>
 
                                                     <div class="add-block">
