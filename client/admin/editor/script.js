@@ -293,8 +293,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 catBlockInfo.classList.add('active')
                 itemsContainer.classList.remove('hidden')
 
-                document.querySelector('.item-editor-main-container')?.classList.add('.hidden')
-                document.querySelector('.add-item-main-container')?.classList.add('.hidden')
+                document.querySelector('.item-editor-main-container')?.classList.add('hidden')
+                document.querySelector('.add-item-main-container')?.classList.add('hidden')
             })
         })
 
