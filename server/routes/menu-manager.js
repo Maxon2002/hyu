@@ -908,7 +908,7 @@ router.delete("/itemOption/delete/:optionId", async (req, res) => {
 // добавление нового блюда
 
 router.post(
-    "/item/create",
+    "/item/add",
     upload.single("image"),
     async (req, res) => {
         try {

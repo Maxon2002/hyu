@@ -926,7 +926,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
 
 
-        
+
 
     }
 
@@ -1537,13 +1537,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     return;
                 }
 
-                
+
                 itemEditorContainer.classList.add('hidden')
                 alert("Item deleted");
                 // Перезагрузить список блюд
                 await loadItems(data.item.categoryId)
 
-                
+
 
             } catch (err) {
                 console.error(err);
@@ -1848,8 +1848,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             const res = await fetch("/api/menuManager/item/add", {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                method: "POST", 
                 body: formData
             });
 

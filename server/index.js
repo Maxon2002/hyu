@@ -18,17 +18,17 @@ const __dirname = path.resolve();
 
 // middleware
 app.use(cors());
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // --- Пропускаем json/urlencoded для multipart/form-data ---
-app.use((req, res, next) => {
-    if (req.is('multipart/form-data')) {
-        return next(); // не парсим тело, пусть Multer делает это
-    }
-    express.json()(req, res, () => {
-        express.urlencoded({ extended: true })(req, res, next);
-    });
-});
+// app.use((req, res, next) => {
+//     if (req.is('multipart/form-data')) {
+//         return next(); // не парсим тело, пусть Multer делает это
+//     }
+//     express.json()(req, res, () => {
+//         express.urlencoded({ extended: true })(req, res, next);
+//     });
+// });
 
 // отдаём статику (фронтенд папка "client")
 app.use(express.static(path.join(process.cwd(), "client")));
