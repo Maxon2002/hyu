@@ -1165,8 +1165,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
 
                     initOptionEditors()
-                    initAddOption()
-                    initAddOptionGeneral()
+                    // initAddOption()
+                    // initAddOptionGeneral()
 
                     alert('Option has been successfully updated.')
 
@@ -1237,8 +1237,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
 
                     initOptionEditors()
-                    initAddOption()
-                    initAddOptionGeneral()
+                    // initAddOption()
+                    // initAddOptionGeneral()
 
 
                     alert("Option deleted");
@@ -1381,8 +1381,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 wrapperItemOption.innerHTML = data.item.variants.map(renderOption).join("")
 
                 initOptionEditors()
-                initAddOption()
-                initAddOptionGeneral()
+                // initAddOption()
+                // initAddOptionGeneral()
 
                 alert('Option has been successfully added.')
 
@@ -1512,6 +1512,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         exitBtnItemEditor.addEventListener('click', () => {
 
             itemEditorContainer.classList.add('hidden')
+            wrapperItemEditor.innerHTML = ""
             let itemBlocks = document.querySelectorAll('.item-block')
 
             itemBlocks.forEach(itemBlock => {
@@ -1544,6 +1545,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
                 itemEditorContainer.classList.add('hidden')
+                wrapperItemEditor.innerHTML = ""
                 alert("Item deleted");
                 // Перезагрузить список блюд
                 await loadItems(data.item.categoryId)
