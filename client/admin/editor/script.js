@@ -290,6 +290,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 categoryBlocksInfo.forEach(catBlockInfo => {
                     catBlockInfo.classList.remove('active')
                 })
+
+                document.querySelectorAll('.category-block').forEach(catBlock => {
+                    catBlock.querySelector('.add-block').classList.remove('active')
+                })
+
                 catBlockInfo.classList.add('active')
                 itemsContainer.classList.remove('hidden')
 
