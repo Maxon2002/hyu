@@ -1396,8 +1396,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     function initAddOptionGeneral() {
         let cancelBtnsOption = document.querySelectorAll('.cancel-btn-option')
         cancelBtnsOption.forEach(cancelBtnOption => {
-
-
             cancelBtnOption.addEventListener('click', () => {
                 let addOptionContainer = cancelBtnOption.closest('.add-container')
                 let fields = addOptionContainer.querySelectorAll('input')
@@ -1420,12 +1418,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
         })
 
-
-
         // добавить имя опции блюда 
         let addOptionNameBtns = document.querySelectorAll('.add-option-name-btn')
-
-
         addOptionNameBtns.forEach(addOptionNameBtn => {
             addOptionNameBtn.addEventListener('click', () => {
                 addOptionNameBtn.classList.remove('active')
@@ -1433,15 +1427,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
         })
 
-
-
         // сохранить добавленное имя опции блюда/отменить
         let saveBtnsOptionName = document.querySelectorAll('.save-btn-option-name')
         let cancelBtnsOptionName = document.querySelectorAll('.cancel-btn-option-name')
 
         saveBtnsOptionName.forEach(saveBtnOptionName => {
-
-
             saveBtnOptionName.addEventListener('click', () => {
 
                 let addOptionNameContainer = saveBtnOptionName.closest('.add-container')
@@ -1457,7 +1447,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
 
-
                 if (valid) {
                     fields.forEach(field => {
                         if (field.classList.contains('option-name-en')) {
@@ -1466,20 +1455,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     })
 
                     saveBtnOptionName.closest('.add-block').classList.remove('active')
-
-
                     addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
-
-                    // document.querySelectorAll('.add-option-name-btn').forEach(btn => {
-                    //     btn.classList.add('active')
-                    // })
                 }
             })
         })
 
         cancelBtnsOptionName.forEach(cancelBtnOptionName => {
-
-
             cancelBtnOptionName.addEventListener('click', () => {
                 let addOptionNameContainer = cancelBtnOptionName.closest('.add-container')
                 let fields = addOptionNameContainer.querySelectorAll('input')
@@ -1489,12 +1470,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     addOptionNameContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
                 })
 
-
                 cancelBtnOptionName.closest('.add-block').classList.remove('active')
-
-                // while (addOptionNameContainer.parentElement && addOptionNameContainer.parentElement.classList.contains('.add-container')) {
-                //     addOptionNameContainer.parentElement.querySelector('.add-option-name-btn').classList.add('active')
-                // }
 
                 addOptionNameContainer.querySelector('.add-option-name-btn').classList.add('active')
             })
@@ -1569,9 +1545,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    initAddOptionGeneral()
-
-
     // открыть окно добавления блюда 
 
     let openAddItem = document.querySelector('.add-item-btn')
@@ -1596,8 +1569,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // открыть добавление опции блюда
     let addOptionBtnAdder = document.querySelector('.add-option-btn-adder')
 
-
-
     addOptionBtnAdder.addEventListener('click', () => {
 
         let addOptionContainer = addOptionBtnAdder.closest('.add-container')
@@ -1611,8 +1582,92 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     })
 
+    // 
+
+    let cancelBtnOptionAdder = document.querySelector('.cancel-btn-option-adder')
+
+    cancelBtnOptionAdder.addEventListener('click', () => {
+        let addOptionContainer = cancelBtnOptionAdder.closest('.add-container')
+        let fields = addOptionContainer.querySelectorAll('input')
+        fields.forEach(field => {
+            field.value = ""
+        })
+
+        let addOptionNameBtn = addOptionContainer.querySelector('.add-option-name-btn-adder')
+        addOptionNameBtn.textContent = "Add option name"
 
 
+        addOptionContainer.querySelectorAll('.add-block').forEach(block => {
+            block.classList.remove('active')
+        })
+
+        addOptionNameBtn.classList.add('active')
+
+
+        addOptionContainer.querySelector('.add-option-btn-adder').classList.add('active')
+    })
+
+
+    // добавить имя опции блюда 
+    let addOptionNameBtnAdder = document.querySelector('.add-option-name-btn-adder')
+
+    addOptionNameBtnAdder.addEventListener('click', () => {
+        addOptionNameBtnAdder.classList.remove('active')
+        addOptionNameBtnAdder.closest('.add-container').querySelector('.add-block').classList.add('active')
+    })
+
+
+    // сохранить добавленное имя опции блюда/отменить
+    let saveBtnOptionNameAdder = document.querySelector('.save-btn-option-name-adder')
+    let cancelBtnOptionNameAdder = document.querySelector('.cancel-btn-option-name-adder')
+
+
+    saveBtnOptionNameAdder.addEventListener('click', () => {
+
+        let addOptionNameContainer = saveBtnOptionNameAdder.closest('.add-container')
+        let fields = addOptionNameContainer.querySelectorAll('input')
+
+        let valid = true
+        for (const field of fields) {
+            if (!field.value.trim()) {
+                alert('Not all fields for option name are filled in');
+                valid = false
+                return;
+            }
+        }
+
+
+        if (valid) {
+            fields.forEach(field => {
+                if (field.classList.contains('option-name-en')) {
+                    addOptionNameContainer.querySelector('.add-option-name-btn-adder').textContent = field.value.trim()
+                }
+            })
+
+            saveBtnOptionNameAdder.closest('.add-block').classList.remove('active')
+            addOptionNameContainer.querySelector('.add-option-name-btn-adder').classList.add('active')
+        }
+    })
+
+
+
+    cancelBtnOptionNameAdder.addEventListener('click', () => {
+        let addOptionNameContainer = cancelBtnOptionNameAdder.closest('.add-container')
+        let fields = addOptionNameContainer.querySelectorAll('input')
+
+        fields.forEach(field => {
+            field.value = ""
+            addOptionNameContainer.querySelector('.add-option-name-btn-adder').textContent = "Add option name"
+        })
+
+        cancelBtnOptionNameAdder.closest('.add-block').classList.remove('active')
+
+        addOptionNameContainer.querySelector('.add-option-name-btn-adder').classList.add('active')
+    })
+
+
+
+    // 
 
     function renderTempOption(option) {
         const el = document.createElement('div');
@@ -1855,7 +1910,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             const res = await fetch("/api/menuManager/item/add", {
-                method: "POST", 
+                method: "POST",
                 body: formData
             });
 
