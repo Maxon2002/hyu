@@ -241,7 +241,8 @@ input, textarea {
 .add-option-btn,
 .add-option-name-btn,
 .change-img,
-.add-option-btn-adder {
+.add-option-btn-adder,
+.add-option-name-btn-adder {
     text-decoration: underline;
     cursor: pointer;
     font-size: 16px;
@@ -252,7 +253,8 @@ input, textarea {
 .add-option-btn.active,
 .add-option-name-btn.active,
 .change-img.active,
-.add-option-btn-adder.active {
+.add-option-btn-adder.active,
+.add-option-name-btn-adder.active {
     display: block;
 }
 

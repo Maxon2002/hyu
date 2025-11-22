@@ -1952,6 +1952,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         addItemContainer.classList.add("hidden")
 
+        cancelBtnOptionAdder.click()
+
         wrapperItemOptionAdder.innerHTML = ""
 
         addItemContainer.querySelectorAll('input, textarea').forEach(field => {
