@@ -1007,6 +1007,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         cancelImgChange.addEventListener('click', () => {
             let changeImgBlock = cancelImgChange.closest('.add-block')
+            let imageInput = changeImgBlock.querySelector('#item-image-file')
+            imageInput.value = ""
 
             changeImgBlock.classList.remove('active')
             changeImgBlock.closest('.block-edit').querySelector('.change-img').classList.add('active')
@@ -1871,7 +1873,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             addItemMainContainer.classList.add("hidden")
 
             wrapperItemOptionAdder.innerHTML = ""
-            
+
             addItemMainContainer.querySelectorAll('input, textarea').forEach(field => {
                 field.value = ""
             })
