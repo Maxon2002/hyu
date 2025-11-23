@@ -88,7 +88,8 @@ body {
 
 .main-editor-wrapper {
     display: flex;
-    gap: 150px;
+    gap: 100px;
+    justify-content: center;
 }
 
 
@@ -124,7 +125,7 @@ input, textarea {
 .block-wrapper {
     display: flex;
     flex-direction: column;
-    width: 270px;
+    width: 300px;
 }
 
 #categoriesWrapper,
