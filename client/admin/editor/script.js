@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
             wrapperCategory.innerHTML = ""; // очистить старые данные
+            categoriesArr = []
 
             data.categories.forEach(category => {
                 categoriesArr.push(category)
@@ -268,6 +269,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     document.querySelector('.item-editor-main-container').classList.add('hidden')
                     document.querySelector('.items-main-container').classList.add('hidden')
+                    document.querySelector('.add-item-main-container').classList.add('hidden')
 
                     // Перезагрузить категории
                     await loadCategories();
