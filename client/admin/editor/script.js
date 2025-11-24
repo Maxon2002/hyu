@@ -343,12 +343,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!valid) {
             alert("Position and names are required");
+            addSaveBtnCategory.classList.remove('tapped')
             return;
         }
 
         const position = Number(addCategoryBlock.querySelector('input[id="position"]').value);
-        if (position <= 0) {
-            alert("Position must be at least 1");
+        if (isNaN(position) || position <= 0) {
+            alert('Position must be a valid positive number');
+            addSaveBtnCategory.classList.remove('tapped')
             return;
         }
 
@@ -375,6 +377,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!result.success) {
                 alert(result.error || "Error");
+                addSaveBtnCategory.classList.remove('tapped')
                 return;
             }
 
@@ -1378,6 +1381,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!valid) {
                 alert("Position and price are required");
+                addSaveBtnOption.classList.remove('tapped')
                 return;
             }
 
@@ -1385,10 +1389,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
             if (isNaN(newPosition) || newPosition <= 0) {
+                addSaveBtnOption.classList.remove('tapped')
                 return alert('Position must be a valid positive number');
             }
 
             if (newPosition > optionsArr.length + 1) {
+                addSaveBtnOption.classList.remove('tapped')
                 return alert(`Position should not exceed ${optionsArr.length + 1}`);
             }
 
@@ -1436,6 +1442,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 if (!res.ok) {
                     alert(data.error || "Error adding option");
+                    addSaveBtnOption.classList.remove('tapped')
                     return;
                 }
 
@@ -1943,11 +1950,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!valid) {
             alert('Not all fields are filled in')
+            addItemBtn.classList.remove('tapped')
             return
         }
 
         if (tempOptionsArr.length === 0) {
             alert('At least one option is requeried')
+            addItemBtn.classList.remove('tapped')
             return
         }
 
@@ -1956,6 +1965,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (imageInput.files.length === 0) {
             alert("Please select an image");
+            addItemBtn.classList.remove('tapped')
             return;
         }
 
@@ -1963,9 +1973,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         let itemPosition = Number(addItemMainContainer.querySelector('input[id="item-position"]').value);
         if (isNaN(itemPosition) || itemPosition <= 0) {
+            addItemBtn.classList.remove('tapped')
             return alert('Position must be a valid positive number');
         }
         if (itemPosition > itemsArr.length + 1) {
+            addItemBtn.classList.remove('tapped')
             return alert(`Position should not exceed ${itemsArr.length + 1}`);
         }
 
@@ -2004,6 +2016,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!res.ok) {
                 alert(data.error || "Error updating option");
+                addItemBtn.classList.remove('tapped')
                 return;
             }
 
