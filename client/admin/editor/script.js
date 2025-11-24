@@ -1861,7 +1861,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             field.value = ""
         })
 
-        addOptionContainer.querySelector('.add-option-name-btn').textContent = "Add option name"
+        addOptionContainer.querySelector('.add-option-name-btn-adder').textContent = "Add option name"
 
 
         blockEdit.classList.remove('active')
