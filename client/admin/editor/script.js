@@ -329,6 +329,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     let cancelBtnCategory = document.querySelector('.cancel-btn-category')
 
     addSaveBtnCategory.addEventListener('click', async () => {
+        if (addSaveBtnCategory.classList.contains('tapped')) return
+        addSaveBtnCategory.classList.add('tapped')
 
         let addCategoryBlock = addSaveBtnCategory.closest('.add-block')
         let fields = addCategoryBlock.querySelectorAll('input')
@@ -388,6 +390,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // Перезагружаем категории
             await loadCategories();
+
+            addSaveBtnCategory.classList.remove('tapped')
 
         } catch (error) {
             console.error(error);
@@ -1355,6 +1359,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         addSaveBtnOption.addEventListener('click', async () => {
 
+            if (addSaveBtnOption.classList.contains('tapped')) return
+            addSaveBtnOption.classList.add('tapped')
+
 
             let addOptionContainer = addSaveBtnOption.closest('.add-container')
             let blockEdit = addOptionContainer.querySelector('.add-block')
@@ -1461,6 +1468,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // initAddOptionGeneral()
 
                 alert('Option has been successfully added.')
+
+                addSaveBtnOption.classList.remove('tapped')
 
             } catch (error) {
                 console.error(error);
@@ -1915,6 +1924,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     addItemBtn.addEventListener('click', async () => {
+        if (addItemBtn.classList.contains('tapped')) return
+        addItemBtn.classList.add('tapped')
 
         let categoryId = document.querySelector('.category-block-info.active').closest('.category-block').dataset.id
 
@@ -2010,6 +2021,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 field.value = ""
             })
             tempOptionsArr = []
+
+            addItemBtn.classList.remove('tapped')
 
 
         } catch (err) {
